@@ -6,13 +6,13 @@ import { createApp } from "vue";
 
 const routes = [
     {
-        path: '/Home',
+        path: '/home',
         name: 'Home',
         component: Home
     },
 
     {
-        path: '/About',
+        path: '/about',
         name: 'About',
         component: About
     },
