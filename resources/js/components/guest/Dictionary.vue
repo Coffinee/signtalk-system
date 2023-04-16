@@ -21,7 +21,7 @@ export default {
         
         <!-- Main Content -->
         <div class="grid grid-cols-4 w-auto h-screen bg-white dark:bg-[#111827]">
-            <div class="col h-full text-white border-r border-gray-300 dark:border-gray-700 p-5">
+            <div class="col h-full text-white p-5">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Recent Searches:</h5>
                 <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
                     <li>Happy</li>
@@ -60,7 +60,7 @@ export default {
                     </div>
                 </div>
             </div>
-            <div class="col flex flex-col justify-center items-center gap-y-10 border-l border-gray-300 dark:border-gray-700">
+            <div class="col flex flex-col justify-center items-center gap-y-10">
                 <Card :title="'Lesson'" :description="'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, voluptatibus.'" :buttonLabel="'View Lesson'"/>
 
                 <Card :title="'Quiz'" :description="'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, voluptatibus.'" :buttonLabel="'Take Quiz'"/>
