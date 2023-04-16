@@ -1,5 +1,5 @@
 <template>
-    <footer class="bg-white shadow dark:bg-gray-900 border-t border-gray-200">
+    <footer class="bg-white shadow dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
             <div class="sm:flex sm:items-center sm:justify-between">
                 <a href="https://flowbite.com/" class="flex items-center mb-4 sm:mb-0">
@@ -23,7 +23,7 @@
                     </li>
                 </ul>
             </div>
-            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+            <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8"/>
             <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">SignTalk™</a>. All Rights Reserved.</span>
         </div>
     </footer>

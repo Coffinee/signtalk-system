@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from '@/components/guest/Home.vue'
 import About from '@/components/guest/About.vue'
+import Dictionary from '@/components/guest/Dictionary.vue'
 import { createApp } from "vue";
 
 
@@ -15,6 +16,12 @@ const routes = [
         path: '/about',
         name: 'About',
         component: About
+    },
+
+    {
+        path: '/dictionary',
+        name: 'Dictionary',
+        component: Dictionary
     },
 
 ]
