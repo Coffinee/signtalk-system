@@ -1,14 +1,10 @@
 <script>
-
-import TopBar from "../misc/TopBar.vue";
-import Footer from "../misc/Footer.vue";
 import Card from "../misc/CardButton.vue";
-
 export default {
-    name: "Guest_Home",
+    name: "Dictionary",
 
     components:{
-        TopBar, Card, Footer
+        Card, 
     }
 
 }
