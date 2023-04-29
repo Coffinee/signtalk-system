@@ -12,9 +12,6 @@ export default {
 </script>
 <template>
     <div>
-        <!-- Navbar -->
-        <TopBar/>
-        
         <!-- Main Content -->
         <div class="grid grid-cols-4 w-auto h-screen bg-white dark:bg-[#111827]">
             <div class="col h-full text-white p-5">
@@ -46,6 +43,7 @@ export default {
                 <!-- Result -->
                 <div class="h-3/5 border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Result:</h5>
+                    <router-link to="/Student/Dictionary/Letters">Lessons</router-link>
                     <div class="h-[90%] flex flex-col">
                         <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                             Happy
@@ -64,8 +62,5 @@ export default {
                 <Card :title="'Exam'" :description="'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, voluptatibus.'" :buttonLabel="'Take Exam'"/>
             </div>
         </div>
-        
-        <!-- Footer -->
-        <Footer/>
     </div>
 </template>

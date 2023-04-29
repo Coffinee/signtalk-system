@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 const Home = () => import("@/components/AuthenticatedPages/Home.vue");
 const About = () => import("@/components/AuthenticatedPages/About.vue");
 const Dictionary = () => import("@/components/AuthenticatedPages/Dictionary.vue");
-const Lesson = () => import("@/components/AuthenticatedPages/Lesson.vue");
+const Interactives = () => import("@/components/AuthenticatedPages/Interactives.vue");
 
 // LAYOUTS
 const AuthenticatedLayout = () =>
@@ -34,10 +34,10 @@ const routes = [
             },
             {
                 name: "lesson",
-                path: "/Student/Lesson",
-                component: Lesson,
+                path: "/Student/Interactives",
+                component: Interactives,
                 meta: {
-                    title: "SignTalk | Lesson",
+                    title: "SignTalk | Interactives",
                 },
             },
             {

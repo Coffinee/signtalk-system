@@ -1,7 +1,7 @@
 <template>
-  <nav class="bg-transparent border-gray-200 dark:bg-gray-900">
+  <nav class="bg-gray-900 border-gray-200 dark:bg-gray-900">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-      <a href="https://flowbite.com/" class="flex items-center">
+      <a href="#" class="flex items-center">
         <p class="self-center text-2xl font-bold whitespace-nowrap dark:text-white">Sign<span class="text-blue-700 font-bold">Talk</span></p>
       </a>
       <button data-collapse-toggle="navbar-default" type="button"
@@ -17,7 +17,7 @@
       </button>
       <div class="hidden w-full md:block md:w-auto space-x-5">
         <router-link v-for="item in topbarNavigation" :key="item.name" :to="item.href"
-          :class="[useRoute().path == item.href ? ' dark:text-white text-blue-800' : 'text-black dark:text-slate-400 hover:text-blue-800', 'group rounded-xl px-6 py-2 text-sm leading-6 tracking-wide font-medium ']"
+          :class="[useRoute().path == item.href ? '  text-blue-500' : 'text-black dark:text-slate-400 hover:text-blue-800', 'group rounded-xl px-6 py-2 text-sm leading-6 tracking-wide font-medium ']"
           :aria-current="item.current ? 'page' : undefined">
           {{ item.name }}
         </router-link>
@@ -32,7 +32,7 @@ import { useRouter, useRoute } from 'vue-router'
 const topbarNavigation = [
   { name: 'Home', href: '/Student/Home' },
   { name: 'Lesson', href: '/Student/Lesson' },
-  { name: 'Dictionary', href: '/Student/Dictionary' },
+  { name: 'Interactives', href: '/Student/Interactives' },
   { name: 'About', href: '/Student/About' },
 ]
 

@@ -6,9 +6,6 @@ export default {
 </script>
 <template>
     <div>
-        <TopBar />
-        <!-- Content -->
-
         <section class="bg-white dark:bg-gray-900 ">
             <div class="grid grid-cols-4 w-auto h-screen bg-white dark:bg-[#111827]">
                 <div class="col h-full text-white p-5">
@@ -61,6 +58,5 @@ export default {
             </div>
 
         </section>
-    <Footer />
 </div></template>
  
