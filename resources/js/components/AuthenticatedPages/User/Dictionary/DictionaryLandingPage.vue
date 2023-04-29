@@ -30,8 +30,8 @@
     </div>
 </template>
 <script>
-import CalculateIllustration from '../../misc/Illustrations/CalculateIllustration.vue';
-import ReadingIllustration from '../../misc/Illustrations/ReadingIllustration.vue';
+import CalculateIllustration from '../../../misc/Illustrations/CalculateIllustration.vue';
+import ReadingIllustration from '../../../misc/Illustrations/ReadingIllustration.vue';
 export default{
     components:{
         CalculateIllustration, ReadingIllustration

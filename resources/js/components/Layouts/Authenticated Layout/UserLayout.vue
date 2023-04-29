@@ -9,6 +9,6 @@
 </template>
 
 <script setup>
-import TopBar from '../misc/TopBar.vue';
-import Footer from '../misc/Footer.vue';
+import TopBar from '../../misc/TopBar.vue';
+import Footer from '../../misc/Footer.vue';
 </script>

@@ -1,18 +1,27 @@
 import { createRouter, createWebHistory } from "vue-router";
-const Home = () => import("@/components/AuthenticatedPages/Home/Home.vue");
-const About = () => import("@/components/AuthenticatedPages/About/About.vue");
-const DictionaryLandingPage = () => import("@/components/AuthenticatedPages/Dictionary/DictionaryLandingPage.vue");
-const DictionaryMain = () => import("@/components/AuthenticatedPages/Dictionary/DictionaryMain.vue");
-const Lesson = () => import("@/components/AuthenticatedPages/Lesson/Lesson.vue");
+// USER SIDE
+const Home = () => import("@/components/AuthenticatedPages/User/Home/Home.vue");
+const About = () => import("@/components/AuthenticatedPages/User/About/About.vue");
+const DictionaryLandingPage = () => import("@/components/AuthenticatedPages/User/Dictionary/DictionaryLandingPage.vue");
+const DictionaryMain = () => import("@/components/AuthenticatedPages/User/Dictionary/DictionaryMain.vue");
+const Lesson = () => import("@/components/AuthenticatedPages/User/Lesson/Lesson.vue");
+
+// ADMIN SIDE
+const AdminDashboard = () => import("@/components/AuthenticatedPages/Admin/Admin Dashboard/AdminDashboard.vue");
+const AdminDictionary = () => import("@/components/AuthenticatedPages/Admin/Admin Dictionary/AdminDictionary.vue");
+const AdminLesson = () => import("@/components/AuthenticatedPages/Admin/Admin Lesson/AdminLesson.vue");
+const AdminQuiz = () => import("@/components/AuthenticatedPages/Admin/Admin Quiz/AdminQuiz.vue");
+const AdminExamination = () => import("@/components/AuthenticatedPages/Admin/Admin Examination/AdminExamination.vue");
 
 // LAYOUTS
-const AuthenticatedLayout = () =>
-    import("@/components/Layouts/AuthenticatedLayout.vue");
+const UserLayout = () =>import("@/components/Layouts/Authenticated Layout/UserLayout.vue");
+const AdminLayout = () =>import("@/components/Layouts/Authenticated Layout/AdminLayout.vue");
 
 const routes = [
     {
         path: "/Student",
-        component: AuthenticatedLayout,
+        component: UserLayout,
+        redirect: '/Student/Home',
         meta: {
             title: 'SignTalk | Student'
         },
@@ -59,6 +68,56 @@ const routes = [
             }
         ],
     },
+    {
+        path: "/Admin",
+        component: AdminLayout,
+        redirect: '/Admin/Dashboard',
+        meta: {
+            title: 'SignTalk | Admin'
+        },
+        children: [
+            {
+                name: 'admin-dashboard',                
+                path: "/Admin/Dashboard",
+                component: AdminDashboard,
+                meta: {
+                    title: "SignTalk | Admin - Dashboard",
+                },   
+            },
+            {
+                name: 'admin-dictionary',                
+                path: "/Admin/Dictionary",
+                component: AdminDictionary,
+                meta: {
+                    title: "SignTalk | Admin - Dictionary",
+                },   
+            },
+            {
+                name: 'admin-lesson',                
+                path: "/Admin/Lesson",
+                component: AdminLesson,
+                meta: {
+                    title: "SignTalk | Admin - Lesson",
+                },   
+            },
+            {
+                name: 'admin-quiz',                
+                path: "/Admin/Quiz",
+                component: AdminQuiz,
+                meta: {
+                    title: "SignTalk | Admin - Quiz",
+                },   
+            },
+            {
+                name: 'admin-examination',                
+                path: "/Admin/Examination",
+                component: AdminExamination,
+                meta: {
+                    title: "SignTalk | Admin - Examination",
+                },   
+            }
+        ]
+    }
 ];
 
 const router = createRouter({

@@ -1,5 +1,5 @@
 <script>
-import CardButton from '../../misc/CardButton.vue';
+import CardButton from '../../../misc/CardButton.vue';
 export default {
     name: "Dictionary",
 
