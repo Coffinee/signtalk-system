@@ -10,7 +10,7 @@ export default {
     <div class="bg-gray-300">
         <TopBar/>
         <!-- Jumbotron -->
-        <section class="bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1491414416654-c4de0c986af8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] bg-gray-700 bg-blend-multiply">
+        <section class="bg-cover bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1491414416654-c4de0c986af8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] bg-gray-700 bg-blend-multiply">
             <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
                 <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Learn With Us!</h1>
                 <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe maxime dolorem quasi repudiandae facere eum, quaerat ducimus natus quam aspernatur.</p>

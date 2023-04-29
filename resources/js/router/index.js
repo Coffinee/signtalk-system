@@ -1,8 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
-const Home = () => import("@/components/AuthenticatedPages/Home.vue");
-const About = () => import("@/components/AuthenticatedPages/About.vue");
-const Dictionary = () => import("@/components/AuthenticatedPages/Dictionary.vue");
-const Lesson = () => import("@/components/AuthenticatedPages/Lesson.vue");
+const Home = () => import("@/components/AuthenticatedPages/Home/Home.vue");
+const About = () => import("@/components/AuthenticatedPages/About/About.vue");
+const DictionaryLandingPage = () => import("@/components/AuthenticatedPages/Dictionary/DictionaryLandingPage.vue");
+const DictionaryMain = () => import("@/components/AuthenticatedPages/Dictionary/DictionaryMain.vue");
+const Lesson = () => import("@/components/AuthenticatedPages/Lesson/Lesson.vue");
 
 // LAYOUTS
 const AuthenticatedLayout = () =>
@@ -42,12 +43,20 @@ const routes = [
             },
             {
                 name: "dictionary",
-                path: "/Student/Dictionary",
-                component: Dictionary,
+                path: "/Student/Dictionary/",
+                component: DictionaryLandingPage,
                 meta: {
                     title: "SignTalk | Dictionary",
                 },
             },
+            {   
+                name: 'dictionary-main',                
+                path: "/Student/Dictionary/Main",
+                component: DictionaryMain,
+                meta: {
+                    title: "SignTalk | Dictionary Main",
+                },                                
+            }
         ],
     },
 ];

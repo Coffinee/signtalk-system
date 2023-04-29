@@ -1,10 +1,10 @@
 <script>
-import Card from "../misc/CardButton.vue";
+import CardButton from '../../misc/CardButton.vue';
 export default {
     name: "Dictionary",
 
     components:{
-        Card, 
+        CardButton, 
     }
 
 }
@@ -12,9 +12,6 @@ export default {
 </script>
 <template>
     <div>
-        <!-- Navbar -->
-        <TopBar/>
-        
         <!-- Main Content -->
         <div class="grid grid-cols-4 w-auto h-screen bg-white dark:bg-[#111827]">
             <div class="col h-full text-white p-5">
@@ -64,8 +61,5 @@ export default {
                 <Card :title="'Exam'" :description="'Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, voluptatibus.'" :buttonLabel="'Take Exam'"/>
             </div>
         </div>
-        
-        <!-- Footer -->
-        <Footer/>
     </div>
 </template>
