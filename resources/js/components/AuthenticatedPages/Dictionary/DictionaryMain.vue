@@ -1,10 +1,10 @@
 <script>
-import Card from "../misc/CardButton.vue";
+import CardButton from '../../misc/CardButton.vue';
 export default {
     name: "Dictionary",
 
     components:{
-        Card, 
+        CardButton, 
     }
 
 }
