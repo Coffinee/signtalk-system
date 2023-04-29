@@ -1,53 +1,74 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from '@/components/guest/Home.vue'
-import About from '@/components/guest/About.vue'
-import Dictionary from '@/components/guest/Dictionary.vue'
-import Lesson from '@/components/guest/Lesson.vue'
-import { createApp } from "vue";
+const Home = () => import("@/components/AuthenticatedPages/Home.vue");
+const About = () => import("@/components/AuthenticatedPages/About.vue");
+const Dictionary = () => import("@/components/AuthenticatedPages/Dictionary.vue");
+const Lesson = () => import("@/components/AuthenticatedPages/Lesson.vue");
 
+// LAYOUTS
+const AuthenticatedLayout = () =>
+    import("@/components/Layouts/AuthenticatedLayout.vue");
 
 const routes = [
     {
-        path: '/home',
-        name: 'Home',
-        component: Home
+        path: "/Student",
+        component: AuthenticatedLayout,
+        meta: {
+            title: 'SignTalk | Student'
+        },
+        children: [
+            {
+                name: "home",
+                path: "/Student/Home",
+                component: Home,
+                meta: {
+                    title: "SignTalk | Home",
+                },
+            },
+            {
+                name: "about",
+                path: "/Student/About",
+                component: About,
+                meta: {
+                    title: "SignTalk | About",
+                },
+            },
+            {
+                name: "lesson",
+                path: "/Student/Lesson",
+                component: Lesson,
+                meta: {
+                    title: "SignTalk | Lesson",
+                },
+            },
+            {
+                name: "dictionary",
+                path: "/Student/Dictionary",
+                component: Dictionary,
+                meta: {
+                    title: "SignTalk | Dictionary",
+                },
+            },
+        ],
     },
-
-    {
-        path: '/about',
-        name: 'About',
-        component: About
-    },
-
-    {
-        path: '/dictionary',
-        name: 'Dictionary',
-        component: Dictionary
-    },
-    {
-        path: '/lesson',
-        name: 'Lesson',
-        component: Lesson
-    },
-
-]
+];
 
 const router = createRouter({
     history: createWebHistory(),
     routes,
+    watch: {
+        $route(to) {
+            if (to.currentRoute.meta.reload == true) {
+                window.location.reload();
+            }
+        },
+    },
+    scrollBehavior() {
+        document.getElementById("app").scrollIntoView();
+    },
 });
 
 router.beforeEach((to, from, next) => {
     next();
-   // document.title = to.meta.title;
-    // if (to.meta.middleware == "guest") {
-    //     if (userAuthStore().authenticated) {
-    //         next({ name: "Home" });
-    //     }
-    //     next();
-    // } else {
-    //     next();
-    // }
 });
-export default router;
 
+export default router;

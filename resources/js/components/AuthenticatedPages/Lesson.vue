@@ -1,16 +1,6 @@
 <script>
-import TopBar from '../misc/TopBar.vue'
-import Footer from "../misc/Footer.vue";
-
 export default {
-
-    name: 'Guest_About',
-
-    components: {
-
-        TopBar,
-        Footer,
-    }
+    name: 'Lesson',
 }
 
 </script>

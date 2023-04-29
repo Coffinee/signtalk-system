@@ -1,14 +1,6 @@
 <script>
-
-import TopBar from "../misc/TopBar.vue";
-import Footer from "../misc/Footer.vue";
-
 export default {
-    name: "Guest_Home",
-
-    components:{
-        TopBar, Footer
-    }
+    name: "Home",
 
 }
 
