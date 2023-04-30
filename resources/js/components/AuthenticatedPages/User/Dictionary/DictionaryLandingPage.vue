@@ -8,19 +8,19 @@
             <div class="flex justify-center gap-[250px]">
                 <router-link to="/Student/Dictionary/Main">
                     <div class="flex flex-col items-center ease-in-out duration-300 hover:scale-110 dark:hover:bg-gray-700 py-3 px-[30px] rounded-xl">
-                        <CalculateIllustration/>
+                        <ReadingIllustration/>
                         <div class="flex gap-x-[5px] text-[20px] font-semibold">
-                            <p class="text-xl text-gray-900 dark:text-white">Learn</p>
+                            <p class="text-xl text-gray-900 dark:text-white">Search</p>
                             <p class="text-indigo-500">Letters</p>
                         </div>
                     </div>
                 </router-link>
                 <div class="w-[3px] h-[350px] bg-gray-900 dark:bg-white"></div>
                 <router-link to="/Student/Dictionary/Main">
-                    <div class="flex flex-col items-center ease-in-out duration-300 hover:scale-110 hover:bg-gray-100 dark:hover:bg-gray-700 py-3 px-[30px] rounded-xl">
-                        <ReadingIllustration/>
+                    <div class="flex flex-col items-center ease-in-out duration-300 hover:scale-110 hover:bg-gray-100 dark:hover:bg-gray-700 py-3 px-[30px] rounded-xl">                       
+                        <CalculateIllustration/>
                         <div class="flex gap-x-[5px] text-[20px] font-semibold">
-                            <p class="text-xl text-gray-900 dark:text-white">Learn</p>
+                            <p class="text-xl text-gray-900 dark:text-white">Search</p>
                             <p class="text-indigo-500">Numbers</p>
                         </div>
                     </div>

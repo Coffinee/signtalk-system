@@ -4,7 +4,10 @@ const Home = () => import("@/components/AuthenticatedPages/User/Home/Home.vue");
 const About = () => import("@/components/AuthenticatedPages/User/About/About.vue");
 const DictionaryLandingPage = () => import("@/components/AuthenticatedPages/User/Dictionary/DictionaryLandingPage.vue");
 const DictionaryMain = () => import("@/components/AuthenticatedPages/User/Dictionary/DictionaryMain.vue");
-const Lesson = () => import("@/components/AuthenticatedPages/User/Lesson/Lesson.vue");
+const LessonLandingPage = () => import("@/components/AuthenticatedPages/User/Lesson/LessonLandingPage.vue");
+const LessonMain = () => import("@/components/AuthenticatedPages/User/Lesson/LessonMain.vue");
+const Quiz = () => import("@/components/AuthenticatedPages/User/Quiz/Quiz.vue");
+const Exam = () => import("@/components/AuthenticatedPages/User/Exam/Exam.vue");
 
 // ADMIN SIDE
 const AdminDashboard = () => import("@/components/AuthenticatedPages/Admin/Admin Dashboard/AdminDashboard.vue");
@@ -44,8 +47,16 @@ const routes = [
             },
             {
                 name: "lesson",
-                path: "/Student/Lesson",
-                component: Lesson,
+                path: "/Student/Lesson/",
+                component: LessonLandingPage,
+                meta: {
+                    title: "SignTalk | Lesson",
+                },
+            },
+            {
+                name: "lesson-main",
+                path: "/Student/Lesson/Main",
+                component: LessonMain,
                 meta: {
                     title: "SignTalk | Lesson",
                 },
@@ -63,9 +74,25 @@ const routes = [
                 path: "/Student/Dictionary/Main",
                 component: DictionaryMain,
                 meta: {
-                    title: "SignTalk | Dictionary Main",
+                    title: "SignTalk | Dictionary",
                 },                                
-            }
+            },
+            {   
+                name: 'quiz',                
+                path: "/Student/Quiz/",
+                component: Quiz,
+                meta: {
+                    title: "SignTalk | Quiz",
+                },                                
+            },
+            {   
+                name: 'exam',                
+                path: "/Student/Exam/",
+                component: Exam,
+                meta: {
+                    title: "SignTalk | Exam",
+                },                                
+            },
         ],
     },
     {

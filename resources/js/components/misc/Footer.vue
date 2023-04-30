@@ -10,16 +10,16 @@
                 </a>
                 <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
                     <li>
-                        <a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
+                        <router-link to="/Student/About" class="mr-4 hover:underline md:mr-6 ">About</router-link>
                     </li>
                     <li>
-                        <a href="#" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
+                        <router-link to="#" class="mr-4 hover:underline md:mr-6">Privacy Policy</router-link>
                     </li>
                     <li>
-                        <a href="#" class="mr-4 hover:underline md:mr-6 ">Licensing</a>
+                        <router-link to="#" class="mr-4 hover:underline md:mr-6 ">Licensing</router-link>
                     </li>
                     <li>
-                        <a href="#" class="hover:underline">Contact</a>
+                        <router-link to="#" class="hover:underline">Contact</router-link>
                     </li>
                 </ul>
             </div>
