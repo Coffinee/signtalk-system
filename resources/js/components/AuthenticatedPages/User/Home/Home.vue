@@ -8,7 +8,6 @@ export default {
 
 <template>
     <div class="bg-gray-300">
-        <TopBar/>
         <!-- Jumbotron -->
         <section class="bg-cover bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1491414416654-c4de0c986af8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] bg-gray-700 bg-blend-multiply">
             <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
@@ -96,9 +95,6 @@ export default {
                 </div>
             </div>
         </section>
-
-        <!-- Footer -->
-        <Footer/>
     </div>
 </template>
 

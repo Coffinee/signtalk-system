@@ -43,6 +43,7 @@ export default {
                 <!-- Result -->
                 <div class="h-3/5 border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Result:</h5>
+                    <router-link to="/Student/Dictionary/Letters">Lessons</router-link>
                     <div class="h-[90%] flex flex-col">
                         <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                             Happy

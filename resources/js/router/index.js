@@ -58,7 +58,7 @@ const routes = [
                 path: "/Student/Lesson/Main",
                 component: LessonMain,
                 meta: {
-                    title: "SignTalk | Lesson",
+                    title: "SignTalk | Interactives",
                 },
             },
             {
