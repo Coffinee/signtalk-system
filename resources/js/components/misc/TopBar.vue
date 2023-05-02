@@ -30,10 +30,11 @@
 import { useRouter, useRoute } from 'vue-router'
 
 const topbarNavigation = [
-  { name: 'Home', href: '/Student/Home' },
-  { name: 'Lesson', href: '/Student/Lesson' },
-  { name: 'Interactives', href: '/Student/Interactives' },
-  { name: 'About', href: '/Student/About' },
+  { name: 'Home', href: '/Student/Home'},
+  { name: 'Lesson', href: '/Student/Lesson'},
+  { name: 'Dictionary', href: '/Student/Dictionary'},
+  { name: 'Quiz', href: '/Student/Quiz'},
+  { name: 'Exam', href: '/Student/Exam'},
 ]
 
 </script>
