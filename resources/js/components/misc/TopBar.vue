@@ -1,10 +1,9 @@
 <template>
-  <nav class="bg-transparent border-b border-gray-200 dark:border-gray-700 dark:bg-gray-900">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+  <nav class="bg-transparent pt-10 flex justify-center">
       <router-link to="/Student/Home" class="flex items-center">
-        <p class="self-center text-2xl font-bold whitespace-nowrap dark:text-white">Sign<span class="text-indigo-500  font-bold">Talk</span></p>
+        <p class="self-center text-3xl font-bold whitespace-nowrap dark:text-white">Sign<span class="text-indigo-500  font-bold">Talk</span></p>
       </router-link>
-      <button data-collapse-toggle="navbar-default" type="button"
+      <!-- <button data-collapse-toggle="navbar-default" type="button"
         class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
         aria-controls="navbar-default" aria-expanded="false">
         <span class="sr-only">Open main menu</span>
@@ -21,20 +20,19 @@
           :aria-current="item.current ? 'page' : undefined">
           {{ item.name }}
         </router-link>
-      </div>
-    </div>
+      </div> -->
   </nav>
 </template>
 
 <script setup>
-import { useRouter, useRoute } from 'vue-router'
+// import { useRouter, useRoute } from 'vue-router'
 
-const topbarNavigation = [
-  { name: 'Home', href: '/Student/Home'},
-  { name: 'Lesson', href: '/Student/Lesson'},
-  { name: 'Dictionary', href: '/Student/Dictionary'},
-  { name: 'Quiz', href: '/Student/Quiz'},
-  { name: 'Exam', href: '/Student/Exam'},
-]
+// const topbarNavigation = [
+//   { name: 'Home', href: '/Student/Home'},
+//   { name: 'Lesson', href: '/Student/Lesson'},
+//   { name: 'Dictionary', href: '/Student/Dictionary'},
+//   { name: 'Quiz', href: '/Student/Quiz'},
+//   { name: 'Exam', href: '/Student/Exam'},
+// ]
 
 </script>
