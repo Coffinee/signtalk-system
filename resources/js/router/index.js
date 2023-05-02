@@ -3,7 +3,7 @@ const Home = () => import("@/components/AuthenticatedPages/Home/Home.vue");
 const About = () => import("@/components/AuthenticatedPages/About/About.vue");
 const DictionaryLandingPage = () => import("@/components/AuthenticatedPages/Dictionary/DictionaryLandingPage.vue");
 const DictionaryMain = () => import("@/components/AuthenticatedPages/Dictionary/DictionaryMain.vue");
-const Lesson = () => import("@/components/AuthenticatedPages/Lesson/Lesson.vue");
+const Interactives = () => import("@/components/AuthenticatedPages/Interactives/Interactives.vue");
 
 // LAYOUTS
 const AuthenticatedLayout = () =>
