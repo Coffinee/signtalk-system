@@ -9,7 +9,7 @@
                         <span class="text-xs"> ©</span>
                     </p>
                 </a>
-                <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                <ul class="flex flex-wrap items-center justify-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
                     <li>
                         <router-link to="/Student/About" class="mr-4 hover:underline md:mr-6 ">About</router-link>
                     </li>
