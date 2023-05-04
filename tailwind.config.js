@@ -9,6 +9,9 @@ module.exports = {
     extend: {
       fontFamily:{
         'poppins': ['Poppins'],
+      },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--gradient-color-stops))',
       }
     },
   },

@@ -14,9 +14,8 @@
     </head>
     <body class="h-full bg-gray-100">
         <div id="app">
-        <router-view></router-view>
+            <router-view></router-view>
         </div>
         @vite(['resources/js/app.js'])
-
     </body>
 </html>

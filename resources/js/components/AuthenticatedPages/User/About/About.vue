@@ -1,22 +1,11 @@
 <script>
-import TopBar from '../misc/TopBar.vue'
-import Footer from "../misc/Footer.vue";
-
 export default{
-
-    name: 'Guest_About',
-
-    components:{
-        
-        TopBar,
-        Footer,
-    }
+    name: 'About',
 }
 
 </script>
 <template> 
     <div>
-        <TopBar/>
          <!-- Content -->
         <section class="bg-white dark:bg-gray-900 ">
             <div class="py-8 px-4 mx-auto max-w-screen-xl text-justify lg:py-16 ">
@@ -28,7 +17,6 @@ export default{
                 <p class="mb-8 text-[12px] font-light text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo iste voluptas nisi magni! Voluptatem error quas provident iusto. Officiis ex corporis incidunt doloribus tenetur autem beatae error voluptatum laborum consectetur.</p>
             </div>
         </section>
-        <Footer/>
     </div>
 </template>
  
