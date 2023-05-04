@@ -5,7 +5,7 @@
           class="text-indigo-500  font-bold">Talk</span></p>
     </router-link>
     <div class="flex items-center justify-center space-x-5">
-      <router-link to="#" class="dark:text-white text-xs rounded py-1 px-3 hover:bg-indigo-900/90 hover:text-white">Login</router-link>
+      <router-link to="/login" class="dark:text-white text-xs rounded py-1 px-3 hover:bg-indigo-900/90 hover:text-white">Login</router-link>
       <router-link to="/Student/Register" class="dark:text-white text-xs rounded py-1 px-3 hover:bg-indigo-900/90 hover:text-white">Register</router-link>
     </div>
     <!-- <button data-collapse-toggle="navbar-default" type="button"
