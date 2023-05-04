@@ -6,7 +6,7 @@ export default {
 </script>
 <template>
     <div>
-        <section class="bg-white dark:bg-gray-900 ">
+        <section class="bg-white dark:bg-transparent">
             <div class="grid grid-cols-4 w-auto h-screen bg-white dark:bg-[#111827]">
                 <div class="col h-full text-white p-5">
                     <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Lessons:</h5>

@@ -28,14 +28,14 @@ const routes = [
     {
         path: "/",
         component: UserLayout,
-        redirect: '/Student/Home',
+        redirect: '/student/home',
         meta: {
-            title: 'SignTalk | Student'
+            title: 'SignTalk'
         },
         children: [
             {
                 name: "home",
-                path: "/Student/Home",
+                path: "/student/home",
                 component: Home,
                 meta: {
                     title: "SignTalk | Home",
@@ -58,7 +58,7 @@ const routes = [
             },
             {
                 name: "about",
-                path: "/Student/About",
+                path: "/student/about",
                 component: About,
                 meta: {
                     title: "SignTalk | About",
@@ -66,7 +66,7 @@ const routes = [
             },
             {
                 name: "lesson",
-                path: "/Student/Lesson/",
+                path: "/student/lesson/",
                 component: LessonLandingPage,
                 meta: {
                     title: "SignTalk | Lesson",
@@ -74,7 +74,7 @@ const routes = [
             },
             {
                 name: "lesson-main",
-                path: "/Student/Lesson/Main",
+                path: "/student/lesson/main",
                 component: LessonMain,
                 meta: {
                     title: "SignTalk | Lesson",
@@ -82,7 +82,7 @@ const routes = [
             },
             {
                 name: "dictionary",
-                path: "/Student/Dictionary/",
+                path: "/student/dictionary/",
                 component: DictionaryLandingPage,
                 meta: {
                     title: "SignTalk | Dictionary",
@@ -90,7 +90,7 @@ const routes = [
             },
             {
                 name: 'dictionary-main',
-                path: "/Student/Dictionary/Main",
+                path: "/student/dictionary/main",
                 component: DictionaryMain,
                 meta: {
                     title: "SignTalk | Dictionary",
@@ -98,7 +98,7 @@ const routes = [
             },
             {
                 name: 'quiz',
-                path: "/Student/Quiz/",
+                path: "/student/quiz/",
                 component: Quiz,
                 meta: {
                     title: "SignTalk | Quiz",
@@ -106,7 +106,7 @@ const routes = [
             },
             // {
             //     name: 'exam',
-            //     path: "/Student/Exam/",
+            //     path: "/student/Exam/",
             //     component: Exam,
             //     meta: {
             //         title: "SignTalk | Exam",
@@ -114,7 +114,7 @@ const routes = [
             // },
             {
                 name: 'interactives',
-                path: "/Student/Interactives/",
+                path: "/student/interactives/",
                 component: Interactives,
                 meta: {
                     title: "SignTalk | Interactives",
@@ -122,7 +122,7 @@ const routes = [
             },
             {
                 name: 'translate',
-                path: "/Student/Translate",
+                path: "/student/translate",
                 component: Translate,
                 meta: {
                     title: "SignTalk | Translate",
@@ -131,16 +131,16 @@ const routes = [
         ],
     },
     {
-        path: "/Admin",
+        path: "/admin",
         component: AdminLayout,
-        redirect: '/Admin/Dashboard',
+        redirect: '/admin/dashboard',
         meta: {
             title: 'SignTalk | Admin'
         },
         children: [
             {
                 name: 'admin-dashboard',
-                path: "/Admin/Dashboard",
+                path: "/admin/dashboard",
                 component: AdminDashboard,
                 meta: {
                     title: "SignTalk | Admin - Dashboard",
@@ -148,7 +148,7 @@ const routes = [
             },
             {
                 name: 'admin-dictionary',
-                path: "/Admin/Dictionary",
+                path: "/admin/dictionary",
                 component: AdminDictionary,
                 meta: {
                     title: "SignTalk | Admin - Dictionary",
@@ -156,7 +156,7 @@ const routes = [
             },
             {
                 name: 'admin-lesson',
-                path: "/Admin/Lesson",
+                path: "/admin/lesson",
                 component: AdminLesson,
                 meta: {
                     title: "SignTalk | Admin - Lesson",
@@ -164,7 +164,7 @@ const routes = [
             },
             {
                 name: 'admin-quiz',
-                path: "/Admin/Quiz",
+                path: "/admin/quiz",
                 component: AdminQuiz,
                 meta: {
                     title: "SignTalk | Admin - Quiz",
@@ -172,7 +172,7 @@ const routes = [
             },
             {
                 name: 'admin-examination',
-                path: "/Admin/Examination",
+                path: "/admin/examination",
                 component: AdminExamination,
                 meta: {
                     title: "SignTalk | Admin - Examination",

@@ -1,5 +1,5 @@
 <template>
-    <div class="h-screen bg-white dark:bg-[#111827]">
+    <div class="h-screen dark:bg-transparent">
         <div class="flex items-center justify-center flex-col gap-[100px] h-full py-[50px]">
             <div class="text-center">
                 <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Dictionary</h1>

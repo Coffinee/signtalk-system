@@ -1,5 +1,5 @@
 <template>
-    <div class="h-screen bg-white dark:bg-[#111827] py-[50px]">
+    <div class="h-screen  dark:bg-transparent py-[50px]">
         <div class="mx-[200px] mb-[50px]">
             <h5 class="text-2xl text-center font-bold dark:text-white mb-3">Quiz</h5>
             <div class="flex justify-center gap-[20px]">
