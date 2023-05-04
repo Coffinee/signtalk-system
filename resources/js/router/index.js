@@ -33,8 +33,7 @@ const routes = [
         },
         children: [
             {
-                name: "register",
-                path: "/Student/Register",
+                path:'/register',
                 component: Register,
                 meta: {
                     title: "SignTalk | Register",
