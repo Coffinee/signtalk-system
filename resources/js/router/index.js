@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 // USER SIDE
+const Register = () => import("@/components/AuthenticatedPages/User/Auth/Register/Register.vue");
 const Home = () => import("@/components/AuthenticatedPages/User/Home/Home.vue");
 const About = () => import("@/components/AuthenticatedPages/User/About/About.vue");
 const DictionaryLandingPage = () => import("@/components/AuthenticatedPages/User/Dictionary/DictionaryLandingPage.vue");
@@ -31,6 +32,14 @@ const routes = [
             title: 'SignTalk | Student'
         },
         children: [
+            {
+                name: "register",
+                path: "/Student/Register",
+                component: Register,
+                meta: {
+                    title: "SignTalk | Register",
+                },
+            },
             {
                 name: "home",
                 path: "/Student/Home",
