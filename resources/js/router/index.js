@@ -7,7 +7,9 @@ const DictionaryMain = () => import("@/components/AuthenticatedPages/User/Dictio
 const LessonLandingPage = () => import("@/components/AuthenticatedPages/User/Lesson/LessonLandingPage.vue");
 const LessonMain = () => import("@/components/AuthenticatedPages/User/Lesson/LessonMain.vue");
 const Quiz = () => import("@/components/AuthenticatedPages/User/Quiz/Quiz.vue");
-const Exam = () => import("@/components/AuthenticatedPages/User/Exam/Exam.vue");
+// const Exam = () => import("@/components/AuthenticatedPages/User/Exam/Exam.vue");
+const Interactives = () => import("@/components/AuthenticatedPages/User/Interactives/Interactives.vue");
+const Translate = () => import("@/components/AuthenticatedPages/User/Translate/Translate.vue");
 
 // ADMIN SIDE
 const AdminDashboard = () => import("@/components/AuthenticatedPages/Admin/Admin Dashboard/AdminDashboard.vue");
@@ -22,7 +24,7 @@ const AdminLayout = () =>import("@/components/Layouts/Authenticated Layout/Admin
 
 const routes = [
     {
-        path: "/Student",
+        path: "/",
         component: UserLayout,
         redirect: '/Student/Home',
         meta: {
@@ -58,7 +60,7 @@ const routes = [
                 path: "/Student/Lesson/Main",
                 component: LessonMain,
                 meta: {
-                    title: "SignTalk | Interactives",
+                    title: "SignTalk | Lesson",
                 },
             },
             {
@@ -85,12 +87,28 @@ const routes = [
                     title: "SignTalk | Quiz",
                 },                                
             },
+            // {   
+            //     name: 'exam',                
+            //     path: "/Student/Exam/",
+            //     component: Exam,
+            //     meta: {
+            //         title: "SignTalk | Exam",
+            //     },                                
+            // },
             {   
-                name: 'exam',                
-                path: "/Student/Exam/",
-                component: Exam,
+                name: 'interactives',                
+                path: "/Student/Interactives/",
+                component: Interactives,
                 meta: {
-                    title: "SignTalk | Exam",
+                    title: "SignTalk | Interactives",
+                },                                
+            },
+            {   
+                name: 'translate',                
+                path: "/Student/Translate",
+                component: Translate,
+                meta: {
+                    title: "SignTalk | Translate",
                 },                                
             },
         ],

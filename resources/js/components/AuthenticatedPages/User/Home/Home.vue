@@ -87,9 +87,9 @@
         </section>
     </div> -->
 
-        <div class="flex justify-center items-center space-x-5  h-screen">
-            <router-link to="">
-                <div class="relative h-[300px] w-[250px] bg-blue-300 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-lg shadow-indigo-900 hover:scale-105 ease-in-out duration-75">
+        <div class="flex justify-center items-center space-x-5 h-screen">
+            <router-link to="/Student/Translate">
+                <div class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/translate.png" class="w-[170px] absolute -top-[70px] left-[50px]">
                     <div class="flex flex-col items-center justify-center px-3 h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -102,8 +102,8 @@
                     </div>
                 </div>
             </router-link>
-            <router-link to="">
-                <div class="relative h-[300px] w-[250px] bg-blue-300 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-lg shadow-indigo-900 hover:scale-105 ease-in-out duration-75">
+            <router-link to="/Student/Dictionary">
+                <div class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/dictionary.png" class="w-40 absolute -top-[60px] left-[50px]">
                     <div class="flex flex-col items-center justify-center px-3 h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -116,8 +116,8 @@
                     </div>
                 </div>
             </router-link>
-            <router-link to="">
-                <div class="relative h-[300px] w-[250px] bg-blue-300 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-lg shadow-indigo-900 hover:scale-105 ease-in-out duration-75">
+            <router-link to="/Student/Lesson">
+                <div class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/lesson.png" class="w-[180px] absolute -top-[70px] left-[35px]">
                     <div class="flex flex-col items-center justify-center px-3 h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -130,8 +130,8 @@
                     </div>
                 </div>
             </router-link>
-            <router-link to="">
-                <div class="relative h-[300px] w-[250px] bg-blue-300 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-lg shadow-indigo-900 hover:scale-105 ease-in-out duration-75">
+            <router-link to="/Student/Quiz">
+                <div class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/exams.png" class="w-[160px] absolute -top-[50px] left-[55px]">
                     <div class="flex flex-col items-center justify-center px-3 h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
