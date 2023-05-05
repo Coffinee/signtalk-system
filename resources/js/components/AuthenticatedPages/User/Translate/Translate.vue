@@ -80,7 +80,7 @@
                         class="w-full h-10 rounded-full border border-gray-400 pl-5">
                     <span>
                         <button
-                            class="flex items-center justify-center border border-gray-400 rounded-full h-10 w-10 hover:bg-gray-100">
+                            class="btn-mic flex items-center justify-center border border-gray-400 rounded-full h-10 w-10 hover:bg-gray-100">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="#6366f1" class="w-5 h-5">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -110,3 +110,8 @@ export default {
     }
 }
 </script>
+<style>
+    svg:hover {
+        fill: #6366f1;
+    }
+</style>
