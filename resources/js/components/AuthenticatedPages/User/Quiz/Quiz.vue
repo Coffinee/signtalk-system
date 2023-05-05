@@ -1,8 +1,8 @@
 <template>
-    <div class="h-screen  dark:bg-transparent py-[50px]">
-        <div class="mx-[200px] mb-[50px]">
+    <div class="dark:bg-transparent py-[50px]  ">
+        <div class="mb-[50px]">
             <h5 class="text-2xl text-center font-bold dark:text-white mb-3">Quiz</h5>
-            <div class="flex justify-center gap-[20px]">
+            <div class="flex justify-center flex-wrap gap-[20px] h-screen">
                 <div class="max-w-xs h-[300px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <div class="h-[65%]">
                         <router-link to="#">

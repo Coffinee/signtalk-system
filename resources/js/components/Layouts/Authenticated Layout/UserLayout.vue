@@ -1,12 +1,7 @@
 <template>
     <div class="min-h-full min-w-full dark:bg-[#18122B]">
         <TopBar />
-        <!-- <router-view :key="$route.fullPath"></router-view> -->
-        <div class="flex flex-1 flex-col">
-            <main class="flex-1 m-3">
-                <router-view :key="$route.fullPath"></router-view>
-            </main>
-        </div>
+        <router-view :key="$route.fullPath"></router-view>
         <Footer />
     </div>
 </template>
