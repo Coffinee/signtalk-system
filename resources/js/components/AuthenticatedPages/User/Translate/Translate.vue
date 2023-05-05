@@ -1,14 +1,14 @@
 <template>
     <div class="flex justify-center h-screen">
-        <div class="container mt-12 w-[1000px] h-[500px] bg-white shadow-lg shadow-indigo-300 rounded-lg">
+        <div class="container mt-12 w-[1000px] h-[500px] bg-white dark:bg-gray-800 dark:border-gray-700 shadow shadow-indigo-300 rounded-lg">
             <div class="flex flex-col space-y-3 m-3 h-[475px] p-5">
                 <div class="w-full h-full flex flex-col items-center justify-center border border-gray-400 rounded-md">
                     <button @click="expand"
-                        class="h-12 m-2 rounded-full shadow flex items-center justify-center duration-500"
+                        class="btn-hamburger h-12 m-2 rounded-full shadow flex items-center justify-center duration-500 border dark:border-gray-600"
                         :class="open ? 'w-10 duration-500 ' : 'w-[2/2] px-[10px]'" :disabled="!open">
-                        <svg v-show="open" class="w-5 h-5" viewBox="0 0 24 24" fill="none"
+                        <svg v-show="open" class=" w-5 h-5" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3 12H21M3 6H21M3 18H21" stroke="#000" stroke-width="2" stroke-linecap="round"
+                            <path d="M3 12H21M3 6H21M3 18H21" stroke="#6366f1" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" />
                         </svg>
 
@@ -52,7 +52,7 @@
                 </div>
                 <div class="flex space-x-3">
                     <input type="text" placeholder="Type your message ..."
-                        class="w-full h-10 rounded-full border border-gray-400 pl-5">
+                        class="w-full h-10 rounded-full border border-gray-400 pl-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400">
                     <span>
                         <button
                             class="btn-mic flex items-center justify-center border border-gray-400 rounded-full h-10 w-10 hover:bg-gray-100">
@@ -86,7 +86,7 @@ export default {
 }
 </script>
 <style>
-    svg:hover {
+    .btn-mic svg:hover {
         fill: #6366f1;
     }
 </style>
