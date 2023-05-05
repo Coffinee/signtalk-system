@@ -111,7 +111,7 @@ export default {
         </section>
     </div> -->
 
-    <div class="flex justify-center items-center flex-wrap gap-x-[20px] gap-y-[80px] sm:h-auto md:h-screen  py-[80px] ">
+    <div class="flex justify-center items-center flex-wrap gap-x-[20px] gap-y-[80px] sm:h-auto md:h-screen  py-[80px]">
         <div class="flex justify-center flex-wrap gap-x-[20px] gap-y-[80px]">
             <router-link to="/student/translate">
                 <div class="relative h-[300px] w-[250px] dark:bg-gray-800 rounded-md shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
