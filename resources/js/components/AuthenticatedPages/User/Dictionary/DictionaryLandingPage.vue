@@ -8,7 +8,7 @@
             <div class="flex justify-center flex-col sm:flex-col lg:flex-row gap-x-[100px] gap-y-[50px]">
                 <router-link to="/Student/Dictionary/Main">
                     <div class="flex flex-col items-center ease-in-out duration-300 hover:scale-110 dark:hover:bg-gray-700 py-3 px-[30px] rounded-xl">
-                        <ReadingIllustration/>
+                        <img src="/Images/reading.png" class="w-[300px] h-[280px]">
                         <div class="flex gap-x-[5px] text-[20px] font-semibold">
                             <p class="text-xl text-gray-900 dark:text-white">Search</p>
                             <p class="text-indigo-500">Letters</p>
@@ -16,8 +16,8 @@
                     </div>
                 </router-link>
                 <router-link to="/Student/Dictionary/Main">
-                    <div class="flex flex-col items-center ease-in-out duration-300 hover:scale-110 hover:bg-gray-100 dark:hover:bg-gray-700 py-3 px-[30px] rounded-xl">                       
-                        <CalculateIllustration/>
+                    <div class="flex flex-col items-center ease-in-out duration-300 hover:scale-110 hover:bg-gray-100 dark:hover:bg-gray-700 py-3 px-[30px] rounded-xl">
+                        <img src="/Images/calculator.png" class="w-[300px]  h-[280px]">
                         <div class="flex gap-x-[5px] text-[20px] font-semibold">
                             <p class="text-xl text-gray-900 dark:text-white">Search</p>
                             <p class="text-indigo-500">Numbers</p>
@@ -25,18 +25,14 @@
                     </div>
                 </router-link>
             </div>
+            <!-- <img src="/Images/referral.png" class="w-[300px]"> -->
         </div>
     </div>
 
 </template>
 <script>
-import CalculateIllustration from '../../../misc/Illustrations/CalculateIllustration.vue';
-import ReadingIllustration from '../../../misc/Illustrations/ReadingIllustration.vue';
 
 export default{
-    components:{
-        CalculateIllustration, ReadingIllustration
-    },
     data(){
         return {
             modalOpen: false,

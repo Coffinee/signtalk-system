@@ -6,17 +6,7 @@ export default {
 </script>
 <template>
     <div>
-        <div class="flex justify-center w-auto h-screen bg-white dark:bg-transparent border">
-            <!-- <div class="col h-full text-white p-5">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Lessons:</h5>
-                <ul class="max-w-md space-y-1 text-gray-500 list-disc list-inside dark:text-gray-400">
-                    <li>Alphabets</li>
-                    <li>Numbers</li>
-                    <li>Animals</li>
-                    <li>Emotions</li>
-                    <li>Science</li>
-                </ul>
-            </div> -->
+        <div class="flex justify-center w-auto h-screen bg-white dark:bg-transparent">
             <div class="py-10 px-5">
                 <div>
                     <h1 class="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">LESSON 1</h1>
@@ -33,7 +23,7 @@ export default {
                     </a>
                 </div>
 
-                <div class="h-3/5 border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5 mt-3">
+                <div class="h-4/5 border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5 mt-3 overflow-auto">
                     <p class="text-white indent-10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem dolore eos ut doloremque odit ea minus nostrum, praesentium iste molestias eum magnam sunt iusto nesciunt maiores quae quam, molestiae quaerat.
                     </p>
                     <br>
