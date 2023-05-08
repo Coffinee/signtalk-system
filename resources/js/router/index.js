@@ -28,14 +28,14 @@ const routes = [
     {
         path: "/",
         component: UserLayout,
-        redirect: '/student/home',
+        redirect: '/index',
         meta: {
             title: 'SignTalk'
         },
         children: [
             {
                 name: "home",
-                path: "/student/home",
+                path: "/index",
                 component: Home,
                 meta: {
                     title: "SignTalk | Home",
@@ -50,6 +50,7 @@ const routes = [
                 },
             },
             {
+                name: "register",
                 path:'/register',
                 component: Register,
                 meta: {
