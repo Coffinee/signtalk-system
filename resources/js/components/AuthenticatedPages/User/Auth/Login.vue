@@ -1,4 +1,5 @@
 <template>
+    <button @click="showToast()" class="dark:text-white p-2 rounded-lg bg-indigo-500">Toast</button>
     <div class="flex justify-center items-center">
         <section class="bg-gray-50 dark:bg-gray-900">
             <div class="flex flex-col items-center justify-center px-6  mx-auto h-screen lg:py-0  w-screen">
@@ -47,3 +48,20 @@
         </section>
     </div>  
 </template>
+<script>
+import { toast } from 'vue3-toastify';
+import 'vue3-toastify/dist/index.css';
+
+export default {
+   name: "Login",
+   methods:{
+        showToast(){
+            toast.error('Invalid Credential!', {
+                autoClose: 1000,
+                theme: "auto"
+            });
+        }
+   }
+};
+
+</script>
