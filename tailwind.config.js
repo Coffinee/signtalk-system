@@ -4,6 +4,7 @@ module.exports = {
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
     "./resources/**/*.vue",
+
   ],
   theme: {
     extend: {
@@ -12,8 +13,11 @@ module.exports = {
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--gradient-color-stops))',
-      }
+      },
     },
+
   },
-  plugins: [],
+  plugins: [
+
+  ],
 }

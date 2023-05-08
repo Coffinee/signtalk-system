@@ -12,10 +12,12 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     </head>
-    <body class="h-full bg-gray-100">
+    <body class="h-full">
         <div id="app">
             <router-view></router-view>
         </div>
         @vite(['resources/js/app.js'])
+
+
     </body>
 </html>

@@ -1,4 +1,28 @@
+<script>
+import Slideover from '../../../misc/Slideover.vue';
+import Modal from '../../../misc/Modal.vue';
+export default {
+    
+    components:{
+        Slideover, Modal
+    },
+    data(){
+        return {
+            slideoverOpen: false,
+            modalOpen: false,
+        }
+    },
+    methods: {
+        slideoverToggle(){
+            this.slideoverOpen = false;
+        },
+        modalToggle(){
+            this.modalOpen = false;
+        }
+    },
+}
 
+</script>
 
 <template>
     <!-- <div class="bg-gray-300">
@@ -87,8 +111,9 @@
         </section>
     </div> -->
 
-        <div class="flex justify-center items-center space-x-5 h-screen">
-            <router-link to="/Student/Translate">
+    <div class="flex justify-center items-center flex-wrap gap-x-[20px] gap-y-[80px] h-screen overflow-y-auto py-[80px]">
+        <div class="flex justify-center flex-wrap gap-x-[20px] gap-y-[80px]">
+            <router-link to="/student/translate">
                 <div class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/translate.png" class="w-[170px] absolute -top-[70px] left-[50px]">
                     <div class="flex flex-col items-center justify-center px-3 h-full">
@@ -102,7 +127,7 @@
                     </div>
                 </div>
             </router-link>
-            <router-link to="/Student/Dictionary">
+            <router-link to="/student/dictionary">
                 <div class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/dictionary.png" class="w-40 absolute -top-[60px] left-[50px]">
                     <div class="flex flex-col items-center justify-center px-3 h-full">
@@ -116,7 +141,9 @@
                     </div>
                 </div>
             </router-link>
-            <router-link to="/Student/Lesson">
+        </div>
+        <div class="flex justify-center  flex-wrap gap-x-[20px] gap-y-[80px]">
+            <router-link to="/student/lesson">
                 <div class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/lesson.png" class="w-[180px] absolute -top-[70px] left-[35px]">
                     <div class="flex flex-col items-center justify-center px-3 h-full">
@@ -130,7 +157,7 @@
                     </div>
                 </div>
             </router-link>
-            <router-link to="/Student/Quiz">
+            <router-link to="/student/quiz">
                 <div class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/exams.png" class="w-[160px] absolute -top-[50px] left-[55px]">
                     <div class="flex flex-col items-center justify-center px-3 h-full">
@@ -145,12 +172,19 @@
                 </div>
             </router-link>
         </div>
+    </div>
+
+    <button @click="(slideoverOpen = !slideoverOpen)" class="bg-indigo-500 text-white p-2 rounded-md">Slideover Open</button>
+    <Slideover :show="slideoverOpen" @close="slideoverToggle" :title="'SLIDEOVER TITLE'" >
+
+    </Slideover>
+
+    <button @click="(modalOpen = !modalOpen)" class="bg-indigo-500 text-white p-2 rounded-md">Modal Open</button>
+    <Modal :show="modalOpen" @close="modalToggle" :title="'MODAL TITLE'" >
+        <div>
+            lorem1000
+        </div>
+    </Modal>
 </template>
 
-<script>
-export default {
-    name: "Home",
 
-}
-
-</script>
