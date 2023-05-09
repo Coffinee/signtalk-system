@@ -9,6 +9,11 @@ const LessonLandingPage = () => import("@/components/AuthenticatedPages/User/Les
 const LessonMain = () => import("@/components/AuthenticatedPages/User/Lesson/LessonMain.vue");
 const Quiz = () => import("@/components/AuthenticatedPages/User/Quiz/Quiz.vue");
 const Login = () => import("@/components/AuthenticatedPages/User/Auth/Login.vue");
+const Setting = () =>import("@/components/AuthenticatedPages/User/Setting/Setting.vue");
+const Profile = () =>import("@/components/AuthenticatedPages/User/Setting/Tabs/Profile.vue");
+const Analytics = () =>import("@/components/AuthenticatedPages/User/Setting/Tabs/Analytics.vue");
+const Personalization = () =>import("@/components/AuthenticatedPages/User/Setting/Tabs/Personalization.vue");
+
 // const Exam = () => import("@/components/AuthenticatedPages/User/Exam/Exam.vue");
 const Interactives = () => import("@/components/AuthenticatedPages/User/Interactives/Interactives.vue");
 const Translate = () => import("@/components/AuthenticatedPages/User/Translate/Translate.vue");
@@ -129,6 +134,42 @@ const routes = [
                     title: "SignTalk | Translate",
                 },
             },
+            {
+                name: 'setting',
+                path: "/student/setting",
+                component: Setting,
+                meta: {
+                    title: "SignTalk | Setting",
+                },
+                children:[
+                    {
+                        name: 'profile',
+                        path: "/student/setting/profile",
+                        component: Profile,
+                        meta: {
+                            title: "SignTalk | Profile",
+                        },
+                    },
+                    {
+                        name: 'analytics',
+                        path: "/student/setting/analytics",
+                        component: Analytics,
+                        meta: {
+                            title: "SignTalk | Analytics",
+                        },
+                    },
+                    {
+                        name: 'Personalization',
+                        path: "/student/setting/personalization",
+                        component: Personalization,
+                        meta: {
+                            title: "SignTalk | Personalization",
+                        },
+                    },
+
+                ]
+            },
+
         ],
     },
     {

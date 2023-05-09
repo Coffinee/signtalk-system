@@ -66,9 +66,9 @@
 
 <script>
 const userNavigation = [
-  { name: 'My Profile', href: '#' },
-  { name: 'My Analytics', href: '#' },
-  { name: 'My Settings', href: '#' },
+  { name: 'My Profile', href: '/student/setting/profile' },
+  { name: 'My Analytics', href: '/student/setting/analytics'},
+  { name: 'Personalization', href: '/student/setting/personalization'},
   { name: 'Logout', href: '#' },
 ]
 export default {
@@ -86,8 +86,7 @@ export default {
         { name: 'Quiz', href: '/student/quiz' },
         { name: 'Translate', href: '/student/translate' },
       ],
-      open: false,
-      
+      open: false
     }
   },
 
