@@ -15,15 +15,15 @@
                             </div>
                             <div>
                                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                <input type="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="true">
+                                <input :type="showPasswordToggle" v-model="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="true">
                             </div>
                             <div class="flex items-center justify-between">
                                 <div class="flex items-start">
                                     <div class="flex items-center h-5">
-                                    <input id="remember" aria-describedby="remember" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-indigo-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-indigo-600 dark:ring-offset-gray-800" required="true">
+                                        <input v-model="showPassword" id="show-password" aria-describedby="show-password" type="checkbox" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-indigo-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-indigo-600 dark:ring-offset-gray-800" >
                                     </div>
                                     <div class="ml-3 text-sm">
-                                    <label for="remember" class="text-gray-500 dark:text-gray-300">Remember me</label>
+                                    <label for="show-password" class="text-gray-500 dark:text-gray-300">Show Password</label>
                                     </div>
                                 </div>
                                 <a href="#" class="text-sm font-medium text-indigo-600 hover:underline dark:text-indigo-500">Forgot password?</a>
@@ -61,7 +61,18 @@ export default {
                 theme: "auto"
             });
         }
-   }
+   },
+   data() {
+    return {
+      password: '',
+      showPassword: false
+    };
+  },
+  computed: {
+    showPasswordToggle() {
+      return this.showPassword ? 'text' : 'password';
+    }
+  }
 };
 
 </script>
