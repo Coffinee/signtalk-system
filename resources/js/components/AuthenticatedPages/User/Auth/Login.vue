@@ -48,7 +48,27 @@
         </section>
     </div>  
 </template>
-<script>
+<script setup>
+  import {ref} from 'vue';
+  import {userAuthStore} from '@/store/auth';
+
+  const form = ref({
+    email: '',
+    password: '',
+  });
+  const showPassword = ref(false)
+
+  const store = userAuthStore();
+
+  function handleLogin(){
+    store.login(form);
+  }
+
+  function showPasswordToggle(){
+    return this.showPassword ? 'text' : 'password';
+  }
+</script>
+<!-- <script>
 // import { toast } from 'vue3-toastify';
 // import 'vue3-toastify/dist/index.css';
 import {ref} from 'vue';
@@ -77,6 +97,7 @@ export default {
                 email: '',
                 password: '',
             }),
+            store: userAuthStore()
         };
     },
     computed: {
@@ -86,4 +107,4 @@ export default {
     }
 };
 
-</script>
+</script> -->
