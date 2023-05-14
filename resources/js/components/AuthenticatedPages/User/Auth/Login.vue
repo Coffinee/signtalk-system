@@ -1,5 +1,5 @@
 <template>
-    <button @click="showToast()" class="dark:text-white p-2 rounded-lg bg-indigo-500">Toast</button>
+    <!-- <button @click="showToast()" class="dark:text-white p-2 rounded-lg bg-indigo-500">Toast</button> -->
     <div class="flex justify-center items-center">
         <section class="bg-gray-50 dark:bg-gray-900">
             <div class="flex flex-col items-center justify-center px-6  mx-auto h-screen lg:py-0  w-screen">
@@ -8,14 +8,14 @@
                         <h1 class="capitalize text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                             Sign in
                         </h1>
-                        <form class="space-y-4 md:space-y-6" action="#">
+                        <form @submit.prevent="handleLogin()" class="space-y-4 md:space-y-6">
                             <div>
                                 <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                                <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="true">
+                                <input v-model="form.email" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="true">
                             </div>
                             <div>
                                 <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                <input :type="showPasswordToggle" v-model="password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="true">
+                                <input :type="showPasswordToggle" v-model="form.password" name="password" id="password" placeholder="••••••••" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required="true">
                             </div>
                             <div class="flex items-center justify-between">
                                 <div class="flex items-start">
@@ -49,30 +49,41 @@
     </div>  
 </template>
 <script>
-import { toast } from 'vue3-toastify';
-import 'vue3-toastify/dist/index.css';
+// import { toast } from 'vue3-toastify';
+// import 'vue3-toastify/dist/index.css';
+import {ref} from 'vue';
+import {userAuthStore} from '@/store/auth';
+import axios from 'axios'
+import Form from "vform";
 
 export default {
    name: "Login",
    methods:{
-        showToast(){
-            toast.error('Invalid Credential!', {
-                autoClose: 1000,
-                theme: "auto"
-            });
+        // showToast(){
+        //     toast.error('Invalid Credential!', {
+        //         autoClose: 1000,
+        //         theme: "auto"
+        //     });
+        // },
+        handleLogin() {
+            this.$store.dispatch('auth/login', this.form);
+        },
+    },
+    data() {
+        return {
+            // password: '',
+            showPassword: false,
+            form: new Form({
+                email: '',
+                password: '',
+            }),
+        };
+    },
+    computed: {
+        showPasswordToggle() {
+            return this.showPassword ? 'text' : 'password';
         }
-   },
-   data() {
-    return {
-      password: '',
-      showPassword: false
-    };
-  },
-  computed: {
-    showPasswordToggle() {
-      return this.showPassword ? 'text' : 'password';
     }
-  }
 };
 
 </script>
