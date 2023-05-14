@@ -29,6 +29,10 @@ const AdminExamination = () => import("@/components/AuthenticatedPages/Admin/Adm
 const UserLayout = () =>import("@/components/Layouts/Authenticated Layout/UserLayout.vue");
 const AdminLayout = () =>import("@/components/Layouts/Authenticated Layout/AdminLayout.vue");
 
+// TESTING
+const Test = () =>import("@/components/testfile.vue");
+
+
 const routes = [
     {
         path: "/",
@@ -221,6 +225,13 @@ const routes = [
                 },
             }
         ]
+    },
+    {
+        path: "/test",
+        component: Test,
+        meta: {
+            title: 'Test'
+        },
     }
 ];
 
