@@ -24,8 +24,8 @@
       </div>
       <div class="flex">
         <ul class="flex items-center md:p-2  rounded-lg   md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700" >
-          <li>           <!-- <a href="#" class="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</a> -->
-            <Menu as="div" class="relative">
+          <li >
+            <Menu as="div" class="relative" :class="isAuthenticated === true ? 'block' : 'hidden'">
                 <MenuButton class="-m-1.5 flex items-center p-1.5 ">
                     <span class="sr-only">Open user menu</span>
                     <img class="h-8 w-8 rounded-full bg-gray-50 " src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
@@ -33,15 +33,19 @@
                     </span>
                 </MenuButton>
                 <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
-                    <MenuItems class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
-                      <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">
-                          <a :href="item.href" :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900 capitalize']">{{ item.name }}</a>
+                    <MenuItems class="absolute right-0 z-10 mt-2.5 w-[150px] origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
+                      <MenuItem class="border-b border-gray-300">
+                          <a class="block px-3 py-1 text-sm leading-6 text-gray-900 capitalize text-center">{{ user_full_name }}</a>
+                      </MenuItem>
+                      <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">             
+                          <a :href="item.href" :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900 capitalize text-right']">{{ item.name }}</a>
                       </MenuItem>
                     </MenuItems>
                 </transition>
             </Menu>
           </li>
-          <li>
+          <li :class="isAuthenticated === true ? 'hidden' : 'block'">
+            {{ isAuthenticated }}s
             <router-link to="/login" class="text-white dark:text-white hover:text-blue-800', 'group rounded-xl px-5 py-2 text-sm leading-6 tracking-wide font-medium bg-indigo-500 hover:bg-indigo-600 flex flex-col text-center">
               Login
             </router-link>
@@ -54,6 +58,8 @@
 
 <script setup>
   import { useRouter, useRoute } from 'vue-router';
+  import { ref } from 'vue';
+  import { userAuthStore } from '@/store/auth';
   import {
   Menu,
   MenuButton,
@@ -69,13 +75,12 @@ const userNavigation = [
   { name: 'Settings', href: '/student/setting/profile' },
   { name: 'Logout', href: '#' },
 ]
+const user_full_name = ref(userAuthStore().user.name);
+const isAuthenticated = ref(userAuthStore().authenticated);
 export default {
-
-
 
   data() {
     return {
-
 
       topbarNavigation:[
         { name: 'Home', href: '/index' },
