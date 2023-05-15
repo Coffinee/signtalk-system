@@ -26,7 +26,7 @@ export default {
         <div>
             <Accordion :sectiontitle="'Change Password'" >
                 <div class="flex flex-col items-center">
-                    <div class="flex sm:flex-wrap gap-2">
+                    <div class="flex sm:flex-wrap gap-2">``
                         <h1 class="whitespace-nowrap">Current Password:</h1>
                         <input class="border" type="text" name="" id="">
                     </div>
