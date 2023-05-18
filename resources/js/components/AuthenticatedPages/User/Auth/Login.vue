@@ -73,21 +73,55 @@
 </template>
 
 <script setup>
-  import {ref} from 'vue';
+  import {ref, computed} from 'vue';
   import {userAuthStore} from '@/store/auth';
+
   const form = ref({
     email: '',
     password: '',
   });
-const showPassword = ref(false)
 
+  const showPassword = ref(false)
   const store = userAuthStore();
 
   function handleLogin(){
     store.login(form);
   }
 
-  function showPasswordToggle(){
-    return this.showPassword ? 'text' : 'password';
-}
+  const showPasswordToggle = computed(() => {
+    return showPassword.value ? 'text' : 'password';
+  });
+
+
 </script>
+
+<!--  
+<script>
+
+import { ref } from 'vue';
+import { userAuthStore } from '@/store/auth';
+
+export default {
+  data() {
+    return {
+      form: {
+        email: '',
+        password: '',
+      },
+      showPassword: false,
+    };
+  },
+  methods: {
+    handleLogin() {
+      const store = userAuthStore();
+      store.login(this.form);
+    },
+  },
+  computed:{
+    showPasswordToggle() {
+      return this.showPassword ? 'text' : 'password';
+    },
+  }
+};
+
+</script>-->
