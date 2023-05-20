@@ -67,7 +67,7 @@ export default {
                 </PopoverPanel>
             </transition>
         </Popover>
-        <div class="py-10 px-5">
+        <div class="w-[70%] self-center py-10 px-5">
             <div>
                 <h1 class="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">LESSON 1</h1>
                 <p class="mb-6 text-center text-lg font-normal text-gray-500 lg:text-xl sm:px-16 dark:text-gray-400">ALPHABETS</p>
@@ -84,21 +84,12 @@ export default {
             </div>
 
             <div class="h-4/5 border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5 mt-3 overflow-auto">
-                <p class="text-white indent-10">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem dolore eos ut doloremque odit ea minus nostrum, praesentium iste molestias eum magnam sunt iusto nesciunt maiores quae quam, molestiae quaerat.
+                <p class="dark:text-white">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem dolore eos ut doloremque odit ea minus nostrum, praesentium iste molestias eum magnam sunt iusto nesciunt maiores quae quam, molestiae quaerat.
                 </p>
-                <br>
-
-                <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem dolore eos ut doloremque odit ea minus nostrum, praesentium iste molestias eum magnam sunt iusto nesciunt maiores quae quam, molestiae quaerat.
-                </p>
-                <br>
-
-                <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem dolore eos ut doloremque odit ea minus nostrum, praesentium iste molestias eum magnam sunt iusto nesciunt maiores quae quam, molestiae quaerat.
-                </p>
-                <br>
-
-                <p class="text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem dolore eos ut doloremque odit ea minus nostrum, praesentium iste molestias eum magnam sunt iusto nesciunt maiores quae quam, molestiae quaerat.
-                </p>
-                <br>
+                <div class="self-center relative w-full overflow-hidden aspect-video">
+                    <iframe class="absolute inset-0 w-[100%] h-[100%] border-none" src="https://www.youtube.com/embed/uKKvNqA9N20" title="Greetings in ASL | ASL - American Sign Language" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
                 
             </div>
         </div>

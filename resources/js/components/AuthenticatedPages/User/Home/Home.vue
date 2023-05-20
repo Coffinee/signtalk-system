@@ -100,7 +100,7 @@ export default {
     </Slideover>
 
     <button @click="(modalOpen = !modalOpen)" class="bg-indigo-500 text-white p-2 rounded-md">Modal Open</button>
-    <Modal :show="modalOpen" @close="modalToggle" :title="'MODAL TITLE'" >
+    <Modal :show="modalOpen" @close="modalToggle" :title="'MODAL TITLE'" :widthModal="'w-80'" >
         <div>
             lorem1000
         </div>

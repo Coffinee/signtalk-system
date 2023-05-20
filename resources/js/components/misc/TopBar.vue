@@ -1,8 +1,6 @@
 <template>
   <nav class="bg-white border-gray-200 dark:bg-gray-900 sticky top-0 insex-x-0 w-full z-50">
-    <div
-      class="relative flex flex-wrap items-center justify-between mx-auto py-4 px-16 border-b border-gray-200 dark:border-gray-700">
-      class="relative flex flex-wrap items-center justify-between mx-auto py-4 px-16 border-b border-gray-200 dark:border-gray-700">
+    <div class="relative flex flex-wrap items-center justify-between mx-auto py-4 px-16 border-b border-gray-200 dark:border-gray-700">
       <router-link to="/index">
         <p class="self-center text-3xl font-bold whitespace-nowrap dark:text-white">Sign<span
             class="text-indigo-500  font-bold">Talk</span></p>
@@ -28,33 +26,41 @@
               {{ item.name }}
             </router-link>
           </li>
-          <li :class="isAuthenticated === true ? 'hidden' : 'block'">
-            <!-- {{ isAuthenticated }} -->
-            <router-link to="/login" class="text-white dark:text-white hover:text-blue-800', 'group rounded-xl px-5 py-2 text-sm leading-6 tracking-wide font-medium bg-indigo-500 hover:bg-indigo-600 flex flex-col text-center">
+          <!-- <li :class="isAuthenticated === true ? 'hidden' : 'block'">
+            <router-link to="/login"
+              class="text-white dark:text-white hover:text-blue-800', 'group rounded-xl px-5 py-2 text-sm leading-6 tracking-wide font-medium bg-indigo-500 hover:bg-indigo-600 flex flex-col text-center">
               Login
             </router-link>
-          </li>
+          </li> -->
           <li class="flex gap-[10px]">
-              <a class="block px-3 py-1 text-sm leading-6 text-gray-900 capitalize text-center">{{ user_full_name }}</a>
-              <Menu as="div" class="relative" :class="isAuthenticated === true ? 'block' : 'hidden'">
-                  <MenuButton class="-m-1.5 flex items-center p-1.5 ">
-                      <span class="sr-only">Open user menu</span>
-                      <img class="h-8 w-8 rounded-full bg-gray-50 " src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
-                      <span class="hidden lg:flex lg:items-center">
-                      </span>
-                  </MenuButton>
-                  <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
-                      <MenuItems class="absolute right-0 z-10 mt-2.5 w-[150px] origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
-                        <!-- <MenuItem class="border-b border-gray-300">
+            <a class="block px-3 py-1 text-sm leading-6 text-gray-900 capitalize text-center">{{ user_full_name }}</a>
+            <Menu as="div" class="relative" :class="isAuthenticated === true ? 'block' : 'hidden'">
+              <MenuButton class="-m-1.5 flex items-center p-1.5 ">
+                <span class="sr-only">Open user menu</span>
+                <img class="h-8 w-8 rounded-full bg-gray-50 "
+                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                  alt="" />
+                <span class="hidden lg:flex lg:items-center">
+                </span>
+              </MenuButton>
+              <transition enter-active-class="transition ease-out duration-100"
+                enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100"
+                leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100"
+                leave-to-class="transform opacity-0 scale-95">
+                <MenuItems
+                  class="absolute right-0 z-10 mt-2.5 w-[150px] origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
+                  <!-- <MenuItem class="border-b border-gray-300">
                             <a class="block px-3 py-1 text-sm leading-6 text-gray-900 capitalize text-center">{{ user_full_name }}</a>
                         </MenuItem> -->
-                        <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">             
-                            <a :href="item.href" :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900 capitalize text-center']">{{ item.name }}</a>
-                        </MenuItem>
-                      </MenuItems>
-                  </transition>
-              </Menu>
-            </li>
+                  <!-- <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">
+                  <a :href="item.href"
+                    :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900 capitalize text-center']">{{
+                      item.name }}</a>
+                  </MenuItem> -->
+                </MenuItems>
+              </transition>
+            </Menu>
+          </li>
         </ul>
         <!-- <div class="flex">
           <ul class="flex items-center md:p-2  rounded-lg   md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700" >
@@ -67,10 +73,10 @@
 </template>
 
 <script setup>
-  import { useRouter, useRoute } from 'vue-router';
-  import { ref } from 'vue';
-  import { userAuthStore } from '@/store/auth';
-  import {
+import { useRouter, useRoute } from 'vue-router';
+import { ref } from 'vue';
+import { userAuthStore } from '@/store/auth';
+import {
   Menu,
   MenuButton,
   MenuItem,
@@ -94,12 +100,9 @@ export default {
   data() {
     return {
 
-      topbarNavigation:[
-        { name: 'Home', href: '/index' },
-        { name: 'Dictionary', href: '/student/dictionary' },
-        { name: 'Lesson', href: '/student/lesson' },
-        { name: 'Quiz', href: '/student/quiz' },
-        { name: 'Translate', href: '/student/translate' },
+      topbarNavigation: [
+        { name: 'Login', href: '/login' },
+        { name: 'Register', href: '/register' },
       ],
       open: false
     }
