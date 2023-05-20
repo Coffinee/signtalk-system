@@ -31,9 +31,13 @@ const AdminQuiz = () => import("@/components/AuthenticatedPages/Admin/Admin Quiz
 const AdminExamination = () => import("@/components/AuthenticatedPages/Admin/Admin Examination/AdminExamination.vue");
 const AdminTranslate = () => import("@/components/AuthenticatedPages/Admin/Admin Translate/AdminTranslate.vue");
 
+// TEACHER SIDE
+const TeacherHome = () => import("@/components/AuthenticatedPages/Teacher/Home.vue");
+
 // LAYOUTS
 const UserLayout = () =>import("@/components/Layouts/Authenticated Layout/UserLayout.vue");
 const AdminLayout = () =>import("@/components/Layouts/Authenticated Layout/AdminLayout.vue");
+const TeacherLayout = () =>import("@/components/Layouts/Authenticated Layout/TeacherLayout.vue");
 const GuestLayout = () =>import("@/components/Layouts/Authenticated Layout/GuestLayout.vue");
 
 // TESTING
@@ -75,41 +79,40 @@ const routes = [
         ],
     },
     {
-        path: "/user",
-        component: UserLayout,
-        redirect: '/index',
+        path: "/teacher",
+        component: TeacherLayout,
         meta: {
-            title: 'SignTalk'
+            middleware: "teacher",
+        },
+        children: [
+            {
+                name: "teacher-home",
+                path: "/",
+                component: TeacherHome,
+                meta: {
+                    title: `Teacher Home`,
+                },
+            },
+        ],
+    },
+    {
+        path: "/student",
+        component: UserLayout,
+        meta: {
+            middleware: "student",
         },
         children: [
             {
                 name: "user-home",
-                path: "/index",
+                path: "/",
                 component: Home,
                 meta: {
                     title: "SignTalk | Home",
                 },
             },
             {
-                name: "login",
-                path: "/login",
-                component: Login,
-                meta: {
-                    title: "SignTalk | Login",
-                },
-            },
-            {
-                name: "register",
-                path:'/register',
-                component: Register,
-                meta: {
-                    title: "SignTalk | Register",
-                },
-            },
-
-            {
                 name: "about",
-                path: "/student/about",
+                path: "/about",
                 component: About,
                 meta: {
                     title: "SignTalk | About",
@@ -117,7 +120,7 @@ const routes = [
             },
             {
                 name: "lesson",
-                path: "/student/lesson/",
+                path: "/lesson",
                 component: LessonLandingPage,
                 meta: {
                     title: "SignTalk | Lesson",
@@ -125,7 +128,7 @@ const routes = [
             },
             {
                 name: "lesson-main",
-                path: "/student/lesson/main",
+                path: "/lesson/main",
                 component: LessonMain,
                 meta: {
                     title: "SignTalk | Lesson",
@@ -133,7 +136,7 @@ const routes = [
             },
             {
                 name: "dictionary",
-                path: "/student/dictionary/",
+                path: "/dictionary",
                 component: DictionaryMain,
                 meta: {
                     title: "SignTalk | Dictionary",
@@ -141,23 +144,15 @@ const routes = [
             },
             {
                 name: 'quiz',
-                path: "/student/quiz/",
+                path: "/quiz",
                 component: Quiz,
                 meta: {
                     title: "SignTalk | Quiz",
                 },
             },
-            // {
-            //     name: 'exam',
-            //     path: "/student/Exam/",
-            //     component: Exam,
-            //     meta: {
-            //         title: "SignTalk | Exam",
-            //     },
-            // },
             {
                 name: 'interactives',
-                path: "/student/interactives/",
+                path: "/interactives",
                 component: Interactives,
                 meta: {
                     title: "SignTalk | Interactives",
@@ -165,7 +160,7 @@ const routes = [
             },
             {
                 name: 'translate',
-                path: "/student/translate",
+                path: "/translate",
                 component: Translate,
                 meta: {
                     title: "SignTalk | Translate",
@@ -173,7 +168,7 @@ const routes = [
             },
             {
                 name: 'setting',
-                path: "/student/setting",
+                path: "/setting",
                 component: Setting,
                 meta: {
                     title: "SignTalk | Setting",
@@ -181,7 +176,7 @@ const routes = [
                 children:[
                     {
                         name: 'profile',
-                        path: "/student/setting/profile",
+                        path: "/setting/profile",
                         component: Profile,
                         meta: {
                             title: "SignTalk | Profile",
@@ -189,7 +184,7 @@ const routes = [
                     },
                     {
                         name: 'analytics',
-                        path: "/student/setting/analytics",
+                        path: "/setting/analytics",
                         component: Analytics,
                         meta: {
                             title: "SignTalk | Analytics",
@@ -197,7 +192,7 @@ const routes = [
                     },
                     {
                         name: 'Personalization',
-                        path: "/student/setting/personalization",
+                        path: "/setting/personalization",
                         component: Personalization,
                         meta: {
                             title: "SignTalk | Personalization",
@@ -212,14 +207,13 @@ const routes = [
     {
         path: "/admin",
         component: AdminLayout,
-        redirect: '/admin/dashboard',
         meta: {
-            title: 'SignTalk | Admin'
+            middleware: "admin",
         },
         children: [
             {
                 name: 'admin-dashboard',
-                path: "/admin/dashboard",
+                path: "/dashboard",
                 component: AdminDashboard,
                 meta: {
                     title: "SignTalk | Admin - Dashboard",
@@ -227,7 +221,7 @@ const routes = [
             },
             {
                 name: 'admin-dictionary',
-                path: "/admin/dictionary",
+                path: "/dictionary",
                 component: AdminDictionary,
                 meta: {
                     title: "SignTalk | Admin - Dictionary",
@@ -235,7 +229,7 @@ const routes = [
             },
             {
                 name: 'admin-lesson',
-                path: "/admin/lesson",
+                path: "/lesson",
                 component: AdminLesson,
                 meta: {
                     title: "SignTalk | Admin - Lesson",
@@ -243,7 +237,7 @@ const routes = [
             },
             {
                 name: 'admin-quiz',
-                path: "/admin/quiz",
+                path: "/quiz",
                 component: AdminQuiz,
                 meta: {
                     title: "SignTalk | Admin - Quiz",
@@ -251,7 +245,7 @@ const routes = [
             },
             {
                 name: 'admin-examination',
-                path: "/admin/examination",
+                path: "/examination",
                 component: AdminExamination,
                 meta: {
                     title: "SignTalk | Admin - Examination",
@@ -259,7 +253,7 @@ const routes = [
             },
             {
                 name: 'admin-translate',
-                path: "/admin/translate",
+                path: "/translate",
                 component: AdminTranslate,
                 meta: {
                     title: "SignTalk | Admin - Translate",
@@ -288,11 +282,25 @@ router.beforeEach((to, from, next) => {
     document.title = to.meta.title;
     if (to.meta.middleware == "guest") {
         if (userAuthStore().authenticated) {
-            next({ name: "admin-dashboard" });
+            if(userAuthStore().user.role == 'admin'){
+                console.log(userAuthStore().user.role)
+             next({ name: "admin-dashboard" });
+            }else if(userAuthStore().user.role == 'student'){
+                console.log(userAuthStore().user.role)
+                next({ name: "user-home" });
+            }else{
+                console.log(userAuthStore().user.role)
+                next({ name: "teacher-home" });
+            }
         }
         next();
     } else {
-        next();
+        if (userAuthStore().authenticated) {
+            next();
+        }else{
+            next({name: 'login'}); 
+        }
+        
     }
 });
 
