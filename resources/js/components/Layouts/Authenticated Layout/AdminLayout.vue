@@ -141,9 +141,8 @@
                 </MenuButton>
                 <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
                     <MenuItems class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
-                    <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">
-                        <a :href="item.href" :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900']">{{ item.name }}</a>
-                    </MenuItem>
+                      <a href="#"  :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900']">My Profile</a>
+                      <a href="#" @click.prevent="logout" :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900']">Sign Out</a>
                     </MenuItems>
                 </transition>
                 </Menu>
@@ -163,6 +162,7 @@
 <script setup>
 
 import { useRouter, useRoute } from 'vue-router'
+import {userAuthStore} from '@/store/auth';
 import { ref } from 'vue'
 import {
   Dialog,
@@ -186,14 +186,14 @@ import {
 } from '@heroicons/vue/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
 
-
+const router = useRouter()
 const navigation = [
-  { name: 'Dashboard', href: '/Admin/Dashboard', icon: WindowIcon, current: true },
-  { name: 'Dictionary', href: '/Admin/Dictionary', icon: BookOpenIcon, current: false },
-  { name: 'Lesson', href: '/Admin/Lesson', icon: DocumentTextIcon, current: false },
-  { name: 'Quiz', href: '/Admin/Quiz', icon: ClipboardDocumentIcon, current: false },
-  { name: 'Examination', href: '/Admin/Examination', icon: ClipboardDocumentIcon, current: false },
-  { name: 'Translate', href: '/Admin/Translate', icon: ClipboardDocumentIcon, current: false },
+  { name: 'Dashboard', href: '/admin/dashboard', icon: WindowIcon, current: true },
+  { name: 'Dictionary', href: '/admin/dictionary', icon: BookOpenIcon, current: false },
+  { name: 'Lesson', href: '/admin/lesson', icon: DocumentTextIcon, current: false },
+  { name: 'Quiz', href: '/admin/1uiz', icon: ClipboardDocumentIcon, current: false },
+  { name: 'Examination', href: '/admin/examination', icon: ClipboardDocumentIcon, current: false },
+  { name: 'Translate', href: '/admin/translate', icon: ClipboardDocumentIcon, current: false },
 
 ]
 const userNavigation = [
@@ -202,4 +202,14 @@ const userNavigation = [
 ]
 
 const sidebarOpen = ref(false)
+
+const logout = async () => {
+
+        await axios.post('/logout');
+        userAuthStore().signOut();
+        router.push({path: 'login'});
+       // router.go();
+    };
+
 </script>
+
