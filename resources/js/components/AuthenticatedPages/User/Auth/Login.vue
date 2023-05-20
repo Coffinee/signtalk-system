@@ -45,7 +45,7 @@
                             <button type="submit"
                                 class="w-full text-white bg-indigo-600 hover:bg-indigo-700 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800">Sign
                                 in</button>
-                            <div
+                            <!-- <div
                                 class="relative flex justify-center items-center h-[2px] w-full bg-gray-300 dark:bg-gray-300">
                                 <p
                                     class="absolute text-sm text-center font-bold px-[5px] text-gray-300 dark:text-white bg-white dark:bg-gray-800">
@@ -58,7 +58,7 @@
                                         alt="google-icon">
                                     <p>Sign in with Google</p>
                                 </button>
-                            </div>
+                            </div> -->
                             <p class="text-center text-sm font-light text-gray-500 dark:text-gray-400">
                                 Don’t have an account yet? <router-link to="/register"
                                     class="font-medium text-indigo-600 hover:underline dark:text-indigo-500">Register
