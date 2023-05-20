@@ -193,6 +193,8 @@ const navigation = [
   { name: 'Lesson', href: '/Admin/Lesson', icon: DocumentTextIcon, current: false },
   { name: 'Quiz', href: '/Admin/Quiz', icon: ClipboardDocumentIcon, current: false },
   { name: 'Examination', href: '/Admin/Examination', icon: ClipboardDocumentIcon, current: false },
+  { name: 'Translate', href: '/Admin/Translate', icon: ClipboardDocumentIcon, current: false },
+
 ]
 const userNavigation = [
   { name: 'Your profile', href: '#' },
