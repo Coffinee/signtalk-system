@@ -8,6 +8,8 @@ import moshaToast from "mosha-vue-toastify";
 import "mosha-vue-toastify/dist/style.css";
 import Form from "vform";
 import Router from "@/router";
+import VueProgressBar from "@aacassandra/vue3-progressbar";
+
 
 const pinia = createPinia()
 const options = {
@@ -29,6 +31,7 @@ const app = createApp({});
 app.use(pinia);
 pinia.use(piniaPluginPersistedstate);
 app.config.globalProperties.$axios = axios;
+app.use(VueProgressBar, options);
 app.use(moshaToast, Form);
 app.use(Router);
 app.mount('#app');
