@@ -2,7 +2,7 @@
 import Slideover from '../../../misc/Slideover.vue';
 import Modal from '../../../misc/Modal.vue';
 export default {
-    
+
     components:{
         Slideover, Modal
     },
@@ -26,7 +26,7 @@ export default {
 
 <template>
     <!-- <div class="bg-gray-300">
-        
+
         <section class="bg-cover bg-center bg-no-repeat bg-[url('https://images.unsplash.com/photo-1491414416654-c4de0c986af8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] bg-gray-700 bg-blend-multiply">
             <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
                 <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Learn With Us!</h1>
@@ -174,6 +174,11 @@ export default {
         </div>
     </div>
 
+    <router-link to="auth/first-time">
+        <Button>
+            Hello
+        </Button>
+    </router-link>
     <button @click="(slideoverOpen = !slideoverOpen)" class="bg-indigo-500 text-white p-2 rounded-md">Slideover Open</button>
     <Slideover :show="slideoverOpen" @close="slideoverToggle" :title="'SLIDEOVER TITLE'" >
 
