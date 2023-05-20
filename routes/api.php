@@ -19,6 +19,7 @@ Route::namespace('App\Http\Controllers\API')->group(function() {
     Route::apiResources([
         'user' => 'UserController',
         'register' => 'RegisterController',
+        'dictionary' => 'DictionaryController',
     ]);
 });
 

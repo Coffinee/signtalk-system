@@ -13,14 +13,15 @@
                             enter-from="translate-x-full" enter-to="translate-x-0"
                             leave="transform transition ease-in-out duration-500 sm:duration-700"
                             leave-from="translate-x-0" leave-to="translate-x-full">
-                            <DialogPanel class="pointer-events-auto  w-screen" :class="widthSlideover">
+                            <DialogPanel class="pointer-events-auto w-screen" :class="widthSlideover">
                                 <div class="flex h-full flex-col bg-white dark:bg-gray-800 shadow-xl px-5 py-2">
-                                    <h5 class="text-[20px] font-bold text-black dark:text-white uppercase tracking-wider">
+                                    <h5 class="text-[20px] text-center font-bold text-black dark:text-white uppercase tracking-wider">
                                         {{ title }}
                                     </h5>
+                                    <p></p>
                                     <div class="relative flex-1 text-black dark:text-gray-400  p-2">
                                         <!-- Replace with your content -->
-                                        <slot></slot>
+                                        <slot name="body"></slot>
                                     </div>
                                 </div>
                             </DialogPanel>
@@ -44,10 +45,6 @@ export default {
             type: String,
             default: 'MODAL TITLE HERE',
         },
-        iconShow: {
-            type: String,
-            default:'',
-        }
     },
     data() {
         return {
