@@ -6,7 +6,7 @@
                 <div class="flex flex-col items-between">
                     <div>
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Dictionary</h5>
-                        <p class="font-normal text-gray-700 text-justify text-[18px]">100 Words Added</p>
+                        <p class="font-normal text-gray-700 text-[18px]">100 Words Added</p>
                     </div>
                     <div>
                         <p class="text-indigo-500 font-semibold text-[15px]">As of April 29, 2023</p>
@@ -20,7 +20,7 @@
                 <div class="flex flex-col justify-between">
                     <div>
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Lesson</h5>
-                        <p class="font-normal text-gray-700 text-justify text-[18px]">23 Lessons Deployed</p>
+                        <p class="font-normal text-gray-700 text-[18px]">23 Lessons Deployed</p>
                     </div>
                     <div>
                         <p class="text-indigo-500 font-semibold text-[15px]">As of April 29, 2023</p>
@@ -34,7 +34,7 @@
                 <div class="flex flex-col justify-between">
                     <div>
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Quiz</h5>
-                        <p class="font-normal text-gray-700 text-justify text-[18px]">3 Quizzes Deployed</p>
+                        <p class="font-normal text-gray-700  text-[18px]">3 Quizzes Deployed</p>
                     </div>
                     <div>
                         <p class="text-indigo-500 font-semibold text-[15px]">As of April 29, 2023</p>
@@ -48,7 +48,7 @@
                 <div class="flex flex-col justify-between">
                     <div>
                         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900">Examination</h5>
-                        <p class="font-normal text-gray-700 text-justify text-[18px]">2 Exams Deployed </p>
+                        <p class="font-normal text-gray-700  text-[18px]">2 Exams Deployed </p>
                     </div>
                     <div>
                         <p class="text-indigo-500 font-semibold text-[15px]">As of April 29, 2023</p>

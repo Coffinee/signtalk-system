@@ -91,7 +91,7 @@ export default {
 
     <button @click="(slideoverOpen = !slideoverOpen)" class="bg-indigo-500 text-white p-2 rounded-md">Slideover Open</button>
     <Slideover :show="slideoverOpen" @close="slideoverToggle" :title="'SLIDEOVER TITLE'" >
-
+        
     </Slideover>
 
     <button @click="(modalOpen = !modalOpen)" class="bg-indigo-500 text-white p-2 rounded-md">Modal Open</button>
