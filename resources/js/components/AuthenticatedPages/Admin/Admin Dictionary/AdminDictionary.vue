@@ -132,6 +132,7 @@ export default {
     methods: {
         slideoverToggle() {
             this.slideoverOpen = false;
+            this.edit = false;
             this.form = new Form({
                 id: '',
                 word: '',
@@ -160,8 +161,7 @@ export default {
             }).then((data) => {
                 this.$Progress.finish();
                 this.edit = false;
-                this.getData();
-                console.log('Updated')
+                this.slideoverToggle()
             }).catch((error) => {
                 this.$Progress.fail();
             })
@@ -169,7 +169,7 @@ export default {
 
         editForm(item) {
             this.edit = true;
-            this.slideoverOpen = true;
+            this.slideoverOpen = !this.slideoverOpen;
             this.form = item;
         },
 

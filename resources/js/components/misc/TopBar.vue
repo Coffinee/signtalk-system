@@ -19,7 +19,7 @@
         :class="[!open ? 'hidden w-full md:block md:w-auto space-x-5' : 'absolute top-[55px] left-0 right-0 z-10']">
         <ul
           class="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-          <li :class="isAuthenticated === true ? 'hidden' : 'block'">
+          <li>
             <router-link v-for="item in topbarNavigation" :key="item.name" :to="item.href" class="w-full"
               :class="[useRoute().path == item.href ? ' text-indigo-500' : 'text-black dark:text-slate-400 hover:text-blue-800', 'group rounded-xl px-6 py-2 text-sm leading-6 tracking-wide font-medium', open ? 'flex flex-col text-center' : '']"
               :aria-current="item.current ? 'page' : undefined">
@@ -28,9 +28,10 @@
           </li>
           <li :class="isAuthenticated === true ? 'hidden' : 'block'">
             <!-- {{ isAuthenticated }} -->
-            <!-- <router-link to="/login" class="text-white dark:text-white hover:text-blue-800', 'group rounded-xl px-5 py-2 text-sm leading-6 tracking-wide font-medium bg-indigo-500 hover:bg-indigo-600 flex flex-col text-center">
+            <router-link to="/login"
+              class="text-white dark:text-white hover:text-blue-800', 'group rounded-xl px-5 py-2 text-sm leading-6 tracking-wide font-medium bg-indigo-500 hover:bg-indigo-600 flex flex-col text-center">
               Login
-            </router-link> -->
+            </router-link>
           </li>
           <li class="flex gap-[10px]">
             <a class="block px-3 py-1 text-sm leading-6 text-gray-900 capitalize text-center">{{ user_full_name }}</a>
@@ -90,7 +91,7 @@ import {
 <script>
 const userNavigation = [
   { name: 'Settings', href: '/student/setting/profile' },
-  // { name: 'About', href: '/Student/About' },
+  { name: 'About', href: '/Student/About' },
   { name: 'Logout', href: '#' },
 ]
 const user_full_name = ref(userAuthStore().user.name);
@@ -100,9 +101,12 @@ export default {
   data() {
     return {
 
-      topbarNavigation:[
-        { name: 'Login', href: '/login' },
-        { name: 'Register', href: '/register' },
+      topbarNavigation: [
+        { name: 'Home', href: '/index' },
+        { name: 'Dictionary', href: '/student/dictionary' },
+        { name: 'Lesson', href: '/student/lesson' },
+        { name: 'Quiz', href: '/student/quiz' },
+        { name: 'Translate', href: '/student/translate' },
       ],
       open: false
     }
