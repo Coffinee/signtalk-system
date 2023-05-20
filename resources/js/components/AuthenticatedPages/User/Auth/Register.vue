@@ -9,16 +9,21 @@
                             class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white  text-center capitalize">
                             Register
                         </h1>
-                        <div class="items-center justify-center text-white flex space-x-5">
-                            <button @click.prevent="isTeacher = false"
+                        <div class="flex flex-col text-white">
+                            <p class="text-sm font-medium text-gray-900 dark:text-white text-center mb-2">Select a Role:</p>
+                            <div class="flex items-center justify-center space-x-5">
+                                <button @click.prevent="isTeacher = false"
+                                    :class="isTeacher == false ? 'bg-indigo-500 text-white' : ''"
+                                    class="border border-indigo-500 text-gray-900 hover:bg-indigo-500 hover:text-white w-full h-10 rounded-md dark:hover:bg-indigo-500 dark:text-white">
+                                    Student
+                                </button>
+                                
+                                <button @click.psrevent="isTeacher = true"
+                                :class="isTeacher ? 'bg-indigo-500 text-white' : ''"
                                 class="border border-indigo-500 text-gray-900 hover:bg-indigo-500 hover:text-white w-full h-10 rounded-md dark:hover:bg-indigo-500 dark:text-white">
-                                Student
-                            </button>
-
-                            <button @click.prevent="isTeacher = true"
-                                class="border border-indigo-500 text-gray-900 hover:bg-indigo-500 hover:text-white w-full h-10 rounded-md dark:hover:bg-indigo-500    dark:text-white">
                                 Teacher
-                            </button>
+                                </button>
+                            </div>
                         </div>
                         <form class="space-y-4 md:space-y-6" @submit.prevent="submitForm()">
                             <div v-show="isTeacher == false">
@@ -131,7 +136,8 @@ export default {
                 password: '',
                 cPassword: ''
             }),
-            isTeacher: false
+            isTeacher: false,
+            isStudent: false
         }
     },
     methods: {

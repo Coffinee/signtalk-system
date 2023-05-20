@@ -1,24 +1,24 @@
 <template>
     <div class="h-screen flex items-center justify-center gap-[30px]">
-        <router-link to="/student/lesson/main">
+        <router-link to="/lesson/main">
             <div class="w-[170px] h-[170px] flex flex-col dark:bg-gray-700 dark:border-none dark:hover:bg-gray-600 hover:bg-gray-200 shadow-lg rounded-lg py-3 px-7 border border-gray-200">
                 <img class="w-fit h-fit" src="../../../../../assets/images/alphabet.png" alt="">
                 <p class="text-[18px] text-center text-gray-900 tracking-wider uppercase dark:text-white font-semibold">Alphabet</p>
             </div>
         </router-link>
-        <router-link to="/student/lesson/main">
+        <router-link to="/lesson/main">
             <div class="w-[170px] h-[170px] flex flex-col dark:bg-gray-700 dark:border-none dark:hover:bg-gray-600 hover:bg-gray-200 shadow-lg rounded-lg py-3 px-7 border border-gray-200">
                 <img class="w-fit h-fit" src="../../../../../assets/images/number.png" alt="">
                 <p class="text-[18px] text-center text-gray-900 tracking-wider uppercase dark:text-white font-semibold">Numbers</p>
             </div>
         </router-link>
-        <router-link to="/student/lesson/main">
+        <router-link to="/lesson/main">
             <div class="w-[170px] h-[170px] flex flex-col dark:bg-gray-700 dark:border-none dark:hover:bg-gray-600 hover:bg-gray-200 shadow-lg rounded-lg py-3 px-7 border border-gray-200">
                 <img class="w-fit h-fit" src="../../../../../assets/images/color.png" alt="">
                 <p class="text-[18px] text-center text-gray-900 tracking-wider uppercase dark:text-white font-semibold">Colors</p>
             </div>
         </router-link>
-        <router-link to="/student/lesson/main">
+        <router-link to="/lesson/main">
             <div class="w-[170px] h-[170px] flex flex-col dark:bg-gray-700 dark:border-none dark:hover:bg-gray-600 hover:bg-gray-200 shadow-lg rounded-lg py-3 px-7 border border-gray-200">
                 <img class="w-fit h-fit" src="../../../../../assets/images/animal.png" alt="">
                 <p class="text-[18px] text-center text-gray-900 tracking-wider uppercase dark:text-white font-semibold">Animals</p>
@@ -30,7 +30,7 @@
                 <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">Explore the different ASL Lessons</p>
             </div>
             <div class="flex justify-center flex-col sm:flex-col lg:flex-row gap-x-[100px] gap-y-[50px]">
-                <router-link to="/student/lesson/main">
+                <router-link to="/lesson/main">
                     <div class="flex flex-col items-center ease-in-out duration-300 hover:scale-110 dark:hover:bg-gray-700 py-3 px-[30px] rounded-xl">
                         <img src="/Images/online-test.png" class="w-[300px] h-[280px]">
                         <div class="flex gap-x-[5px] text-[20px] font-semibold">
@@ -39,7 +39,7 @@
                         </div>
                     </div>
                 </router-link>
-                <router-link to="/student/lesson/main">
+                <router-link to="/lesson/main">
                     <div class="flex flex-col items-center ease-in-out duration-300 hover:scale-110 hover:bg-gray-100 dark:hover:bg-gray-700 py-3 px-[30px] rounded-xl">
                         <img src="/Images/tutorial.png" class="w-[300px] h-[280px]">
                         <div class="flex gap-x-[5px] text-[20px] font-semibold">

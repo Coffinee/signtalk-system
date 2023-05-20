@@ -33,6 +33,7 @@ const AdminTranslate = () => import("@/components/AuthenticatedPages/Admin/Admin
 
 // TEACHER SIDE
 const TeacherHome = () => import("@/components/AuthenticatedPages/Teacher/Home.vue");
+const TeacherDashboard = () => import("@/components/AuthenticatedPages/Teacher/TeacherDashboard.vue");
 
 // LAYOUTS
 const UserLayout = () =>import("@/components/Layouts/Authenticated Layout/UserLayout.vue");
@@ -76,6 +77,14 @@ const routes = [
                     title: "SignTalk | Login",
                 },
             },
+            {
+                name: "register",
+                path: "/register",
+                component: Register,
+                meta: {
+                    title: "SignTalk | Register",
+                },
+            },
         ],
     },
     {
@@ -91,6 +100,14 @@ const routes = [
                 component: TeacherHome,
                 meta: {
                     title: `Teacher Home`,
+                },
+            },
+            {
+                name: "teacher-dashboard",
+                path: "/teacher/dashboard",
+                component: TeacherDashboard,
+                meta: {
+                    title: `Teacher Dashboard`,
                 },
             },
         ],

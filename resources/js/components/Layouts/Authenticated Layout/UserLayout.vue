@@ -1,6 +1,6 @@
 <template>
     <div class="min-h-full min-w-full dark:bg-gray-900">
-        <TopBar />
+        <TopBarStudent />
         <div>
             <router-view :key="$route.fullPath"></router-view>
         </div>
@@ -9,6 +9,6 @@
 </template>
 
 <script setup>
-import TopBar from "../../misc/TopBar.vue";
+import TopBarStudent from '../../misc/TopBarStudent.vue';
 // import Footer from "../../misc/Footer.vue";
 </script>

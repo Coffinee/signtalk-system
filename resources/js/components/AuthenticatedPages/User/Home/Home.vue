@@ -47,7 +47,7 @@ export default {
 <template>
     <div class="flex justify-center items-center flex-wrap gap-x-[20px] gap-y-[80px] sm:h-auto md:h-screen  py-[80px] ">
         <div class="flex justify-center flex-wrap gap-x-[20px] gap-y-[80px]">
-            <router-link to="/student/translate">
+            <router-link to="/translate">
                 <div
                     class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/translate.png" class="w-[170px] absolute -top-[70px] left-[50px]">
@@ -63,7 +63,7 @@ export default {
                     </div>
                 </div>
             </router-link>
-            <router-link to="/student/dictionary">
+            <router-link to="/dictionary">
                 <div
                     class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/dictionary.png" class="w-40 absolute -top-[60px] left-[50px]">
@@ -81,7 +81,7 @@ export default {
             </router-link>
         </div>
         <div class="flex justify-center  flex-wrap gap-x-[20px] gap-y-[80px]">
-            <router-link to="/student/lesson">
+            <router-link to="/lesson">
                 <div
                     class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/lesson.png" class="w-[180px] absolute -top-[70px] left-[35px]">
@@ -97,7 +97,7 @@ export default {
                     </div>
                 </div>
             </router-link>
-            <router-link to="/student/quiz">
+            <router-link to="/quiz">
                 <div
                     class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/exams.png" class="w-[160px] absolute -top-[50px] left-[55px]">
@@ -141,7 +141,7 @@ export default {
             </button>
 
             <button @click.prevent="isTeacher = true"
-                class="border border-indigo-500 text-gray-900 hover:bg-indigo-500 hover:text-white w-full h-10 rounded-md dark:hover:bg-indigo-500    dark:text-white">
+                class="border border-indigo-500 text-gray-900 hover:bg-indigo-500 hover:text-white w-full h-10 rounded-md dark:hover:bg-indigo-500 dark:text-white" :class="isTeacher ? 'bg-indigo-500 text-white': ''">
                 Teacher
             </button>
         </div>

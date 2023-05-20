@@ -188,12 +188,9 @@ import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
 
 
 const navigation = [
-  { name: 'Dashboard', href: '/Admin/Dashboard', icon: WindowIcon, current: true },
-  { name: 'Dictionary', href: '/Admin/Dictionary', icon: BookOpenIcon, current: false },
-  { name: 'Lesson', href: '/Admin/Lesson', icon: DocumentTextIcon, current: false },
-  { name: 'Quiz', href: '/Admin/Quiz', icon: ClipboardDocumentIcon, current: false },
-  { name: 'Examination', href: '/Admin/Examination', icon: ClipboardDocumentIcon, current: false },
-  { name: 'Translate', href: '/Admin/Translate', icon: ClipboardDocumentIcon, current: false },
+  { name: 'Dashboard', href: '/teacher/dashboard', icon: WindowIcon, current: true },
+  { name: 'Room', href: '/teacher/room', icon: ClipboardDocumentIcon, current: false },
+  { name: 'Quiz', href: '#', icon: ClipboardDocumentIcon, current: false },
 
 ]
 const userNavigation = [
