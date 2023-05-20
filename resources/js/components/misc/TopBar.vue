@@ -17,7 +17,6 @@
             class="w-full"
                 :class="[useRoute().path == item.href ? ' text-indigo-500' : 'text-black dark:text-slate-400 hover:text-blue-800', 'group rounded-xl px-6 py-2 text-sm leading-6 tracking-wide font-medium', open ? 'flex flex-col text-center' : '']"
                 :aria-current="item.current ? 'page' : undefined">
-                {{ item.name }}
             </router-link>
           </li>
         </ul>
@@ -37,7 +36,7 @@
                       <MenuItem class="border-b border-gray-300">
                           <a class="block px-3 py-1 text-sm leading-6 text-gray-900 capitalize text-center">{{ user_full_name }}</a>
                       </MenuItem>
-                      <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">             
+                      <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">
                           <a :href="item.href" :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900 capitalize text-right']">{{ item.name }}</a>
                       </MenuItem>
                     </MenuItems>
@@ -45,7 +44,7 @@
             </Menu>
           </li>
           <li :class="isAuthenticated === true ? 'hidden' : 'block'">
-            {{ isAuthenticated }}s
+            {{ isAuthenticated }}
             <router-link to="/login" class="text-white dark:text-white hover:text-blue-800', 'group rounded-xl px-5 py-2 text-sm leading-6 tracking-wide font-medium bg-indigo-500 hover:bg-indigo-600 flex flex-col text-center">
               Login
             </router-link>
