@@ -134,14 +134,6 @@ const routes = [
             {
                 name: "dictionary",
                 path: "/student/dictionary/",
-                component: DictionaryLandingPage,
-                meta: {
-                    title: "SignTalk | Dictionary",
-                },
-            },
-            {
-                name: 'dictionary-main',
-                path: "/student/dictionary/main",
                 component: DictionaryMain,
                 meta: {
                     title: "SignTalk | Dictionary",
