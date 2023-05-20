@@ -206,7 +206,7 @@ const logout = async () => {
 
         await axios.post('/logout');
         userAuthStore().signOut();
-        router.push({path: 'login'});
+        router.push({path: '/login'});
        // router.go();
     };
 </script>
