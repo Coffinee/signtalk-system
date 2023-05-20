@@ -1,10 +1,10 @@
 <template>
     <div class="min-h-full min-w-full dark:bg-gray-900">
         <TopBar />
-        <div class="mb-10">
+        <div>
             <router-view :key="$route.fullPath"></router-view>
         </div>
-        <Footer />
+        <!-- <Footer /> -->
     </div>
 </template>
 

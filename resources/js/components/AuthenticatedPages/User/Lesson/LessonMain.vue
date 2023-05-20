@@ -28,7 +28,7 @@ export default {
 <template>
     <div class="flex flex-col justify-center w-auto h-auto bg-white dark:bg-transparent">
         <Popover class="relative isolate z-40">
-            <div class="bg-white py-5">
+            <div class="bg-white dark:bg-transparent py-5">
                 <div class="mx-auto max-w-7xl px-6 lg:px-8">
                     <PopoverButton class="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
                         View Lesson

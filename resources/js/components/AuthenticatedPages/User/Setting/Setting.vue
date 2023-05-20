@@ -1,5 +1,5 @@
 <template>
-  <div class="h-full">
+  <div class="h-auto overflow-y-auto">
     <TabGroup :selectedIndex="selectedTab" @change="changeTab">
         <TabList class=" flex justify-center  gap-[5px] text-sm font-medium text-center text-dark dark:text-gray-400 dark:border-gray-700 w-full mt-[20px] mb-[50px]">
             <Tab
@@ -22,7 +22,6 @@
         </TabList>
 
         <TabPanels>
-
             <TabPanel class="h-full w-full">
                 <Profile/>
             </TabPanel>

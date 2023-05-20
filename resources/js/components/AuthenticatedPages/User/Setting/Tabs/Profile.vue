@@ -11,9 +11,9 @@ export default {
 }
 </script>
 <template>
-    <div class="p-3 h-full w-full">
+    <div class="p-3 h-screen w-full">
         <Accordion :sectiontitle="'View Profile'" :accordionColor="'bg-[#3E3E3E]'" :setOpen="false" >
-            <div class="px-[50px] py-[20px]">
+            <div class="sm:p-[30px] md:p-[50px] py-[20px]">
                 <div class="flex justify-end">
                     <button type="button" class="text-white dark:text-white hover:text-blue-800', 'group rounded-xl px-5 py-2 text-sm leading-6 tracking-wide font-medium bg-indigo-500 hover:bg-indigo-600 flex items-center gap-[5px]">
                         Edit
@@ -36,18 +36,18 @@ export default {
                         </dd>
                     </div>
                     <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
-                        <dt class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">About</dt>
+                        <dt class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Class Code</dt>
                         <dd class="mt-1 flex text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                        <span class="flex-grow dark:text-gray-400">Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.</span>
+                        <span class="flex-grow dark:text-gray-400">M4M4M0</span>
                         </dd>
                     </div>
                 </dl>
-            </div>
+            </div>s
         </Accordion>
 
         <Accordion :sectiontitle="'Change Password'" :setOpen="false" :accordionColor="'bg-[#3E3E3E]'">
-            <form class="dark:bg-gray-900 p-[50px] h-full">
-                <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+            <form class="flex flex-col justify-center items-center dark:bg-gray-900 sm:p-[30px] md:p-[50px] h-full w-full">
+                <div class="sm:w-full md:w-[60%] w-full">
                     <div class="mb-5">
                         <label for="password" class="block mb-2 text-sm font-semibold  text-black dark:text-white">Current Password:</label>
                         <input type="password" id="password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>

@@ -1,5 +1,5 @@
 <template>
-    <div class="p-3 h-auto w-full">
+    <div class="p-3 h-screen w-full">
         Hello
     </div>
 </template>
