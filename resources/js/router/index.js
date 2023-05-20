@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import {userAuthStore} from '@/store/auth';
 // USER SIDE
 const Register = () => import("@/components/AuthenticatedPages/User/Auth/Register.vue");
 const Home = () => import("@/components/AuthenticatedPages/User/Home/Home.vue");

@@ -53,7 +53,7 @@
             </Menu>
           </li>
           <li :class="isAuthenticated === true ? 'hidden' : 'block'">
-            {{ isAuthenticated }}s
+            <!-- {{ isAuthenticated }} -->
             <router-link to="/login" class="text-white dark:text-white hover:text-blue-800', 'group rounded-xl px-5 py-2 text-sm leading-6 tracking-wide font-medium bg-indigo-500 hover:bg-indigo-600 flex flex-col text-center">
               Login
             </router-link>
