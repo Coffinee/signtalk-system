@@ -1,5 +1,5 @@
 <template>
-    <footer class="bg-white shadow dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
+    <footer class="w-full bg-white shadow dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700">
         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
             <div class="sm:flex sm:items-center sm:justify-between">
                 <router-link to="/index" class="flex flex-col items-center mb-4 sm:mb-0">

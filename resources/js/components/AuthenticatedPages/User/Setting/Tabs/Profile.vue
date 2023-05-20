@@ -11,8 +11,8 @@ export default {
 }
 </script>
 <template>
-    <div class="p-3 h-auto w-full">
-        <Accordion :sectiontitle="'View Profile'" :accordionColor="'bg-[#3E3E3E]'">
+    <div class="p-3 h-full w-full">
+        <Accordion :sectiontitle="'View Profile'" :accordionColor="'bg-[#3E3E3E]'" :setOpen="false" >
             <div class="px-[50px] py-[20px]">
                 <div class="flex justify-end">
                     <button type="button" class="text-white dark:text-white hover:text-blue-800', 'group rounded-xl px-5 py-2 text-sm leading-6 tracking-wide font-medium bg-indigo-500 hover:bg-indigo-600 flex items-center gap-[5px]">
@@ -44,8 +44,8 @@ export default {
                 </dl>
             </div>
         </Accordion>
-        
-        <Accordion :sectiontitle="'Change Password'" :accordionColor="'bg-[#3E3E3E]'">
+
+        <Accordion :sectiontitle="'Change Password'" :setOpen="false" :accordionColor="'bg-[#3E3E3E]'">
             <form class="dark:bg-gray-900 p-[50px] h-full">
                 <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
                     <div class="mb-5">
@@ -55,17 +55,17 @@ export default {
                     <div class="mb-5">
                         <label for="new-password" class="block mb-2 text-sm font-semibold text-black dark:text-white">New Password:</label>
                         <input type="password" id="new-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
-                    </div> 
+                    </div>
                     <div class="mb-5">
                         <label for="confirm-new-password" class="block mb-2 text-sm font-semibold text-black dark:text-white">Confirm New Password:</label>
                         <input type="password" id="confirm-new-password" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="•••••••••" required>
-                    </div> 
+                    </div>
                 </div>
                 <button type="submit" class="text-white dark:text-white hover:text-blue-800', 'group rounded-xl px-5 py-2 text-sm leading-6 tracking-wide font-medium bg-indigo-500 hover:bg-indigo-600 flex flex-col text-center">Submit</button>
             </form>
         </Accordion>
 
-        <Accordion :sectiontitle="'Recovery Email'"  :accordionColor="'bg-[#3E3E3E]'">
+        <Accordion :sectiontitle="'Recovery Email'" :setOpen="false"  :accordionColor="'bg-[#3E3E3E]'">
             <h1 class="dark:text-white
             ">Lorem10000</h1>
         </Accordion>

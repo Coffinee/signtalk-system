@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import {userAuthStore} from '@/store/auth';
 // USER SIDE
-const Register = () => import("@/components/AuthenticatedPages/User/Auth/Register.vue");
+
 const Home = () => import("@/components/AuthenticatedPages/User/Home/Home.vue");
 const About = () => import("@/components/AuthenticatedPages/User/About/About.vue");
 const DictionaryLandingPage = () => import("@/components/AuthenticatedPages/User/Dictionary/DictionaryLandingPage.vue");
@@ -9,12 +9,16 @@ const DictionaryMain = () => import("@/components/AuthenticatedPages/User/Dictio
 const LessonLandingPage = () => import("@/components/AuthenticatedPages/User/Lesson/LessonLandingPage.vue");
 const LessonMain = () => import("@/components/AuthenticatedPages/User/Lesson/LessonMain.vue");
 const Quiz = () => import("@/components/AuthenticatedPages/User/Quiz/Quiz.vue");
-const Login = () => import("@/components/AuthenticatedPages/User/Auth/Login.vue");
+
 const Setting = () =>import("@/components/AuthenticatedPages/User/Setting/Setting.vue");
 const Profile = () =>import("@/components/AuthenticatedPages/User/Setting/Tabs/Profile.vue");
 const Analytics = () =>import("@/components/AuthenticatedPages/User/Setting/Tabs/Analytics.vue");
 const Personalization = () =>import("@/components/AuthenticatedPages/User/Setting/Tabs/Personalization.vue");
 
+//login - Register - First Time
+const Register = () => import("@/components/AuthenticatedPages/User/Auth/Register.vue");
+const Login = () => import("@/components/AuthenticatedPages/User/Auth/Login.vue");
+const FirstTime = () => import("@/components/AuthenticatedPages/User/Auth/FirstTime.vue");
 // const Exam = () => import("@/components/AuthenticatedPages/User/Exam/Exam.vue");
 const Interactives = () => import("@/components/AuthenticatedPages/User/Interactives/Interactives.vue");
 const Translate = () => import("@/components/AuthenticatedPages/User/Translate/Translate.vue");
@@ -35,6 +39,14 @@ const Test = () =>import("@/components/testfile.vue");
 
 
 const routes = [
+    {
+        name: "FirstTime",
+        path:'/auth/first-time',
+        component: FirstTime,
+        meta: {
+            title: "SignTalk | FirstTime",
+        },
+    },
     {
         path: "/",
         component: UserLayout,
@@ -67,6 +79,7 @@ const routes = [
                     title: "SignTalk | Register",
                 },
             },
+
             {
                 name: "about",
                 path: "/student/about",

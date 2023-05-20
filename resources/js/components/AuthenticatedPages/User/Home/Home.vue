@@ -2,7 +2,7 @@
 import Slideover from '../../../misc/Slideover.vue';
 import Modal from '../../../misc/Modal.vue';
 export default {
-    
+
     components:{
         Slideover, Modal
     },
@@ -89,6 +89,11 @@ export default {
         </div>
     </div>
 
+    <router-link to="auth/first-time">
+        <Button>
+            Hello
+        </Button>
+    </router-link>
     <button @click="(slideoverOpen = !slideoverOpen)" class="bg-indigo-500 text-white p-2 rounded-md">Slideover Open</button>
     <Slideover :show="slideoverOpen" @close="slideoverToggle" :title="'SLIDEOVER TITLE'" >
         
