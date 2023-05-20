@@ -76,6 +76,38 @@ const routes = [
                     title: "SignTalk | Login",
                 },
             },
+            {
+                name: "lesson",
+                path: "/lesson",
+                component: LessonLandingPage,
+                meta: {
+                    title: "SignTalk | Lesson",
+                },
+            },
+            {
+                name: 'translate',
+                path: "/translate",
+                component: Translate,
+                meta: {
+                    title: "SignTalk | Translate",
+                },
+            },
+            {
+                name: "dictionary",
+                path: "/dictionary",
+                component: DictionaryMain,
+                meta: {
+                    title: "SignTalk | Dictionary",
+                },
+            },
+            {
+                name: 'quiz',
+                path: "/quiz",
+                component: Quiz,
+                meta: {
+                    title: "SignTalk | Quiz",
+                },
+            },
         ],
     },
     {
@@ -213,7 +245,7 @@ const routes = [
         children: [
             {
                 name: 'admin-dashboard',
-                path: "/dashboard",
+                path: "/admin/dashboard",
                 component: AdminDashboard,
                 meta: {
                     title: "SignTalk | Admin - Dashboard",
@@ -221,7 +253,7 @@ const routes = [
             },
             {
                 name: 'admin-dictionary',
-                path: "/dictionary",
+                path: "/admin/dictionary",
                 component: AdminDictionary,
                 meta: {
                     title: "SignTalk | Admin - Dictionary",
@@ -229,7 +261,7 @@ const routes = [
             },
             {
                 name: 'admin-lesson',
-                path: "/lesson",
+                path: "/admin/lesson",
                 component: AdminLesson,
                 meta: {
                     title: "SignTalk | Admin - Lesson",
@@ -237,7 +269,7 @@ const routes = [
             },
             {
                 name: 'admin-quiz',
-                path: "/quiz",
+                path: "/admin/quiz",
                 component: AdminQuiz,
                 meta: {
                     title: "SignTalk | Admin - Quiz",
@@ -245,7 +277,7 @@ const routes = [
             },
             {
                 name: 'admin-examination',
-                path: "/examination",
+                path: "/admin/examination",
                 component: AdminExamination,
                 meta: {
                     title: "SignTalk | Admin - Examination",
@@ -253,7 +285,7 @@ const routes = [
             },
             {
                 name: 'admin-translate',
-                path: "/translate",
+                path: "/admin/translate",
                 component: AdminTranslate,
                 meta: {
                     title: "SignTalk | Admin - Translate",
@@ -283,23 +315,16 @@ router.beforeEach((to, from, next) => {
     if (to.meta.middleware == "guest") {
         if (userAuthStore().authenticated) {
             if(userAuthStore().user.role == 'admin'){
-                console.log(userAuthStore().user.role)
-             next({ name: "admin-dashboard" });
+                next({ name: "admin-dashboard" });
             }else if(userAuthStore().user.role == 'student'){
-                console.log(userAuthStore().user.role)
                 next({ name: "user-home" });
             }else{
-                console.log(userAuthStore().user.role)
                 next({ name: "teacher-home" });
             }
         }
         next();
     } else {
-        if (userAuthStore().authenticated) {
-            next();
-        }else{
-            next({name: 'login'}); 
-        }
+      next();
         
     }
 });

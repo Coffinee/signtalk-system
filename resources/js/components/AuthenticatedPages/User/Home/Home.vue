@@ -1,53 +1,9 @@
-<script>
-import Slideover from '../../../misc/Slideover.vue';
-import Modal from '../../../misc/Modal.vue';
-import Form from 'vform';
 
-export default {
-
-    components: {
-        Slideover, Modal
-    },
-    data() {
-        return {
-            slideoverOpen: false,
-            modalOpen: false,
-            data: {},
-            form: new Form({
-                fullName: '',
-                email: '',
-                password: '',
-                cPassword: ''
-            }),
-            isTeacher: false
-        }
-    },
-    methods: {
-        slideoverToggle() {
-            this.slideoverOpen = false;
-        },
-        modalToggle() {
-            this.modalOpen = false;
-        },
-        submitForm() {
-            this.$Progress.start();
-            this.form.post('/api/register')
-                .then((data) => {
-                    this.$Progress.finish();
-                    this.$router.push('/login');
-                }).catch((error) => {
-                    this.$Progress.fail();
-                })
-        },
-    },
-}
-
-</script>
 
 <template>
     <div class="flex justify-center items-center flex-wrap gap-x-[20px] gap-y-[80px] sm:h-auto md:h-screen  py-[80px] ">
         <div class="flex justify-center flex-wrap gap-x-[20px] gap-y-[80px]">
-            <router-link to="/student/translate">
+            <router-link :to="isAuthenticated ?  '/student/translate' : '/translate'">
                 <div
                     class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/translate.png" class="w-[170px] absolute -top-[70px] left-[50px]">
@@ -63,7 +19,7 @@ export default {
                     </div>
                 </div>
             </router-link>
-            <router-link to="/student/dictionary">
+            <router-link :to="isAuthenticated ? '/student/dictionary' : '/dictionary'">
                 <div
                     class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/dictionary.png" class="w-40 absolute -top-[60px] left-[50px]">
@@ -81,7 +37,7 @@ export default {
             </router-link>
         </div>
         <div class="flex justify-center  flex-wrap gap-x-[20px] gap-y-[80px]">
-            <router-link to="/student/lesson">
+            <router-link :to="isAuthenticated ? '/student/lesson' : '/lesson'">
                 <div
                     class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/lesson.png" class="w-[180px] absolute -top-[70px] left-[35px]">
@@ -97,7 +53,7 @@ export default {
                     </div>
                 </div>
             </router-link>
-            <router-link to="/student/quiz">
+            <router-link :to="isAuthenticated ? '/student/quiz' : '/quiz'">
                 <div
                     class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/exams.png" class="w-[160px] absolute -top-[50px] left-[55px]">
@@ -198,3 +154,55 @@ export default {
 </template>
 
 
+
+
+<script>
+import Slideover from '../../../misc/Slideover.vue';
+import Modal from '../../../misc/Modal.vue';
+import Form from 'vform';
+import {userAuthStore} from '@/store/auth';
+
+export default {
+
+    components: {
+        Slideover, Modal
+    },
+    data() {
+        return {
+            slideoverOpen: false,
+            modalOpen: false,
+            data: {},
+            form: new Form({
+                fullName: '',
+                email: '',
+                password: '',
+                cPassword: ''
+            }),
+            isAuthenticated: userAuthStore().authenticated,
+            isTeacher: false
+        }
+    },
+    methods: {
+        slideoverToggle() {
+            this.slideoverOpen = false;
+        },
+        modalToggle() {
+            this.modalOpen = false;
+        },
+        submitForm() {
+            this.$Progress.start();
+            this.form.post('/api/register')
+                .then((data) => {
+                    this.$Progress.finish();
+                    this.$router.push('/login');
+                }).catch((error) => {
+                    this.$Progress.fail();
+                })
+        },
+    },
+    created(){
+        console.log(this.isAuthenticated)
+    }
+}
+
+</script>

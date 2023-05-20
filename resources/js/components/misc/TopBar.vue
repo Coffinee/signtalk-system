@@ -21,7 +21,7 @@
           class="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
           <li :class="isAuthenticated === true ? 'hidden' : 'block'">
             <router-link v-for="item in topbarNavigation" :key="item.name" :to="item.href" class="w-full"
-              :class="[useRoute().path == item.href ? ' text-indigo-500' : 'text-black dark:text-slate-400 hover:text-blue-800', 'group rounded-xl px-6 py-2 text-sm leading-6 tracking-wide font-medium', open ? 'flex flex-col text-center' : '']"
+              :class="[this.$router.path == item.href ? ' text-indigo-500' : 'text-black dark:text-slate-400 hover:text-blue-800', 'group rounded-xl px-6 py-2 text-sm leading-6 tracking-wide font-medium', open ? 'flex flex-col text-center' : '']"
               :aria-current="item.current ? 'page' : undefined">
               {{ item.name }}
             </router-link>
@@ -52,11 +52,8 @@
                   <!-- <MenuItem class="border-b border-gray-300">
                             <a class="block px-3 py-1 text-sm leading-6 text-gray-900 capitalize text-center">{{ user_full_name }}</a>
                         </MenuItem> -->
-                  <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">
-                  <a :href="item.href"
-                    :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900 capitalize text-center']">{{
-                      item.name }}</a>
-                  </MenuItem>
+                        <a href="#"  :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900']">My Profile</a>
+                        <a href="#" @click.prevent="logout" :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900']">Sign Out</a>
                 </MenuItems>
               </transition>
             </Menu>
@@ -72,9 +69,7 @@
   </nav>
 </template>
 
-<script setup>
-import { useRouter, useRoute } from 'vue-router';
-import { ref } from 'vue';
+<script>
 import { userAuthStore } from '@/store/auth';
 import {
   Menu,
@@ -85,16 +80,7 @@ import {
   TransitionRoot,
 } from '@headlessui/vue'
 
-</script>
-
-<script>
-const userNavigation = [
-  { name: 'Settings', href: '/student/setting/profile' },
-  // { name: 'About', href: '/Student/About' },
-  { name: 'Logout', href: '#' },
-]
-const user_full_name = ref(userAuthStore().user.name);
-const isAuthenticated = ref(userAuthStore().authenticated);
+// const isAuthenticated = ref(userAuthStore().authenticated);
 export default {
 
   data() {
@@ -104,7 +90,8 @@ export default {
         { name: 'Login', href: '/login' },
         { name: 'Register', href: '/register' },
       ],
-      open: false
+      open: false,
+      isAuthenticated: userAuthStore().authenticated,
     }
   },
 
@@ -113,8 +100,20 @@ export default {
       this.open = !this.open
       console.log('clicked')
     },
+    async logout(){
+          await this.$axios.post('/logout').then(({data})=>{
+              userAuthStore().signOut()
+              this.$router.push({name:"login"}).then(() => { this.$router.go() })
+          })
+      }
+    
+
+  },
+  created(){
+    
   }
 
 }
 
 </script>
+

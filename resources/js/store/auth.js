@@ -18,6 +18,10 @@ export const userAuthStore = defineStore('userAuth', {
         async getToken() {
             await axios.get("/sunctum/csrf-cookie");
         },
+        async signOut(){
+            this.authenticated = false
+            this.user = {}
+        },
 
         async login(formData) {
             this.getToken();
