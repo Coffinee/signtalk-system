@@ -26,12 +26,12 @@
               {{ item.name }}
             </router-link>
           </li>
-          <!-- <li :class="isAuthenticated === true ? 'hidden' : 'block'">
-            <router-link to="/login"
-              class="text-white dark:text-white hover:text-blue-800', 'group rounded-xl px-5 py-2 text-sm leading-6 tracking-wide font-medium bg-indigo-500 hover:bg-indigo-600 flex flex-col text-center">
+          <li :class="isAuthenticated === true ? 'hidden' : 'block'">
+            <!-- {{ isAuthenticated }} -->
+            <!-- <router-link to="/login" class="text-white dark:text-white hover:text-blue-800', 'group rounded-xl px-5 py-2 text-sm leading-6 tracking-wide font-medium bg-indigo-500 hover:bg-indigo-600 flex flex-col text-center">
               Login
-            </router-link>
-          </li> -->
+            </router-link> -->
+          </li>
           <li class="flex gap-[10px]">
             <a class="block px-3 py-1 text-sm leading-6 text-gray-900 capitalize text-center">{{ user_full_name }}</a>
             <Menu as="div" class="relative" :class="isAuthenticated === true ? 'block' : 'hidden'">
@@ -100,7 +100,7 @@ export default {
   data() {
     return {
 
-      topbarNavigation: [
+      topbarNavigation:[
         { name: 'Login', href: '/login' },
         { name: 'Register', href: '/register' },
       ],

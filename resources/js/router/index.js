@@ -29,10 +29,12 @@ const AdminDictionary = () => import("@/components/AuthenticatedPages/Admin/Admi
 const AdminLesson = () => import("@/components/AuthenticatedPages/Admin/Admin Lesson/AdminLesson.vue");
 const AdminQuiz = () => import("@/components/AuthenticatedPages/Admin/Admin Quiz/AdminQuiz.vue");
 const AdminExamination = () => import("@/components/AuthenticatedPages/Admin/Admin Examination/AdminExamination.vue");
+const AdminTranslate = () => import("@/components/AuthenticatedPages/Admin/Admin Translate/AdminTranslate.vue");
 
 // LAYOUTS
 const UserLayout = () =>import("@/components/Layouts/Authenticated Layout/UserLayout.vue");
 const AdminLayout = () =>import("@/components/Layouts/Authenticated Layout/AdminLayout.vue");
+const GuestLayout = () =>import("@/components/Layouts/Authenticated Layout/GuestLayout.vue");
 
 // TESTING
 const Test = () =>import("@/components/testfile.vue");
@@ -49,6 +51,31 @@ const routes = [
     },
     {
         path: "/",
+        component: GuestLayout,
+        meta: {
+            middleware: "guest",
+        },
+        children: [
+            {
+                name: "home",
+                path: "/",
+                component: Home,
+                meta: {
+                    title: `Home`,
+                },
+            },
+            {
+                name: "login",
+                path: "/login",
+                component: Login,
+                meta: {
+                    title: "SignTalk | Login",
+                },
+            },
+        ],
+    },
+    {
+        path: "/user",
         component: UserLayout,
         redirect: '/index',
         meta: {
@@ -56,7 +83,7 @@ const routes = [
         },
         children: [
             {
-                name: "home",
+                name: "user-home",
                 path: "/index",
                 component: Home,
                 meta: {
@@ -107,14 +134,6 @@ const routes = [
             {
                 name: "dictionary",
                 path: "/student/dictionary/",
-                component: DictionaryLandingPage,
-                meta: {
-                    title: "SignTalk | Dictionary",
-                },
-            },
-            {
-                name: 'dictionary-main',
-                path: "/student/dictionary/main",
                 component: DictionaryMain,
                 meta: {
                     title: "SignTalk | Dictionary",
@@ -237,15 +256,16 @@ const routes = [
                 meta: {
                     title: "SignTalk | Admin - Examination",
                 },
+            },
+            {
+                name: 'admin-translate',
+                path: "/admin/translate",
+                component: AdminTranslate,
+                meta: {
+                    title: "SignTalk | Admin - Translate",
+                },
             }
         ]
-    },
-    {
-        path: "/test",
-        component: Test,
-        meta: {
-            title: 'Test'
-        },
     }
 ];
 
@@ -265,7 +285,15 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    next();
+    document.title = to.meta.title;
+    if (to.meta.middleware == "guest") {
+        if (userAuthStore().authenticated) {
+            next({ name: "admin-dashboard" });
+        }
+        next();
+    } else {
+        next();
+    }
 });
 
 export default router;
