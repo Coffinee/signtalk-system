@@ -91,11 +91,11 @@ export default {
       console.log('clicked')
     },
     async logout(){
-          await this.$axios.post('/logout').then(({data})=>{
-              userAuthStore().signOut()
-              this.$router.push({name:"login"}).then(() => { this.$router.go() })
-          })
-      }
+        await this.$axios.post('/logout').then(({data})=>{
+            userAuthStore().signOut()
+            this.$router.push({name:"login"}).then(() => { this.$router.go() })
+        })
+    }
     
 
   },

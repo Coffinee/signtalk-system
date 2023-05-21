@@ -83,7 +83,12 @@
                     </div>
 
                     <div class="space-y-1">
-                        <label for="file" class="text-[11px]">Upload Video Link (optional)</label>
+                        <label for="file" class="text-[11px]">Upload Image</label>
+                        <input type="file"
+                            class="pl-2 text-xs w-full h-8 rounded-md border border-indigo-900" required>
+                    </div>
+                    <div class="space-y-1">
+                        <label for="file" class="text-[11px]">Upload Video Link <span class="text-[9px]">(optional)</span> </label>
                         <input v-model="form.file" type="text"
                             class="pl-2 text-xs w-full h-8 rounded-md border border-indigo-900">
                     </div>
