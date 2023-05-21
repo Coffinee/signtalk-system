@@ -3,7 +3,7 @@
 <template>
     <div class="flex justify-center items-center flex-wrap gap-x-[20px] gap-y-[80px] sm:h-auto md:h-screen  py-[80px] ">
         <div class="flex justify-center flex-wrap gap-x-[20px] gap-y-[80px]">
-            <router-link :to="isAuthenticated ?  '/translate' : '/student/translate'">
+            <router-link :to="isAuthenticated ?  '/translate' : '/login'">
                 <div
                     class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/translate.png" class="w-[170px] absolute -top-[70px] left-[50px]">
@@ -19,7 +19,7 @@
                     </div>
                 </div>
             </router-link>
-            <router-link :to="isAuthenticated ? '/student/dictionary' : '/dictionary'">
+            <router-link :to="isAuthenticated ? '/dictionary' : '/login'">
                 <div
                     class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/dictionary.png" class="w-40 absolute -top-[60px] left-[50px]">
@@ -37,7 +37,7 @@
             </router-link>
         </div>
         <div class="flex justify-center  flex-wrap gap-x-[20px] gap-y-[80px]">
-            <router-link :to="isAuthenticated ? '/student/lesson' : '/lesson'">
+            <router-link :to="isAuthenticated ? '/lesson' : '/login'">
                 <div
                     class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/lesson.png" class="w-[180px] absolute -top-[70px] left-[35px]">
@@ -53,7 +53,7 @@
                     </div>
                 </div>
             </router-link>
-            <router-link :to="isAuthenticated ? '/student/quiz' : '/quiz'">
+            <router-link :to="isAuthenticated ? '/quiz' : '/login'">
                 <div
                     class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
                     <img src="/Images/exams.png" class="w-[160px] absolute -top-[50px] left-[55px]">

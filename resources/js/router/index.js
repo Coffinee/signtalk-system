@@ -79,6 +79,14 @@ const routes = [
                 },
             },
             {
+                name: "register",
+                path: "/register",
+                component: Register,
+                meta: {
+                    title: "SignTalk | Register",
+                },
+            },
+            {
                 name: "lesson",
                 path: "/lesson",
                 component: LessonLandingPage,
