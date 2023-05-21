@@ -34,7 +34,7 @@ const AdminTranslate = () => import("@/components/AuthenticatedPages/Admin/Admin
 // TEACHER SIDE
 const TeacherHome = () => import("@/components/AuthenticatedPages/Teacher/Home.vue");
 const TeacherDashboard = () => import("@/components/AuthenticatedPages/Teacher/TeacherDashboard.vue");
-const TeacherClasses = () => import("@/components/AuthenticatedPages/Teacher/TeacherClasses.vue");
+const TeacherClasses = () => import("@/components/AuthenticatedPages/Teacher/TeacherClasses/TeacherClasses.vue");
 
 // LAYOUTS
 const UserLayout = () =>import("@/components/Layouts/Authenticated Layout/UserLayout.vue");
@@ -337,7 +337,7 @@ router.beforeEach((to, from, next) => {
             }else if(userAuthStore().user.role == 'student'){
                 next({ name: "user-home" });
             }else{
-                next({ name: "teacher-home" });
+                next({ name: "teacher-dashboard" });
             }
         }
         next();
