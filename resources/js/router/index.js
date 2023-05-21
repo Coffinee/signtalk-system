@@ -34,6 +34,7 @@ const AdminTranslate = () => import("@/components/AuthenticatedPages/Admin/Admin
 // TEACHER SIDE
 const TeacherHome = () => import("@/components/AuthenticatedPages/Teacher/Home.vue");
 const TeacherDashboard = () => import("@/components/AuthenticatedPages/Teacher/TeacherDashboard.vue");
+const TeacherClasses = () => import("@/components/AuthenticatedPages/Teacher/TeacherClasses.vue");
 
 // LAYOUTS
 const UserLayout = () =>import("@/components/Layouts/Authenticated Layout/UserLayout.vue");
@@ -128,10 +129,18 @@ const routes = [
             },
             {
                 name: "teacher-dashboard",
-                path: "/teacher/dashboard",
+                path: "/dashboard",
                 component: TeacherDashboard,
                 meta: {
                     title: `Teacher Dashboard`,
+                },
+            },
+            {
+                name: "teacher-classes",
+                path: "/classes",
+                component: TeacherClasses,
+                meta: {
+                    title: `Teacher Classes`,
                 },
             },
         ],

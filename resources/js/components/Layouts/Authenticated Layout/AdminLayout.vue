@@ -204,12 +204,11 @@ const userNavigation = [
 const sidebarOpen = ref(false)
 
 const logout = async () => {
-
-        await axios.post('/logout');
-        userAuthStore().signOut();
-        router.push({path: '/login'});
-       // router.go();
-    };
+    await axios.post('/logout');
+    userAuthStore().signOut();
+    router.push({path: '/login'});
+    // router.go();
+};
 
 </script>
 
