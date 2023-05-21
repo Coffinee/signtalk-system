@@ -9,9 +9,6 @@ import "mosha-vue-toastify/dist/style.css";
 import Form from "vform";
 import Router from "@/router";
 import VueProgressBar from "@aacassandra/vue3-progressbar";
-import CKEditor from '@ckeditor/ckeditor5-vue';
-
-
 
 const pinia = createPinia()
 const options = {
@@ -35,7 +32,6 @@ pinia.use(piniaPluginPersistedstate);
 app.config.globalProperties.$axios = axios;
 app.use(VueProgressBar, options);
 app.use(moshaToast, Form);
-app.use(CKEditor);
 app.use(Router);
 app.mount('#app');
 
