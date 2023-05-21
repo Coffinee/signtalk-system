@@ -10,6 +10,7 @@ import Form from "vform";
 import Router from "@/router";
 import VueProgressBar from "@aacassandra/vue3-progressbar";
 
+
 const pinia = createPinia()
 const options = {
     color: "rgb(143, 255, 199)",

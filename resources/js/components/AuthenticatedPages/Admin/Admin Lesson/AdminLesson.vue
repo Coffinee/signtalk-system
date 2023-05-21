@@ -19,13 +19,13 @@ export default {
 <template>
     <div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <div class="flex justify-between p-2">
+            <div class="flex justify-between p-2 px-[30px] pt-[30px]">
                 <h2 class="text-2xl font-extrabold font-poppins">Lesson</h2>
                 <button @click="(slideoverOpen = !slideoverOpen)" type="button"
                     class="text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5">Add
                     Lesson</button>
             </div>
-            <div class="pb-4 bg-white p-[30px]">
+            <div class="pb-4 bg-white px-[30px]">
                 <label for="table-search" class="sr-only">Search</label>
                 <div class="relative mt-1">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -41,47 +41,49 @@ export default {
                         placeholder="Search for items">
                 </div>
             </div>
-            <table class="w-full text-sm text-left text-gray-500 py-[10px]">
-                <thead class="text-xs text-gray-700 uppercase bg-gray-200 ">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">
-                            ID
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Lesson Name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Chapters
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Action
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="bg-white border-b ">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            1
-                        </th>
-                        <td class="px-6 py-4">
-                            Numbers
-                        </td>
-                        <td class="px-6 py-4">
-                            8
-                        </td>
-                        <td class="px-6 py-4 flex gap-[5px] text-center">
-                            <a href="#" class="font-medium text-blue-600  hover:underline">Edit</a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="px-[30px] pb-12">
+                <table class="w-full text-sm text-left text-gray-500 py-[10px]">
+                    <thead class="text-xs text-gray-700 uppercase bg-gray-200 ">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">
+                                ID
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Lesson Name
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Chapters
+                            </th>
+                            <th scope="col" class="px-6 py-3">
+                                Action
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-white border-b ">
+                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                1
+                            </th>
+                            <td class="px-6 py-4">
+                                Numbers
+                            </td>
+                            <td class="px-6 py-4">
+                                8
+                            </td>
+                            <td class="px-6 py-4 flex gap-[5px] text-center">
+                                <a href="#" class="font-medium text-blue-600  hover:underline">Edit</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-<Slideover :show="slideoverOpen" @close="slideoverToggle" :title="'Add Lesson'" :widthSlideover="'max-w-2xl'">
-    <template v-slot:body>
-        <div class="my-5 p-4 space-y-6">
-
-        </div>
-    </template>
-</Slideover></template>
+    <Slideover :show="slideoverOpen" @close="slideoverToggle" :title="'Add Lesson'" :widthSlideover="'max-w-2xl'">
+        <template v-slot:body>
+            <div class="my-5 p-4 space-y-6">
+            </div>
+        </template>
+    </Slideover>
+</template>

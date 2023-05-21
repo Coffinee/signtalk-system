@@ -14,7 +14,7 @@
                             leave="transform transition ease-in-out duration-500 sm:duration-700"
                             leave-from="translate-x-0" leave-to="translate-x-full">
                             <DialogPanel class="pointer-events-auto w-screen" :class="widthSlideover">
-                                <div class="flex h-full flex-col bg-white dark:bg-gray-800 shadow-xl px-5 py-2">
+                                <div class="flex h-full flex-col bg-white dark:bg-gray-800 shadow-xl px-5 py-2 overflow-y-scroll">
                                     <h5 class="text-[20px] text-center font-bold text-black dark:text-white uppercase tracking-wider">
                                         {{ title }}
                                     </h5>
