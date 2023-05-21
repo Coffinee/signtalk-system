@@ -16,11 +16,12 @@
             clip-rule="evenodd"></path>
         </svg>
       </button>
-      <div :show="open == true"
+      <div :show="open == false"
         :class="[!open ? 'hidden w-full md:block md:w-auto space-x-5' : 'absolute top-[55px] left-0 right-0 z-10']">
         <ul
           class="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
           <li class="flex gap-[10px]">
+            <a class="block px-3 py-1 text-sm leading-6 text-gray-900 capitalize text-center">{{ user_full_name }}</a>
             <Menu as="div" class="relative" :class="isAuthenticated === true ? 'block' : 'hidden'">
               <MenuButton class="-m-1.5 flex items-center p-1.5">
                 <span class="sr-only">Open user menu</span>
@@ -37,22 +38,23 @@
                 leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100"
                 leave-to-class="transform opacity-0 scale-95">
                 <MenuItems
-                  class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
-                  <a href="#" :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900']">My
-                    Profile</a>
-                  <a href="#" @click.prevent="logout"
-                    :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900']">Sign Out</a>
+                  class="absolute right-0 z-10 mt-2.5 w-[150px] origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none border-5 border-red-500">              
+                  <router-link to="/setting/profile"
+                    :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900 text-center']">Settings</router-link>
+                  <router-link to="#" @click.prevent="logout"
+                    :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900 text-center']">Sign
+                    Out</router-link>              
                 </MenuItems>
               </transition>
             </Menu>
           </li>
-          <li>
+          <!-- <li>
             <router-link v-for="item in topbarNavigation" :key="item.name" :to="item.href" class="w-full"
               :class="[useRoute().path == item.href ? ' text-indigo-500' : 'text-black dark:text-slate-400 hover:text-blue-800', 'group rounded-xl px-6 py-2 text-sm leading-6 tracking-wide font-medium', open ? 'flex flex-col text-center' : '']"
               :aria-current="item.current ? 'page' : undefined">
               {{ item.name }}
             </router-link>
-          </li>
+          </li> -->
         </ul>
         <!-- <div class="flex">
             <ul class="flex items-center md:p-2  rounded-lg   md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700" >
@@ -64,7 +66,7 @@
   </nav>
 </template>
   
-<script setup>
+<script>
 import { useRouter, useRoute } from 'vue-router';
 import { ref } from 'vue';
 import { userAuthStore } from '@/store/auth';
@@ -77,35 +79,35 @@ import {
   TransitionRoot,
 } from '@headlessui/vue'
 
-</script>
-  
-<script>
-const userNavigation = [
-  { name: 'Settings', href: '/setting/profile' },
-  // { name: 'About', href: '/Student/About' },
-  { name: 'Logout', href: '#' },
-]
-const user_fname = ref(userAuthStore().user.first_name);
-const user_lname = ref(userAuthStore().user.last_name);
-// const user_full_name = ref(userAuthStore().user.first_name);
-const isAuthenticated = ref(userAuthStore().authenticated);
 export default {
 
-  data() {
+  components: {
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuItems,
+    TransitionChild,
+    TransitionRoot,
+  },
+    data() {
     return {
-
-      open: false
+      open: false,
+      isAuthenticated: userAuthStore().authenticated,
     }
   },
-
   methods: {
     expand() {
       this.open = !this.open
       console.log('clicked')
     },
+    async logout() {
+      await this.$axios.post('/logout').then(({ data }) => {
+        userAuthStore().signOut()
+        this.$router.push({ name: "login" });
+      })
+    }
   }
-
 }
-
 </script>
+
   

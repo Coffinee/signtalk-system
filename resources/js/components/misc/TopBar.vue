@@ -43,7 +43,7 @@
                 leave-to-class="transform opacity-0 scale-95">
                 <MenuItems
                   class="absolute right-0 z-10 mt-2.5 w-[150px] origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
-                  <MenuItem class="border-b border-gray-300">
+                  <!-- <MenuItem class="border-b border-gray-300">
                             <a class="block px-3 py-1 text-sm leading-6 text-gray-900 capitalize text-center">{{ user_full_name }}</a>
                         </MenuItem> -->
                         <a href="#"  :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900']">My Profile</a>
