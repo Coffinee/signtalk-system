@@ -95,10 +95,29 @@
                 </ul>
               </li>
               <li class="mt-auto">
-                <router-link to="#" class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white">
+                <!-- <router-link to="#" class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white">
                   <Cog6ToothIcon class="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white" aria-hidden="true" />
                   Settings
-                </router-link>
+                </router-link> -->
+                <ul role="list" class="-mx-2 space-y-1">
+                  <li v-for="item in settingsNav" :key="item.name">
+                    <a v-if="!item.children" :href="item.href" :class="[item.current ? 'bg-gray-50' : 'hover:bg-indigo-700 text-indigo-200 hover:text-white', 'block rounded-md py-2 pr-2 pl-10 text-sm leading-6 font-semibold text-gray-700']">{{ item.name }}</a>
+                    <Disclosure as="div" v-else v-slot="{ open }">
+                      <DisclosureButton :class="[item.current ? 'bg-gray-50' : 'hover:bg-indigo-700', 'flex justify-between w-full text-left rounded-md p-2 gap-x-3 text-sm leading-6 font-semibold text-gray-700']">
+                          <div class="flex gap-[15px] text-white text-indigo-200 ">
+                            <Cog6ToothIcon class="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white" aria-hidden="true" />
+                            {{ item.name }}
+                          </div>
+                          <ChevronRightIcon :class="[open ? 'rotate-90 text-white hover:text-white' : 'text-indigo-200', 'h-5 w-5 shrink-0']" aria-hidden="true" />
+                      </DisclosureButton>
+                      <DisclosurePanel as="ul" class="mt-1 px-2">
+                        <li v-for="subItem in item.children" :key="subItem.name">
+                          <DisclosureButton as="a" :href="subItem.href" :class="[subItem.current ? 'bg-gray-50' : 'hover:bg-indigo-700 text-indigo-200 hover:text-white', 'block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-gray-700']">{{ subItem.name }}</DisclosureButton>
+                        </li>
+                      </DisclosurePanel>
+                    </Disclosure>
+                  </li>
+                </ul>
               </li>
             </ul>
           </nav>
@@ -185,19 +204,25 @@ import {
   WindowIcon,
   XMarkIcon,
 } from '@heroicons/vue/24/outline'
-import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
-
+import { ChevronDownIcon, MagnifyingGlassIcon, ChevronRightIcon } from '@heroicons/vue/20/solid'
+import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: WindowIcon, current: true },
   { name: 'My Classes', href: '/classes', icon: ClipboardDocumentIcon, current: false },
-  { name: 'Quiz', href: '#', icon: ClipboardDocumentIcon, current: false },
 
 ]
-// const userNavigation = [
-//   { name: 'Your profile', href: '#' },
-//   { name: 'Sign out', href: '#' },
-// ]
+const settingsNav = [
+  {
+    name: 'Settings',
+    current: false,
+    children: [
+      { name: 'Engineering', href: '#' },
+      { name: 'Human Resources', href: '#' },
+      { name: 'Customer Success', href: '#' },
+    ],
+  },
+]
 
 const user_fname = ref(userAuthStore().user.first_name);
 const user_lname = ref(userAuthStore().user.last_name);
