@@ -1,12 +1,24 @@
 <script>
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import CKEditor from '@ckeditor/ckeditor5-vue';
 import Slideover from '../../../misc/Slideover.vue';
 export default {
     components: {
+        ckeditor: CKEditor.component, 
         Slideover
     },
     data() {
         return {
             slideoverOpen: false,
+            editor: ClassicEditor,
+            toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+            heading: {
+                options: [
+                    { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+                    { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+                    { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+                ]
+            }
         }
     },
     methods: {
@@ -83,6 +95,7 @@ export default {
     <Slideover :show="slideoverOpen" @close="slideoverToggle" :title="'Add Lesson'" :widthSlideover="'max-w-2xl'">
         <template v-slot:body>
             <div class="my-5 p-4 space-y-6">
+                <ckeditor :editor="editor" v-model="content"></ckeditor>
             </div>
         </template>
     </Slideover>
