@@ -21,6 +21,7 @@
         "@aacassandra/vue3-progressbar": "^1.0.3",
         "@headlessui/vue": "^1.7.13",
         "@heroicons/vue": "^2.0.18",
+        "daisyui": "^2.51.6",
         "flowbite": "^1.6.5",
         "mosha-vue-toastify": "^1.0.23",
         "pinia": "^2.0.36",

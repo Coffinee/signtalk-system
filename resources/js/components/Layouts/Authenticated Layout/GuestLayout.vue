@@ -4,7 +4,7 @@
         <div>
             <router-view :key="$route.fullPath"></router-view>
         </div>
-        <Footer />
+        <!-- <Footer /> -->
     </div>
 </template>
 

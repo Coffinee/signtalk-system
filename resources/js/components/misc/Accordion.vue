@@ -5,7 +5,7 @@
                 @click="open = !open"
                 type="button"
                 :class="accordionColor"
-                class="flex items-center text-white uppercase justify-between w-full font-rubik-light font-bold pl-6 tracking-wider text-left text-[12px] border border-b-0 border-gray-200 hover:bg-[]"
+                class="flex items-center text-white uppercase justify-between w-full font-rubik-light font-bold pl-6 tracking-wider text-left text-[12px]"
                 data-accordion-target="#accordion-collapse-body-1"
                 aria-expanded="true"
                 aria-controls="accordion-collapse-body-1"

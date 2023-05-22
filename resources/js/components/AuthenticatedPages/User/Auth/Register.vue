@@ -1,6 +1,6 @@
 <template>
     <div class="flex justify-center items-center">
-        <section class="bg-gray-50 dark:bg-gray-900">
+        <section class="bg-gray-50 dark:bg-gray-900 h-auto w-full my-[50px]">
             <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen w-screen lg:py-0">
                 <div
                     class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
@@ -18,7 +18,7 @@
                                     Student
                                 </button>
                                 
-                                <button @click.psrevent="isTeacher = true"
+                                <button @click.prevent="isTeacher = true"
                                 :class="isTeacher ? 'bg-indigo-500 text-white' : ''"
                                 class="border border-indigo-500 text-gray-900 hover:bg-indigo-500 hover:text-white w-full h-10 rounded-md dark:hover:bg-indigo-500 dark:text-white">
                                 Teacher
