@@ -4,11 +4,16 @@
         <div>
             <router-view :key="$route.fullPath"></router-view>
         </div>
-        <!-- <Footer /> -->
+        <Footer />
     </div>
 </template>
 
-<script setup>
+<script>
 import TopBarStudent from '../../misc/TopBarStudent.vue';
-// import Footer from "../../misc/Footer.vue";
+import Footer from "../../misc/Footer.vue";
+export default{
+    components:{
+        TopBarStudent, Footer
+    }
+}
 </script>

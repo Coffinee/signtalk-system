@@ -155,7 +155,7 @@
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                   alt="" />
                 <span class="hidden lg:flex lg:items-center">
-                  <span class="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">{{ user_full_name }}</span>
+                  <span class="ml-4 text-sm font-semibold leading-6 text-gray-900" aria-hidden="true">{{ user_fname }} {{ user_lname }}</span>
                   <ChevronDownIcon class="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
                 </span>
               </MenuButton>
@@ -164,7 +164,7 @@
                 leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100"
                 leave-to-class="transform opacity-0 scale-95">
                 <MenuItems
-                  class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
+                  class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right text-center rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
                   <a href="#" :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900']">My
                     Profile</a>
                   <a href="#" @click.prevent="logout"
@@ -227,8 +227,9 @@ const userNavigation = [
   { name: 'Sign out', href: '#' },
 ]
 
-const sidebarOpen = ref(false)
-const user_full_name = ref(userAuthStore().user.first_name);
+const sidebarOpen = ref(false);
+const user_fname = ref(userAuthStore().user.first_name);
+const user_lname = ref(userAuthStore().user.last_name);
 
 const logout = async () => {
   await axios.post('/logout');

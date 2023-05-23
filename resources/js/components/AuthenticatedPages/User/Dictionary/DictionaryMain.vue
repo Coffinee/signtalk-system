@@ -41,7 +41,11 @@ export default {
                         <p class="mb-3 text-gray-500 dark:text-gray-400">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Suscipit, odio.</p>
                     </div>
                     <div class="self-center relative w-full overflow-hidden aspect-video">
-                        <iframe class="absolute inset-0 w-[100%] h-[100%] border-none" src="https://www.youtube.com/embed/uKKvNqA9N20" title="Greetings in ASL | ASL - American Sign Language" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <!-- <iframe class="absolute inset-0 w-[100%] h-[100%] border-none" src="https://www.youtube.com/embed/uKKvNqA9N20" title="Greetings in ASL | ASL - American Sign Language" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+                        <video  class="absolute inset-0 w-[100%] h-[100%] border-none"   muted controls>
+                            <source src="../../../../../assets/videos/lebrongalit.mp4" type="video/mp4">
+                        </video>
+
                     </div>
                 </div>
             </div>

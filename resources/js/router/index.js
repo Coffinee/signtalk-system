@@ -9,6 +9,7 @@ const DictionaryMain = () => import("@/components/AuthenticatedPages/User/Dictio
 const LessonLandingPage = () => import("@/components/AuthenticatedPages/User/Lesson/LessonLandingPage.vue");
 const LessonMain = () => import("@/components/AuthenticatedPages/User/Lesson/LessonMain.vue");
 const Quiz = () => import("@/components/AuthenticatedPages/User/Quiz/Quiz.vue");
+const QuizMain = () => import("@/components/AuthenticatedPages/User/Quiz/QuizMain.vue");
 
 const Setting = () =>import("@/components/AuthenticatedPages/User/Setting/Setting.vue");
 const Profile = () =>import("@/components/AuthenticatedPages/User/Setting/Tabs/Profile.vue");
@@ -62,6 +63,14 @@ const routes = [
             middleware: "guest",
         },
         children: [
+            {
+                name: "about",
+                path: "/about",
+                component: About,
+                meta: {
+                    title: "SignTalk | About",
+                },
+            },
             {
                 name: "home",
                 path: "/",
@@ -161,19 +170,19 @@ const routes = [
         },
         children: [
             {
-                name: "user-home",
-                path: "/",
-                component: Home,
-                meta: {
-                    title: "SignTalk | Home",
-                },
-            },
-            {
                 name: "about",
                 path: "/about",
                 component: About,
                 meta: {
                     title: "SignTalk | About",
+                },
+            },
+            {
+                name: "user-home",
+                path: "/",
+                component: Home,
+                meta: {
+                    title: "SignTalk | Home",
                 },
             },
             {
@@ -204,6 +213,14 @@ const routes = [
                 name: 'quiz',
                 path: "/quiz",
                 component: Quiz,
+                meta: {
+                    title: "SignTalk | Quiz",
+                },
+            },
+            {
+                name: 'quiz-main',
+                path: "/quiz/main",
+                component: QuizMain,
                 meta: {
                     title: "SignTalk | Quiz",
                 },

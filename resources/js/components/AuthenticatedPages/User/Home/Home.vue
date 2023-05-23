@@ -1,7 +1,7 @@
 
 
 <template>
-    <div class="flex justify-center items-center flex-wrap gap-x-[20px] gap-y-[80px] sm:h-auto md:h-screen  py-[80px] ">
+    <div class="home flex justify-center items-center flex-wrap gap-x-[20px] gap-y-[80px] sm:h-auto md:h-screen  py-[80px] ">
         <div class="flex justify-center flex-wrap gap-x-[20px] gap-y-[80px]">
             <router-link :to="isAuthenticated ?  '/translate' : '/login'">
                 <div
@@ -71,7 +71,7 @@
             </router-link>
         </div>
     </div>
-
+<!-- 
     <router-link to="auth/first-time">
         <Button>
             Hello
@@ -79,17 +79,13 @@
     </router-link>
     <button @click="(slideoverOpen = !slideoverOpen)" class="bg-indigo-500 text-white p-2 rounded-md">Slideover
         Open</button>
+    <button @click="(modalOpen = !modalOpen)" class="bg-indigo-500 text-white p-2 rounded-md">Modal Open</button>
     <Slideover :show="slideoverOpen" @close="slideoverToggle" :title="'SLIDEOVER TITLE'">
 
     </Slideover>
 
-    <button @click="(modalOpen = !modalOpen)" class="bg-indigo-500 text-white p-2 rounded-md">Modal Open</button>
     <Modal :show="modalOpen" @close="modalToggle" :title="'Register'" :widthModal="'w-[600px]'" :heightModal="'h[1200px]'">
 
-        <!-- <h1
-            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white  text-center capitalize">
-            Register
-        </h1> -->
         <div class="items-center justify-center text-white flex space-x-5 mb-3">
             <button @click.prevent="isTeacher = false"
                 class="border border-indigo-500 text-gray-900 hover:bg-indigo-500 hover:text-white w-full h-10 rounded-md dark:hover:bg-indigo-500 dark:text-white">
@@ -150,7 +146,8 @@
                     here</router-link>
             </p>
         </form>
-    </Modal>
+    </Modal> -->
+
 </template>
 
 
@@ -163,7 +160,6 @@ import Form from 'vform';
 import {userAuthStore} from '@/store/auth';
 
 export default {
-
     components: {
         Slideover, Modal
     },

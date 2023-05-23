@@ -1,4 +1,5 @@
 <script>
+import { userAuthStore } from '@/store/auth';
 import Accordion from '../../../../misc/Accordion.vue'
 
 export default {
@@ -6,7 +7,13 @@ export default {
 
     components:{
         Accordion,
-
+    },
+    data(){
+        return{
+            user_fname: userAuthStore().user.first_name,
+            user_lname: userAuthStore().user.last_name,
+            email: userAuthStore().user.email,
+        }
     }
 }
 </script>
@@ -24,15 +31,21 @@ export default {
                 </div>
                 <dl class="divide-y divide-gray-100 ">
                     <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
-                        <dt class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Full Name:</dt>
+                        <dt class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Firstname:</dt>
                         <dd class="mt-1 flex text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                        <span class="flex-grow dark:text-gray-400">Margot Foster</span>
+                        <span class="flex-grow dark:text-gray-400">{{ user_fname }}</span>
+                        </dd>
+                    </div>
+                    <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
+                        <dt class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Lastname:</dt>
+                        <dd class="mt-1 flex text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+                        <span class="flex-grow dark:text-gray-400">{{ user_lname }}</span>
                         </dd>
                     </div>
                     <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Email Address:</dt>
                         <dd class="mt-1 flex text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                        <span class="flex-grow dark:text-gray-400">margotfoster@example.com</span>
+                        <span class="flex-grow dark:text-gray-400">{{ email }}</span>
                         </dd>
                     </div>
                     <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
@@ -42,7 +55,7 @@ export default {
                         </dd>
                     </div>
                 </dl>
-            </div>s
+            </div>
         </Accordion>
 
         <Accordion :sectiontitle="'Change Password'" :setOpen="false" :accordionColor="'bg-[#3E3E3E]'">
@@ -66,8 +79,7 @@ export default {
         </Accordion>
 
         <Accordion :sectiontitle="'Recovery Email'" :setOpen="false"  :accordionColor="'bg-[#3E3E3E]'">
-            <h1 class="dark:text-white
-            ">Lorem10000</h1>
+            <h1 class="dark:text-white text-center">Recovery Email</h1>
         </Accordion>
     </div>
 </template>

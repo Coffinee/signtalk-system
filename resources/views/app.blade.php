@@ -6,7 +6,6 @@
         <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
         <title>SignTalk</title>
-
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,7 +16,5 @@
             <router-view></router-view>
         </div>
         @vite(['resources/js/app.js'])
-
-
     </body>
 </html>

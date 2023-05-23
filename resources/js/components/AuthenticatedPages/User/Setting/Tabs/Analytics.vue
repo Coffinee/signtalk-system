@@ -1,7 +1,7 @@
 <template>
     <div class="p-3 h-screen w-auto">   
-        <div class="flex justify-center relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table  class="sm:w-full lg:w-[80%] text-sm text-left text-black dark:text-gray-400 border-x border-gray-200 dark:border-gray-700 mb-10">
+        <div class="flex justify-center relative overflow-x-auto sm:rounded-lg">
+            <table class="sm:w-full lg:w-[80%] shadow-md text-sm text-left text-black dark:text-gray-400 border-x border-gray-200 dark:border-gray-700 mb-10">
                 <caption class="p-5 text-lg font-semibold text-center text-gray-900 bg-white dark:bg-transparent dark:text-white">
                     Quiz Analytics
                 </caption>

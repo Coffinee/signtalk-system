@@ -11,10 +11,7 @@
                 </router-link>
                 <ul class="flex flex-wrap items-center justify-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
                     <li>
-                        <router-link to="/Student/About" class="mr-4 hover:underline md:mr-6 ">About</router-link>
-                    </li>
-                    <li>
-                        <router-link to="#" class="mr-4 hover:underline md:mr-6">Privacy Policy</router-link>
+                        <router-link to="/about" class="mr-4 hover:underline md:mr-6 ">About</router-link>
                     </li>
                     <li>
                         <router-link to="#" class="hover:underline">Contact</router-link>

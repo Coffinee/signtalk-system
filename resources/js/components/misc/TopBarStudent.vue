@@ -1,12 +1,12 @@
 <template>
   <nav class="bg-white border-gray-200 dark:bg-gray-900 sticky top-0 insex-x-0 w-full z-50">
     <div
-      class="relative flex flex-wrap items-center justify-between mx-auto py-4 px-16 border-b border-gray-200 dark:border-gray-700">
+      class="relative flex items-center justify-between mx-auto p-4 border-b border-gray-200 dark:border-gray-700">
       <router-link to="/">
         <p class="self-center text-3xl font-bold whitespace-nowrap dark:text-white">Sign<span
             class="text-indigo-500  font-bold">Talk</span></p>
       </router-link>
-      <button @click="expand" type="button"
+      <!-- <button @click="expand" type="button"
         class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
         <span class="sr-only">Open main menu</span>
         <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
@@ -15,16 +15,15 @@
             d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
             clip-rule="evenodd"></path>
         </svg>
-      </button>
-      <div :show="open == false"
-        :class="[!open ? 'hidden w-full md:block md:w-auto space-x-5' : 'absolute top-[55px] left-0 right-0 z-10']">
+      </button> -->
+      <div >
         <ul
-          class="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          class="font-medium flex flex-col items-center md:p-0 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900">
           <li class="flex gap-[10px]">
             <Menu as="div" class="relative" :class="isAuthenticated === true ? 'block' : 'hidden'">
-              <MenuButton class="-m-1.5 flex items-center p-1.5">
+              <MenuButton class="flex items-center">
                 <span class="sr-only">Open user menu</span>
-                <img class="h-8 w-8 rounded-full bg-gray-50"
+                <img class="h-8 w-8 rounded-full border bg-white"
                   src="https://cdn.onlinewebfonts.com/svg/img_299586.png"
                   alt="" />
                 <span class="hidden lg:flex lg:items-center">

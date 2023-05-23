@@ -140,10 +140,10 @@
                 <input id="search-field" class="block h-full w-full border-0 py-0 pl-8 pr-0 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm" placeholder="Search..." type="search" name="search" />
             </form>
             <div class="flex items-center gap-x-4 lg:gap-x-6">
-                <button type="button" class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
+                <!-- <button type="button" class="-m-2.5 p-2.5 text-gray-400 hover:text-gray-500">
                 <span class="sr-only">View notifications</span>
                 <BellIcon class="h-6 w-6" aria-hidden="true" />
-                </button>
+                </button> -->
 
                 <!-- Separator -->
                 <div class="hidden lg:block lg:h-6 lg:w-px lg:bg-gray-900/10" aria-hidden="true" />
@@ -159,8 +159,7 @@
                     </span>
                 </MenuButton>
                 <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
-                    <MenuItems class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
-                        <a href="#"  :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900']">My Profile</a>
+                    <MenuItems class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right text-center rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
                         <a href="#" @click.prevent="logout" :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900']">Sign Out</a>
                     </MenuItems>
                 </transition>

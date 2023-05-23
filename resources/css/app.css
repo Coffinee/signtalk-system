@@ -8,3 +8,12 @@
     font-size: 14px;
     color: black;
 }
+/* :root {
+    --my-color: #fff;
+}
+[data-theme='dark'] {
+    --my-color: #000;
+}
+[data-theme='pink'] {
+    --my-color: #ffabc8;
+} */

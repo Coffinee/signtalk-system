@@ -13,7 +13,7 @@
         <div class="h-auto w-full">
             <TabGroup :selectedIndex="selectedTab" @change="changeTab">
                 <TabList
-                    class=" justify-start flex text-sm font-medium text-center dark:text-gray-400 dark:border-gray-700 w-full mt-[20px] mb-[20px] border-b space-x-1">
+                    class=" justify-start flex text-sm font-medium text-center dark:text-gray-400 w-full mt-[20px] mb-[20px] border-b border-gray-300 space-x-1">
                     <Tab v-for="tab in settingTabs" as="template" :key="tab" v-slot="{ selected }">
                         <button :class="[
                             'w-[150px] rounded-t-lg p-2 text-sm font-medium focus:outline-none text-black hover:bg-indigo-500 hover:text-white',
@@ -27,13 +27,13 @@
                 </TabList>
 
                 <TabPanels>
-                    <TabPanel class="h-full w-full border border-black rounded-md p-4 space-y-5">
+                    <TabPanel class="h-full w-full border border-gray-300 rounded-md p-4 space-y-5">
                         <Student1/>
                     </TabPanel>
-                    <TabPanel class="h-full w-full border border-black rounded-md p-4 space-y-5">
+                    <TabPanel class="h-full w-full border border-gray-300 rounded-md p-4 space-y-5">
                         <Student1/>
                     </TabPanel>
-                    <TabPanel class="h-full w-full border border-black rounded-md p-4 space-y-5">
+                    <TabPanel class="h-full w-full border border-gray-300 rounded-md p-4 space-y-5">
                         <Student1/>
                     </TabPanel>
                 </TabPanels>
