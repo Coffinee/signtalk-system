@@ -14,7 +14,7 @@
                         <router-link to="/about" class="mr-4 hover:underline md:mr-6 ">About</router-link>
                     </li>
                     <li>
-                        <router-link to="#" class="hover:underline">Contact</router-link>
+                        <router-link to="/contact" class="hover:underline">Contact</router-link>
                     </li>
                 </ul>
             </div>

@@ -3,7 +3,6 @@ import {userAuthStore} from '@/store/auth';
 // USER SIDE
 
 const Home = () => import("@/components/AuthenticatedPages/User/Home/Home.vue");
-const About = () => import("@/components/AuthenticatedPages/User/About/About.vue");
 const DictionaryLandingPage = () => import("@/components/AuthenticatedPages/User/Dictionary/DictionaryLandingPage.vue");
 const DictionaryMain = () => import("@/components/AuthenticatedPages/User/Dictionary/DictionaryMain.vue");
 const LessonLandingPage = () => import("@/components/AuthenticatedPages/User/Lesson/LessonLandingPage.vue");
@@ -37,14 +36,17 @@ const TeacherHome = () => import("@/components/AuthenticatedPages/Teacher/Home.v
 const TeacherDashboard = () => import("@/components/AuthenticatedPages/Teacher/TeacherDashboard.vue");
 const TeacherClasses = () => import("@/components/AuthenticatedPages/Teacher/TeacherClasses/TeacherClasses.vue");
 
+// GUEST SIDE
+const About = () => import("@/components/GuestPages/About/About.vue");
+const Contact = () => import("@/components/GuestPages/Contact/Contact.vue");
+
+
 // LAYOUTS
 const UserLayout = () =>import("@/components/Layouts/Authenticated Layout/UserLayout.vue");
 const AdminLayout = () =>import("@/components/Layouts/Authenticated Layout/AdminLayout.vue");
 const TeacherLayout = () =>import("@/components/Layouts/Authenticated Layout/TeacherLayout.vue");
 const GuestLayout = () =>import("@/components/Layouts/Authenticated Layout/GuestLayout.vue");
 
-// TESTING
-const Test = () =>import("@/components/testfile.vue");
 
 
 const routes = [
@@ -69,6 +71,14 @@ const routes = [
                 component: About,
                 meta: {
                     title: "SignTalk | About",
+                },
+            },
+            {
+                name: "contact",
+                path: "/contact",
+                component: Contact,
+                meta: {
+                    title: "SignTalk | Contact",
                 },
             },
             {
@@ -175,6 +185,14 @@ const routes = [
                 component: About,
                 meta: {
                     title: "SignTalk | About",
+                },
+            },
+            {
+                name: "contact",
+                path: "/contact",
+                component: Contact,
+                meta: {
+                    title: "SignTalk | Contact",
                 },
             },
             {
