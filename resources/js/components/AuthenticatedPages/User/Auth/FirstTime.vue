@@ -29,7 +29,7 @@
             <h1 class="text-[11px] whitespace-nowrap justify-center flex capitalize font-bold tracking-widest">Ask your teacher for the Code</h1>
             <form class=" flex flex-col flex-wrap justify-center items-center mt-10">
                 <div class="border border-gray-400 my-10 h-[50px] p-1 rounded-lg">
-                    <input type="text" class="border border-gray-300 focus:outline-none placeholder:capitalize px-2 text-black w-full h-full rounded-lg" placeholder="Insert Code Here"/>
+                    <input @keydown.space.prevent type="text" class="border border-gray-300 focus:outline-none placeholder:capitalize px-2 text-black w-full h-full rounded-lg" placeholder="Insert Code Here"/>
                 </div>
                 <div class=" flex justify-center w-full dark:text-white text-black gap-3 ">
                     <button class="border-2 border-[#EAEAEA] dark:border-white  w-[150px] px-3 py-1 rounded-lg"> Return </button>

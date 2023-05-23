@@ -226,6 +226,7 @@ const settingsNav = [
 const user_fname = ref(userAuthStore().user.first_name);
 const user_lname = ref(userAuthStore().user.last_name);
 
+
 const sidebarOpen = ref(false)
 
 const router = useRouter()

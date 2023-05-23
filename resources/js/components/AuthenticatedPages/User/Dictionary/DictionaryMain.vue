@@ -4,7 +4,7 @@ export default {
     name: "Dictionary",
 
     components:{
-        CardButton, 
+        CardButton,
     }
 
 }
@@ -14,7 +14,7 @@ export default {
     <!-- Main Content -->
     <div class="flex justify-center sm:items-center md:items-start w-auto h-auto bg-white dark:bg-[#111827] ">
         <div class="flex flex-col gap-[50px] py-10 px-5">
-            <form>   
+            <form>
                 <div>
                     <h1 class="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Dictionary</h1>
                     <p class="mb-6 text-center text-lg font-normal text-gray-500 lg:text-xl sm:px-16 dark:text-gray-400">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore, voluptatibus.</p>
@@ -28,7 +28,7 @@ export default {
                     <button type="submit" class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                 </div>
             </form>
-            
+
             <!-- Result -->
             <div class="border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Result:</h5>
