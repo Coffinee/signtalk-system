@@ -209,6 +209,8 @@ import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/vue'
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: WindowIcon, current: true },
   { name: 'My Classes', href: '/classes', icon: ClipboardDocumentIcon, current: false },
+  { name: 'Lessons', href: '/lesson', icon: WindowIcon, current: false },
+  { name: 'Quiz', href: '/quiz', icon: ClipboardDocumentIcon, current: false },
 
 ]
 const settingsNav = [

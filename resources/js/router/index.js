@@ -33,8 +33,10 @@ const AdminTranslate = () => import("@/components/AuthenticatedPages/Admin/Admin
 
 // TEACHER SIDE
 const TeacherHome = () => import("@/components/AuthenticatedPages/Teacher/Home.vue");
-const TeacherDashboard = () => import("@/components/AuthenticatedPages/Teacher/TeacherDashboard.vue");
+const TeacherDashboard = () => import("@/components/AuthenticatedPages/Teacher/TeacherDashboard/TeacherDashboard.vue");
 const TeacherClasses = () => import("@/components/AuthenticatedPages/Teacher/TeacherClasses/TeacherClasses.vue");
+const TeacherLesson = () => import("@/components/AuthenticatedPages/Teacher/TeacherLesson/TeacherLesson.vue");
+const TeacherQuiz = () => import("@/components/AuthenticatedPages/Teacher/TeacherQuiz/TeacherQuiz.vue");
 
 // GUEST SIDE
 const About = () => import("@/components/GuestPages/About/About.vue");
@@ -164,10 +166,26 @@ const routes = [
             },
             {
                 name: "teacher-classes",
+                path: "/lesson",
+                component: TeacherLesson,
+                meta: {
+                    title: `Teacher Lesson`,
+                },
+            },
+            {
+                name: "teacher-lesson",
                 path: "/classes",
                 component: TeacherClasses,
                 meta: {
                     title: `Teacher Classes`,
+                },
+            },
+            {
+                name: "teacher-quiz",
+                path: "/quiz",
+                component: TeacherQuiz,
+                meta: {
+                    title: `Teacher Quiz`,
                 },
             },
         ],
