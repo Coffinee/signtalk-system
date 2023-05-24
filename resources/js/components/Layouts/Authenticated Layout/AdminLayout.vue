@@ -215,7 +215,7 @@ import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
 const router = useRouter()
 const navigation = [
   { name: 'Dashboard', href: '/admin/dashboard', icon: WindowIcon, current: true },
-  { name: 'My Classess', href: '#', icon: BookOpenIcon, current: false },
+  // { name: 'My Classess', href: '#', icon: BookOpenIcon, current: false },
   { name: 'Dictionary', href: '/admin/dictionary', icon: BookOpenIcon, current: false },
   { name: 'Lesson', href: '/admin/lesson', icon: DocumentTextIcon, current: false },
   { name: 'Quiz', href: '/admin/quiz', icon: ClipboardDocumentIcon, current: false },

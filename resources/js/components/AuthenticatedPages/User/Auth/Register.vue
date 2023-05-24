@@ -113,7 +113,7 @@ export default {
         submitForm() {
             this.$Progress.start();
             // prev: /register
-            this.form.post('/api/login')
+            this.form.post('/api/register')
                 .then((data) => {
                     this.$Progress.finish();
                     this.$router.push('/login');
