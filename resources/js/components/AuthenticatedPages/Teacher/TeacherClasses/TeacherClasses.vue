@@ -4,8 +4,10 @@
             <div>
                 <h2 class="text-2xl font-extrabold font-poppins">My Classes</h2>
             </div>
-            <div>
-                <button @click="(modalOpen = !modalOpen)"
+            <div class="flex space-x-1">
+                <button
+                    class="hover:text-white hover:bg-indigo-500 rounded-md border-2 border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-3">Send Invitation</button>
+                <button
                     class="hover:text-white hover:bg-indigo-500 rounded-md border-2 border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-3">Add
                     Class</button>
             </div>

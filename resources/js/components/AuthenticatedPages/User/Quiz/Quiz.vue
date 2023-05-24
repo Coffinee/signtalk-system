@@ -27,10 +27,10 @@ export default {
 }
 </script>
 <template>
-    <div class="dark:bg-transparent py-[50px]  ">
+    <div class="dark:bg-transparent py-[50px] h-auto">
         <div class="mb-[50px]">
             <h5 class="text-2xl text-center font-bold dark:text-white mb-3">Quiz</h5>
-            <div class="flex justify-center flex-wrap gap-[20px] h-screen">
+            <div class="flex justify-center flex-wrap gap-[20px]">
                 <div class="max-w-xs h-[300px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <div class="h-[65%]">
                         <router-link @click="(modalOpen = !modalOpen)" to="#">
@@ -88,7 +88,7 @@ export default {
             </div>
         </div>
     </div>
-    <Modal :show="modalOpen" @close="modalToggle" :title="'Quiz Overview:'" :widthModal="'w-[600px]'" :heightModal="'h-auto'">
+    <Modal :show="modalOpen" @close="modalToggle" :title="'Quiz Title'" :widthModal="'w-[600px]'" :heightModal="'h-auto'">
         <!-- description, no of items, duration, difficulty -->
         <div class="flex flex-col gap-3 h-full">
             <div class="flex flex-col justify-between items-center gap-2 sm:flex-col md:flex-row h-full">
@@ -99,7 +99,7 @@ export default {
                     <div class="flex flex-row md:flex-col gap-3">
                         <div class="flex items-center w-[50%] sm:w-full gap-3 px-3 py-[9px] rounded-md bg-gray-50 dark:bg-gray-500 shadow-md">
                             <InformationCircleIcon class="w-[25px] h-[25px] stroke-black dark:stroke-white stroke-2"/>
-                            <p class="dark:text-white capitalize">ASL Animal</p>
+                            <p class="dark:text-white capitalize">Multiple Choice</p>
                         </div>
                         <div class="flex items-center w-[50%] sm:w-full gap-3 px-3 py-[9px] rounded-md bg-gray-50 dark:bg-gray-500 shadow-md">
                             <QueueListIcon class="w-[25px] h-[25px] stroke-black dark:stroke-white stroke-2"/>

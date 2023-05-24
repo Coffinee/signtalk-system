@@ -37,19 +37,17 @@ const TeacherDashboard = () => import("@/components/AuthenticatedPages/Teacher/T
 const TeacherClasses = () => import("@/components/AuthenticatedPages/Teacher/TeacherClasses/TeacherClasses.vue");
 const TeacherLesson = () => import("@/components/AuthenticatedPages/Teacher/TeacherLesson/TeacherLesson.vue");
 const TeacherQuiz = () => import("@/components/AuthenticatedPages/Teacher/TeacherQuiz/TeacherQuiz.vue");
+const TeacherQuizAdd = () => import("@/components/AuthenticatedPages/Teacher/TeacherQuiz/TeacherQuizAdd.vue");
 
 // GUEST SIDE
 const About = () => import("@/components/GuestPages/About/About.vue");
 const Contact = () => import("@/components/GuestPages/Contact/Contact.vue");
-
 
 // LAYOUTS
 const UserLayout = () =>import("@/components/Layouts/Authenticated Layout/UserLayout.vue");
 const AdminLayout = () =>import("@/components/Layouts/Authenticated Layout/AdminLayout.vue");
 const TeacherLayout = () =>import("@/components/Layouts/Authenticated Layout/TeacherLayout.vue");
 const GuestLayout = () =>import("@/components/Layouts/Authenticated Layout/GuestLayout.vue");
-
-
 
 const routes = [
     {
@@ -158,7 +156,7 @@ const routes = [
             },
             {
                 name: "teacher-dashboard",
-                path: "/dashboard",
+                path: "/teacher/dashboard",
                 component: TeacherDashboard,
                 meta: {
                     title: `Teacher Dashboard`,
@@ -166,7 +164,7 @@ const routes = [
             },
             {
                 name: "teacher-classes",
-                path: "/lesson",
+                path: "/teacher/lesson",
                 component: TeacherLesson,
                 meta: {
                     title: `Teacher Lesson`,
@@ -174,7 +172,7 @@ const routes = [
             },
             {
                 name: "teacher-lesson",
-                path: "/classes",
+                path: "/teacher/classes",
                 component: TeacherClasses,
                 meta: {
                     title: `Teacher Classes`,
@@ -182,10 +180,18 @@ const routes = [
             },
             {
                 name: "teacher-quiz",
-                path: "/quiz",
+                path: "/teacher/quiz",
                 component: TeacherQuiz,
                 meta: {
                     title: `Teacher Quiz`,
+                },
+            },
+            {
+                name: "teacher-quiz-add",
+                path: "/teacher/quiz/add",
+                component: TeacherQuizAdd,
+                meta: {
+                    title: `Teacher Quiz Add`,
                 },
             },
         ],

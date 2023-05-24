@@ -18,7 +18,7 @@
                                     <h5 class="text-[20px] text-center font-bold text-black dark:text-white uppercase tracking-wider">
                                         {{ title }}
                                     </h5>
-                                    <p></p>
+                                    <p class="text-[10px] text-center text-black">{{ desc }}</p>
                                     <div class="relative flex-1 text-black dark:text-gray-400  p-2">
                                         <!-- Replace with your content -->
                                         <slot name="body"></slot>
@@ -44,6 +44,10 @@ export default {
         title: {
             type: String,
             default: 'MODAL TITLE HERE',
+        },
+        desc: {
+            type: String,
+            default: 'DESC HERE',
         },
     },
     data() {
