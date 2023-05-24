@@ -1,5 +1,5 @@
 <template>
-    <div class="h-screen flex items-center justify-center gap-[30px]">
+    <div class="h-auto sm:h-auto md:h-screen flex flex-wrap items-center justify-center gap-[30px] my-[30px]">
         <router-link to="/lesson/main">
             <div class="w-[170px] h-[170px] flex flex-col dark:bg-gray-700 dark:border-none dark:hover:bg-gray-600 hover:bg-gray-200 shadow-lg rounded-lg py-3 px-7 border border-gray-200">
                 <img class="w-fit h-fit" src="../../../../../assets/images/alphabet.png" alt="">
