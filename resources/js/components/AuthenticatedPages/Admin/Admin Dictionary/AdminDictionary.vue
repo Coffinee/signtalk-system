@@ -17,7 +17,7 @@
                     </svg>
                 </div>
                 <input type="text" id="table-search"
-                    class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50"
+                    class="block p-2 pl-10 text-sm text-gray-900 border border-gray-500 rounded-lg w-80 bg-gray-50"
                     placeholder="Search for items">
             </div>
         </div>
@@ -66,39 +66,54 @@
         </div>
     </div>
 
-    <Slideover :show="slideoverOpen" @close="slideoverToggle" :title="(edit ? 'Update' : 'Add') + ' Word'">
+    <Slideover :show="slideoverOpen" @close="slideoverToggle" :title="(edit ? 'Update' : 'Add') + ' Word'" :desc="'Add words into the dictionary'">
         <template v-slot:body>
             <form @submit.prevent="edit ? updateForm() : submitForm()">
-                <div class="my-5 p-2 space-y-6">
+                <div class="my-3 space-y-6">
                     <div class="space-y-1">
-                        <label for="word" class="text-[15px]">Add Word</label>
+                        <label for="word" class="text-sm">Add Word</label>
                         <input v-model="form.word" type="text"
-                            class="pl-2 text-xs w-full h-8 rounded-md border border-indigo-900">
+                            class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500">
                     </div>
 
                     <div class="space-y-1">
-                        <label for="desc" class="text-[15px]">Add Description</label>
+                        <label for="desc" class="text-sm">Add Description</label>
                         <textarea v-model="form.description"
-                            class="pl-2 pt-2 text-xs w-full h-40 resize-none rounded-md border border-indigo-900"></textarea>
+                            class="pl-2 pt-2 text-xs w-full h-40 resize-none rounded-md border border-gray-500"></textarea>
                     </div>
 
                     <div class="space-y-1">
-                        <label class="block mb-2 text-[15px] font-medium" for="image">Upload Image</label>
-                        <input class="block w-full text-md text-gray-900 border border-indigo-900 rounded-md cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="large_size" type="file" required>
-                    </div>
-
-                    <div class="space-y-1">
-                        <label for="file" class="text-[15px]">Upload Video Link <span class="text-[13px]">(optional)</span> </label>
+                        <label for="file" class="text-sm relative">Upload Video Link <span class="absolute text-[9px] text-indigo-500 ml-1">*optional</span>
+                        </label>
                         <input v-model="form.file" type="text"
-                            class="pl-2 text-xs w-full h-8 rounded-md border border-indigo-900">
+                            class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500">
+                    </div>
+
+                    <div class="space-y-1">
+                        <label for="file" class="text-sm">Upload Photo</label>
+                        <div class="flex items-center justify-center w-full">
+                            <label
+                                class="flex flex-col w-full h-32 rounded-md border-2 border-gray-500 border-dashed hover:bg-gray-200 cursor-pointer">
+                                <div class="flex flex-col items-center justify-center pt-7">
+                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                        class="w-8 h-8 text-black group-hover:text-gray-600" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                                    </svg>
+                                    <p class="pt-1 text-sm tracking-wider text-gray-600 group-hover:text-gray-600">
+                                        Attach a file</p>
+                                </div>
+                                <input type="file" class="opacity-0" />
+                            </label>
+                        </div>
                     </div>
                 </div>
-
-                <div class="absolute bottom-0 pb-8 flex justify-center items-center w-full gap-1">
+                <div class="flex gap-1 mt-10">
                     <button type="button" @click.prevent="slideoverToggle"
-                        class="rounded-md w-full bg-white border border-red-700 py-2 px-3 text-sm font-semibold">Close</button>
+                        class="rounded-md w-full bg-white border border-indigo-500 py-2 px-3 text-sm">Close</button>
                     <button type="submit"
-                        class="rounded-md w-full bg-white border border-green-700 py-2 px-3 text-sm font-semibold">{{
+                        class="rounded-md w-full bg-indigo-500 border border-white py-2 px-3 text-sm text-white">{{
                             edit ? 'Update' : 'Save' }}</button>
                 </div>
             </form>

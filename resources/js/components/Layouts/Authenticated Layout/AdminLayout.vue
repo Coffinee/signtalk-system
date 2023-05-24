@@ -111,7 +111,7 @@
               <router-link to="#"
                 class="group -mx-2 flex gap-x-3 rounded-md p-2 text-sm font-semibold leading-6 text-indigo-200 hover:bg-indigo-700 hover:text-white">
                 <Cog6ToothIcon class="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white" aria-hidden="true" />
-                Settings
+                Maintenance
               </router-link>
             </li>
           </ul>
@@ -215,11 +215,11 @@ import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
 const router = useRouter()
 const navigation = [
   { name: 'Dashboard', href: '/admin/dashboard', icon: WindowIcon, current: true },
+  { name: 'My Classess', href: '#', icon: BookOpenIcon, current: false },
   { name: 'Dictionary', href: '/admin/dictionary', icon: BookOpenIcon, current: false },
   { name: 'Lesson', href: '/admin/lesson', icon: DocumentTextIcon, current: false },
   { name: 'Quiz', href: '/admin/quiz', icon: ClipboardDocumentIcon, current: false },
-  // { name: 'Examination', href: '/admin/examination', icon: ClipboardDocumentIcon, current: false },
-  { name: 'Translate', href: '/admin/translate', icon: ClipboardDocumentIcon, current: false },
+  { name: 'Translate', href: '/admin/translate', icon: ClipboardDocumentIcon, current: false }
 
 ]
 const userNavigation = [
