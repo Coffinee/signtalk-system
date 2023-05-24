@@ -66,10 +66,10 @@
         </div>
     </div>
 
-    <Slideover :show="slideoverOpen" @close="slideoverToggle" :title="(edit ? 'Update' : 'Add') + ' Word'">
+    <Slideover :show="slideoverOpen" @close="slideoverToggle" :title="(edit ? 'Update' : 'Add') + ' Translate'" :desc="'Add ASL into the database'">
         <template v-slot:body>
             <form @submit.prevent="edit ? updateForm() : submitForm()">
-                <div class="my-5 p-4 space-y-6">
+                <div class="my-3 p-4 space-y-6">
                     <div class="space-y-1">
                         <label for="word" class="text-[15px]">Add Word</label>
                         <input v-model="form.word" type="text"
@@ -84,24 +84,26 @@
 
                     <div class="space-y-1">
                         <label class="block mb-2 text-[15px] font-medium" for="image">Upload Image</label>
-                        <input class="block w-full text-md text-gray-900 border border-indigo-900 rounded-md cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="large_size" type="file" required>
+                        <input
+                            class="block w-full text-md text-gray-900 border border-indigo-900 rounded-md cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                            id="large_size" type="file" required>
                     </div>
 
                     <div class="space-y-1">
-                        <label for="file" class="text-[15px]">Upload Video Link <span class="text-[13px]">(optional)</span> </label>
+                        <label for="file" class="text-[15px]">Upload Video Link <span class="text-[13px]">(optional)</span>
+                        </label>
                         <input v-model="form.file" type="text"
                             class="pl-2 text-xs w-full h-8 rounded-md border border-indigo-900">
                     </div>
                 </div>
-
-                <div class="absolute bottom-0 pb-8 flex justify-center items-center w-full gap-1">
-                    <button type="button" @click.prevent="slideoverToggle"
-                        class="rounded-md w-full bg-white border border-red-700 py-2 px-3 text-sm font-semibold">Close</button>
-                    <button type="submit"
-                        class="rounded-md w-full bg-white border border-green-700 py-2 px-3 text-sm font-semibold">{{
-                            edit ? 'Update' : 'Save' }}</button>
-                </div>
             </form>
+            <div class="flex gap-1 mt-10">
+                <button type="button" @click.prevent="slideoverToggle"
+                    class="rounded-md w-full bg-white border border-indigo-500 py-2 px-3 text-sm">Close</button>
+                <button type="submit"
+                    class="rounded-md w-full bg-indigo-500 border border-white py-2 px-3 text-sm text-white">{{
+                        edit ? 'Update' : 'Save' }}</button>
+            </div>
         </template>
     </Slideover>
 </template>
@@ -113,7 +115,7 @@ import axios from 'axios';
 
 export default {
 
-    name:"Translate",
+    name: "Translate",
 
     props: {
         data: {

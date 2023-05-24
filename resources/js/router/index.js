@@ -158,7 +158,7 @@ const routes = [
             },
             {
                 name: "teacher-dashboard",
-                path: "/dashboard",
+                path: "/teacher/dashboard",
                 component: TeacherDashboard,
                 meta: {
                     title: `Teacher Dashboard`,
@@ -166,7 +166,7 @@ const routes = [
             },
             {
                 name: "teacher-classes",
-                path: "/lesson",
+                path: "/teacher/lesson",
                 component: TeacherLesson,
                 meta: {
                     title: `Teacher Lesson`,
@@ -174,7 +174,7 @@ const routes = [
             },
             {
                 name: "teacher-lesson",
-                path: "/classes",
+                path: "/teacher/classes",
                 component: TeacherClasses,
                 meta: {
                     title: `Teacher Classes`,
@@ -182,7 +182,7 @@ const routes = [
             },
             {
                 name: "teacher-quiz",
-                path: "/quiz",
+                path: "/teacher/quiz",
                 component: TeacherQuiz,
                 meta: {
                     title: `Teacher Quiz`,
