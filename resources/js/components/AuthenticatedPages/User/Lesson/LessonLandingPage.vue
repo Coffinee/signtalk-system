@@ -1,57 +1,108 @@
 <template>
-    <div class="h-auto sm:h-auto md:h-screen flex flex-wrap items-center justify-center gap-[30px] my-[30px]">
-        <router-link to="/lesson/main">
-            <div class="w-[170px] h-[170px] flex flex-col dark:bg-gray-700 dark:border-none dark:hover:bg-gray-600 hover:bg-gray-200 shadow-lg rounded-lg py-3 px-7 border border-gray-200">
-                <img class="w-fit h-fit" src="../../../../../assets/images/alphabet.png" alt="">
-                <p class="text-[18px] text-center text-gray-900 tracking-wider uppercase dark:text-white font-semibold">Alphabet</p>
+    <div class="h-auto sm:h-screen md:h-screen flex items-center justify-center my-[30px]">
+        <div class="divide-y divide-gray-200 overflow-hidden rounded-lg shadow-md p-3 sm:grid sm:grid-cols-2 gap-[5px] sm:gap-[30px] sm:divide-y-0 w-full sm:w-full md:w-auto mx-[10px]">
+            <div v-for="(action, actionIdx) in actions" :key="action.title" :class="[actionIdx === 0 ? 'rounded-tl-lg rounded-tr-lg sm:rounded-tr-none' : '', actionIdx === 1 ? 'sm:rounded-tr-lg' : '', actionIdx === actions.length - 2 ? 'sm:rounded-bl-lg' : '', actionIdx === actions.length - 1 ? 'rounded-bl-lg rounded-br-lg sm:rounded-bl-none' : '', 'flex items-center gap-[20px] group relative bg-white dark:bg-gray-600 p-10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-md w-full md:w-[400px]']">
+                <div>
+                    <span :class="[action.iconBackground, action.iconForeground, 'inline-flex rounded-lg p-5']">
+                        <component :is="action.icon" class="h-[40px] w-[40px]" aria-hidden="true" />
+                    </span>
+                </div>
+                <div >
+                    <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
+                    <router-link :to="action.href" class="focus:outline-none text-[30px]">
+                        <!-- Extend touch target to entire panel -->
+                        <span class="absolute inset-0" aria-hidden="true" />
+                        {{ action.title }}
+                    </router-link>
+                    </h3>
+                    <p class="mt-2 text-[16px] text-gray-500 dark:text-gray-300">{{ action.description }}</p>
+                </div>
+                <!-- <span class="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400" aria-hidden="true">
+                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
+                    </svg>
+                </span> -->
             </div>
-        </router-link>
-        <router-link to="/lesson/main">
-            <div class="w-[170px] h-[170px] flex flex-col dark:bg-gray-700 dark:border-none dark:hover:bg-gray-600 hover:bg-gray-200 shadow-lg rounded-lg py-3 px-7 border border-gray-200">
-                <img class="w-fit h-fit" src="../../../../../assets/images/number.png" alt="">
-                <p class="text-[18px] text-center text-gray-900 tracking-wider uppercase dark:text-white font-semibold">Numbers</p>
-            </div>
-        </router-link>
-        <router-link to="/lesson/main">
-            <div class="w-[170px] h-[170px] flex flex-col dark:bg-gray-700 dark:border-none dark:hover:bg-gray-600 hover:bg-gray-200 shadow-lg rounded-lg py-3 px-7 border border-gray-200">
-                <img class="w-fit h-fit" src="../../../../../assets/images/color.png" alt="">
-                <p class="text-[18px] text-center text-gray-900 tracking-wider uppercase dark:text-white font-semibold">Colors</p>
-            </div>
-        </router-link>
-        <router-link to="/lesson/main">
-            <div class="w-[170px] h-[170px] flex flex-col dark:bg-gray-700 dark:border-none dark:hover:bg-gray-600 hover:bg-gray-200 shadow-lg rounded-lg py-3 px-7 border border-gray-200">
-                <img class="w-fit h-fit" src="../../../../../assets/images/animal.png" alt="">
-                <p class="text-[18px] text-center text-gray-900 tracking-wider uppercase dark:text-white font-semibold">Animals</p>
-            </div>
-        </router-link>
-        <!-- <div class="sm:h-auto md:h-screen flex items-center flex-col gap-[50px] sm:gap-[50px]">
-            <div class="text-center mx-[50px]">
-                <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Lesson</h1>
-                <p class="mb-6 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400">Explore the different ASL Lessons</p>
-            </div>
-            <div class="flex justify-center flex-col sm:flex-col lg:flex-row gap-x-[100px] gap-y-[50px]">
-                <router-link to="/lesson/main">
-                    <div class="flex flex-col items-center ease-in-out duration-300 hover:scale-110 dark:hover:bg-gray-700 py-3 px-[30px] rounded-xl">
-                        <img src="/Images/online-test.png" class="w-[300px] h-[280px]">
-                        <div class="flex gap-x-[5px] text-[20px] font-semibold">
-                            <p class="text-xl text-gray-900 dark:text-white">Take</p>
-                            <p class="text-indigo-500">Quiz and Exams</p>
-                        </div>
-                    </div>
-                </router-link>
-                <router-link to="/lesson/main">
-                    <div class="flex flex-col items-center ease-in-out duration-300 hover:scale-110 hover:bg-gray-100 dark:hover:bg-gray-700 py-3 px-[30px] rounded-xl">
-                        <img src="/Images/tutorial.png" class="w-[300px] h-[280px]">
-                        <div class="flex gap-x-[5px] text-[20px] font-semibold">
-                            <p class="text-xl text-gray-900 dark:text-white">Watch</p>
-                            <p class="text-indigo-500">Video Tutorial</p>
-                        </div>
-                    </div>
-                </router-link>
-            </div>
-        </div> -->
+        </div>
     </div>
 </template>
+  
 <script>
+import ColorIcon from '../../../misc/Illustrations/ColorIcon.vue';
+import AlphabetIcon from '../../../misc/Illustrations/AlphabetIcon.vue';
+import NumberIcon from '../../../misc/Illustrations/NumberIcon.vue';
+import SportsIcon from '../../../misc/Illustrations/SportsIcon.vue';
+import EmotionIcon from '../../../misc/Illustrations/EmotionIcon.vue';
+import AnimalsIcon from '../../../misc/Illustrations/AnimalsIcon.vue';
+import {
+// AcademicCapIcon,
+// BanknotesIcon,
+// CheckBadgeIcon,
+// ClockIcon,
+// ReceiptRefundIcon,
+// UsersIcon,
+BookOpenIcon,
+} from '@heroicons/vue/24/outline'
 
+export default{
+    components:{
+        BookOpenIcon, ColorIcon, AlphabetIcon,
+        NumberIcon, SportsIcon, EmotionIcon,
+        AnimalsIcon
+    },
+    data(){
+        return{
+            actions:[
+                {
+                    title: 'Alphabet',
+                    description: 'Learn ASL Alphabet',
+                    href: '/lesson/main',
+                    icon: AlphabetIcon,
+                    iconForeground: 'text-teal-700',
+                    iconBackground: 'bg-teal-50',
+                },
+                {
+                    title: 'Numbers',
+                    description: 'Learn ASL Numbers',
+                    href: '/lesson/main',
+                    icon: NumberIcon,
+                    iconForeground: 'text-purple-700',
+                    iconBackground: 'bg-purple-50',
+                },
+                {
+                    title: 'Colors',
+                    description: 'Learn ASL Colors',
+                    href: '/lesson/main',
+                    icon: ColorIcon,
+                    iconForeground: 'text-sky-700',
+                    iconBackground: 'bg-sky-50',
+                },
+                {
+                    title: 'Animals',
+                    description: 'Learn ASL Animals',
+                    href: '/lesson/main',
+                    icon: AnimalsIcon,
+                    iconForeground: 'text-yellow-700',
+                    iconBackground: 'bg-yellow-50',
+                },
+                {
+                    title: 'Emotions',
+                    description: 'Learn ASL Emotions',
+                    href: '/lesson/main',
+                    icon: EmotionIcon,
+                    iconForeground: 'text-rose-700',
+                    iconBackground: 'bg-rose-50',
+                },
+                {
+                    title: 'Sports',
+                    description: 'Learn ASL Sports',
+                    href: '/lesson/main',
+                    icon: SportsIcon,
+                    iconForeground: 'text-indigo-700',
+                    iconBackground: 'bg-indigo-50',
+                },          
+            ]
+        }
+    }
+}
 </script>

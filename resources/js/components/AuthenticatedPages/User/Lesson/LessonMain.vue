@@ -69,7 +69,7 @@ export default {
                 </transition>
             </Popover>
         </div>
-        <div class="w-[70%] self-center py-10 px-5">
+        <div class="w-full sm:w-full md:w-[70%] self-center py-10 px-5">
             <div>
                 <h1 class="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">LESSON 1</h1>
                 <p class="mb-6 text-center text-lg font-normal text-gray-500 lg:text-xl sm:px-16 dark:text-gray-400">ALPHABETS</p>
@@ -85,14 +85,19 @@ export default {
                 </a>
             </div>
 
-            <div class="h-4/5 border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5 mt-3 overflow-auto">
-                <p class="dark:text-white">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem dolore eos ut doloremque odit ea minus nostrum, praesentium iste molestias eum magnam sunt iusto nesciunt maiores quae quam, molestiae quaerat.
-                </p>
-                <div class="self-center relative w-full overflow-hidden aspect-video z-30">
-                    <iframe class="absolute inset-0 w-[100%] h-[100%] border-none" src="https://www.youtube.com/embed/uKKvNqA9N20" title="Greetings in ASL | ASL - American Sign Language" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <div class="h-[700px]  flex flex-col gap-[20px] border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5 mt-3 overflow-auto">
+                <h2 class="text-2xl font-extrabold dark:text-white text-center">Learning ASL Alphabet</h2>
+                <div class="flex justify-center w-full">
+                    <div class="w-full sm:w-full md:w-[80%] z-30">
+                        <iframe class="w-full aspect-video border-none" src="https://www.youtube.com/embed/cGavOVNDj1s" title="American Sign Language Alphabet | Learn American Sign Language Letters" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>             
                 </div>
-                
+                <p class="dark:text-white text-justify">
+                    The ASL alphabet is an essential and foundational part of American Sign Language. If you want to be able to sign with Deaf friends, colleagues, or family members, you definitely have to learn more than the alphabet.
+                </p>
+                <div class="flex justify-center w-full">                   
+                    <img class="w-full sm:w-full md:w-[80%] rounded-lg" src="https://m.media-amazon.com/images/I/71MhODbYvJL.jpg" alt="image description">
+                </div>
             </div>
         </div>
     </div>
