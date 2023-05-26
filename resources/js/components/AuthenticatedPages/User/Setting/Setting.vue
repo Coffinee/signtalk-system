@@ -1,7 +1,7 @@
 <template>
   <div class="h-auto overflow-y-auto">
     <TabGroup :selectedIndex="selectedTab" @change="changeTab">
-        <TabList class=" flex justify-center  gap-[5px] text-sm font-medium text-center text-dark dark:text-gray-400 dark:border-gray-700 w-full mt-[20px] mb-[50px]">
+        <TabList class=" flex justify-center gap-[5px] text-sm font-medium text-center text-dark dark:text-gray-400 dark:border-gray-700 w-full mt-[20px]">
             <Tab
                 v-for="tab in settingTabs"
                 as="template"
@@ -10,7 +10,7 @@
                 >
                 <button
                     :class="[
-                    'w-[150px] rounded-t-lg p-5 text-sm font-medium dark:hover:bg-gray-700',
+                    'w-[150px] rounded-t-lg p-4 text-xs font-poppins dark:hover:bg-gray-700',
                     selected
                         ? 'bg-indigo-500 dark:bg-gray-700 text-white'
                         : 'shadow-md ',
@@ -21,8 +21,8 @@
             </Tab>
         </TabList>
 
-        <TabPanels>
-            <TabPanel class="h-full w-full">
+        <TabPanels class="lg:px-14 sm:px-0">
+            <TabPanel>
                 <Profile/>
             </TabPanel>
 
