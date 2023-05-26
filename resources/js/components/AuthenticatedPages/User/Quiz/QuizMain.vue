@@ -4,13 +4,16 @@ import
     QueueListIcon, 
     ClockIcon, 
     ChartBarIcon,
+    ChevronLeftIcon,
+    ChevronRightIcon
 } from '@heroicons/vue/24/outline';
 import { CheckCircleIcon } from '@heroicons/vue/20/solid'
 import { RadioGroup, RadioGroupDescription, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 export default{
     components:{
-        QueueListIcon, ChartBarIcon, ClockIcon, CheckCircleIcon,
-        RadioGroup, RadioGroupDescription, RadioGroupLabel, RadioGroupOption,      
+        QueueListIcon, ChartBarIcon, ClockIcon, CheckCircleIcon, ChevronLeftIcon,
+        ChevronRightIcon,  RadioGroup, RadioGroupDescription, RadioGroupLabel, 
+        RadioGroupOption,      
     },
     data(){
         return{
@@ -67,8 +70,20 @@ export default{
             </div>
             <div class="flex flex-col items-center justify-center gap-[20px] h-auto  px-[15px]  py-[20px]">
                 <div class=" w-full">
-                    <div class="flex flex-col items-center gap-[20px]">
-                        <h2 class="text-xl font-extrabold dark:text-white text-center">Question #1</h2>
+                    <div class="flex flex-col items-center gap-[20px] w-full">
+                        <div class="flex justify-between w-full">
+                            <div class="flex items-center justify-center p-2 bg-indigo-500 hover:bg-indigo-600 dark:bg-gray-600 dark:hover:bg-gray-700 rounded-full">
+                                <router-link to="#">
+                                    <ChevronLeftIcon class="w-[25px] h-[25px] stroke-white"/>
+                                </router-link>
+                            </div>
+                            <h2 class="text-xl font-extrabold dark:text-white text-center">Question #1</h2>
+                            <div class="flex items-center justify-center p-2 bg-indigo-500 hover:bg-indigo-600 dark:bg-gray-600 dark:hover:bg-gray-700 rounded-full">
+                                <router-link to="">
+                                    <ChevronRightIcon class="w-[25px] h-[25px] stroke-white"/>
+                                </router-link>
+                            </div>
+                        </div>
                         <div class="flex justify-center w-full">                   
                             <img class="w-full sm:w-full md:w-[80%] rounded-lg" src="https://m.media-amazon.com/images/I/71MhODbYvJL.jpg" alt="image description">
                         </div>
