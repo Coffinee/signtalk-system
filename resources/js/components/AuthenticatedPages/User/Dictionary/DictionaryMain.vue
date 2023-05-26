@@ -12,7 +12,7 @@ export default {
 </script>
 <template>
     <!-- Main Content -->
-    <div class="flex justify-center sm:items-center md:items-start w-auto h-auto bg-white dark:bg-[#111827] ">
+    <div class="flex justify-center sm:items-center md:items-start w-auto h-screen md:h-auto bg-white dark:bg-[#111827] ">
         <div class="flex flex-col gap-[50px] py-10 px-5">
             <form>
                 <div>

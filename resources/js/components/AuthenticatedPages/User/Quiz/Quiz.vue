@@ -16,6 +16,12 @@ export default {
     },
     data(){
         return{
+            quizCategories:[
+                { id: 1, title: 'Choice 1', value: 'A'},
+                { id: 1, title: 'Choice 2', value: 'B'},
+                { id: 1, title: 'Choice 3', value: 'C'},
+                { id: 1, title: 'Choice 4', value: 'D'},
+            ],
             modalOpen: false,
         }
     },
@@ -27,7 +33,7 @@ export default {
 }
 </script>
 <template>
-    <div class="dark:bg-transparent py-[50px] h-auto">
+    <div class="dark:bg-transparent py-[50px] h-auto md:h-screen">
         <div class="mb-[50px]">
             <h5 class="text-2xl text-center font-bold dark:text-white mb-3">Quiz</h5>
             <div class="flex justify-center flex-wrap gap-[20px]">
