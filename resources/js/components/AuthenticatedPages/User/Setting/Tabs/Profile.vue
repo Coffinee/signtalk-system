@@ -59,7 +59,7 @@ export default {
                             <div class="w-full flex space-x-2">
                                 <span v-if="!isInput_fname" class="flex-grow dark:text-gray-400">{{ user_fname }}</span>
                                 <input v-if="isInput_fname" type="text"
-                                    class="w-full h-6 border-b border-indigo-500 focus:outline-none">
+                                    class="w-full  border-b border-indigo-500 dark:border-none focus:outline-none px-[10px] py-[5px] rounded-lg dark:bg-gray-700 dark:text-gray-200">
                                 <button v-if="isInput_fname" @click.prevent="savefnameInput()" class="ml-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                     stroke="green" class="w-5 h-5">
@@ -83,7 +83,7 @@ export default {
                             <div class="w-full flex space-x-2">
                                 <span v-if="!isInput_lname" class="flex-grow dark:text-gray-400">{{ user_lname }}</span>
                                 <input v-if="isInput_lname" type="text"
-                                    class="w-full h-6 border-b border-indigo-500 focus:outline-none">
+                                    class="w-full  border-b border-indigo-500 dark:border-none focus:outline-none px-[10px] py-[5px] rounded-lg dark:bg-gray-700 dark:text-gray-200">
                                 <button v-if="isInput_lname" @click.prevent="savelnameInput()" class="ml-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                     stroke="green" class="w-5 h-5">
@@ -92,7 +92,7 @@ export default {
                                 </button>
                             </div>
                             <button @click.prevent="lnameInput()">
-                                <svg v-if="!isInput_fname" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                <svg v-if="!isInput_lname" xmlns="http://www.w3.org/2000/svg" fill="none"
                                     viewBox="0 0 24 24" stroke-width="1.5" stroke="gray" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
@@ -105,9 +105,9 @@ export default {
                         <dt class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Email Address:</dt>
                         <dd class="mt-1 flex text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                             <div class="w-full flex space-x-2">
-                                <span v-if="!isInput_email" class="flex-grow dark:text-gray-400">{{ user_email }}</span>
+                                <span v-if="!isInput_email" class="flex-grow dark:text-gray-400">{{ email }}</span>
                                 <input v-if="isInput_email" type="text"
-                                    class="w-full h-6 border-b border-indigo-500 focus:outline-none">
+                                    class="w-full  border-b border-indigo-500 dark:border-none focus:outline-none px-[10px] py-[5px] rounded-lg dark:bg-gray-700 dark:text-gray-200">
                                 <button v-if="isInput_email" @click.prevent="saveEmailInput()" class="ml-3">
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                     stroke="green" class="w-5 h-5">
@@ -137,7 +137,7 @@ export default {
 
         <Accordion :sectiontitle="'Change Password'" :setOpen="false" :accordionColor="'bg-indigo-500'">
             <form class="flex flex-col justify-center items-center dark:bg-gray-900 sm:p-[30px] md:p-[50px] h-full w-full">
-                <div class="sm:w-full md:w-[45%] border rounded-lg p-5">
+                <div class="sm:w-full md:w-[45%] border dark:border-gray-600 rounded-lg p-5">
                     <div class="mb-5">
                         <label for="password" class="block mb-2 text-sm font-semibold  text-black dark:text-white">Current
                             Password:</label>
