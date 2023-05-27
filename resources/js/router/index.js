@@ -36,8 +36,10 @@ const TeacherHome = () => import("@/components/AuthenticatedPages/Teacher/Home.v
 const TeacherDashboard = () => import("@/components/AuthenticatedPages/Teacher/TeacherDashboard/TeacherDashboard.vue");
 const TeacherClasses = () => import("@/components/AuthenticatedPages/Teacher/TeacherClasses/TeacherClasses.vue");
 const TeacherLesson = () => import("@/components/AuthenticatedPages/Teacher/TeacherLesson/TeacherLesson.vue");
+const TeacherProfile = () => import("@/components/AuthenticatedPages/Teacher/TeacherProfile/TeacherProfile.vue");
 const TeacherQuiz = () => import("@/components/AuthenticatedPages/Teacher/TeacherQuiz/TeacherQuiz.vue");
 const TeacherQuizAdd = () => import("@/components/AuthenticatedPages/Teacher/TeacherQuiz/TeacherQuizAdd.vue");
+
 
 // GUEST SIDE
 const About = () => import("@/components/GuestPages/About/About.vue");
@@ -176,6 +178,14 @@ const routes = [
                 component: TeacherClasses,
                 meta: {
                     title: `Teacher Classes`,
+                },
+            },
+            {
+                name: "teacher-profile",
+                path: "/teacher/profile",
+                component: TeacherProfile,
+                meta: {
+                    title: `Teacher Profile`,
                 },
             },
             {
