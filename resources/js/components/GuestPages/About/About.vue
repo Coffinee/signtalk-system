@@ -36,12 +36,12 @@ export default{
          <!-- Content -->
         <section class="bg-white dark:bg-gray-900 ">
             <div class="py-8 px-4 mx-auto max-w-screen-xl text-justify lg:py-16 ">
-                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-center text-gray-900 md:text-5xl lg:text-6xl dark:text-white">About Signtalk</h1>
-                <p class=" mb-14 text-md font-normal text-black lg:text-lg sm:px-16 lg:px-48 dark:text-gray-400 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo iste voluptas nisi magni! Voluptatem error quas provident iusto. Officiis ex corporis incidunt doloribus tenetur autem beatae error voluptatum laborum consectetur.</p>
+                <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-center text-gray-900 md:text-5xl lg:text-6xl dark:text-white">About Sign<span class="text-indigo-500">Talk</span></h1>
+                <p class=" mb-14 text-md font-normal text-black lg:text-lg sm:px-16 lg:px-48 dark:text-gray-400 ">SignTalk is a free-to-use web application whose aim is to teach American Sign Language to a wide range of individuals. Enjoy the features of our website and utilize it to the best of its potential. </p>
                 <div class="flex justify-center items-center">
-                    <img class="h-[300px]  max-w-full rounded-lg mb-14" src="https://flowbite.s3.amazonaws.com/docs/gallery/featured/image.jpg" alt="">
+                    <img class="h-[300px]  max-w-full rounded-lg mb-14" src="../../../../assets/images/ASLImage.jpg" alt="">
                 </div>
-                <p class="text-md font-normal text-black lg:text-lg sm:px-16 lg:px-48 dark:text-gray-400 ">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo iste voluptas nisi magni! Voluptatem error quas provident iusto. Officiis ex corporis incidunt doloribus tenetur autem beatae error voluptatum laborum consectetur.</p>
+                <p class="text-md font-normal text-black lg:text-lg sm:px-16 lg:px-48 dark:text-gray-400 ">This application focuses its attention to its availability for the general public who wants to learn American Sign Language. So, what are you waiting for? Come Learn with Us! </p>
             </div>
         </section>
         <div class="bg-gray-900 sm:py-32">

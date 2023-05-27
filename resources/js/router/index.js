@@ -54,7 +54,7 @@ const routes = [
         name: "FirstTime",
         path:'/auth/first-time',
         component: FirstTime,
-        meta: {
+        meta:  {
             title: "SignTalk | FirstTime",
         },
     },
@@ -407,6 +407,7 @@ router.beforeEach((to, from, next) => {
                 next({ name: "teacher-dashboard" });
             }
         }
+        
         next();
     } else {
       next();
