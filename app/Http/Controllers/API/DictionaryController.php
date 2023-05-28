@@ -33,20 +33,20 @@ class DictionaryController extends BaseController
     {
         // $data = Dictionary::create($request->all());
         // return $this->sendResponse($data, "Saved");
-        $logo_link = "";
+        $image_link = "";
 
-        if($request->logo){
-            $logo_binary = $request->logo;
-            $logo_link = time().'.' . explode('/', explode(':', substr($logo_binary, 0, strpos($logo_binary, ';')))[1])[1];
-            \Image::make($logo_binary)->fit(200, 200)->save('/images'.$logo_link)->destroy();
+        if($request->image_file){
+            $image_binary = $request->image_file;
+            $image_link = time().'.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
+            \Image::make($image_binary)->fit(200, 200)->save('uploads/image/'.$image_link)->destroy();
 
         }
         $validated = $request->validated();
-        $validated['logo']   = $logo_link;
+        $validated['image_file'] = $image_link;
 
 
         $data = Dictionary::create($validated);
-        return $this->sendResponse($logo_link, "Saved Data");
+        return $this->sendResponse($image_link, "Saved Data");
     }
 
     /**
@@ -74,7 +74,6 @@ class DictionaryController extends BaseController
             'word' => $request->params['data']['word'],
             'description' => $request->params['data']['description'],
             'video_link' => $request->params['data']['video_link'],
-            'image_file' => $request->params['data']['image_file'],
           ]);
           return $this->sendResponse($request->validated(), "Updated Data");
     }

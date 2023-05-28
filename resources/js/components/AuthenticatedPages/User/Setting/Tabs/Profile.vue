@@ -124,7 +124,7 @@ export default {
                             </button>
                         </dd>
                     </div>
-                    
+
                     <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Class Code:</dt>
                         <dd class="mt-1 flex text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">

@@ -57,7 +57,10 @@
                             {{ item.description }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ item.file }}
+                            {{ item.video_link }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ item.image_file }}
                         </td>
                         <td class="px-6 py-4 flex gap-[5px] text-center">
                             <a @click.prevent="editForm(item)" class="font-medium text-blue-600  hover:underline">Edit</a>
@@ -93,7 +96,7 @@
                     </div>
 
                     <div class="space-y-1">
-                        <label ref="image_file" for="image_file" class="text-sm">Upload Photo</label>
+                        <label for="image_file" class="text-sm">Upload Photo</label>
                         <div class="flex items-center justify-center w-full">
                             <label
                                 class="flex flex-col w-full h-32 rounded-md border-2 border-gray-500 border-dashed hover:bg-gray-200 cursor-pointer">
@@ -107,7 +110,7 @@
                                     <p class="pt-1 text-sm tracking-wider text-gray-600 group-hover:text-gray-600">
                                         Attach a file</p>
                                 </div>
-                                <input type="file" class="opacity-0" />
+                                <input ref="image_file" type="file" class="opacity-0" @input="uploadImage" accept="image/png, image/jpeg, image/jpg, image/svg"/>
                             </label>
                         </div>
                     </div>
