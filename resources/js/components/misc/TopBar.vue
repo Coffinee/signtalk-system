@@ -52,6 +52,7 @@
                         </MenuItem> -->
                         <!-- <router-link to="#"  class="block px-3 py-1 text-sm leading-6 text-gray-900">My Profile</router-link>
                         <router-link to="#" @click.prevent="logout" class="block px-3 py-1 text-sm leading-6 text-gray-900">Sign Out</router-link> -->
+
                 </MenuItems>
               </transition>
             </Menu>

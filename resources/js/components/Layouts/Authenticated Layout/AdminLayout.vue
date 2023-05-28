@@ -185,15 +185,16 @@ import {
   ClipboardDocumentIcon,
   WindowIcon,
   XMarkIcon,
+  LanguageIcon,
 } from '@heroicons/vue/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
 
 const navigation = [
-  { name: 'Dashboard', href: '/Admin/Dashboard', icon: WindowIcon, current: true },
-  { name: 'Dictionary', href: '/Admin/Dictionary', icon: BookOpenIcon, current: false },
-  { name: 'Lesson', href: '/Admin/Lesson', icon: DocumentTextIcon, current: false },
-  { name: 'Quiz', href: '/Admin/Quiz', icon: ClipboardDocumentIcon, current: false },
-  // { name: 'Examination', href: '/Admin/Examination', icon: ClipboardDocumentIcon, current: false },
+  { name: 'Dashboard', href: '/admin/dashboard', icon: WindowIcon, current: true },
+  { name: 'Dictionary', href: '/admin/dictionary', icon: BookOpenIcon, current: false },
+  { name: 'Lesson', href: '/admin/lesson', icon: DocumentTextIcon, current: false },
+  { name: 'Quiz', href: '/admin/quiz', icon: ClipboardDocumentIcon, current: false },
+  { name: 'Translate', href: '/admin/translate', icon: LanguageIcon, current: false },
 ]
 // const userNavigation = [
 //   { name: 'Your profile', href: '#' },

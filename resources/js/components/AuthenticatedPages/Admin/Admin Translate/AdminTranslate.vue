@@ -77,19 +77,6 @@
                     </div>
 
                     <div class="space-y-1">
-                        <label for="desc" class="text-[15px]">Add Description</label>
-                        <textarea v-model="form.description"
-                            class="pl-2 pt-2 text-xs w-full h-40 resize-none rounded-md border border-indigo-900"></textarea>
-                    </div>
-
-                    <div class="space-y-1">
-                        <label class="block mb-2 text-[15px] font-medium" for="image">Upload Image</label>
-                        <input
-                            class="block w-full text-md text-gray-900 border border-indigo-900 rounded-md cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                            id="large_size" type="file" required>
-                    </div>
-
-                    <div class="space-y-1">
                         <label for="file" class="text-[15px]">Upload Video Link <span class="text-[13px]">(optional)</span>
                         </label>
                         <input v-model="form.file" type="text"

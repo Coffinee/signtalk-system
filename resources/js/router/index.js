@@ -52,14 +52,14 @@ const TeacherLayout = () =>import("@/components/Layouts/Authenticated Layout/Tea
 const GuestLayout = () =>import("@/components/Layouts/Authenticated Layout/GuestLayout.vue");
 
 const routes = [
-    {
-        name: "FirstTime",
-        path:'/auth/first-time',
-        component: FirstTime,
-        meta:  {
-            title: "SignTalk | FirstTime",
-        },
-    },
+    // {
+    //     name: "FirstTime",
+    //     path:'/auth/first-time',
+    //     component: FirstTime,
+    //     meta:  {
+    //         title: "SignTalk | FirstTime",
+    //     },
+    // },
     {
         path: "/",
         component: GuestLayout,
@@ -67,6 +67,14 @@ const routes = [
             middleware: "guest",
         },
         children: [
+            {
+                name: "home",
+                path: "/",
+                component: Home,
+                meta: {
+                    title: `Home`,
+                },
+            },
             {
                 name: "about",
                 path: "/about",
@@ -81,14 +89,6 @@ const routes = [
                 component: Contact,
                 meta: {
                     title: "SignTalk | Contact",
-                },
-            },
-            {
-                name: "home",
-                path: "/",
-                component: Home,
-                meta: {
-                    title: `Home`,
                 },
             },
             {
