@@ -72,14 +72,6 @@ const routes = [
                 },
             },
             {
-                name: "home",
-                path: "/",
-                component: Home,
-                meta: {
-                    title: `Home`,
-                },
-            },
-            {
                 name: "about",
                 path: "/about",
                 component: About,
@@ -93,6 +85,14 @@ const routes = [
                 component: Contact,
                 meta: {
                     title: "SignTalk | Contact",
+                },
+            },
+            {
+                name: "home",
+                path: "/",
+                component: Home,
+                meta: {
+                    title: `Home`,
                 },
             },
             {
