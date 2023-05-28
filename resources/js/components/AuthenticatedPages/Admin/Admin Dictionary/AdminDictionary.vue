@@ -38,6 +38,9 @@
                             Video URL
                         </th>
                         <th scope="col" class="px-6 py-3">
+                            Image
+                        </th>
+                        <th scope="col" class="px-6 py-3">
                             Action
                         </th>
                     </tr>
@@ -54,7 +57,10 @@
                             {{ item.description }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ item.file }}
+                            {{ item.video_link }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ item.image_file }}
                         </td>
                         <td class="px-6 py-4 flex gap-[5px] text-center">
                             <a @click.prevent="editForm(item)" class="font-medium text-blue-600  hover:underline">Edit</a>
@@ -71,26 +77,26 @@
             <form @submit.prevent="edit ? updateForm() : submitForm()">
                 <div class="my-3 space-y-6">
                     <div class="space-y-1">
-                        <label for="word" class="text-sm">Add Word</label>
+                        <label for="word" class="text-sm">Word</label>
                         <input v-model="form.word" type="text"
                             class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500">
                     </div>
 
                     <div class="space-y-1">
-                        <label for="desc" class="text-sm">Add Description</label>
+                        <label for="desc" class="text-sm">Description</label>
                         <textarea v-model="form.description"
                             class="pl-2 pt-2 text-xs w-full h-40 resize-none rounded-md border border-gray-500"></textarea>
                     </div>
 
                     <div class="space-y-1">
-                        <label for="file" class="text-sm relative">Upload Video Link <span class="absolute text-[9px] text-indigo-500 ml-1">*optional</span>
+                        <label for="video-link" class="text-sm relative">Upload Video Link <span class="absolute text-[9px] text-indigo-500 ml-1">*optional</span>
                         </label>
-                        <input v-model="form.file" type="text"
+                        <input v-model="form.video_link" type="text"
                             class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500">
                     </div>
 
                     <div class="space-y-1">
-                        <label for="file" class="text-sm">Upload Photo</label>
+                        <label for="image_file" class="text-sm">Upload Photo</label>
                         <div class="flex items-center justify-center w-full">
                             <label
                                 class="flex flex-col w-full h-32 rounded-md border-2 border-gray-500 border-dashed hover:bg-gray-200 cursor-pointer">
@@ -104,7 +110,7 @@
                                     <p class="pt-1 text-sm tracking-wider text-gray-600 group-hover:text-gray-600">
                                         Attach a file</p>
                                 </div>
-                                <input type="file" class="opacity-0" />
+                                <input ref="image_file" type="file" class="opacity-0" @input="uploadImage" accept="image/png, image/jpeg, image/jpg, image/svg"/>
                             </label>
                         </div>
                     </div>
@@ -145,8 +151,10 @@ export default {
                 id: '',
                 word: '',
                 description: '',
-                file: ''
-            })
+                video_link: '',
+                image_file: ''
+            }),
+            image_url: ''
         }
     },
     methods: {
@@ -157,7 +165,8 @@ export default {
                 id: '',
                 word: '',
                 description: '',
-                file: ''
+                video_link: '',
+                image_file: ''
             })
         },
 
@@ -199,6 +208,19 @@ export default {
             }).catch((e) => {
                 errorMessage('Opps!', e.message, 'top-right')
             });
+        },
+        uploadImage() {
+            let input = this.$refs.image_file;
+            let file = input.files;
+            if (file && file[0]) {
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    this.image_url = e.target.result;
+                    this.form.image_file = e.target.result;
+                };
+                reader.readAsDataURL(file[0]);
+                this.$emit("input", file[0]);
+            }
         },
     },
 

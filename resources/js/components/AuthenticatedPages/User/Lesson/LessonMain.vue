@@ -27,7 +27,7 @@ export default {
 </script>
 <template>
     <div class="flex flex-col justify-center w-auto h-auto bg-white dark:bg-transparent">
-        <div class="sticky top-[69px] z-[40]">
+        <!-- <div class="sticky top-[69px] z-[40]">
             <Popover class="relative isolate ">
                 <div class="bg-white dark:bg-transparent py-5">
                     <div class="mx-auto max-w-7xl px-6 lg:px-8">
@@ -68,7 +68,7 @@ export default {
                     </PopoverPanel>
                 </transition>
             </Popover>
-        </div>
+        </div> -->
         <div class="w-full sm:w-full md:w-[70%] self-center py-10 px-5">
             <div>
                 <h1 class="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">LESSON 1</h1>
@@ -85,7 +85,7 @@ export default {
                 </a>
             </div>
 
-            <div class="h-[700px]  flex flex-col gap-[20px] border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5 mt-3 overflow-auto">
+            <div class="h-auto flex flex-col gap-[20px] border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5 mt-3">
                 <h2 class="text-2xl font-extrabold dark:text-white text-center">Learning ASL Alphabet</h2>
                 <div class="flex justify-center w-full">
                     <div class="w-full sm:w-full md:w-[80%] z-30">

@@ -23,6 +23,7 @@
         "@ckeditor/ckeditor5-vue": "github:ckeditor/ckeditor5-vue",
         "@headlessui/vue": "^1.7.13",
         "@heroicons/vue": "^2.0.18",
+        "@vueuse/core": "^10.1.2",
         "daisyui": "^2.51.6",
         "flowbite": "^1.6.5",
         "mosha-vue-toastify": "^1.0.23",

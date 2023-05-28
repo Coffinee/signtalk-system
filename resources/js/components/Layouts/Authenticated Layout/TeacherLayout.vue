@@ -1,17 +1,4 @@
-<!--
-  This example requires some changes to your config:
 
-
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-
--->
 <template>
     <!--
       This example requires updating your template:
@@ -21,7 +8,7 @@
       <body class="h-full">
 
     -->
-        <div>
+        <div class="h-full bg-white">
         <TransitionRoot as="template" :show="sidebarOpen">
             <Dialog as="div" class="relative z-50 lg:hidden" @close="sidebarOpen = false">
             <TransitionChild as="template" enter="transition-opacity ease-linear duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="transition-opacity ease-linear duration-300" leave-from="opacity-100" leave-to="opacity-0">
@@ -114,6 +101,9 @@
                         <li v-for="subItem in item.children" :key="subItem.name">
                           <DisclosureButton as="a" :href="subItem.href" :class="[subItem.current ? 'bg-gray-50' : 'hover:bg-indigo-700 text-indigo-200 hover:text-white', 'block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-gray-700']">{{ subItem.name }}</DisclosureButton>
                         </li>
+                        <li>
+                          <DisclosureButton @click.prevent="logout" as="a" :class="[isCurrent ? 'bg-gray-50' : 'hover:bg-indigo-700 text-indigo-200 hover:text-white', 'block rounded-md py-2 pr-2 pl-9 text-sm leading-6 text-gray-700']">Sign Out</DisclosureButton>
+                        </li>
                       </DisclosurePanel>
                     </Disclosure>
                   </li>
@@ -160,7 +150,7 @@
                 </MenuButton>
                 <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
                     <MenuItems class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right text-center rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
-                        <a href="#" @click.prevent="logout" :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900']">Sign Out</a>
+                        <router-link to="#" @click.prevent="logout" :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900']">Sign Out</router-link>
                     </MenuItems>
                 </transition>
                 </Menu>
@@ -168,7 +158,7 @@
             </div>
         </div>
         <main class="py-10">
-            <div class="px-4 sm:px-6 lg:px-8">
+            <div class="px-4 h-full sm:px-6 lg:px-8">
                 <!-- YOUR CONTENT HERE -->
                 <router-view :key="$route.fullPath"></router-view>
             </div>
@@ -194,6 +184,8 @@ import {
   TransitionRoot,
 } from '@headlessui/vue'
 import {
+
+    UserIcon,
   Bars3Icon,
   BellIcon,
   BookOpenIcon,
@@ -218,9 +210,8 @@ const settingsNav = [
     name: 'Settings',
     current: false,
     children: [
-      { name: 'Engineering', href: '#' },
-      { name: 'Human Resources', href: '#' },
-      { name: 'Customer Success', href: '#' },
+      { name: 'Profile', href: '/teacher/profile', icon: WindowIcon, current:false },
+
     ],
   },
 ]

@@ -1,8 +1,8 @@
 <template>
-    <div class="flex justify-center h-screen">
-        <div class="container mt-12 w-[1000px] h-[500px] bg-white dark:bg-gray-800 dark:border-gray-700 shadow shadow-indigo-300 rounded-lg">
-            <div class="flex flex-col space-y-3 m-3 h-[475px] p-5">
-                <div class="w-full h-full flex flex-col items-center justify-center border border-gray-400 rounded-md">
+    <div class="flex justify-center items-center h-screen">
+        <div class="w-full md:w-[70%] lg:w-[50%] h-[80%] md:h-[70%] bg-white dark:bg-gray-800 dark:border-gray-700 shadow shadow-indigo-300 rounded-lg">
+            <div class="flex flex-col space-y-3 m-3 h-[95%] p-5">
+                <div class="w-full h-full flex flex-col items-center justify-center border border-gray-400 rounded-md overflow-auto">
                     <button @click="expand"
                         class="btn-hamburger h-12 m-2 rounded-full shadow flex items-center justify-center duration-500 border dark:border-gray-600"
                         :class="open ? 'w-10 duration-500 ' : 'w-[2/2] px-[10px]'" :disabled="!open">
@@ -46,7 +46,7 @@
                             </button>
                         </div>
                     </button>
-                    <div class="text-center text-8xl text-gray-300 font-bold h-full w-full">
+                    <div class="text-center text-2xl text-gray-300 font-bold h-full w-full">
                         OUTPUT HERE
                     </div>
                 </div>

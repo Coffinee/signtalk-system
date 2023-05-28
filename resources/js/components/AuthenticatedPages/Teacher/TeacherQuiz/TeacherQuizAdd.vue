@@ -100,11 +100,11 @@ export default{
                 </div>
                 <div class="relative">
                     <label for="default" class="block mb-2 text-[14px] font-medium text-gray-900 dark:text-white">Set Timer:</label>
-                    <select id="default" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 pr-2.5 pl-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select id="default" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full py-2.5 pr-2.5 pl-10">
                         <option hidden>Select Timer</option>
                         <option v-for="time in quizTimer" :key="time" value="{{ time.value }}">{{ time.name }}</option>
                     </select>
-                    <ClockIcon class="absolute top-[37px] left-[8px] w-[25px] h-[25px] stroke-gray-500 dark:stroke-white stroke-2"/>
+                    <ClockIcon class="absolute top-[37px] left-[8px] w-[25px] h-[25px] stroke-gray-500"/>
                 </div>
             </div>
             <div>
