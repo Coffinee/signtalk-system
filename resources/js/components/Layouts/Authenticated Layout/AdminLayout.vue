@@ -140,10 +140,13 @@
                       </span>
                   </MenuButton>
                   <transition enter-active-class="transition ease-out duration-100" enter-from-class="transform opacity-0 scale-95" enter-to-class="transform opacity-100 scale-100" leave-active-class="transition ease-in duration-75" leave-from-class="transform opacity-100 scale-100" leave-to-class="transform opacity-0 scale-95">
-                      <MenuItems class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">
-                      <MenuItem v-for="item in userNavigation" :key="item.name" v-slot="{ active }">
-                          <a :href="item.href" :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900']">{{ item.name }}</a>
-                      </MenuItem>
+                      <MenuItems class="absolute right-0 z-10 mt-2.5 w-32 origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none">                       
+                          <!-- <router-link to="/setting/profile"
+                            :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900 text-center']">Settings</router-link>
+                          <router-link to="#" @click.prevent="logout"
+                            :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900 text-center']">Sign out</router-link> -->
+                          <router-link to="#"  class="block px-3 py-1 text-sm leading-6 text-gray-900 text-center">Settings</router-link>
+                          <router-link to="#" @click.prevent="logout" class="block px-3 py-1 text-sm leading-6 text-gray-900 text-center">Sign Out</router-link>                                            
                       </MenuItems>
                   </transition>
                   </Menu>
@@ -159,9 +162,8 @@
     </div>
   </div>
 </template>
-
 <script setup>
-
+import { userAuthStore } from '@/store/auth';
 import { useRouter, useRoute } from 'vue-router'
 import { ref } from 'vue'
 import {
@@ -186,18 +188,97 @@ import {
 } from '@heroicons/vue/24/outline'
 import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
 
-
 const navigation = [
   { name: 'Dashboard', href: '/Admin/Dashboard', icon: WindowIcon, current: true },
   { name: 'Dictionary', href: '/Admin/Dictionary', icon: BookOpenIcon, current: false },
   { name: 'Lesson', href: '/Admin/Lesson', icon: DocumentTextIcon, current: false },
   { name: 'Quiz', href: '/Admin/Quiz', icon: ClipboardDocumentIcon, current: false },
-  { name: 'Examination', href: '/Admin/Examination', icon: ClipboardDocumentIcon, current: false },
+  // { name: 'Examination', href: '/Admin/Examination', icon: ClipboardDocumentIcon, current: false },
 ]
-const userNavigation = [
-  { name: 'Your profile', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
+// const userNavigation = [
+//   { name: 'Your profile', href: '#' },
+//   { name: 'Sign out', href: '#' },
+// ]
 
 const sidebarOpen = ref(false)
 </script>
+
+<script>
+export default {
+  methods: {
+      // expand() {
+      //   this.open = !this.open
+      //   console.log('clicked')
+      // },
+      async logout() {
+        await this.$axios.post('/logout').then(({ data }) => {
+          userAuthStore().signOut()
+          this.$router.push({ name: "login" });
+        })
+      }
+    }
+}
+</script>
+
+<!-- <script>
+  import { useRouter, useRoute } from 'vue-router'
+  import { userAuthStore } from '@/store/auth';
+  import {
+    Dialog,
+    DialogPanel,
+    Menu,
+    MenuButton,
+    MenuItem,
+    MenuItems,
+    TransitionChild,
+    TransitionRoot,
+  } from '@headlessui/vue'
+  import {
+    Bars3Icon,
+    BellIcon,
+    BookOpenIcon,
+    Cog6ToothIcon,
+    DocumentTextIcon,
+    ClipboardDocumentIcon,
+    WindowIcon,
+    XMarkIcon,
+  } from '@heroicons/vue/24/outline'
+  import { ChevronDownIcon, MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
+  export default{
+    components: {
+      Dialog, DialogPanel, Menu, MenuButton, MenuItem,
+      MenuItems, TransitionChild, TransitionRoot, Bars3Icon,
+      BellIcon, BookOpenIcon, Cog6ToothIcon, DocumentTextIcon,
+      ClipboardDocumentIcon, WindowIcon, XMarkIcon, ChevronDownIcon,
+      MagnifyingGlassIcon
+    },
+    data(){
+      return{
+          navigation:[
+            { name: 'Dashboard', href: '/Admin/Dashboard', icon: WindowIcon, current: true },
+            { name: 'Dictionary', href: '/Admin/Dictionary', icon: BookOpenIcon, current: false },
+            { name: 'Lesson', href: '/Admin/Lesson', icon: DocumentTextIcon, current: false },
+            { name: 'Quiz', href: '/Admin/Quiz', icon: ClipboardDocumentIcon, current: false },
+            // { name: 'Examination', href: '/Admin/Examination', icon: ClipboardDocumentIcon, current: false },
+          ],
+          userNavigation:[
+            { name: 'Your profile', href: '#' },
+            { name: 'Sign out', href: '#' },
+          ],
+          sidebarOpen: false
+      }
+    },
+    methods: {
+      // expand() {
+      //   this.open = !this.open
+      //   console.log('clicked')
+      // },
+      async logout() {
+        await this.$axios.post('/logout').then(({ data }) => {
+          userAuthStore().signOut()
+          this.$router.push({ name: "login" });
+        })
+      }
+    }
+  }
+</script> -->

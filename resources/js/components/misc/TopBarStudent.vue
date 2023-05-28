@@ -37,11 +37,12 @@
                 leave-to-class="transform opacity-0 scale-95">
                 <MenuItems
                   class="absolute right-0 z-10 mt-2.5 w-[150px] origin-top-right rounded-md bg-white py-2 shadow-lg ring-1 ring-gray-900/5 focus:outline-none border-5 border-red-500">
-                  <router-link to="/setting/profile"
+                  <!-- <router-link to="/setting/profile"
                     :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900 text-center']">Settings</router-link>
                   <router-link to="#" @click.prevent="logout"
-                    :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900 text-center']">Sign
-                    out</router-link>
+                    :class="[active ? 'bg-gray-50' : '', 'block px-3 py-1 text-sm leading-6 text-gray-900 text-center']">Sign out</router-link> -->
+                  <router-link to="/setting/profile"  class="block px-3 py-1 text-sm leading-6 text-gray-900 text-center">Settings</router-link>
+                  <router-link to="#" @click.prevent="logout" class="block px-3 py-1 text-sm leading-6 text-gray-900 text-center">Sign Out</router-link>
                 </MenuItems>
               </transition>
             </Menu>
