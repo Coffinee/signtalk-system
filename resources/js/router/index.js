@@ -26,7 +26,8 @@ const TeacherHome = () => import("@/components/AuthenticatedPages/Teacher/Home.v
 const TeacherDashboard = () => import("@/components/AuthenticatedPages/Teacher/TeacherDashboard/TeacherDashboard.vue");
 const TeacherClasses = () => import("@/components/AuthenticatedPages/Teacher/TeacherClasses/TeacherClasses.vue");
 const TeacherLesson = () => import("@/components/AuthenticatedPages/Teacher/TeacherLesson/TeacherLesson.vue");
-const TeacherProfile = () => import("@/components/AuthenticatedPages/Teacher/TeacherProfile/TeacherProfile.vue");
+const TeacherSettings = () => import("@/components/AuthenticatedPages/Teacher/TeacherSettings/TeacherSettings.vue");
+const TeacherSettingsViewProfile = () => import("@/components/AuthenticatedPages/Teacher/TeacherSettings/Tabs/ViewProfile.vue");
 const TeacherQuiz = () => import("@/components/AuthenticatedPages/Teacher/TeacherQuiz/TeacherQuiz.vue");
 const TeacherQuizAdd = () => import("@/components/AuthenticatedPages/Teacher/TeacherQuiz/TeacherQuizAdd.vue");
 
@@ -286,12 +287,19 @@ const routes = [
                 },
             },
             {
-                name: "teacher-profile",
-                path: "/teacher/profile",
-                component: TeacherProfile,
+                name: "teacher-settings",
+                path: "/teacher/settings",
+                component: TeacherSettings,
                 meta: {
-                    title: `Teacher Profile`,
+                    title: `Teacher Settings`,
                 },
+                children:[
+                    {
+                        name: 'teacher-settings-profile',
+                        path: "teacher/settings/profile",
+                        component: TeacherSettingsViewProfile,
+                    },
+                ],
             },
             {
                 name: "teacher-quiz",
