@@ -76,14 +76,14 @@
                             class="pl-2 text-xs w-full h-8 rounded-md border border-indigo-900">
                     </div>
                 </div>
+                <div class="flex gap-1 mt-10">
+                    <button type="button" @click.prevent="slideoverToggle"
+                        class="rounded-md w-full bg-white border border-indigo-500 py-2 px-3 text-sm">Close</button>
+                    <button type="submit"
+                        class="rounded-md w-full bg-indigo-500 border border-white py-2 px-3 text-sm text-white">{{
+                            edit ? 'Update' : 'Save' }}</button>
+                </div>
             </form>
-            <div class="flex gap-1 mt-10">
-                <button type="button" @click.prevent="slideoverToggle"
-                    class="rounded-md w-full bg-white border border-indigo-500 py-2 px-3 text-sm">Close</button>
-                <button type="submit"
-                    class="rounded-md w-full bg-indigo-500 border border-white py-2 px-3 text-sm text-white">{{
-                        edit ? 'Update' : 'Save' }}</button>
-            </div>
         </template>
     </Slideover>
 </template>
