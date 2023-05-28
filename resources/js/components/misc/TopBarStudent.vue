@@ -52,7 +52,7 @@
     </div>
   </nav>
 </template>
-  
+
 <script>
 import { useRouter, useRoute } from 'vue-router';
 import { ref } from 'vue';

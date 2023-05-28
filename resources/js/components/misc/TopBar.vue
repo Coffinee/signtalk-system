@@ -2,8 +2,9 @@
   <nav class="bg-white border-gray-200 dark:bg-gray-900 sticky top-0 insex-x-0 w-full z-50">
     <div class="relative flex flex-wrap items-center justify-between mx-auto py-4 px-16 border-b border-gray-200 dark:border-gray-700">
       <router-link to="/">
-        <p class="self-center text-3xl font-bold whitespace-nowrap dark:text-white">Sign<span
-            class="text-indigo-500  font-bold">Talk</span></p>
+        <p class="self-center text-3xl font-bold whitespace-nowrap dark:text-white border border-red-500">Sign<span
+            class="text-indigo-500  font-bold">Talk</span>
+        </p>
       </router-link>
       <button @click="expand" type="button"
         class="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -62,7 +63,6 @@
     </div>
   </nav>
 </template>
-
 
 <script setup>
 import { useDark, useToggle } from '@vueuse/core';

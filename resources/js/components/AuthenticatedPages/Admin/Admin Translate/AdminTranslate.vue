@@ -25,17 +25,8 @@
             <table class="w-full text-sm text-left text-gray-500 py-[10px]">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-200">
                     <tr>
-                        <th scope="col" class="px-6 py-3">
-                            ID
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Word
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Video URL
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Action
+                        <th v-for="label in tableLabels" :key="label.id" scope="col" class="text-center px-6 py-3">
+                            {{ label.name }}
                         </th>
                     </tr>
                 </thead>
@@ -115,7 +106,13 @@ export default {
                 id: '',
                 word: '',
                 video_link: ''
-            })
+            }),
+            tableLabels:[
+                {id: '1', name: 'ID'},
+                {id: '2', name: 'Word'},
+                {id: '3', name: 'Video Link'},
+                {id: '4', name: 'Action'},
+            ]
         }
     },
     methods: {

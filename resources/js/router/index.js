@@ -1,35 +1,25 @@
 import { createRouter, createWebHistory } from "vue-router";
 import {userAuthStore} from '@/store/auth';
-// USER SIDE
 
+// GUEST SIDE - login - Register - First Time
+const Login = () => import("@/components/AuthenticatedPages/User/Auth/Login.vue");
+const Register = () => import("@/components/AuthenticatedPages/User/Auth/Register.vue");
+const About = () => import("@/components/GuestPages/About/About.vue");
+const Contact = () => import("@/components/GuestPages/Contact/Contact.vue");
+
+// USER SIDE
 const Home = () => import("@/components/AuthenticatedPages/User/Home/Home.vue");
-const DictionaryLandingPage = () => import("@/components/AuthenticatedPages/User/Dictionary/DictionaryLandingPage.vue");
 const DictionaryMain = () => import("@/components/AuthenticatedPages/User/Dictionary/DictionaryMain.vue");
 const LessonLandingPage = () => import("@/components/AuthenticatedPages/User/Lesson/LessonLandingPage.vue");
 const LessonMain = () => import("@/components/AuthenticatedPages/User/Lesson/LessonMain.vue");
 const Quiz = () => import("@/components/AuthenticatedPages/User/Quiz/Quiz.vue");
+const Translate = () => import("@/components/AuthenticatedPages/User/Translate/Translate.vue");
 const QuizMain = () => import("@/components/AuthenticatedPages/User/Quiz/QuizMain.vue");
-
 const Setting = () =>import("@/components/AuthenticatedPages/User/Setting/Setting.vue");
 const Profile = () =>import("@/components/AuthenticatedPages/User/Setting/Tabs/Profile.vue");
 const Analytics = () =>import("@/components/AuthenticatedPages/User/Setting/Tabs/Analytics.vue");
 const Personalization = () =>import("@/components/AuthenticatedPages/User/Setting/Tabs/Personalization.vue");
 
-//login - Register - First Time
-const Register = () => import("@/components/AuthenticatedPages/User/Auth/Register.vue");
-const Login = () => import("@/components/AuthenticatedPages/User/Auth/Login.vue");
-const FirstTime = () => import("@/components/AuthenticatedPages/User/Auth/FirstTime.vue");
-// const Exam = () => import("@/components/AuthenticatedPages/User/Exam/Exam.vue");
-const Interactives = () => import("@/components/AuthenticatedPages/User/Interactives/Interactives.vue");
-const Translate = () => import("@/components/AuthenticatedPages/User/Translate/Translate.vue");
-
-// ADMIN SIDE
-const AdminDashboard = () => import("@/components/AuthenticatedPages/Admin/Admin Dashboard/AdminDashboard.vue");
-const AdminDictionary = () => import("@/components/AuthenticatedPages/Admin/Admin Dictionary/AdminDictionary.vue");
-const AdminLesson = () => import("@/components/AuthenticatedPages/Admin/Admin Lesson/AdminLesson.vue");
-const AdminQuiz = () => import("@/components/AuthenticatedPages/Admin/Admin Quiz/AdminQuiz.vue");
-const AdminExamination = () => import("@/components/AuthenticatedPages/Admin/Admin Examination/AdminExamination.vue");
-const AdminTranslate = () => import("@/components/AuthenticatedPages/Admin/Admin Translate/AdminTranslate.vue");
 
 // TEACHER SIDE
 const TeacherHome = () => import("@/components/AuthenticatedPages/Teacher/Home.vue");
@@ -41,25 +31,23 @@ const TeacherQuiz = () => import("@/components/AuthenticatedPages/Teacher/Teache
 const TeacherQuizAdd = () => import("@/components/AuthenticatedPages/Teacher/TeacherQuiz/TeacherQuizAdd.vue");
 
 
-// GUEST SIDE
-const About = () => import("@/components/GuestPages/About/About.vue");
-const Contact = () => import("@/components/GuestPages/Contact/Contact.vue");
+// ADMIN SIDE
+const AdminDashboard = () => import("@/components/AuthenticatedPages/Admin/Admin Dashboard/AdminDashboard.vue");
+const AdminDictionary = () => import("@/components/AuthenticatedPages/Admin/Admin Dictionary/AdminDictionary.vue");
+const AdminLesson = () => import("@/components/AuthenticatedPages/Admin/Admin Lesson/AdminLesson.vue");
+const AdminQuiz = () => import("@/components/AuthenticatedPages/Admin/Admin Quiz/AdminQuiz.vue");
+const AdminQuizAdd = () => import("@/components/AuthenticatedPages/Admin/Admin Quiz/AdminQuizAdd.vue");
+const AdminExamination = () => import("@/components/AuthenticatedPages/Admin/Admin Examination/AdminExamination.vue");
+const AdminTranslate = () => import("@/components/AuthenticatedPages/Admin/Admin Translate/AdminTranslate.vue");
+
 
 // LAYOUTS
 const UserLayout = () =>import("@/components/Layouts/Authenticated Layout/UserLayout.vue");
 const AdminLayout = () =>import("@/components/Layouts/Authenticated Layout/AdminLayout.vue");
 const TeacherLayout = () =>import("@/components/Layouts/Authenticated Layout/TeacherLayout.vue");
-const GuestLayout = () =>import("@/components/Layouts/Authenticated Layout/GuestLayout.vue");
+const GuestLayout = () =>import("@/components/Layouts/GuestLayout.vue");
 
 const routes = [
-    // {
-    //     name: "FirstTime",
-    //     path:'/auth/first-time',
-    //     component: FirstTime,
-    //     meta:  {
-    //         title: "SignTalk | FirstTime",
-    //     },
-    // },
     {
         path: "/",
         component: GuestLayout,
@@ -67,6 +55,22 @@ const routes = [
             middleware: "guest",
         },
         children: [
+            {
+                name: "login",
+                path: "/login",
+                component: Login,
+                meta: {
+                    title: "SignTalk | Login",
+                },
+            },
+            {
+                name: "register",
+                path: "/register",
+                component: Register,
+                meta: {
+                    title: "SignTalk | Register",
+                },
+            },
             {
                 name: "home",
                 path: "/",
@@ -89,22 +93,6 @@ const routes = [
                 component: Contact,
                 meta: {
                     title: "SignTalk | Contact",
-                },
-            },
-            {
-                name: "login",
-                path: "/login",
-                component: Login,
-                meta: {
-                    title: "SignTalk | Login",
-                },
-            },
-            {
-                name: "register",
-                path: "/register",
-                component: Register,
-                meta: {
-                    title: "SignTalk | Register",
                 },
             },
             {
@@ -139,6 +127,123 @@ const routes = [
                     title: "SignTalk | Quiz",
                 },
             },
+        ],
+    },
+    {
+        path: "/student",
+        component: UserLayout,
+        meta: {
+            middleware: "student",
+        },
+        children: [
+            {
+                name: "user-home",
+                path: "/",
+                component: Home,
+                meta: {
+                    title: "SignTalk | Home",
+                },
+            },
+            {
+                name: "about",
+                path: "/about",
+                component: About,
+                meta: {
+                    title: "SignTalk | About",
+                },
+            },
+            {
+                name: "contact",
+                path: "/contact",
+                component: Contact,
+                meta: {
+                    title: "SignTalk | Contact",
+                },
+            },
+            {
+                name: "lesson",
+                path: "/lesson",
+                component: LessonLandingPage,
+                meta: {
+                    title: "SignTalk | Lesson",
+                },
+            },
+            {
+                name: "lesson-main",
+                path: "/lesson/main",
+                component: LessonMain,
+                meta: {
+                    title: "SignTalk | Lesson",
+                },
+            },
+            {
+                name: "dictionary",
+                path: "/dictionary",
+                component: DictionaryMain,
+                meta: {
+                    title: "SignTalk | Dictionary",
+                },
+            },
+            {
+                name: 'quiz',
+                path: "/quiz",
+                component: Quiz,
+                meta: {
+                    title: "SignTalk | Quiz",
+                },
+            },
+            {
+                name: 'quiz-main',
+                path: "/quiz/main",
+                component: QuizMain,
+                meta: {
+                    title: "SignTalk | Quiz",
+                },
+            },
+            {
+                name: 'translate',
+                path: "/translate",
+                component: Translate,
+                meta: {
+                    title: "SignTalk | Translate",
+                },
+            },
+            {
+                name: 'setting',
+                path: "/setting",
+                component: Setting,
+                meta: {
+                    title: "SignTalk | Setting",
+                },
+                children:[
+                    {
+                        name: 'profile',
+                        path: "/setting/profile",
+                        component: Profile,
+                        meta: {
+                            title: "SignTalk | Profile",
+                        },
+                    },
+                    {
+                        name: 'analytics',
+                        path: "/setting/analytics",
+                        component: Analytics,
+                        meta: {
+                            title: "SignTalk | Analytics",
+                        },
+                    },
+                    {
+                        name: 'Personalization',
+                        path: "/setting/personalization",
+                        component: Personalization,
+                        meta: {
+                            title: "SignTalk | Personalization",
+                        },
+                    },
+
+                ]
+            },
+
         ],
     },
     {
@@ -207,131 +312,6 @@ const routes = [
         ],
     },
     {
-        path: "/student",
-        component: UserLayout,
-        meta: {
-            middleware: "student",
-        },
-        children: [
-            {
-                name: "about",
-                path: "/about",
-                component: About,
-                meta: {
-                    title: "SignTalk | About",
-                },
-            },
-            {
-                name: "contact",
-                path: "/contact",
-                component: Contact,
-                meta: {
-                    title: "SignTalk | Contact",
-                },
-            },
-            {
-                name: "user-home",
-                path: "/",
-                component: Home,
-                meta: {
-                    title: "SignTalk | Home",
-                },
-            },
-            {
-                name: "lesson",
-                path: "/lesson",
-                component: LessonLandingPage,
-                meta: {
-                    title: "SignTalk | Lesson",
-                },
-            },
-            {
-                name: "lesson-main",
-                path: "/lesson/main",
-                component: LessonMain,
-                meta: {
-                    title: "SignTalk | Lesson",
-                },
-            },
-            {
-                name: "dictionary",
-                path: "/dictionary",
-                component: DictionaryMain,
-                meta: {
-                    title: "SignTalk | Dictionary",
-                },
-            },
-            {
-                name: 'quiz',
-                path: "/quiz",
-                component: Quiz,
-                meta: {
-                    title: "SignTalk | Quiz",
-                },
-            },
-            {
-                name: 'quiz-main',
-                path: "/quiz/main",
-                component: QuizMain,
-                meta: {
-                    title: "SignTalk | Quiz",
-                },
-            },
-            {
-                name: 'interactives',
-                path: "/interactives",
-                component: Interactives,
-                meta: {
-                    title: "SignTalk | Interactives",
-                },
-            },
-            {
-                name: 'translate',
-                path: "/translate",
-                component: Translate,
-                meta: {
-                    title: "SignTalk | Translate",
-                },
-            },
-            {
-                name: 'setting',
-                path: "/setting",
-                component: Setting,
-                meta: {
-                    title: "SignTalk | Setting",
-                },
-                children:[
-                    {
-                        name: 'profile',
-                        path: "/setting/profile",
-                        component: Profile,
-                        meta: {
-                            title: "SignTalk | Profile",
-                        },
-                    },
-                    {
-                        name: 'analytics',
-                        path: "/setting/analytics",
-                        component: Analytics,
-                        meta: {
-                            title: "SignTalk | Analytics",
-                        },
-                    },
-                    {
-                        name: 'Personalization',
-                        path: "/setting/personalization",
-                        component: Personalization,
-                        meta: {
-                            title: "SignTalk | Personalization",
-                        },
-                    },
-
-                ]
-            },
-
-        ],
-    },
-    {
         path: "/admin",
         component: AdminLayout,
         meta: {
@@ -366,6 +346,14 @@ const routes = [
                 name: 'admin-quiz',
                 path: "/admin/quiz",
                 component: AdminQuiz,
+                meta: {
+                    title: "SignTalk | Admin - Quiz",
+                },
+            },
+            {
+                name: 'admin-quiz-add',
+                path: "/admin/quiz/add",
+                component: AdminQuizAdd,
                 meta: {
                     title: "SignTalk | Admin - Quiz",
                 },
