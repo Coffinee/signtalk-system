@@ -32,9 +32,6 @@
                             Word
                         </th>
                         <th scope="col" class="px-6 py-3">
-                            Description
-                        </th>
-                        <th scope="col" class="px-6 py-3">
                             Video URL
                         </th>
                         <th scope="col" class="px-6 py-3">
@@ -51,10 +48,7 @@
                             {{ item.word }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ item.description }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ item.file }}
+                            {{ item.video_link }}
                         </td>
                         <td class="px-6 py-4 flex gap-[5px] text-center">
                             <a @click.prevent="editForm(item)" class="font-medium text-blue-600  hover:underline">Edit</a>
@@ -66,20 +60,19 @@
         </div>
     </div>
 
-    <Slideover :show="slideoverOpen" @close="slideoverToggle" :title="(edit ? 'Update' : 'Add') + ' Translate'" :desc="'Add ASL into the database'">
+    <Slideover :show="slideoverOpen" @close="slideoverToggle" :title="(edit ? 'Update' : 'Add') + ' Translation'" :desc="'Add ASL into the database'">
         <template v-slot:body>
             <form @submit.prevent="edit ? updateForm() : submitForm()">
                 <div class="my-3 p-4 space-y-6">
                     <div class="space-y-1">
-                        <label for="word" class="text-[15px]">Add Word</label>
+                        <label for="word" class="text-[15px]">Word</label>
                         <input v-model="form.word" type="text"
                             class="pl-2 text-xs w-full h-8 rounded-md border border-indigo-900">
                     </div>
 
                     <div class="space-y-1">
-                        <label for="file" class="text-[15px]">Upload Video Link <span class="text-[13px]">(optional)</span>
-                        </label>
-                        <input v-model="form.file" type="text"
+                        <label for="file" class="text-[15px]">Upload Video Link</label>
+                        <input v-model="form.video_link" type="text"
                             class="pl-2 text-xs w-full h-8 rounded-md border border-indigo-900">
                     </div>
                 </div>
@@ -121,25 +114,24 @@ export default {
             form: new Form({
                 id: '',
                 word: '',
-                description: '',
-                file: ''
+                video_link: ''
             })
         }
     },
     methods: {
         slideoverToggle() {
             this.slideoverOpen = false;
+            this.edit = false;
             this.form = new Form({
                 id: '',
                 word: '',
-                description: '',
-                file: ''
+                video_link: ''
             })
         },
 
         submitForm() {
             this.$Progress.start();
-            this.form.post('/api/dictionary')
+            this.form.post('/api/translate')
                 .then((data) => {
                     this.$Progress.finish();
                     this.getData();
@@ -150,7 +142,7 @@ export default {
         },
 
         updateForm() {
-            axios.put("/api/dictionary/" + this.form.id, {
+            axios.put("/api/translate/" + this.form.id, {
                 params: {
                     data: this.form
                 }
@@ -166,12 +158,12 @@ export default {
 
         editForm(item) {
             this.edit = true;
-            this.slideoverOpen = true;
+            this.slideoverOpen = !this.slideoverOpen;
             this.form = item;
         },
 
         async getData() {
-            await axios.get('/api/dictionary').then((data) => {
+            await axios.get('/api/translate').then((data) => {
                 this.data = data.data.data;
             }).catch((e) => {
                 errorMessage('Opps!', e.message, 'top-right')
