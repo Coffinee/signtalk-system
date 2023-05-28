@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\Dictionary;
 use Illuminate\Http\Request;
 use App\Http\Requests\Settings\DictionaryRequest;
+use Intervention\Image\Image;
 
 class DictionaryController extends BaseController
 {
@@ -30,8 +31,22 @@ class DictionaryController extends BaseController
      */
     public function store(DictionaryRequest $request)
     {
-        $data = Dictionary::create($request->all());
-        return $this->sendResponse($data, "Saved");
+        // $data = Dictionary::create($request->all());
+        // return $this->sendResponse($data, "Saved");
+        $logo_link = "";
+
+        if($request->logo){
+            $logo_binary = $request->logo;
+            $logo_link = time().'.' . explode('/', explode(':', substr($logo_binary, 0, strpos($logo_binary, ';')))[1])[1];
+            \Image::make($logo_binary)->fit(200, 200)->save('/images'.$logo_link)->destroy();
+
+        }
+        $validated = $request->validated();
+        $validated['logo']   = $logo_link;
+
+
+        $data = Dictionary::create($validated);
+        return $this->sendResponse($logo_link, "Saved Data");
     }
 
     /**
@@ -58,7 +73,8 @@ class DictionaryController extends BaseController
         $data = Dictionary::findOrFail($id)->update([
             'word' => $request->params['data']['word'],
             'description' => $request->params['data']['description'],
-            'file' => $request->params['data']['file'],
+            'video_link' => $request->params['data']['video_link'],
+            'image_file' => $request->params['data']['image_file'],
           ]);
           return $this->sendResponse($request->validated(), "Updated Data");
     }
