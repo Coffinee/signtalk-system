@@ -83,9 +83,9 @@
                     <div class="space-y-1">
                         <label for="image_file" class="text-sm">Upload Photo</label>
                         <div class="flex items-center justify-center w-full">
-                            <label
-                                class="flex flex-col w-full h-32 rounded-md border-2 border-gray-500 border-dashed hover:bg-gray-200 cursor-pointer">
-                                <div class="flex flex-col items-center justify-center pt-7">
+                            <label :style="{ 'background-image': `url(${image_url})` }"
+                                class="flex flex-col w-full h-32 rounded-md border-2 border-gray-500 border-dashed hover:bg-gray-200 cursor-pointer bg-center bg-cover bg-no-repeat">
+                                <div v-show="form.image_file == '' ? true : false" :class="{ 'hidden': hideLabel }" class="flex flex-col items-center justify-center pt-7">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         class="w-8 h-8 text-black group-hover:text-gray-600" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
@@ -147,7 +147,8 @@ export default {
                 {id: '4', name: 'Video Link'},
                 {id: '5', name: 'Image'},
                 {id: '6', name: 'Action'},
-            ]
+            ],
+            hideLabel: false
         }
     },
     methods: {

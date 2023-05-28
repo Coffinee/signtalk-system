@@ -55,12 +55,7 @@ class TranslateController extends BaseController
      */
     public function update(Request $request, Translate $translate)
     {
-        // $data = Translate::findOrFail($id)->update([
-        //     'word' => $request->params['data']['word'],
-        //     'description' => $request->params['data']['description'],
-        //     'video_link' => $request->params['data']['video_link'],
-        //   ]);
-        //   return $this->sendResponse($request->validated(), "Updated Data");
+        //
     }
 
     /**

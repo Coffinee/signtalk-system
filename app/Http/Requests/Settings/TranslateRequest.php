@@ -24,6 +24,7 @@ class TranslateRequest extends FormRequest
         return $this->isMethod('post') ? $this->createRules() : $this->updateRules();
     }
 
+    
     public function createRules() :array {
         return [
             'word' => 'required|max:100',
