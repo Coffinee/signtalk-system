@@ -27,7 +27,7 @@ export default {
 }
 </script>
 <template>
-    <div class="dark:bg-transparent py-[50px] h-auto">
+    <div class="dark:bg-transparent py-[50px] h-screen">
         <div class="mb-[50px]">
             <h5 class="text-2xl text-center font-bold dark:text-white mb-3">Quiz</h5>
             <div class="flex justify-center flex-wrap gap-[20px]">
