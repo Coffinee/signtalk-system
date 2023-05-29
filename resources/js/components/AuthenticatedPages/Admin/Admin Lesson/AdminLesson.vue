@@ -59,7 +59,7 @@
         </div>
     </div>
 
-    <Slideover :show="slideoverOpen" @close="slideoverToggle" :title="(edit ? 'Update' : 'Add') + ' Translation'" :desc="'Add ASL Lesson into the database'">
+    <Slideover :show="slideoverOpen" @close="slideoverToggle" :title="(edit ? 'Update' : 'Add') + ' Lesson'" :desc="'Add ASL Lesson into the database'">
         <template v-slot:body>
             <form @submit.prevent="edit ? updateForm() : submitForm()">
                 <div class="my-3 p-4 space-y-6">
@@ -160,6 +160,7 @@ export default {
                 description: '',
                 image_file: ''
             })
+            console.log(this.form)
         },
 
         submitForm() {

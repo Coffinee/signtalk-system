@@ -35,7 +35,7 @@ class LessonRequest extends FormRequest
 
     public function updateRules(){
         return [
-            'params.data.title' => 'required|max:100|unique:dictionaries,id'.$this->get('id'),
+            'params.data.title' => 'required|max:100|unique:lessons,id'.$this->get('id'),
             'params.data.video_link' => 'required|max:100',
             'params.data.description' => 'required|max:500',
         ];
