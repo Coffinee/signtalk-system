@@ -4,7 +4,7 @@ namespace App\Http\Requests\Settings;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DictionaryRequest extends FormRequest
+class LessonRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -17,26 +17,27 @@ class DictionaryRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array|string>
      */
     public function rules(): array
     {
-        return $this->isMethod('post') ? $this->createRules() : $this->updateRules();
+        return [
+            //
+        ];
     }
-
     public function createRules() :array {
         return [
-            'word' => 'required|max:100',
-            'description' => 'required|max:500',
+            'title' => 'required|max:100',
             'video_link' => 'required|max:100',
+            'description' => 'required|max:500',
         ];
     }
 
     public function updateRules(){
         return [
-            'params.data.word' => 'required|max:100|unique:dictionaries,id'.$this->get('id'),
+            'params.data.title' => 'required|max:100|unique:dictionaries,id'.$this->get('id'),
+            'params.data.video_link' => 'required|max:100',
             'params.data.description' => 'required|max:500',
-            'params.data.video_link' => 'required|max:100'
         ];
     }
 }
