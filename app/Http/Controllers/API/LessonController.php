@@ -41,7 +41,7 @@ class LessonController extends BaseController
         }
         $validated = $request->validated();
         $validated['image_file'] = $image_link;
-
+        
 
         $data = Lesson::create($validated);
         return $this->sendResponse($image_link, "Saved Data");

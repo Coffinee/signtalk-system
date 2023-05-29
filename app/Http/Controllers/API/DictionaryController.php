@@ -18,6 +18,11 @@ class DictionaryController extends BaseController
         return $this->sendResponse($data, "All Entries in Array");
     }
 
+    public function getWord(Request $request)
+    {
+        $data = Dictionary::where('word', $request->word)->latest()->first();
+        return $this->sendResponse($data, "All Entries in Array");
+    }
     /**
      * Show the form for creating a new resource.
      */

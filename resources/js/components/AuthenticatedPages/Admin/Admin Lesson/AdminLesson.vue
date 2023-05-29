@@ -164,6 +164,8 @@ export default {
         },
 
         submitForm() {
+            console.log(this.form);
+
             this.$Progress.start();
             this.form.post('/api/lesson')
                 .then((data) => {

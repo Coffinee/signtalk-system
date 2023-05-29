@@ -21,9 +21,7 @@ class LessonRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        return $this->isMethod('post') ? $this->createRules() : $this->updateRules();
     }
     public function createRules() :array {
         return [
