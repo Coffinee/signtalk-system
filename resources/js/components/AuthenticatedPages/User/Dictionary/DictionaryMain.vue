@@ -18,7 +18,8 @@ export default {
             data: {},
             dictionary: {},
             word: '',
-            hasWord: false
+            hasWord: false,
+            // videoUrl: ''
         }
     },
 
@@ -29,6 +30,8 @@ export default {
 
                 if (this.dictionary != null) {
                     this.hasWord = true;
+                    console.log( this.dictionary.image_file)
+                    
                 }
 
             }).catch((e) => {
@@ -38,6 +41,7 @@ export default {
     },
 
     created() {
+
     }
 
 }
@@ -73,22 +77,21 @@ export default {
             </div>
 
             <!-- Result -->
-            <div v-if="hasWord" class="border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Result:</h5>
+            <div v-if="hasWord" class="hauto border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5">
+                <!-- <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Result:</h5> -->
                 <div class="flex flex-col  ">
                     <div>
                         <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                             {{ this.dictionary.word }}
-                            <span class="text-lg italic font-normal">(adjective)</span>
+                            <!-- <span class="text-lg italic font-normal">(adjective)</span> -->
                         </h5>
                         <p class="mb-3 text-gray-500 dark:text-gray-400">{{ this.dictionary.description }}</p>
                     </div>
+                    <div class="flex justify-center w-full mb-[15px]">                   
+                        <img class="w-full sm:w-full rounded-lg" :src="'/uploads/image/' + this.dictionary.image_file" alt="">
+                    </div>
                     <div class="self-center relative w-full overflow-hidden aspect-video">
-                        <!-- <iframe class="absolute inset-0 w-[100%] h-[100%] border-none" src="https://www.youtube.com/embed/uKKvNqA9N20" title="Greetings in ASL | ASL - American Sign Language" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
-                        <video class="absolute inset-0 w-[100%] h-[100%] border-none" muted controls autoplay>
-                            <source src="../../../../../assets/videos/lebrongalit.mp4" type="video/mp4">
-                        </video>
-
+                        <iframe class="absolute inset-0 w-[100%] h-[100%] border-none" :src="this.dictionary.video_link "  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                       
                     </div>
                 </div>
             </div>
