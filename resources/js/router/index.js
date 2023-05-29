@@ -1,65 +1,54 @@
 import { createRouter, createWebHistory } from "vue-router";
 import {userAuthStore} from '@/store/auth';
-// USER SIDE
 
+// GUEST SIDE - login - Register - First Time
+const Login = () => import("@/components/AuthenticatedPages/User/Auth/Login.vue");
+const Register = () => import("@/components/AuthenticatedPages/User/Auth/Register.vue");
+const About = () => import("@/components/GuestPages/About/About.vue");
+const Contact = () => import("@/components/GuestPages/Contact/Contact.vue");
+
+// USER SIDE
 const Home = () => import("@/components/AuthenticatedPages/User/Home/Home.vue");
-const DictionaryLandingPage = () => import("@/components/AuthenticatedPages/User/Dictionary/DictionaryLandingPage.vue");
 const DictionaryMain = () => import("@/components/AuthenticatedPages/User/Dictionary/DictionaryMain.vue");
 const LessonLandingPage = () => import("@/components/AuthenticatedPages/User/Lesson/LessonLandingPage.vue");
 const LessonMain = () => import("@/components/AuthenticatedPages/User/Lesson/LessonMain.vue");
 const Quiz = () => import("@/components/AuthenticatedPages/User/Quiz/Quiz.vue");
+const Translate = () => import("@/components/AuthenticatedPages/User/Translate/Translate.vue");
 const QuizMain = () => import("@/components/AuthenticatedPages/User/Quiz/QuizMain.vue");
-
 const Setting = () =>import("@/components/AuthenticatedPages/User/Setting/Setting.vue");
 const Profile = () =>import("@/components/AuthenticatedPages/User/Setting/Tabs/Profile.vue");
 const Analytics = () =>import("@/components/AuthenticatedPages/User/Setting/Tabs/Analytics.vue");
 const Personalization = () =>import("@/components/AuthenticatedPages/User/Setting/Tabs/Personalization.vue");
 
-//login - Register - First Time
-const Register = () => import("@/components/AuthenticatedPages/User/Auth/Register.vue");
-const Login = () => import("@/components/AuthenticatedPages/User/Auth/Login.vue");
-const FirstTime = () => import("@/components/AuthenticatedPages/User/Auth/FirstTime.vue");
-// const Exam = () => import("@/components/AuthenticatedPages/User/Exam/Exam.vue");
-const Interactives = () => import("@/components/AuthenticatedPages/User/Interactives/Interactives.vue");
-const Translate = () => import("@/components/AuthenticatedPages/User/Translate/Translate.vue");
-
-// ADMIN SIDE
-const AdminDashboard = () => import("@/components/AuthenticatedPages/Admin/Admin Dashboard/AdminDashboard.vue");
-const AdminDictionary = () => import("@/components/AuthenticatedPages/Admin/Admin Dictionary/AdminDictionary.vue");
-const AdminLesson = () => import("@/components/AuthenticatedPages/Admin/Admin Lesson/AdminLesson.vue");
-const AdminQuiz = () => import("@/components/AuthenticatedPages/Admin/Admin Quiz/AdminQuiz.vue");
-const AdminExamination = () => import("@/components/AuthenticatedPages/Admin/Admin Examination/AdminExamination.vue");
-const AdminTranslate = () => import("@/components/AuthenticatedPages/Admin/Admin Translate/AdminTranslate.vue");
 
 // TEACHER SIDE
 const TeacherHome = () => import("@/components/AuthenticatedPages/Teacher/Home.vue");
 const TeacherDashboard = () => import("@/components/AuthenticatedPages/Teacher/TeacherDashboard/TeacherDashboard.vue");
 const TeacherClasses = () => import("@/components/AuthenticatedPages/Teacher/TeacherClasses/TeacherClasses.vue");
 const TeacherLesson = () => import("@/components/AuthenticatedPages/Teacher/TeacherLesson/TeacherLesson.vue");
-const TeacherProfile = () => import("@/components/AuthenticatedPages/Teacher/TeacherProfile/TeacherProfile.vue");
+const TeacherSettings = () => import("@/components/AuthenticatedPages/Teacher/TeacherSettings/TeacherSettings.vue");
+const TeacherSettingsViewProfile = () => import("@/components/AuthenticatedPages/Teacher/TeacherSettings/Tabs/ViewProfile.vue");
 const TeacherQuiz = () => import("@/components/AuthenticatedPages/Teacher/TeacherQuiz/TeacherQuiz.vue");
 const TeacherQuizAdd = () => import("@/components/AuthenticatedPages/Teacher/TeacherQuiz/TeacherQuizAdd.vue");
 
 
-// GUEST SIDE
-const About = () => import("@/components/GuestPages/About/About.vue");
-const Contact = () => import("@/components/GuestPages/Contact/Contact.vue");
+// ADMIN SIDE
+const AdminDashboard = () => import("@/components/AuthenticatedPages/Admin/Admin Dashboard/AdminDashboard.vue");
+const AdminDictionary = () => import("@/components/AuthenticatedPages/Admin/Admin Dictionary/AdminDictionary.vue");
+const AdminLesson = () => import("@/components/AuthenticatedPages/Admin/Admin Lesson/AdminLesson.vue");
+const AdminQuiz = () => import("@/components/AuthenticatedPages/Admin/Admin Quiz/AdminQuiz.vue");
+const AdminQuizAdd = () => import("@/components/AuthenticatedPages/Admin/Admin Quiz/AdminQuizAdd.vue");
+const AdminExamination = () => import("@/components/AuthenticatedPages/Admin/Admin Examination/AdminExamination.vue");
+const AdminTranslate = () => import("@/components/AuthenticatedPages/Admin/Admin Translate/AdminTranslate.vue");
+
 
 // LAYOUTS
 const UserLayout = () =>import("@/components/Layouts/Authenticated Layout/UserLayout.vue");
 const AdminLayout = () =>import("@/components/Layouts/Authenticated Layout/AdminLayout.vue");
 const TeacherLayout = () =>import("@/components/Layouts/Authenticated Layout/TeacherLayout.vue");
-const GuestLayout = () =>import("@/components/Layouts/Authenticated Layout/GuestLayout.vue");
+const GuestLayout = () =>import("@/components/Layouts/GuestLayout.vue");
 
 const routes = [
-    // {
-    //     name: "FirstTime",
-    //     path:'/auth/first-time',
-    //     component: FirstTime,
-    //     meta:  {
-    //         title: "SignTalk | FirstTime",
-    //     },
-    // },
     {
         path: "/",
         component: GuestLayout,
@@ -68,11 +57,19 @@ const routes = [
         },
         children: [
             {
-                name: "home",
-                path: "/",
-                component: Home,
+                name: "login",
+                path: "/login",
+                component: Login,
                 meta: {
-                    title: `Home`,
+                    title: "SignTalk | Login",
+                },
+            },
+            {
+                name: "register",
+                path: "/register",
+                component: Register,
+                meta: {
+                    title: "SignTalk | Register",
                 },
             },
             {
@@ -92,19 +89,11 @@ const routes = [
                 },
             },
             {
-                name: "login",
-                path: "/login",
-                component: Login,
+                name: "home",
+                path: "/",
+                component: Home,
                 meta: {
-                    title: "SignTalk | Login",
-                },
-            },
-            {
-                name: "register",
-                path: "/register",
-                component: Register,
-                meta: {
-                    title: "SignTalk | Register",
+                    title: `Home`,
                 },
             },
             {
@@ -142,77 +131,20 @@ const routes = [
         ],
     },
     {
-        path: "/teacher",
-        component: TeacherLayout,
-        meta: {
-            middleware: "teacher",
-        },
-        children: [
-            {
-                name: "teacher-home",
-                path: "/",
-                component: TeacherHome,
-                meta: {
-                    title: `Teacher Home`,
-                },
-            },
-            {
-                name: "teacher-dashboard",
-                path: "/teacher/dashboard",
-                component: TeacherDashboard,
-                meta: {
-                    title: `Teacher Dashboard`,
-                },
-            },
-            {
-                name: "teacher-classes",
-                path: "/teacher/lesson",
-                component: TeacherLesson,
-                meta: {
-                    title: `Teacher Lesson`,
-                },
-            },
-            {
-                name: "teacher-lesson",
-                path: "/teacher/classes",
-                component: TeacherClasses,
-                meta: {
-                    title: `Teacher Classes`,
-                },
-            },
-            {
-                name: "teacher-profile",
-                path: "/teacher/profile",
-                component: TeacherProfile,
-                meta: {
-                    title: `Teacher Profile`,
-                },
-            },
-            {
-                name: "teacher-quiz",
-                path: "/teacher/quiz",
-                component: TeacherQuiz,
-                meta: {
-                    title: `Teacher Quiz`,
-                },
-            },
-            {
-                name: "teacher-quiz-add",
-                path: "/teacher/quiz/add",
-                component: TeacherQuizAdd,
-                meta: {
-                    title: `Teacher Quiz Add`,
-                },
-            },
-        ],
-    },
-    {
         path: "/student",
         component: UserLayout,
         meta: {
             middleware: "student",
         },
         children: [
+            {
+                name: "user-home",
+                path: "/",
+                component: Home,
+                meta: {
+                    title: "SignTalk | Home",
+                },
+            },
             {
                 name: "about",
                 path: "/about",
@@ -227,14 +159,6 @@ const routes = [
                 component: Contact,
                 meta: {
                     title: "SignTalk | Contact",
-                },
-            },
-            {
-                name: "user-home",
-                path: "/",
-                component: Home,
-                meta: {
-                    title: "SignTalk | Home",
                 },
             },
             {
@@ -275,14 +199,6 @@ const routes = [
                 component: QuizMain,
                 meta: {
                     title: "SignTalk | Quiz",
-                },
-            },
-            {
-                name: 'interactives',
-                path: "/interactives",
-                component: Interactives,
-                meta: {
-                    title: "SignTalk | Interactives",
                 },
             },
             {
@@ -332,6 +248,78 @@ const routes = [
         ],
     },
     {
+        path: "/teacher",
+        component: TeacherLayout,
+        meta: {
+            middleware: "teacher",
+        },
+        children: [
+            {
+                name: "teacher-home",
+                path: "/",
+                component: TeacherHome,
+                meta: {
+                    title: `Teacher Home`,
+                },
+            },
+            {
+                name: "teacher-dashboard",
+                path: "/teacher/dashboard",
+                component: TeacherDashboard,
+                meta: {
+                    title: `Teacher Dashboard`,
+                },
+            },
+            {
+                name: "teacher-classes",
+                path: "/teacher/lesson",
+                component: TeacherLesson,
+                meta: {
+                    title: `Teacher Lesson`,
+                },
+            },
+            {
+                name: "teacher-lesson",
+                path: "/teacher/classes",
+                component: TeacherClasses,
+                meta: {
+                    title: `Teacher Classes`,
+                },
+            },
+            {
+                name: "teacher-settings",
+                path: "/teacher/settings",
+                component: TeacherSettings,
+                meta: {
+                    title: `Teacher Settings`,
+                },
+                children:[
+                    {
+                        name: 'teacher-settings-profile',
+                        path: "teacher/settings/profile",
+                        component: TeacherSettingsViewProfile,
+                    },
+                ],
+            },
+            {
+                name: "teacher-quiz",
+                path: "/teacher/quiz",
+                component: TeacherQuiz,
+                meta: {
+                    title: `Teacher Quiz`,
+                },
+            },
+            {
+                name: "teacher-quiz-add",
+                path: "/teacher/quiz/add",
+                component: TeacherQuizAdd,
+                meta: {
+                    title: `Teacher Quiz Add`,
+                },
+            },
+        ],
+    },
+    {
         path: "/admin",
         component: AdminLayout,
         meta: {
@@ -366,6 +354,14 @@ const routes = [
                 name: 'admin-quiz',
                 path: "/admin/quiz",
                 component: AdminQuiz,
+                meta: {
+                    title: "SignTalk | Admin - Quiz",
+                },
+            },
+            {
+                name: 'admin-quiz-add',
+                path: "/admin/quiz/add",
+                component: AdminQuizAdd,
                 meta: {
                     title: "SignTalk | Admin - Quiz",
                 },

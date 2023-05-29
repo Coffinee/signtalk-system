@@ -41,17 +41,17 @@ export default{
                 <div class="flex justify-center items-center">
                     <img class="h-[300px]  max-w-full rounded-lg mb-14" src="../../../../assets/images/ASLImage.jpg" alt="">
                 </div>
-                <p class="text-md font-normal text-black lg:text-lg sm:px-16 lg:px-48 dark:text-gray-400 ">This application focuses its attention to its availability for the general public who wants to learn American Sign Language. So, what are you waiting for? Come Learn with Us! </p>
+                <p class="text-md font-normal text-black lg:text-lg sm:px-16 lg:px-48 dark:text-gray-400 ">This website focuses its attention to its availability for the general public who wants to learn American Sign Language. So, what are you waiting for? Come Learn with Us! </p>
             </div>
         </section>
-        <div class="bg-gray-900 sm:py-32">
+        <div class="bg-white dark:bg-gray-900 sm:py-32">
             <div class="mx-auto max-w-7xl px-6 text-center lg:px-8">
             <div class="mx-auto max-w-2xl">
-                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Meet our team</h2>
-                <p class="mt-4 text-lg leading-8 text-gray-400">We’re a dynamic group of individuals who are passionate about what we do.</p>
+                <h2 class="text-3xl font-bold tracking-tight dark:text-white sm:text-4xl">Meet our team</h2>
+                <p class="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-400">We’re a dynamic group of individuals who are passionate about what we do.</p>
             </div>
             <ul role="list" class="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-6 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-3 lg:gap-8">
-                <li v-for="person in people" :key="person.name" class="rounded-2xl bg-gray-800 px-8 py-10">
+                <li v-for="person in people" :key="person.name" class="rounded-2xl bg-white shadow-md dark:bg-gray-800 px-8 py-10">
                 <img class="mx-auto h-48 w-48 rounded-full md:h-56 md:w-56" :src="person.imageUrl" alt=""/>
                 <img src="" alt="">
                 <h3 class="mt-6 text-base font-semibold leading-7 tracking-tight text-white">{{ person.name }}</h3>

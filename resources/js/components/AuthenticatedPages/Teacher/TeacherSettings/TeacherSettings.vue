@@ -17,13 +17,15 @@
 
                 <div class="flex flex-col items-center py-3 gap-3 border-t-2 h-auto overflow-auto w-full px-3">
                     <div v-for="items in myArray" :key="items.id" class="w-full border rounded-md px-3 py-2">
-                        <a href="#" class="text-black font-medium text-[15px] ">{{ items.name }}</a>
+                        <button @click="isSelected = items.id" class="text-black font-medium text-[15px] ">{{ items.name }}</button>
                     </div>
                 </div>
             </div>
             <div class="border h-full w-[75%]">
                 <div class="px-3 py-5">
-                    <router-view></router-view>
+                    <div v-if="isSelected == 1">
+                        <ViewProfile/>
+                    </div>  
                 </div>
             </div>
         </div>
@@ -32,14 +34,20 @@
 
 <script>
 import { ref } from 'vue';
+import ViewProfile from './Tabs/ViewProfile.vue';
 export default {
+    components:{
+        ViewProfile,
+
+    },
     data() {
         return {
             myArray: [
-          { id: 1, name: 'Object 1', href: '/'},
+          { id: 1, name: 'View Profile', href: '/'},
           { id: 2, name: 'Object 2', href: '/'},
-          { id: 3, name: 'Object 3', href: '/' }
-        ]
+          { id: 3, name: 'Object 3', href: '/' },
+        ],
+        isSelected:'',
 
         }
     },

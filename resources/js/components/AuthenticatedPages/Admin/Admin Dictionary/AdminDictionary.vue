@@ -25,28 +25,13 @@
             <table class="w-full text-sm text-left text-gray-500 py-[10px]">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-200">
                     <tr>
-                        <th scope="col" class="px-6 py-3">
-                            ID
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Word
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Description
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Video URL
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Image
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Action
+                        <th v-for="label in tableLabels" :key="label.id" scope="col" class="text-center px-6 py-3">
+                            {{ label.name }}
                         </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="item in data.data" :key="item.id" class="bg-white border-b ">
+                    <tr v-for="item in data.data" :key="item.id" class="bg-white border-b text-center">
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             {{ item.id }}
                         </th>
@@ -63,7 +48,7 @@
                             {{ item.image_file }}
                         </td>
                         <td class="px-6 py-4 flex gap-[5px] text-center">
-                            <a @click.prevent="editForm(item)" class="font-medium text-blue-600  hover:underline">Edit</a>
+                            <a @click.prevent="editForm(item)" class="font-medium text-blue-600  hover:underline ">Edit</a>
                         </td>
                     </tr>
 
@@ -155,6 +140,14 @@ export default {
                 image_file: ''
             }),
             image_url: '',
+            tableLabels:[
+                {id: '1', name: 'ID'},
+                {id: '2', name: 'Word'},
+                {id: '3', name: 'Description'},
+                {id: '4', name: 'Video Link'},
+                {id: '5', name: 'Image'},
+                {id: '6', name: 'Action'},
+            ],
             hideLabel: false
         }
     },

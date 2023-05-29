@@ -22,7 +22,8 @@ Route::namespace('App\Http\Controllers\API')->group(function() {
         'user' => 'UserController',
         'register' => 'RegisterController',
         'dictionary' => 'DictionaryController',
-        'translate' => 'TranslateController'
+        'translate' => 'TranslateController',
+        'lesson' => 'LessonController',
     ]);
 });
 
