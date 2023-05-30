@@ -18,7 +18,8 @@ export default {
             data: {},
             dictionary: {},
             word: '',
-            hasWord: false
+            hasWord: false,
+            videoUrl: ''
         }
     },
 
@@ -29,6 +30,8 @@ export default {
 
                 if (this.dictionary != null) {
                     this.hasWord = true;
+                    console.log(this.dictionary.video_link)
+                    this.videoUrl = this.dictionary.video_link
                 }
 
             }).catch((e) => {
@@ -45,7 +48,7 @@ export default {
 </script>
 <template>
     <!-- Main Content -->
-    <div class="flex justify-center sm:items-center md:items-start w-auto h-screen md:h-auto bg-white dark:bg-[#111827] ">
+    <div class="flex justify-center sm:items-center md:items-start w-auto h-screen xl:h-auto bg-white dark:bg-[#111827] ">
         <div class="flex flex-col gap-[25px] py-10 px-5">
             <div :class="!hasword ? 'h-full flex-col justify-center items-center' : ''">
                 <h1
@@ -73,23 +76,21 @@ export default {
             </div>
 
             <!-- Result -->
-            <div v-if="hasWord" class="border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5">
+            <div v-if="hasWord" class="border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5 h-auto">
                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Result:</h5>
                 <div class="flex flex-col  ">
                     <div>
                         <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
                             {{ this.dictionary.word }}
-                            <span class="text-lg italic font-normal">(adjective)</span>
+                            <!-- <span class="text-lg italic font-normal">(adjective)</span> -->
                         </h5>
                         <p class="mb-3 text-gray-500 dark:text-gray-400">{{ this.dictionary.description }}</p>
                     </div>
-                    <div class="self-center relative w-full overflow-hidden aspect-video">
-                        <!-- <iframe class="absolute inset-0 w-[100%] h-[100%] border-none" src="https://www.youtube.com/embed/uKKvNqA9N20" title="Greetings in ASL | ASL - American Sign Language" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
-                        <video class="absolute inset-0 w-[100%] h-[100%] border-none" muted controls autoplay>
-                            <source src="../../../../../assets/videos/lebrongalit.mp4" type="video/mp4">
-                        </video>
-
+                    <div class="self-center relative w-full overflow-hidden aspect-video">               
+                        <iframe width="853" height="480" :src="videoUrl" title="Unit 2 Vocabulary | ASL Level 1 - American Sign Language" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                        <iframe width="853" height="480" src="https://www.youtube.com/embed/uKKvNqA9N20" title="Greetings in ASL | ASL - American Sign Language" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
+                    <!-- <img src="" alt=""> -->
                 </div>
             </div>
         </div>
