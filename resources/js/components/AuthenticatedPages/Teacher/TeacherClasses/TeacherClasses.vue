@@ -2,7 +2,7 @@
     <div>
         <div class="flex justify-between">
             <div>
-                <h2 class="text-2xl font-extrabold font-poppins">My Classes</h2>
+                <h2 class="text-2xl font-extrabold font-poppins text-black">My Classes</h2>
             </div>
             <div class="flex space-x-1">
                 <button

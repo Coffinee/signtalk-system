@@ -1,7 +1,7 @@
 <template>
     <div class="code relative border border-gray-300 w-52 h-8 rounded-md ">
         <input type="text" v-on:focus="$event.target.select()" ref="clone" readonly value='ABCDEFG'
-            class="focus:outline-none select-none absolute w-full h-full tracking-widest px-14 whitespace-nowrap rounded-md" />
+            class="focus:outline-none select-none absolute w-full h-full tracking-widest px-14 whitespace-nowrap rounded-md bg-white" />
         <button @click="copy"
             class="absolute flex justify-center items-center right-0 hover:bg-gray-200 bg-gray-100 h-full w-8 rounded-r-md">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="gray"

@@ -86,13 +86,13 @@ export default {
             </div>
 
             <div class="h-auto flex flex-col gap-[20px] border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5 mt-3">
-                <h2 class="text-2xl font-extrabold dark:text-white text-center">Learning ASL Alphabet</h2>
+                <h2 class="text-2xl font-extrabold text-black dark:text-white text-center">Learning ASL Alphabet</h2>
                 <div class="flex justify-center w-full">
                     <div class="w-full sm:w-full md:w-[80%] z-30">
                         <iframe class="w-full aspect-video border-none" src="https://www.youtube.com/embed/cGavOVNDj1s" title="American Sign Language Alphabet | Learn American Sign Language Letters" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>             
                 </div>
-                <p class="dark:text-white text-justify">
+                <p class="text-black dark:text-white text-justify">
                     The ASL alphabet is an essential and foundational part of American Sign Language. If you want to be able to sign with Deaf friends, colleagues, or family members, you definitely have to learn more than the alphabet.
                 </p>
                 <div class="flex justify-center w-full">                   

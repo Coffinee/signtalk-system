@@ -3,7 +3,7 @@
         <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
             <div class="sm:flex sm:items-center sm:justify-between">
                 <router-link to="/" class="flex flex-col items-center mb-4 sm:mb-0">
-                    <p class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                    <p class="self-center text-2xl font-semibold whitespace-nowrap text-black dark:text-white">
                         <span>Sign</span>
                         <span class="text-indigo-500 font-bold">Talk</span>
                         <span class="text-xs"> ©</span>

@@ -32,7 +32,7 @@ export default {
     <div>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <div class="flex justify-between p-2 px-[30px] pt-[30px]">
-                <h2 class="text-2xl font-extrabold font-poppins">Lesson</h2>
+                <h2 class="text-2xl font-extrabold font-poppins text-black">Lesson</h2>
                 <button @click="(slideoverOpen = !slideoverOpen)" type="button"
                     class="text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5">Add
                     Lesson</button>
