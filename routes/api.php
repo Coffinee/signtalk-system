@@ -24,6 +24,8 @@ Route::namespace('App\Http\Controllers\API')->group(function() {
         'dictionary' => 'DictionaryController',
         'translate' => 'TranslateController',
         'lesson' => 'LessonController',
+        'quiz' => '',
+        
     ]);
 });
 

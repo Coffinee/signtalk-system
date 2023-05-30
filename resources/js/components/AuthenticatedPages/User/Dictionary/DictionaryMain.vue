@@ -19,7 +19,7 @@ export default {
             dictionary: {},
             word: '',
             hasWord: false,
-            // videoUrl: ''
+            queryNull: false
         }
     },
 
@@ -30,8 +30,12 @@ export default {
 
                 if (this.dictionary != null) {
                     this.hasWord = true;
-                    console.log( this.dictionary.image_file)
-                    
+                    this.queryNull = false;
+                }
+                else {
+                    this.queryNull = true;
+                    this.hasWord = false;
+
                 }
 
             }).catch((e) => {
@@ -49,9 +53,9 @@ export default {
 </script>
 <template>
     <!-- Main Content -->
-    <div class="flex justify-center sm:items-center md:items-start w-auto h-screen xl:h-auto bg-white dark:bg-[#111827] ">
-        <div class="flex flex-col gap-[25px] py-10 px-5">
-            <div :class="!hasword ? 'h-full flex-col justify-center items-center' : ''">
+    <div class="flex justify-center items-center w-auto h-screen bg-white dark:bg-[#111827] ">
+        <div class="flex flex-col gap-[25px] px-5">
+            <div :class="!hasWord ? '-mt-36' : '' ">
                 <h1
                     class="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
                     Dictionary</h1>
@@ -72,8 +76,9 @@ export default {
                         class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Search..." required>
                     <button @click.prevent="searchQuery"
-                        class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                        class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                 </div>
+                <span v-if="queryNull" class="text-xs flex items-center justify-center text-red-500 mt-2">No Results Found</span>
             </div>
 
             <!-- Result -->
@@ -96,6 +101,7 @@ export default {
                     <!-- <img src="" alt=""> -->
                 </div>
             </div>
+            
         </div>
     </div>
 </template>
