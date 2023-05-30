@@ -19,7 +19,11 @@ export default {
             dictionary: {},
             word: '',
             hasWord: false,
+<<<<<<< HEAD
             videoUrl: ''
+=======
+            // videoUrl: ''
+>>>>>>> ca395dd0be862add33f2cf279f242da50ef0bdda
         }
     },
 
@@ -30,8 +34,13 @@ export default {
 
                 if (this.dictionary != null) {
                     this.hasWord = true;
+<<<<<<< HEAD
                     console.log(this.dictionary.video_link)
                     this.videoUrl = this.dictionary.video_link
+=======
+                    console.log( this.dictionary.image_file)
+                    
+>>>>>>> ca395dd0be862add33f2cf279f242da50ef0bdda
                 }
 
             }).catch((e) => {
@@ -41,6 +50,7 @@ export default {
     },
 
     created() {
+
     }
 
 }
@@ -76,8 +86,8 @@ export default {
             </div>
 
             <!-- Result -->
-            <div v-if="hasWord" class="border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5 h-auto">
-                <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Result:</h5>
+            <div v-if="hasWord" class="hauto border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5">
+                <!-- <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Result:</h5> -->
                 <div class="flex flex-col  ">
                     <div>
                         <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -86,9 +96,11 @@ export default {
                         </h5>
                         <p class="mb-3 text-gray-500 dark:text-gray-400">{{ this.dictionary.description }}</p>
                     </div>
-                    <div class="self-center relative w-full overflow-hidden aspect-video">               
-                        <iframe width="853" height="480" :src="videoUrl" title="Unit 2 Vocabulary | ASL Level 1 - American Sign Language" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <iframe width="853" height="480" src="https://www.youtube.com/embed/uKKvNqA9N20" title="Greetings in ASL | ASL - American Sign Language" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="flex justify-center w-full mb-[15px]">                   
+                        <img class="w-full sm:w-full rounded-lg" :src="'/uploads/image/' + this.dictionary.image_file" alt="">
+                    </div>
+                    <div class="self-center relative w-full overflow-hidden aspect-video">
+                        <iframe class="absolute inset-0 w-[100%] h-[100%] border-none" :src="this.dictionary.video_link "  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                       
                     </div>
                     <!-- <img src="" alt=""> -->
                 </div>
