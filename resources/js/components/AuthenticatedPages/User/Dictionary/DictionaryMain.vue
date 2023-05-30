@@ -19,11 +19,7 @@ export default {
             dictionary: {},
             word: '',
             hasWord: false,
-<<<<<<< HEAD
-            videoUrl: ''
-=======
             // videoUrl: ''
->>>>>>> ca395dd0be862add33f2cf279f242da50ef0bdda
         }
     },
 
@@ -34,13 +30,8 @@ export default {
 
                 if (this.dictionary != null) {
                     this.hasWord = true;
-<<<<<<< HEAD
-                    console.log(this.dictionary.video_link)
-                    this.videoUrl = this.dictionary.video_link
-=======
                     console.log( this.dictionary.image_file)
                     
->>>>>>> ca395dd0be862add33f2cf279f242da50ef0bdda
                 }
 
             }).catch((e) => {
