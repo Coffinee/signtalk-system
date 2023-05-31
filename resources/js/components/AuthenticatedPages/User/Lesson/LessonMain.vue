@@ -2,6 +2,7 @@
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
 import { ChevronRightIcon } from '@heroicons/vue/20/solid'
+
 export default {
     components:{
         Popover, PopoverButton, PopoverPanel, ChevronDownIcon, ChevronRightIcon

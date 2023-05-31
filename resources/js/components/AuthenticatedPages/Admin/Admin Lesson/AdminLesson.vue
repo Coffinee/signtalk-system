@@ -66,17 +66,17 @@
                     <div class="space-y-1">
                         <label for="title" class="text-[15px]">Lesson Title</label>
                         <input v-model="form.title" type="text"
-                            class="pl-2 text-xs w-full h-8 rounded-md border border-indigo-900">
+                            class="pl-2 text-xs w-full h-8 rounded-md border border-indigo-900 bg-white">
                     </div>
                     <div class="space-y-1">
                         <label for="video_link" class="text-[15px]">Upload Video Link</label>
                         <input v-model="form.video_link" type="text"
-                            class="pl-2 text-xs w-full h-8 rounded-md border border-indigo-900">
+                            class="pl-2 text-xs w-full h-8 rounded-md border border-indigo-900 bg-white">
                     </div>
                     <div class="space-y-1">
                         <label for="description" class="text-[15px]">Description</label>
                         <input v-model="form.description" type="text"
-                            class="pl-2 text-xs w-full h-8 rounded-md border border-indigo-900">
+                            class="pl-2 text-xs w-full h-8 rounded-md border border-indigo-900 bg-white">
                     </div>
                     
                     <div class="space-y-1">
