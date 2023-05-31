@@ -1,5 +1,5 @@
 <template>
-    <div class="min-h-full min-w-full bg-white dark:bg-gray-900">
+    <div class="min-h-full min-w-full bg-white dark:bg-gray-900 ">
         <TopBarStudent />
         <div>
             <router-view :key="$route.fullPath"></router-view>
