@@ -1,7 +1,7 @@
 <template>
   <div class="h-auto overflow-y-auto">
     <TabGroup :selectedIndex="selectedTab" @change="changeTab">
-        <TabList class=" flex justify-center gap-[5px] text-sm font-medium text-center text-dark dark:text-gray-400 dark:border-gray-700 w-full mt-[20px]">
+        <TabList class=" flex justify-center gap-[5px] text-sm font-medium text-center text-black dark:text-gray-400 dark:border-gray-700 w-full mt-[20px]">
             <Tab
                 v-for="tab in settingTabs"
                 as="template"

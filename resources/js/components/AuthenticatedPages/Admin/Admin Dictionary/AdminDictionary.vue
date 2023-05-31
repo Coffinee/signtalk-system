@@ -1,7 +1,7 @@
 <template>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div class="flex justify-between px-[30px] pt-[30px]">
-            <h2 class="text-2xl font-extrabold font-poppins">Dictionary</h2>
+            <h2 class="text-2xl font-extrabold font-poppins text-black">Dictionary</h2>
             <button type="button" @click="(slideoverOpen = !slideoverOpen)"
                 class="text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5">Add
                 Word</button>
@@ -64,20 +64,20 @@
                     <div class="space-y-1">
                         <label for="word" class="text-sm">Word</label>
                         <input v-model="form.word" type="text"
-                            class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500">
+                            class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white">
                     </div>
 
                     <div class="space-y-1">
                         <label for="desc" class="text-sm">Description</label>
                         <textarea v-model="form.description"
-                            class="pl-2 pt-2 text-xs w-full h-40 resize-none rounded-md border border-gray-500"></textarea>
+                            class="pl-2 pt-2 text-xs w-full h-40 resize-none rounded-md border border-gray-500 bg-white"></textarea>
                     </div>
 
                     <div class="space-y-1">
                         <label for="video-link" class="text-sm relative">Upload Video Link <span class="absolute text-[9px] text-indigo-500 ml-1">*optional</span>
                         </label>
                         <input v-model="form.video_link" type="text"
-                            class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500">
+                            class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white">
                     </div>
 
                     <div class="space-y-1">

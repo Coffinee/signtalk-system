@@ -40,7 +40,7 @@ export default {
 <template>
     <div class="dark:bg-transparent h-screen md:h-screen">
         <div class="flex flex-col items-center justify-center mb-[50px]  h-full">
-            <h5 class="mb-[20px] text-2xl text-center items-center font-bold dark:text-white">Quiz</h5>
+            <h5 class="mb-[20px] text-2xl text-black text-center items-center font-bold dark:text-white">Quiz</h5>
             <div class="flex justify-center flex-wrap gap-[20px]">
                 <div v-for="quiz in quizDescription" :key="quiz.id" class="max-w-xs h-[300px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <div class="h-[65%]">
@@ -74,21 +74,21 @@ export default {
                     <div class="flex flex-row md:flex-col gap-3">
                         <div class="flex items-center w-[50%] sm:w-full gap-3 px-3 py-[9px] rounded-md bg-gray-50 dark:bg-gray-500 shadow-md">
                             <InformationCircleIcon class="w-[25px] h-[25px] stroke-black dark:stroke-white stroke-2"/>
-                            <p class="dark:text-white capitalize">Multiple Choice</p>
+                            <p class="text-gray-600 dark:text-white capitalize">Multiple Choice</p>
                         </div>
                         <div class="flex items-center w-[50%] sm:w-full gap-3 px-3 py-[9px] rounded-md bg-gray-50 dark:bg-gray-500 shadow-md">
                             <QueueListIcon class="w-[25px] h-[25px] stroke-black dark:stroke-white stroke-2"/>
-                            <p class="dark:text-white capitalize">20 items</p>
+                            <p class="text-gray-600 dark:text-white capitalize">20 items</p>
                         </div>
                     </div>
                     <div class="flex flex-row md:flex-col gap-3">
                         <div  class="flex items-cente w-[50%] sm:w-full gap-3 px-3 py-[9px] rounded-md bg-gray-50 dark:bg-gray-500 shadow-md">
                             <ClockIcon class="w-[25px] h-[25px] stroke-black dark:stroke-white stroke-2"/>
-                            <p class="dark:text-white capitalize">10 minutes</p>
+                            <p class="text-gray-600 dark:text-white capitalize">10 minutes</p>
                         </div>
                         <div  class="flex items-center w-[50%] sm:w-full gap-3 px-3 py-[9px] rounded-md bg-gray-50 dark:bg-gray-500 shadow-md">
                             <ChartBarIcon class="w-[25px] h-[25px] stroke-black dark:stroke-white stroke-2"/>
-                            <p class="dark:text-white capitalize">Hard</p>
+                            <p class="text-gray-600 dark:text-white capitalize">Hard</p>
                         </div>
                     </div>
                 </div>

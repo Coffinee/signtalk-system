@@ -35,32 +35,32 @@ export default{
                 </div>
                 <div class="flex flex-col px-[15px] md:px-[50px] py-[20px]">
                     <div class="flex justify-between items-center flex-wrap w-full">
-                        <h5 class="text-2xl text-center font-bold dark:text-white">ASL Alphabet</h5>
+                        <h5 class="text-2xl text-black text-center font-bold dark:text-white">ASL Alphabet</h5>
                         <div class="flex items-center gap-[5px]">
                             <ClockIcon class="w-[25px] h-[25px] stroke-black dark:stroke-white"/>
-                            <p class="text-[20px] font-semibold  dark:text-white">
+                            <p class="text-[20px] text-black font-semibold  dark:text-white">
                                 Timer: 
-                                <span class="font-normal underline  dark:text-gray-400">19m 47s</span>
+                                <span class="font-normal underline text-gray-700  dark:text-gray-400">19m 47s</span>
                             </p>
                         </div>
                     </div>
                     <div class="flex justify-between flex-wrap-reverse gap-[20px] text-sm mt-3">
                         <div>
-                            <p class="dark:text-gray-400">
-                                <span class="font-semibold dark:text-white">Quiz Type: </span>
+                            <p class="text-gray-700 dark:text-gray-400">
+                                <span class="font-semibold text-black dark:text-white">Quiz Type: </span>
                                 Multiple Choice
                             </p>
-                            <p class="dark:text-gray-400">
-                                <span class="font-semibold dark:text-white">Instructions:</span>
+                            <p class="text-gray-700 dark:text-gray-400">
+                                <span class="font-semibold text-black dark:text-white">Instructions:</span>
                                 Read each question carefully and select the correct answer.
                             </p>
                         </div>
                         <div class="flex flex-col flex-wrap">
-                            <p class="dark:text-gray-400 capitalize">
-                                <span class="font-semibold dark:text-white">Difficulty: </span>
+                            <p class="text-gray-700  dark:text-gray-400 capitalize">
+                                <span class="font-semibold text-black dark:text-white">Difficulty: </span>
                                 Hard
                             </p>
-                            <p class="dark:text-gray-400">
+                            <p class="text-gray-700  dark:text-gray-400">
                                 <span class="font-semibold dark:text-white">No. of Items: </span>
                                 20
                             </p>
@@ -77,14 +77,15 @@ export default{
                                     <ChevronLeftIcon class="w-[25px] h-[25px] stroke-white"/>
                                 </router-link>
                             </div>
-                            <h2 class="text-xl font-extrabold dark:text-white text-center">Question #1</h2>
+                            <h2 class="text-xl text-black font-extrabold dark:text-white text-center">Question #1</h2>
                             <div class="flex items-center justify-center p-2 bg-indigo-500 hover:bg-indigo-600 dark:bg-gray-600 dark:hover:bg-gray-700 rounded-full">
                                 <router-link to="">
                                     <ChevronRightIcon class="w-[25px] h-[25px] stroke-white"/>
                                 </router-link>
                             </div>
                         </div>
-                        <div class="flex justify-center w-full">                   
+                        <div class="flex flex-col items-center justify-center w-full">
+                            <p class="text-lg text-black dark-text-white font-semibold">What is the Sign Language for this?</p>                   
                             <img class="w-full sm:w-full md:w-[80%] rounded-lg" src="https://m.media-amazon.com/images/I/71MhODbYvJL.jpg" alt="image description">
                         </div>
                     </div>
@@ -104,9 +105,6 @@ export default{
                                 </RadioGroupOption>
                             </div>
                         </RadioGroup>
-                    </div>
-                    <div>
-
                     </div>
                 </div>
             </div>

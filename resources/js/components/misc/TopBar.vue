@@ -2,7 +2,7 @@
   <nav class="bg-white border-gray-200 dark:bg-gray-900 sticky top-0 insex-x-0 w-full z-50">
     <div class="relative flex flex-wrap items-center justify-between mx-auto py-4 px-16 border-b border-gray-200 dark:border-gray-700">
       <router-link to="/">
-        <p class="self-center text-3xl font-bold whitespace-nowrap dark:text-white">Sign<span
+        <p class="self-center text-3xl font-bold whitespace-nowrap text-black dark:text-white">Sign<span
             class="text-indigo-500  font-bold">Talk</span>
         </p>
       </router-link>

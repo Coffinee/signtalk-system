@@ -50,16 +50,16 @@
 
                             </button>
                         </div>
-                    </button> -->
+                    </button> -->.
+                    
                     <div class="pl-3 text-sm text-black font-bold h-full w-full">
 
                     </div>
                 </div>
                 <div class="flex space-x-3">
-                    <input type="text" placeholder="Type your message ..."
-                        :value="!isSupported ? 'Your browser does not support Speech Recognition' : result"
-                        class="w-full h-10 rounded-full border border-gray-400 pl-5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400">
-                    <span class="flex space-x-1">
+                    <input type="text" placeholder="Type your message ..." :value="!isSupported ? 'Your browser does not support Speech Recognition' : result"
+                        class="w-full h-10 rounded-full border border-gray-400 pl-5 bg-gray-100 text-black dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400">
+                    <span>
                         <button v-if="!isListening" @click="start"
                             class="btn-mic flex items-center justify-center border border-gray-400 rounded-full h-10 w-10 hover:bg-gray-100">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

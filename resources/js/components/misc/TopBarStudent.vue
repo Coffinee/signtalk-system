@@ -3,7 +3,7 @@
     <div
       class="relative flex items-center justify-between mx-auto p-4 border-b border-gray-200 dark:border-gray-700">
       <router-link to="/">
-        <p class="self-center text-3xl font-bold whitespace-nowrap dark:text-white">Sign<span
+        <p class="self-center text-3xl font-bold whitespace-nowrap text-black dark:text-white">Sign<span
             class="text-indigo-500  font-bold">Talk</span></p>
       </router-link>
       <!-- <button @click="expand" type="button"
@@ -27,7 +27,7 @@
                   src="https://cdn.onlinewebfonts.com/svg/img_299586.png"
                   alt="" />
                 <span class="hidden lg:flex lg:items-center">
-                  <span class="ml-4 text-sm font-semibold leading-6 dark:text-white" aria-hidden="true">{{ user_fname }} {{ user_lname }}</span>
+                  <span class="ml-4 text-sm font-semibold leading-6 text-black dark:text-white" aria-hidden="true">{{ user_fname }} {{ user_lname }}</span>
                   <ChevronDownIcon class="ml-2 h-5 w-5 text-gray-400" aria-hidden="true" />
                 </span>
               </MenuButton>

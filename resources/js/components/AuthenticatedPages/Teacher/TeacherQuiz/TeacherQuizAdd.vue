@@ -93,7 +93,7 @@ export default {
 <template>
     <div class="relative overflow-auto shadow-md sm:rounded-lg">
         <div class="flex justify-between items-center p-2 px-[30px] pt-[30px]">
-            <h2 class="text-2xl font-extrabold font-poppins">Create Quiz</h2>
+            <h2 class="text-2xl font-extrabold font-poppins text-black">Create Quiz</h2>
             <router-link to="/teacher/quiz">
                 <button type="button" class="text-white font-medium rounded-lg text-sm px-5 py-2.5">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
@@ -165,12 +165,12 @@ export default {
         <!-- continuation -->
 
         <div v-if="isDetailComplete" class="flex flex-col p-2 px-[30px]">
-            <h3 class="text-lg font-bold">Questions</h3>
+            <h3 class="text-lg font-bold text-black">Questions</h3>
             <p class="text-xs text-gray-400 italic mb-2">Press ( + ) to add another choice to the question and/or ( - ) to remove a choice</p>
             <div v-for="(question, index) in quiz.questions" :key="index" class="mb-4">
-                <label class="block mb-2">Question {{ index + 1 }}:</label>
+                <label class="block mb-2 text-black">Question {{ index + 1 }}:</label>
                 <div class="flex space-x-1">
-                    <input type="text" v-model="question.text" class="px-4 py-1 border border-gray-300 rounded w-[1004px] mr-2">
+                    <input type="text" v-model="question.text" class="px-4 py-1 border border-gray-300 rounded w-[1004px] mr-2 bg-white text-black">
                     <button :disabled="question.choices.length == 4"
                         :class="question.choices.length == 4 ? 'bg-gray-600' : ''" @click="addChoice(index)" data-tip="Add Choice"
                         class="tooltip bg-blue-500 text-white rounded-full w-9 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg"
@@ -185,11 +185,11 @@ export default {
                         </svg>
                     </button>
                 </div>
-                <label class="mb-2">Choices:</label>
+                <label class="mb-2 text-black">Choices:</label>
                 <div v-for="(choice, choiceIndex) in question.choices" :key="choiceIndex" class="flex items-center mb-2">
-                    <input type="text" v-model="choice.text" class="w-full px-4 py-1 border border-gray-300 rounded">
+                    <input type="text" v-model="choice.text" class="w-full px-4 py-1 border border-gray-300 rounded bg-white text-black">
                     <input type="radio" v-model="question.correctChoices" :value="choiceIndex" class="ml-2">
-                    <label class="ml-1 text-sm whitespace-nowrap">Correct Answer</label>
+                    <label class="ml-1 text-sm whitespace-nowrap bg-white text-black">Correct Answer</label>
                 </div>
             </div>
             <div class="space-x-2 pb-6">

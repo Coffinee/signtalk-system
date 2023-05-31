@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 class="text-2xl font-extrabold font-poppins">Dashboard</h2>
+        <h2 class="text-2xl font-extrabold font-poppins text-black">Dashboard</h2>
         <div class="flex gap-x-[30px]">
             <div class="flex gap-x-[10px] max-w-lg p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
                 <div class="flex flex-col items-between">

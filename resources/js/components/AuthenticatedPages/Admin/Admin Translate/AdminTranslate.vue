@@ -1,7 +1,7 @@
 <template>
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <div class="flex justify-between px-[30px] pt-[30px]">
-            <h2 class="text-2xl font-extrabold font-poppins">Translate</h2>
+            <h2 class="text-2xl font-extrabold font-poppins text-black">Translate</h2>
             <button type="button" @click="(slideoverOpen = !slideoverOpen)"
                 class="text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5">Add
                 Entry</button>

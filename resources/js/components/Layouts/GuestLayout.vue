@@ -1,7 +1,7 @@
 <template>
-    <div class="min-h-full min-w-full dark:bg-gray-900">
+    <div class="min-h-full min-w-full bg-white dark:bg-gray-900">
         <TopBar/>
-        <div>
+        <div class="dark:bg-gray-900">
             <router-view :key="$route.fullPath"></router-view>
         </div>
         <Footer/>
