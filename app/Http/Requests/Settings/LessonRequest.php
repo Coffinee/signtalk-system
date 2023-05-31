@@ -26,16 +26,16 @@ class LessonRequest extends FormRequest
     public function createRules() :array {
         return [
             'title' => 'required|max:100',
-            'video_link' => 'required|max:100',
-            'description' => 'required|max:500',
+            'content' => 'required',
+            'refLink' => 'required|max:100',
         ];
     }
 
     public function updateRules(){
         return [
             'params.data.title' => 'required|max:100|unique:lessons,id'.$this->get('id'),
-            'params.data.video_link' => 'required|max:100',
-            'params.data.description' => 'required|max:500',
+            'params.data.content' => 'required',
+            'params.data.refLink' => 'required|max:100',
         ];
     }
 }
