@@ -15,17 +15,17 @@
     <div class="flex justify-center items-center h-screen">
         <div
             class="w-full md:w-[70%] h-[80%] md:h-[90%] bg-white dark:bg-gray-800 dark:border-gray-700 shadow shadow-indigo-300 rounded-lg">
-            <div class="flex flex-col space-y-3 m-3 h-[95%] p-5">
+            <div class="flex flex-col space-y-3 h-[95%] p-5">
                 <!-- result -->
                 <div
-                    class="w-full h-full flex items-center justify-center flex-wrap gap-[5px] border border-gray-400 rounded-md overflow-auto">
-                    <div v-for="(letter, index) in letters" :key="index" class="letter-container">
-                        <img :src="getLetterImage(letter)" :alt="letters[index]" />
+                    class="w-full h-full flex items-center justify-center gap-[5px] border border-gray-400 rounded-md overflow-auto">
+                    <div v-for="(letter, index) in letters" :key="index" class="flex">
+                        <img :src="getLetterImage(letter)" :alt="letters[index]" class="h-[60px] w-[60px] sm:h-[80px] sm:w-[80px] md:h-[120px] md:w-[120px]"/>
                     </div>
                 </div>
                 <!-- end result -->
                 <div class="flex space-x-3">
-                    <input v-model="input" type="text" placeholder="Type your message ..."
+                    <input @keyup.enter="displayResult" v-model="input" type="text" placeholder="Type your message ..."
                         class="w-full h-10 rounded-full border border-gray-400 pl-5 bg-gray-50 text-black dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400">
                     <button @click="displayResult" class="text-indigo-500">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
@@ -49,34 +49,35 @@ export default {
         };
     },
     methods: {
+
         getLetterImage(letter) {
             const letterImagePaths = {
-                A: '/images/asl-alphabet/asl-letter-a.PNG',
-                B: '/images/asl-alphabet/asl-letter-b.PNG',
-                C: '/images/asl-alphabet/asl-letter-c.PNG',
-                D: '/images/asl-alphabet/asl-letter-d.PNG',
-                E: '/images/asl-alphabet/asl-letter-e.PNG',
-                F: '/images/asl-alphabet/asl-letter-f.PNG',
-                G: '/images/asl-alphabet/asl-letter-g.PNG',
-                H: '/images/asl-alphabet/asl-letter-h.PNG',
-                I: '/images/asl-alphabet/asl-letter-i.PNG',
-                J: '/images/asl-alphabet/asl-letter-j.PNG',
-                K: '/images/asl-alphabet/asl-letter-k.PNG',
-                L: '/images/asl-alphabet/asl-letter-l.PNG',
-                M: '/images/asl-alphabet/asl-letter-m.PNG',
-                N: '/images/asl-alphabet/asl-letter-n.PNG',
-                O: '/images/asl-alphabet/asl-letter-o.PNG',
-                P: '/images/asl-alphabet/asl-letter-p.PNG',
-                Q: '/images/asl-alphabet/asl-letter-q.PNG',
-                R: '/images/asl-alphabet/asl-letter-r.PNG',
-                S: '/images/asl-alphabet/asl-letter-s.PNG',
-                T: '/images/asl-alphabet/asl-letter-t.PNG',
-                U: '/images/asl-alphabet/asl-letter-u.PNG',
-                V: '/images/asl-alphabet/asl-letter-v.PNG',
-                W: '/images/asl-alphabet/asl-letter-w.PNG',
-                X: '/images/asl-alphabet/asl-letter-x.PNG',
-                Y: '/images/asl-alphabet/asl-letter-y.PNG',
-                Z: '/images/asl-alphabet/asl-letter-z.PNG',
+                A: '/images/asl-alphabet-v2/asl-letter-a.jpg',
+                B: '/images/asl-alphabet-v2/asl-letter-b.jpg',
+                C: '/images/asl-alphabet-v2/asl-letter-c.jpg',
+                D: '/images/asl-alphabet-v2/asl-letter-d.jpg',
+                E: '/images/asl-alphabet-v2/asl-letter-e.jpg',
+                F: '/images/asl-alphabet-v2/asl-letter-f.jpg',
+                G: '/images/asl-alphabet-v2/asl-letter-g.jpg',
+                H: '/images/asl-alphabet-v2/asl-letter-h.jpg',
+                I: '/images/asl-alphabet-v2/asl-letter-i.jpg',
+                J: '/images/asl-alphabet-v2/asl-letter-j.jpg',
+                K: '/images/asl-alphabet-v2/asl-letter-k.jpg',
+                L: '/images/asl-alphabet-v2/asl-letter-l.jpg',
+                M: '/images/asl-alphabet-v2/asl-letter-m.jpg',
+                N: '/images/asl-alphabet-v2/asl-letter-n.jpg',
+                O: '/images/asl-alphabet-v2/asl-letter-o.jpg',
+                P: '/images/asl-alphabet-v2/asl-letter-p.jpg',
+                Q: '/images/asl-alphabet-v2/asl-letter-q.jpg',
+                R: '/images/asl-alphabet-v2/asl-letter-r.jpg',
+                S: '/images/asl-alphabet-v2/asl-letter-s.jpg',
+                T: '/images/asl-alphabet-v2/asl-letter-t.jpg',
+                U: '/images/asl-alphabet-v2/asl-letter-u.jpg',
+                V: '/images/asl-alphabet-v2/asl-letter-v.jpg',
+                W: '/images/asl-alphabet-v2/asl-letter-w.jpg',
+                X: '/images/asl-alphabet-v2/asl-letter-x.jpg',
+                Y: '/images/asl-alphabet-v2/asl-letter-y.jpg',
+                Z: '/images/asl-alphabet-v2/asl-letter-z.jpg',
                 ' ': '/images/asl-alphabet/asl-space.PNG',
             };
 
@@ -84,19 +85,23 @@ export default {
         },
 
         displayResult() {
-            // Split the input into individual letters and update the letters array with an interval
             const inputLetters = this.input.toUpperCase().split('');
             this.letters = []; // Clear the existing letters
             let index = 0;
             const interval = setInterval(() => {
-                this.letters.push(inputLetters[index]);
+                this.letters = [inputLetters[index]]; // Replace the existing letter with the current one
                 index++;
                 if (index >= inputLetters.length) {
-                    clearInterval(interval); // Stop the interval when all letters are displayed
-                    this.showResult = true; // Show the result
+                clearInterval(interval); // Stop the interval when all letters are displayed
+
+                // Show the entire list
+                setTimeout(() => {
+                    this.letters = inputLetters; // Show the entire list of images
+                    this.showResult = true;
+                }, 1000); // Delay of 1 second before showing the entire list
                 }
             }, 1200); // 1-second interval between displaying each letter
-        },
+        }
     },
 };
 </script>
