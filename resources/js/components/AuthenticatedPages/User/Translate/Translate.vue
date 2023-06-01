@@ -1,16 +1,3 @@
-<!-- <template>
-    <div>
-      <div class="input-container">
-        <div v-for="(letter, index) in letters" :key="index" class="letter-container">
-          <img :src="getLetterImage(letter)" :alt="'Sign language letter' + letters[index] "/>
-        </div>
-      </div>
-      <input v-model="input" class="hidden-input" />
-      <button @click="displayResult">Display Result</button>
-      <p v-if="showResult">Result: {{ input }}</p>
-    </div>
-  </template> -->
-
 <template>
     <div class="flex justify-center items-center h-screen">
         <div
@@ -18,9 +5,10 @@
             <div class="flex flex-col space-y-3 h-[95%] p-5">
                 <!-- result -->
                 <div
-                    class="w-full h-full flex items-center justify-center gap-[5px] border border-gray-400 rounded-md overflow-auto">
-                    <div v-for="(letter, index) in letters" :key="index" class="flex">
-                        <img :src="getLetterImage(letter)" :alt="letters[index]" class="h-[60px] w-[60px] sm:h-[80px] sm:w-[80px] md:h-[120px] md:w-[120px]"/>
+                    class="w-full h-full flex items-center justify-center flex-wrap gap-[5px] border border-gray-400 rounded-md overflow-auto p-[10px]">
+                    <div v-for="(letter, index) in letters" :key="index" class="letter-container">
+                        <img :src="getLetterImage(letter)" :alt="letters[index]"
+                            class="h-[60px] w-[60px] sm:h-[80px] sm:w-[80px] md:h-[150px] md:w-[150px]" />
                     </div>
                 </div>
                 <!-- end result -->
@@ -49,7 +37,6 @@ export default {
         };
     },
     methods: {
-
         getLetterImage(letter) {
             const letterImagePaths = {
                 A: '/images/asl-alphabet-v2/asl-letter-a.jpg',
@@ -78,29 +65,58 @@ export default {
                 X: '/images/asl-alphabet-v2/asl-letter-x.jpg',
                 Y: '/images/asl-alphabet-v2/asl-letter-y.jpg',
                 Z: '/images/asl-alphabet-v2/asl-letter-z.jpg',
-                ' ': '/images/asl-alphabet/asl-space.PNG',
+                0: '/images/asl-numbers/asl-number-0.jpg',
+                1: '/images/asl-numbers/asl-number-1.jpg',
+                2: '/images/asl-numbers/asl-number-2.jpg',
+                3: '/images/asl-numbers/asl-number-3.jpg',
+                4: '/images/asl-numbers/asl-number-4.jpg',
+                5: '/images/asl-numbers/asl-number-5.jpg',
+                6: '/images/asl-numbers/asl-number-6.jpg',
+                7: '/images/asl-numbers/asl-number-7.jpg',
+                8: '/images/asl-numbers/asl-number-8.jpg',
+                9: '/images/asl-numbers/asl-number-9.jpg',
+                ' ': 'images/asl-alphabet/asl-space.PNG',
+                '!': '/images/special-characters/exclamation-sign.jpg',
+                '@': '/images/special-characters/at-sign.png',
+                '#': '/images/special-characters/hashtag-sign.jpg',
+                '$': '/images/special-characters/dollar-sign.png',
+                '%': '/images/special-characters/percent-sign.png',
+                '&': '/images/special-characters/and-sign.png',
+                '(': '/images/special-characters/left-parenthesis.png',
+                ')': '/images/special-characters/right-parenthesis.png',
+                '-': '/images/special-characters/minus-sign.png',
+                '+': '/images/special-characters/plus-sign.jpg',
+                '*': '/images/special-characters/asterisk-sign.png',
+                '/': '/images/special-characters/forward-slash.png',
+                '=': '/images/special-characters/equal-sign.png',
+                '?': '/images/special-characters/question-mark.png',
             };
 
             return letterImagePaths[letter] || null;
         },
 
         displayResult() {
-            const inputLetters = this.input.toUpperCase().split('');
-            this.letters = []; // Clear the existing letters
-            let index = 0;
-            const interval = setInterval(() => {
-                this.letters = [inputLetters[index]]; // Replace the existing letter with the current one
-                index++;
-                if (index >= inputLetters.length) {
-                clearInterval(interval); // Stop the interval when all letters are displayed
+            if (this.input == null) {
 
-                // Show the entire list
-                setTimeout(() => {
-                    this.letters = inputLetters; // Show the entire list of images
-                    this.showResult = true;
-                }, 1000); // Delay of 1 second before showing the entire list
-                }
-            }, 1200); // 1-second interval between displaying each letter
+            }
+            else {
+                const inputLetters = this.input.toUpperCase().split('');
+                this.letters = []; // Clear the existing letters
+                let index = 0;
+                const interval = setInterval(() => {
+                    this.letters = [inputLetters[index]]; // Replace the existing letter with the current one
+                    index++;
+                    if (index >= inputLetters.length) {
+                        clearInterval(interval); // Stop the interval when all letters are displayed
+
+                        // Show the entire list
+                        setTimeout(() => {
+                            this.letters = inputLetters; // Show the entire list of images
+                            this.showResult = true;
+                        }, 1000); // Delay of 1 second before showing the entire list
+                    }
+                }, 1200); // 1-second interval between displaying each letter
+            }
         }
     },
 };
