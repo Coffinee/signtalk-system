@@ -49,128 +49,39 @@ export default {
         };
     },
     methods: {
-        getLetterImage(letter) {
-            // Return the image path for the given letter
-            let imagePath;
-            switch (letter) {
-                // Alphabet
-                case 'A':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-a.jpg';
-                    break;
-                case 'B':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-b.jpg';
-                    break;
-                case 'C':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-c.jpg';
-                    break;
-                case 'D':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-d.jpg';
-                    break;
-                case 'E':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-e.jpg';
-                    break;
-                case 'F':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-f.jpg';
-                    break;
-                case 'G':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-g.jpg';
-                    break;
-                case 'H':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-h.jpg';
-                    break;
-                case 'I':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-i.jpg';
-                    break;
-                case 'J':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-j.jpg';
-                    break;
-                case 'K':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-k.jpg';
-                    break;
-                case 'L':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-l.jpg';
-                    break;
-                case 'M':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-m.jpg';
-                    break;
-                case 'N':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-n.jpg';
-                    break;
-                case 'O':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-o.jpg';
-                    break;
-                case 'P':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-p.jpg';
-                    break;
-                case 'Q':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-q.jpg';
-                    break;
-                case 'R':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-r.jpg';
-                    break;
-                case 'S':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-s.jpg';
-                    break;
-                case 'T':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-t.jpg';
-                    break;
-                case 'U':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-u.jpg';
-                    break;
-                case 'V':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-v.jpg';
-                    break;
-                case 'W':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-w.jpg';
-                    break;
-                case 'X':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-x.jpg';
-                    break;
-                case 'Y':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-y.jpg';
-                    break;
-                case 'Z':
-                    imagePath = '/images/asl-alphabet-v2/asl-letter-z.jpg';
-                    break;
-                // Numbers
-                case '0':
-                    imagePath = '/images/asl-numbers/asl-number-0.jpg';
-                    break;
-                case '1':
-                    imagePath = '/images/asl-numbers/asl-number-1.jpg';
-                    break;
-                case '2':
-                    imagePath = '/images/asl-numbers/asl-number-2.jpg';
-                    break;
-                case '3':
-                    imagePath = '/images/asl-numbers/asl-number-3.jpg';
-                    break;
-                case '4':
-                    imagePath = '/images/asl-numbers/asl-number-4.jpg';
-                    break;
-                case '5':
-                    imagePath = '/images/asl-numbers/asl-number-5.jpg';
-                    break;
-                case '6':
-                    imagePath = '/images/asl-numbers/asl-number-6.jpg';
-                    break;
-                case '7':
-                    imagePath = '/images/asl-numbers/asl-number-7.jpg';
-                    break;
-                case '8':
-                    imagePath = '/images/asl-numbers/asl-number-8.jpg';
-                    break;
-                case '9':
-                    imagePath = '/images/asl-numbers/asl-number-9.jpg';
-                    break;
-                case ' ':
-                    imagePath = '/images/asl-alphabet-v2/asl-space.jpg';
-                    break;
-                default:
-                    return null;
 
-            }
-            return imagePath;
+        getLetterImage(letter) {
+            const letterImagePaths = {
+                A: '/images/asl-alphabet-v2/asl-letter-a.jpg',
+                B: '/images/asl-alphabet-v2/asl-letter-b.jpg',
+                C: '/images/asl-alphabet-v2/asl-letter-c.jpg',
+                D: '/images/asl-alphabet-v2/asl-letter-d.jpg',
+                E: '/images/asl-alphabet-v2/asl-letter-e.jpg',
+                F: '/images/asl-alphabet-v2/asl-letter-f.jpg',
+                G: '/images/asl-alphabet-v2/asl-letter-g.jpg',
+                H: '/images/asl-alphabet-v2/asl-letter-h.jpg',
+                I: '/images/asl-alphabet-v2/asl-letter-i.jpg',
+                J: '/images/asl-alphabet-v2/asl-letter-j.jpg',
+                K: '/images/asl-alphabet-v2/asl-letter-k.jpg',
+                L: '/images/asl-alphabet-v2/asl-letter-l.jpg',
+                M: '/images/asl-alphabet-v2/asl-letter-m.jpg',
+                N: '/images/asl-alphabet-v2/asl-letter-n.jpg',
+                O: '/images/asl-alphabet-v2/asl-letter-o.jpg',
+                P: '/images/asl-alphabet-v2/asl-letter-p.jpg',
+                Q: '/images/asl-alphabet-v2/asl-letter-q.jpg',
+                R: '/images/asl-alphabet-v2/asl-letter-r.jpg',
+                S: '/images/asl-alphabet-v2/asl-letter-s.jpg',
+                T: '/images/asl-alphabet-v2/asl-letter-t.jpg',
+                U: '/images/asl-alphabet-v2/asl-letter-u.jpg',
+                V: '/images/asl-alphabet-v2/asl-letter-v.jpg',
+                W: '/images/asl-alphabet-v2/asl-letter-w.jpg',
+                X: '/images/asl-alphabet-v2/asl-letter-x.jpg',
+                Y: '/images/asl-alphabet-v2/asl-letter-y.jpg',
+                Z: '/images/asl-alphabet-v2/asl-letter-z.jpg',
+                ' ': '/images/asl-alphabet/asl-space.PNG',
+            };
+
+            return letterImagePaths[letter] || null;
         },
         displayResult() {
             const inputLetters = this.input.toUpperCase().split('');
