@@ -4,9 +4,12 @@
             class="w-full md:w-[70%] h-[80%] md:h-[90%] bg-white dark:bg-gray-800 dark:border-gray-700 shadow shadow-indigo-300 rounded-lg">
             <div class="flex flex-col space-y-3 h-[95%] p-5">
                 <!-- result -->
-                <div
-                    class="w-full h-full flex items-center justify-center flex-wrap gap-[5px] border border-gray-400 rounded-md overflow-auto p-[10px]">
-                    <div v-for="(letter, index) in letters" :key="index" class="letter-container">
+                <div class="w-full h-full flex items-center justify-center flex-wrap gap-[5px] border border-gray-400 rounded-md overflow-auto p-[10px]">
+                    <div v-if="this.input == ''">
+                        <img  src="/Images/nothing.png" class="sm:w-[150px] md:w-[300px]">
+                        <p class="text-center">Nothing to show....</p>
+                    </div>
+                    <div v-else v-for="(letter, index) in letters" :key="index" class="letter-container">
                         <img :src="getLetterImage(letter)" :alt="letters[index]"
                             class="h-[60px] w-[60px] sm:h-[80px] sm:w-[80px] md:h-[150px] md:w-[150px]" />
                     </div>
@@ -96,10 +99,7 @@ export default {
         },
 
         displayResult() {
-            if (this.input == null) {
-
-            }
-            else {
+ 
                 const inputLetters = this.input.toUpperCase().split('');
                 this.letters = []; // Clear the existing letters
                 let index = 0;
@@ -116,7 +116,7 @@ export default {
                         }, 1000); // Delay of 1 second before showing the entire list
                     }
                 }, 1200); // 1-second interval between displaying each letter
-            }
+            
         }
     },
 };
