@@ -20,7 +20,7 @@
                 <div
                     class="w-full h-full flex items-center justify-center flex-wrap gap-[5px] border border-gray-400 rounded-md overflow-auto">
                     <div v-for="(letter, index) in letters" :key="index" class="letter-container">
-                        <img :src="getLetterImage(letter)" :alt="letters[index]" />
+                        <img :src="getLetterImage(letter)" :alt="letters[index]" class="h-[60px] w-[60px] sm:h-[80px] sm:w-[80px] md:h-[120px] md:w-[120px]"/>
                     </div>
                 </div>
                 <!-- end result -->
@@ -152,7 +152,7 @@ export default {
                     clearInterval(interval); // Stop the interval when all letters are displayed
                     this.showResult = true; // Show the result
                 }
-            }, 2000); // 2-second interval between displaying each letter
+            }, 1500); // 1-second interval between displaying each letter
         },
     },
 };
