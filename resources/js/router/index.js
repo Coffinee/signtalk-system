@@ -22,7 +22,7 @@ const Personalization = () =>import("@/components/AuthenticatedPages/User/Settin
 
 
 // TEACHER SIDE
-const TeacherHome = () => import("@/components/AuthenticatedPages/Teacher/Home.vue");
+// const TeacherHome = () => import("@/components/AuthenticatedPages/Teacher/Home.vue");
 const TeacherDashboard = () => import("@/components/AuthenticatedPages/Teacher/TeacherDashboard/TeacherDashboard.vue");
 const TeacherClasses = () => import("@/components/AuthenticatedPages/Teacher/TeacherClasses/TeacherClasses.vue");
 const TeacherLesson = () => import("@/components/AuthenticatedPages/Teacher/TeacherLesson/TeacherLesson.vue");
@@ -254,14 +254,14 @@ const routes = [
             middleware: "teacher",
         },
         children: [
-            {
-                name: "teacher-home",
-                path: "/",
-                component: TeacherHome,
-                meta: {
-                    title: `Teacher Home`,
-                },
-            },
+            // {
+            //     name: "teacher-home",
+            //     path: "/",
+            //     component: TeacherHome,
+            //     meta: {
+            //         title: `Teacher Home`,
+            //     },
+            // },
             {
                 name: "teacher-dashboard",
                 path: "/teacher/dashboard",
