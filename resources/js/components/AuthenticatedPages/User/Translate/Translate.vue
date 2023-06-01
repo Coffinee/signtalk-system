@@ -53,86 +53,118 @@ export default {
             // Return the image path for the given letter
             let imagePath;
             switch (letter) {
+                // Alphabet
                 case 'A':
-                    imagePath = '/images/asl-alphabet/asl-letter-a.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-a.jpg';
                     break;
                 case 'B':
-                    imagePath = '/images/asl-alphabet/asl-letter-b.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-b.jpg';
                     break;
                 case 'C':
-                    imagePath = '/images/asl-alphabet/asl-letter-c.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-c.jpg';
                     break;
                 case 'D':
-                    imagePath = '/images/asl-alphabet/asl-letter-d.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-d.jpg';
                     break;
                 case 'E':
-                    imagePath = '/images/asl-alphabet/asl-letter-e.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-e.jpg';
                     break;
                 case 'F':
-                    imagePath = '/images/asl-alphabet/asl-letter-f.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-f.jpg';
                     break;
                 case 'G':
-                    imagePath = '/images/asl-alphabet/asl-letter-g.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-g.jpg';
                     break;
                 case 'H':
-                    imagePath = '/images/asl-alphabet/asl-letter-h.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-h.jpg';
                     break;
                 case 'I':
-                    imagePath = '/images/asl-alphabet/asl-letter-i.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-i.jpg';
                     break;
                 case 'J':
-                    imagePath = '/images/asl-alphabet/asl-letter-j.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-j.jpg';
                     break;
                 case 'K':
-                    imagePath = '/images/asl-alphabet/asl-letter-k.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-k.jpg';
                     break;
                 case 'L':
-                    imagePath = '/images/asl-alphabet/asl-letter-l.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-l.jpg';
                     break;
                 case 'M':
-                    imagePath = '/images/asl-alphabet/asl-letter-m.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-m.jpg';
                     break;
                 case 'N':
-                    imagePath = '/images/asl-alphabet/asl-letter-n.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-n.jpg';
                     break;
                 case 'O':
-                    imagePath = '/images/asl-alphabet/asl-letter-o.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-o.jpg';
                     break;
                 case 'P':
-                    imagePath = '/images/asl-alphabet/asl-letter-p.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-p.jpg';
                     break;
                 case 'Q':
-                    imagePath = '/images/asl-alphabet/asl-letter-q.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-q.jpg';
                     break;
                 case 'R':
-                    imagePath = '/images/asl-alphabet/asl-letter-r.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-r.jpg';
                     break;
                 case 'S':
-                    imagePath = '/images/asl-alphabet/asl-letter-s.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-s.jpg';
                     break;
                 case 'T':
-                    imagePath = '/images/asl-alphabet/asl-letter-t.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-t.jpg';
                     break;
                 case 'U':
-                    imagePath = '/images/asl-alphabet/asl-letter-u.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-u.jpg';
                     break;
                 case 'V':
-                    imagePath = '/images/asl-alphabet/asl-letter-v.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-v.jpg';
                     break;
                 case 'W':
-                    imagePath = '/images/asl-alphabet/asl-letter-w.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-w.jpg';
                     break;
                 case 'X':
-                    imagePath = '/images/asl-alphabet/asl-letter-x.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-x.jpg';
                     break;
                 case 'Y':
-                    imagePath = '/images/asl-alphabet/asl-letter-y.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-y.jpg';
                     break;
                 case 'Z':
-                    imagePath = '/images/asl-alphabet/asl-letter-z.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-letter-z.jpg';
+                    break;
+                // Numbers
+                case '0':
+                    imagePath = '/images/asl-numbers/asl-number-0.jpg';
+                    break;
+                case '1':
+                    imagePath = '/images/asl-numbers/asl-number-1.jpg';
+                    break;
+                case '2':
+                    imagePath = '/images/asl-numbers/asl-number-2.jpg';
+                    break;
+                case '3':
+                    imagePath = '/images/asl-numbers/asl-number-3.jpg';
+                    break;
+                case '4':
+                    imagePath = '/images/asl-numbers/asl-number-4.jpg';
+                    break;
+                case '5':
+                    imagePath = '/images/asl-numbers/asl-number-5.jpg';
+                    break;
+                case '6':
+                    imagePath = '/images/asl-numbers/asl-number-6.jpg';
+                    break;
+                case '7':
+                    imagePath = '/images/asl-numbers/asl-number-7.jpg';
+                    break;
+                case '8':
+                    imagePath = '/images/asl-numbers/asl-number-8.jpg';
+                    break;
+                case '9':
+                    imagePath = '/images/asl-numbers/asl-number-9.jpg';
                     break;
                 case ' ':
-                    imagePath = '/images/asl-alphabet/asl-space.PNG';
+                    imagePath = '/images/asl-alphabet-v2/asl-space.jpg';
                     break;
                 default:
                     return null;
@@ -141,19 +173,23 @@ export default {
             return imagePath;
         },
         displayResult() {
-            // Split the input into individual letters and update the letters array with an interval
             const inputLetters = this.input.toUpperCase().split('');
             this.letters = []; // Clear the existing letters
             let index = 0;
             const interval = setInterval(() => {
-                this.letters.push(inputLetters[index]);
+                this.letters = [inputLetters[index]]; // Replace the existing letter with the current one
                 index++;
                 if (index >= inputLetters.length) {
-                    clearInterval(interval); // Stop the interval when all letters are displayed
-                    this.showResult = true; // Show the result
+                clearInterval(interval); // Stop the interval when all letters are displayed
+
+                // Show the entire list
+                setTimeout(() => {
+                    this.letters = inputLetters; // Show the entire list of images
+                    this.showResult = true;
+                }, 1000); // Delay of 1 second before showing the entire list
                 }
             }, 1200); // 1-second interval between displaying each letter
-        },
+        }
     },
 };
 </script>
