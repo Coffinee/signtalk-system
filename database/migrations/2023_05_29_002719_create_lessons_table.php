@@ -14,9 +14,9 @@ return new class extends Migration
         Schema::create('lessons', function (Blueprint $table) {
             $table->id();
             $table->string('title');
-            $table->string('video_link');
-            $table->longText('description');
+            $table->longText('content');
             $table->string('image_file')->nullable();
+            $table->string('refLink')->nullable();
             $table->timestamps();
         });
     }

@@ -2,8 +2,14 @@
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
 import { ChevronRightIcon } from '@heroicons/vue/20/solid'
-
+import axios from 'axios'
 export default {
+    props: {
+        data: {
+            type: Array,
+            default: {},
+        }
+    },
     components:{
         Popover, PopoverButton, PopoverPanel, ChevronDownIcon, ChevronRightIcon
     },  
@@ -21,7 +27,22 @@ export default {
                 { name: 'Hundreds', href: '#', icon: ChevronRightIcon },
                 { name: 'Thousands', href: '#', icon: ChevronRightIcon }
             ],
+            lessons: {},
+            data: {}
         }
+    },
+    methods:{
+        async getLessons() {
+            await axios.get('/api/getlesson').then((data) => {
+                this.lessons = data.data.data;
+                console.log(this.lessons.title)
+            }).catch((e) => {
+                errorMessage('Opps!', e.message, 'top-right')
+            });
+        },
+    },
+    created(){
+        this.getLessons();
     }
 }
 
@@ -73,7 +94,7 @@ export default {
         <div class="w-full sm:w-full md:w-[70%] self-center py-10 px-5">
             <div>
                 <h1 class="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">LESSON 1</h1>
-                <p class="mb-6 text-center text-lg font-normal text-gray-500 lg:text-xl sm:px-16 dark:text-gray-400">ALPHABETS</p>
+                <p class="mb-6 text-center text-lg font-normal text-gray-500 lg:text-xl sm:px-16 dark:text-gray-400">{{ this.lessons.title }}</p>
             </div>
             <div class="flex justify-between mt-3">
                 <a href="#"

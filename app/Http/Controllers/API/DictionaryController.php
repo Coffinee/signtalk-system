@@ -43,7 +43,7 @@ class DictionaryController extends BaseController
         if($request->image_file){
             $image_binary = $request->image_file;
             $image_link = time().'.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
-            \Image::make($image_binary)->fit(600, 360)->save('uploads/image/'.$image_link)
+            \Image::make($image_binary)->fit(600, 360)->save('uploads/dictionary/'.$image_link)
             ->destroy();
             
 
