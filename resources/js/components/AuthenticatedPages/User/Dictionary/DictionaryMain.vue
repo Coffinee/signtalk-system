@@ -53,11 +53,10 @@ export default {
 </script>
 <template>
     <!-- Main Content -->
-    <div class="flex justify-center items-center w-auto h-screen bg-white dark:bg-[#111827] ">
-        <div class="flex flex-col gap-[25px] px-5">
-            <div :class="!hasWord ? '-mt-36' : '' ">
-                <h1
-                    class="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+    <div class="flex flex-col justify-center items-center gap-[20px] w-full bg-white dark:bg-[#111827] p-5" :class="!hasWord ? 'h-screen' : 'h-auto'">
+        <div class="flex flex-col gap-[25px] w-full md:w-[80%] lg:w-[60%]">
+            <div :class="!hasWord ? '' : '' ">
+                <h1 class="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
                     Dictionary</h1>
                 <p class="mb-6 text-center text-lg font-normal text-gray-500 lg:text-lg sm:px-16 dark:text-gray-400">Search
                     a word to see its equivalent in American Sign Language (ASL)</p>
@@ -74,34 +73,36 @@ export default {
                     </div>
                     <input v-model="this.word" type="search" id="default-search"
                         class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        placeholder="Search..." required>
+                        placeholder="Search..."  @keyup.enter="searchQuery" required>
                     <button @click.prevent="searchQuery"
                         class="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:outline-none font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
                 </div>
-                <span v-if="queryNull" class="text-xs flex items-center justify-center text-red-500 mt-2">No Results Found</span>
             </div>
-
             <!-- Result -->
-            <div v-if="hasWord" class="hauto border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5">
+            <div class="h-auto  rounded-lg  dark:border-gray-700 p-5" :class="this.word === '' ? 'border-none shdaow-none' : 'shadow border-gray-200'">
                 <!-- <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Result:</h5> -->
-                <div class="flex flex-col  ">
-                    <div>
-                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            {{ this.dictionary.word }}
-                            <!-- <span class="text-lg italic font-normal">(adjective)</span> -->
-                        </h5>
-                        <p class="mb-3 text-gray-500 dark:text-gray-400">{{ this.dictionary.description }}</p>
-                    </div>
-                    <div class="flex justify-center w-full mb-[15px]">                   
-                        <img class="w-full sm:w-full rounded-lg" :src="'/uploads/image/' + this.dictionary.image_file" alt="">
+                <div v-if="hasWord" class="flex flex-col gap-[10px]">
+                    <div class="flex flex-col md:flex-row gap-[10px]">
+                        <div class="flex flex-col w-full md:w-[50%]">
+                            <h5 class="mb-2 text-xl md:text-2xl font-bold tracking-tight capitalize text-gray-900 dark:text-white">
+                                {{ this.dictionary.word }}
+                            </h5>
+                            <p class="text text-[16px] text-gray-500 dark:text-gray-400">{{ this.dictionary.description }}</p>
+                        </div>
+                        <div class="w-full md:w-[50%]">
+                            <img class="w-full sm:w-full rounded-lg" :src="'/uploads/dictionary/' + this.dictionary.image_file" alt="">
+                        </div>
                     </div>
                     <div class="self-center relative w-full overflow-hidden aspect-video">
-                        <iframe class="absolute inset-0 w-[100%] h-[100%] border-none" :src="this.dictionary.video_link "  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                       
+                        <iframe class="absolute inset-0 w-[100%] h-[100%] border-none " :src="this.dictionary.video_link "  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                       
                     </div>
-                    <!-- <img src="" alt=""> -->
+                </div>
+
+                <div v-else class="flex flex-col items-center justify-center mt-2">                        
+                    <img  src="/Images/nothing.png" class="sm:w-[150px] md:w-[300px]">
+                    <p class="text-center">Nothing to show...</p>
                 </div>
             </div>
-            
         </div>
     </div>
 </template>
