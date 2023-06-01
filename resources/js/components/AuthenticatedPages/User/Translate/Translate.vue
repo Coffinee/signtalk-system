@@ -26,7 +26,7 @@
                 <!-- end result -->
                 <div class="flex space-x-3">
                     <input v-model="input" type="text" placeholder="Type your message ..."
-                        class="w-full h-10 rounded-full border border-gray-400 pl-5 bg-gray-50 text-black dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400">
+                        class="w-full h-10 rounded-full border border-gray-400 pl-5 bg-gray-50 text-black dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" @keyup.enter="displayResult">
                     <button @click="displayResult" class="text-indigo-500">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                             <path
@@ -152,7 +152,7 @@ export default {
                     clearInterval(interval); // Stop the interval when all letters are displayed
                     this.showResult = true; // Show the result
                 }
-            }, 1500); // 1-second interval between displaying each letter
+            }, 1200); // 1-second interval between displaying each letter
         },
     },
 };
