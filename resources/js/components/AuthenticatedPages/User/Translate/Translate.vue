@@ -19,21 +19,23 @@
                 <!-- result -->
                 <div
                     class="w-full h-full flex items-center justify-center flex-wrap gap-[5px] border border-gray-400 rounded-md overflow-auto">
-                    <div v-for="(letter, index) in letters" :key="index" class="letter-container">
+                    <div v-for="letter in letters" :key="index">
                         <img :src="getLetterImage(letter)" :alt="letters[index]" />
                     </div>
                 </div>
                 <!-- end result -->
-                <div class="flex space-x-3">
-                    <input v-model="input" type="text" placeholder="Type your message ..."
-                        class="w-full h-10 rounded-full border border-gray-400 pl-5 bg-gray-50 text-black dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400">
-                    <button @click="displayResult" class="text-indigo-500">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-                            <path
-                                d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
-                        </svg>
-                    </button>
-                </div>
+                <form>
+                    <div class="flex space-x-3">
+                        <input v-model="input" type="text" placeholder="Type your message ..."
+                            class="w-full h-10 rounded-full border border-gray-400 pl-5 bg-gray-50 text-black dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400">
+                        <button type="submit" @click.prevent="displayResult" class="text-indigo-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+                                <path
+                                    d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
+                            </svg>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -141,18 +143,25 @@ export default {
             return imagePath;
         },
         displayResult() {
-            // Split the input into individual letters and update the letters array with an interval
-            const inputLetters = this.input.toUpperCase().split('');
-            this.letters = []; // Clear the existing letters
-            let index = 0;
-            const interval = setInterval(() => {
-                this.letters.push(inputLetters[index]);
-                index++;
-                if (index >= inputLetters.length) {
-                    clearInterval(interval); // Stop the interval when all letters are displayed
-                    this.showResult = true; // Show the result
-                }
-            }, 2000); // 2-second interval between displaying each letter
+
+            if (this.input == '/asl-word/' + this.input) {
+                let path = '/asl-word/' + this.input;
+                this.letter = this.getLetterImage(path);
+            }
+            else {
+                // Split the input into individual letters and update the letters array with an interval
+                const inputLetters = this.input.toUpperCase().split('');
+                this.letters = []; // Clear the existing letters
+                let index = 0;
+                const interval = setInterval(() => {
+                    this.letters.push(inputLetters[index]);
+                    index++;
+                    if (index >= inputLetters.length) {
+                        clearInterval(interval); // Stop the interval when all letters are displayed
+                        this.showResult = true; // Show the result
+                    }
+                }, 1500);
+            }
         },
     },
 };
