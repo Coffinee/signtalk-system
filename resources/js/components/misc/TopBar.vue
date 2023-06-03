@@ -26,10 +26,10 @@
               :aria-current="item.current ? 'page' : undefined">
               {{ item.name }}
             </router-link>
-            <button @click="toggleDark()" class="p-2 bg-gray-400 dark:bg-gray-600 rounded-full">
+            <!-- <button @click="toggleDark()" class="p-2 bg-gray-400 dark:bg-gray-600 rounded-full">
               <MoonIcon v-if="!isDark" class="w-5 h-5 stroke-white "/>
               <SunIcon v-else class="w-5 h-5 stroke-2 stroke-white "/>
-            </button>
+            </button> -->
           </li>
           <li class="flex gap-[10px]">
             <a class="block px-3 py-1 text-sm leading-6 text-gray-900 capitalize text-center">{{ user_full_name }}</a>
@@ -64,14 +64,14 @@
   </nav>
 </template>
 
-<script setup>
+<!-- <script setup>
 import { useDark, useToggle } from '@vueuse/core';
 
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
   
 
-</script>
+</script> -->
 <script>
 import { userAuthStore } from '@/store/auth';
 import {
