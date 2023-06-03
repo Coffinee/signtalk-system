@@ -1,60 +1,8 @@
-<script>
-import CardButton from '../../../misc/CardButton.vue';
-import axios from 'axios';
-export default {
-    name: "Dictionary",
 
-    props: {
-        data: {
-            type: Array,
-            default: {}
-        },
-    },
-    components: {
-        CardButton,
-    },
-    data() {
-        return {
-            data: {},
-            dictionary: {},
-            word: '',
-            hasWord: false,
-            queryNull: false
-        }
-    },
-
-    methods: {
-        async searchQuery() {
-            await axios.get('/api/getword?word=' + this.word).then((data) => {
-                this.dictionary = data.data.data;
-
-                if (this.dictionary != null) {
-                    this.hasWord = true;
-                    this.queryNull = false;
-                }
-                else {
-                    this.queryNull = true;
-                    this.hasWord = false;
-
-                }
-
-            }).catch((e) => {
-                errorMessage('Opps!', e.message, 'top-right')
-            });
-        },
-    },
-
-    created() {
-
-    }
-
-}
-
-</script>
 <template>
     <!-- Main Content -->
     <div class="flex justify-center items-center w-auto h-screen bg-white dark:bg-[#111827] ">
-        <div class="flex flex-col gap-[25px] px-5">
+        <div class="flex flex-col gap-[25px] px-5" >
             <div :class="!hasWord ? '-mt-36' : '' ">
                 <h1
                     class="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
@@ -82,7 +30,7 @@ export default {
             </div>
 
             <!-- Result -->
-            <div v-if="hasWord" class="hauto border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5">
+            <div v-if="hasWord" class="hauto border border-gray-200 rounded-lg shadow dark:border-gray-700 p-5" >
                 <!-- <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Result:</h5> -->
                 <div class="flex flex-col  ">
                     <div>
@@ -95,8 +43,9 @@ export default {
                     <div class="flex justify-center w-full mb-[15px]">                   
                         <img class="w-full sm:w-full rounded-lg" :src="'/uploads/image/' + this.dictionary.image_file" alt="">
                     </div>
-                    <div class="self-center relative w-full overflow-hidden aspect-video">
-                        <iframe class="absolute inset-0 w-[100%] h-[100%] border-none" :src="this.dictionary.video_link "  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                       
+                    <div class="self-center relative w-full overflow-hidden aspect-video" >
+                        <div ref="videoContainer"  class="video-container" v-html="this.dictionary.video_link"></div>
+                        <!-- <iframe class="absolute inset-0 w-[100%] h-[100%] border-none" :src="this.dictionary.video_link "  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                        -->
                     </div>
                     <!-- <img src="" alt=""> -->
                 </div>
@@ -105,3 +54,98 @@ export default {
         </div>
     </div>
 </template>
+
+<script>
+import CardButton from '../../../misc/CardButton.vue';
+import axios from 'axios';
+export default {
+    name: "Dictionary",
+
+    props: {
+        data: {
+            type: Array,
+            default: {}
+        },
+    },
+    components: {
+        CardButton,
+    },
+    data() {
+        return {
+            data: {},
+            dictionary: {},
+            word: '',
+            hasWord: false,
+            queryNull: false
+        }
+    },
+
+    methods: {
+        initResizeListener() {
+        const videoContainer = this.$refs.videoContainer;
+        const iframe = videoContainer.querySelector('iframe');
+
+        // Handle resize event
+        const handleResize = () => {
+            const { contentWindow } = iframe;
+
+            // Send postMessage to the iframe
+            contentWindow.postMessage('resize', '*');
+        };
+
+        // Add resize event listener
+        window.addEventListener('resize', handleResize);
+
+        // Clean up listener when component is destroyed
+        this.$once('hook:beforeDestroy', () => {
+            window.removeEventListener('resize', handleResize);
+        });
+        },
+        async searchQuery() {
+            await axios.get('/api/getword?word=' + this.word).then((data) => {
+                this.dictionary = data.data.data;
+
+                if (this.dictionary != null) {
+                    this.hasWord = true;
+                    this.queryNull = false;
+                }
+                else {
+                    this.queryNull = true;
+                    this.hasWord = false;
+
+                }
+
+            }).catch((e) => {
+                errorMessage('Opps!', e.message, 'top-right')
+            });
+        },
+    },
+    mounted() {
+        // this.$nextTick(() => {
+        // this.initResizeListener();
+        // });
+    },
+
+    created() {
+
+    }
+
+}
+
+</script>
+
+<style>
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio (9 / 16 = 0.5625 or 56.25%) */
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+</style>

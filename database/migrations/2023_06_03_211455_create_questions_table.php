@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dictionaries', function (Blueprint $table) {
+        Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->string('word');
+            $table->string('type');
+            $table->string('title');
+            $table->string('duration');
             $table->longText('description');
-            $table->longText('video_link');
-            $table->string('image_file')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dictionaries');
+        Schema::dropIfExists('questions');
     }
 };

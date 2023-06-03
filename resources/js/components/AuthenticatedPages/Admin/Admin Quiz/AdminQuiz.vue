@@ -20,7 +20,7 @@ export default {
         <div>
             <div class="flex justify-between mb-[20px]">
                 <h5 class="text-2xl text-left font-bold text-black mb-3">Quiz</h5>
-                <router-link to="/teacher/quiz/add">    
+                <router-link to="/admin/quiz/add">    
                     <button type="button"
                     class="text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5">Add
                     New</button>

@@ -50,6 +50,9 @@ export default {
                 correctChoices: []
             });
         },
+        removeQuestion(idx){
+            this.quiz.questions.splice(idx,1);
+        },
         addChoice(questionIndex) {
             this.quiz.questions[questionIndex].choices.push({ text: '' });
         },
@@ -165,10 +168,14 @@ export default {
         <!-- continuation -->
 
         <div v-if="isDetailComplete" class="flex flex-col p-2 px-[30px]">
+            
             <h3 class="text-lg font-bold text-black">Questions</h3>
             <p class="text-xs text-gray-400 italic mb-2">Press ( + ) to add another choice to the question and/or ( - ) to remove a choice</p>
             <div v-for="(question, index) in quiz.questions" :key="index" class="mb-4">
-                <label class="block mb-2 text-black">Question {{ index + 1 }}:</label>
+                <div class="flex justify-between">
+                    <label class="block mb-2 text-black">Question {{ index + 1 }}: </label>
+                    <a href="#" @click="removeQuestion(index)" class="text-end">Remove Question</a>
+                </div>
                 <div class="flex space-x-1">
                     <input type="text" v-model="question.text" class="px-4 py-1 border border-gray-300 rounded w-[1004px] mr-2 bg-white text-black">
                     <button :disabled="question.choices.length == 4"
@@ -178,8 +185,9 @@ export default {
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
                         </svg>
                     </button>
-                    <button v-if="choiceIndex !== 0" @click="removeChoice(index, choiceIndex)" data-tip="Remove Choice"
-                        class="tooltip bg-red-500 text-white rounded-full w-9 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg"
+                    <button :disabled="question.choices.length == 1"
+                        :class="question.choices.length == 1 ? 'bg-gray-600' : 'bg-red-500'" v-if="choiceIndex !== 0" @click="removeChoice(index, choiceIndex)" data-tip="Remove Choice"
+                        class="tooltip  text-white rounded-full w-9 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg"
                             fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
                         </svg>
@@ -193,9 +201,11 @@ export default {
                 </div>
             </div>
             <div class="space-x-2 pb-6">
+                
                 <button @click="addQuestion" class="px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600">+
                     Add
                     Question</button>
+                
                 <button @click="submitQuiz"
                     class="px-4 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600">Submit
                     Quiz</button>
