@@ -96,8 +96,8 @@ export default {
         },
 
         displayResult() {
-            if (this.input == null) {
-
+            if (this.input == '') {
+                this.letters = '/images/nothing.png';
             }
             else {
                 const inputLetters = this.input.toUpperCase().split('');
