@@ -23,6 +23,8 @@
         "@ckeditor/ckeditor5-vue": "github:ckeditor/ckeditor5-vue",
         "@headlessui/vue": "^1.7.13",
         "@heroicons/vue": "^2.0.18",
+        "@trevoreyre/autocomplete-vue": "^2.4.1",
+        "@vue-a11y/dark-mode": "^1.1.1",
         "@vueuse/core": "^10.1.2",
         "daisyui": "^2.52.0",
         "flowbite": "^1.6.5",

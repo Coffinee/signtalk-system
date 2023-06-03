@@ -5,17 +5,14 @@
                 <h2 class="text-2xl font-extrabold font-poppins text-black">My Classes</h2>
             </div>
             <div class="flex space-x-1">
-                <button
-                    class="hover:text-white hover:bg-indigo-500 rounded-md border-2 border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-3">Send Invitation</button>
-                <button
-                    class="hover:text-white hover:bg-indigo-500 rounded-md border-2 border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-3">Add
+                <button class="hover:text-white hover:bg-indigo-500 rounded-md border border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-3">Add
                     Class</button>
             </div>
         </div>
         <div class="h-auto w-full">
             <TabGroup :selectedIndex="selectedTab" @change="changeTab">
                 <TabList
-                    class=" justify-start flex text-sm font-medium text-center dark:text-gray-400 dark:border-gray-700 w-full mt-[20px] mb-[20px] border-b space-x-1">
+                    class="justify-start flex text-sm font-medium text-center dark:text-gray-400 dark:border-gray-700 w-full mt-[20px] mb-[20px] border-b space-x-1">
                     <Tab v-for="tab in SectionList" as="template" :key="tab" v-slot="{ selected }">
                         <button :class="[
                             'w-[150px] rounded-t-lg p-2 text-sm font-medium focus:outline-none text-black hover:bg-indigo-500 hover:text-white',
@@ -28,10 +25,7 @@
                     </Tab>
                 </TabList>
                 <TabPanels>
-                    <TabPanel class="h-full w-full border border-gray-300 rounded-md p-4 space-y-5">
-                        <Student1/>
-                    </TabPanel>
-                    <TabPanel class="h-full w-full border border-gray-300 rounded-md p-4 space-y-5">
+                    <TabPanel class="h-full w-full border border-gray-300 rounded-md p-4 space-y-5 p">
                         <Student1/>
                     </TabPanel>
                     <TabPanel class="h-full w-full border border-gray-300 rounded-md p-4 space-y-5">
@@ -71,7 +65,6 @@ export default {
             SectionList: [
                 { name: 'Section 1' },
                 { name: 'Section 2' },
-                { name: 'Section 3' },
             ],
             textToCopy: '',
             modalOpen: false,

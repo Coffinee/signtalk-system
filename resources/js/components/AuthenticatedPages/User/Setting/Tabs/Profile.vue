@@ -136,7 +136,7 @@ export default {
         </Accordion>
 
         <Accordion :sectiontitle="'Change Password'" :setOpen="false" :accordionColor="'bg-indigo-500'">
-            <form class="flex flex-col justify-center items-center dark:bg-gray-900 sm:p-[30px] md:p-[50px] h-full w-full">
+            <form class="flex flex-col justify-center items-center dark:bg-transparent sm:p-[30px] md:p-[50px] h-full w-full">
                 <div class="sm:w-full md:w-[45%] border dark:border-gray-600 rounded-lg p-5">
                     <div class="mb-5">
                         <label for="password" class="block mb-2 text-sm font-semibold  text-black dark:text-white">Current

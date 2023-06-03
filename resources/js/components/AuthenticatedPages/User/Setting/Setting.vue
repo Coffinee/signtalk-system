@@ -10,9 +10,9 @@
                 >
                 <button
                     :class="[
-                    'w-[150px] rounded-t-lg p-4 text-xs font-poppins dark:hover:bg-gray-700',
+                    'w-[150px] rounded-t-lg p-4 text-xs font-poppins dark:bg-[#232f4e] dark:hover:bg-gray-700',
                     selected
-                        ? 'bg-indigo-500 dark:bg-gray-700 text-white'
+                        ? 'bg-indigo-500 text-white'
                         : 'shadow-md ',
                     ]"
                 >

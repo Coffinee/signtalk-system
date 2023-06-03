@@ -1,5 +1,5 @@
 <template>
-    <div class="code relative border border-gray-300 w-52 h-8 rounded-md ">
+    <div class="code relative border border-gray-300 w-52 h-8 rounded-md">
         <input type="text" v-on:focus="$event.target.select()" ref="clone" readonly value='ABCDEFG'
             class="focus:outline-none select-none absolute w-full h-full tracking-widest px-14 whitespace-nowrap rounded-md bg-white" />
         <button @click="copy"
@@ -22,8 +22,8 @@
             </span>
         </p>
     </div>
-    <div class="flex justify-between">
-        <div class="relative mt-1">
+    <div class="flex justify-between items-center w-full">
+        <div class="relative">
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                 <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor"
                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
@@ -33,16 +33,22 @@
                 </svg>
             </div>
             <input type="text" id="table-search"
-                class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50"
+                class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-48 md:w-80 bg-gray-50"
                 placeholder="Search for items">
         </div>
-        <div class="">
+        <div>
             <button
-                class="hover:text-white hover:bg-indigo-500 rounded-md border-2 border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-3">Add
-                Student</button>
+                class="hover:text-white hover:bg-indigo-500 rounded-md border-2 border-indigo-500 text-indigo-500 text-base h-full py-1 px-3">
+                <span class="hidden sm:inline">ADD STUDENT</span>
+                <span class="inline sm:hidden">
+                    <svg class="w-5 h-7" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
+                </span>
+            </button>
         </div>
     </div>
-    <div>
+    <div class="overflow-auto"> 
         <table class="w-full text-sm text-left text-gray-500 py-[10px]">
             <thead class="text-xs text-gray-700 uppercase bg-gray-200">
                 <tr>

@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-white border-gray-200 dark:bg-gray-900 sticky top-0 insex-x-0 w-full z-50">
+  <nav class="bg-white border-gray-200 dark:bg-[#141526] sticky top-0 inset-x-0 w-full z-50">
     <div class="relative flex flex-wrap items-center justify-between mx-auto py-4 px-16 border-b border-gray-200 dark:border-gray-700">
       <router-link to="/">
         <p class="self-center text-3xl font-bold whitespace-nowrap text-black dark:text-white">Sign<span
@@ -19,17 +19,13 @@
       <div :show="open == true"
         :class="[!open ? 'hidden w-full md:block md:w-auto space-x-5' : 'absolute top-[55px] left-0 right-0 z-10']">
         <ul
-          class="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          class="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-[#141526] dark:border-gray-700">
           <li class="flex items-center flex-col md:flex-row">
             <router-link v-for="item in topbarNavigation" :key="item.name" :to="item.href" class="w-full"
               :class="[this.$router.path == item.href ? ' text-indigo-500' : 'text-black dark:text-slate-400 hover:text-blue-800', 'group rounded-xl px-6 py-2 text-sm leading-6 tracking-wide font-medium', open ? 'flex flex-col text-center' : '']"
               :aria-current="item.current ? 'page' : undefined">
               {{ item.name }}
             </router-link>
-            <button @click="toggleDark()" class="p-2 bg-gray-400 dark:bg-gray-600 rounded-full">
-              <MoonIcon v-if="!isDark" class="w-5 h-5 stroke-white "/>
-              <SunIcon v-else class="w-5 h-5 stroke-2 stroke-white "/>
-            </button>
           </li>
           <li class="flex gap-[10px]">
             <a class="block px-3 py-1 text-sm leading-6 text-gray-900 capitalize text-center">{{ user_full_name }}</a>
