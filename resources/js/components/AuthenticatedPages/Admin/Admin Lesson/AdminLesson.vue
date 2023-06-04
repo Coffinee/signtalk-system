@@ -80,8 +80,8 @@
                 <div class="mt-5 p-2 space-y-2">
                     <div class="flex justify-between items-center">
                         <label for="content">Lesson Title:</label>
-                        <div v-if="form.errors.has('title')" v-html="form.errors.get('title')"
-                            class="text-xs text-red-500" />
+                        <!-- <div v-if="form.errors.has('title')" v-html="form.errors.get('title')"
+                            class="text-xs text-red-500" /> -->
                     </div>
                     <input v-model="form.title" type="text"
                         class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500">
@@ -89,8 +89,8 @@
                 <div class="p-2 space-y-2">
                     <div class="flex justify-between items-center">
                         <label for="content">Lesson Content:</label>
-                        <div v-if="form.errors.has('content')" v-html="form.errors.get('content')"
-                            class="text-xs text-red-500" />
+                        <!-- <div v-if="form.errors.has('content')" v-html="form.errors.get('content')"
+                            class="text-xs text-red-500" /> -->
                     </div>
                     <ckeditor v-model="form.content" :editor="editor" :config="editorConfig"></ckeditor>
                 </div>
@@ -98,8 +98,8 @@
                     <div class="space-y-1">
                         <div class="flex justify-between items-center">
                             <label for="image_file" class="text-sm">Upload Image Reference:</label>
-                            <div v-if="form.errors.has('content')" v-html="form.errors.get('content')"
-                                class="text-xs text-red-500" />
+                            <!-- <div v-if="form.errors.has('content')" v-html="form.errors.get('content')"
+                                class="text-xs text-red-500" /> -->
                         </div>
                         <div class="flex items-center justify-center w-full">
                             <label :style="{ 'background-image': `url(${image_url})` }"
