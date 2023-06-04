@@ -51,4 +51,5 @@ class User extends Authenticatable
         'password' => 'password',
         'cPassword' => 'cPassword',
     ];
+
 }

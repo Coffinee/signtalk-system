@@ -22,16 +22,13 @@
                                     ? 'bg-indigo-500 dark:bg-indigo-500 text-white'
                                     : 'border',
                             ]">
-                                {{ tab.name }}
+                                {{ tab.className }}
                             </button>
                         </Tab>
                     </TabList>
-                    <TabPanels>
+                    <TabPanels v-for="tab in SectionList" :key="tab">
                         <TabPanel class="h-full w-full border border-gray-300 rounded-md p-4 space-y-5 p">
-                            <Student1 />
-                        </TabPanel>
-                        <TabPanel class="h-full w-full border border-gray-300 rounded-md p-4 space-y-5">
-                            <Student1 />
+                            <Student1 :classCode="tab.classCode"/>
                         </TabPanel>
                     </TabPanels>
                 </TabGroup>
@@ -46,17 +43,19 @@
 
     <Modal :show="modalOpen" @close="modalToggle" :title="'Create A New Class'" :heightModal="'h-[150px]'">
         <div class="w-full h-full">
-            <div class="space-y-1">
-                <label for="word" class="text-xs">Enter Your Class Name/Section: </label>
-                <input v-model="form.className" type="text"
-                    class="focus:outline-none pl-2 text-xs w-full h-8 rounded-md border border-indigo-900">
-            </div>
-            <div class="flex justify-center mt-5 gap-5">
-                <button @click="(modalOpen = !modalOpen)"
-                    class="hover:text-white hover:bg-[#3E3E3E] rounded-md border border-[#3E3E3E] text-#3E3E3E text-base w-[150px] h-auto py-1 px-3">Cancel</button>
-                <button @click="(modalOpen = !modalOpen)"
-                    class="hover:text-white hover:bg-indigo-500 rounded-md border border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-3">Add</button>
-            </div>
+            <form @submit.prevent="addSection()">
+                <div class="space-y-1">
+                    <label for="word" class="text-xs">Enter Your Class Name/Section: </label>
+                    <input v-model="form.className" type="text"
+                        class="focus:outline-none pl-2 text-xs w-full h-8 rounded-md border border-indigo-900">
+                </div>
+                <div class="flex justify-center mt-5 gap-5">
+                    <button @click.prevent="(modalOpen = !modalOpen)"
+                        class="hover:text-white hover:bg-[#3E3E3E] rounded-md border border-[#3E3E3E] text-[#3E3E3E] text-base w-[150px] h-auto py-1 px-3">Cancel</button>
+                    <button type="submit"
+                        class="hover:text-white hover:bg-indigo-500 rounded-md border border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-3">Add</button>
+                </div>
+            </form>
         </div>
     </Modal>
 </template>
@@ -64,7 +63,8 @@
 
 import Student1 from './Tabs/Student1.vue';
 import Modal from '../../../misc/Modal.vue';
-import { Form } from 'vform';
+import Form from 'vform';
+import axios from 'axios';
 
 export default {
     components: {
@@ -73,10 +73,11 @@ export default {
     },
     data() {
         return {
+            data:{},
             SectionList: [],
             textToCopy: '',
             modalOpen: false,
-            class: new Form({
+            form: new Form({
                 className: '',
                 classCode: ''
             })
@@ -91,19 +92,34 @@ export default {
         },
         modalToggle() {
             this.modalOpen = false;
+            this.form = new Form({
+                className: '',
+                classCode: '',
+            })
         },
         addSection() {
             this.$Progress.start();
             this.form.post('/api/section')
                 .then((data) => {
                     this.$Progress.finish();
-                    // this.getData();
+                    this.getClass();
                     this.modalToggle();
                 }).catch((error) => {
                     this.$Progress.fail();
                 })
-        }
+        },
+        async getClass() {
+            await axios.get('/api/getclass').then((data) => {
+                this.SectionList = data.data.data;
+            }).catch((e) => {
+                errorMessage('Opps!', e.message, 'top-right')
+            });
+        },
+
     },
+    created(){
+        this.getClass();
+    }
 
 }
 </script>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\API;
 
 use App\Models\Section;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use App\Http\Requests\Settings\SectionRequest;
 
 class SectionController extends BaseController
 {
@@ -12,8 +14,13 @@ class SectionController extends BaseController
      */
     public function index()
     {
-        $data = Section::paginate(10);
+        $data = Section::latest()->first();
         return $this->sendResponse($data, "All Entries in Array");
+    }
+
+    public function getClass()
+    {
+        return $this->sendResponse(Section::get(), 'sections');
     }
 
     /**
@@ -27,9 +34,14 @@ class SectionController extends BaseController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SectionRequest $request)
     {
-        //
+        $validated = $request->validated();
+        $validated['classCode'] = Str::random(6);
+
+        $data = Section::create($validated);
+        return $this->sendResponse($data, "Saved");
+
     }
 
     /**
@@ -59,7 +71,7 @@ class SectionController extends BaseController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Section $section)
+    public function destroy(Request $request)
     {
         //
     }
