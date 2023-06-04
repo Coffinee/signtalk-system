@@ -15,7 +15,9 @@ class QuestionsController extends BaseController
      */
     public function index()
     {
-        //
+        $questions = Questions::with('questionItem')->get();
+
+        return $this->sendResponse($questions , 'Test');
     }
 
     /**
@@ -31,28 +33,39 @@ class QuestionsController extends BaseController
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'category' => 'required',
-            'title' => 'required|string|max:255',
-            'duration' => 'required|numeric|min:1',
-            'description' => 'required|string',
-            'questions.*.text' => 'required',
-            'questions.*.choices' => 'required|array',
-            'questions.*.choices.*.text' => 'required',
-            'questions.*.correctChoices' => 'array',
-            'questions.*.correctChoices.*' => 'required',
-        ]);
-    
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
+        
 
         try {
+            $validator = Validator::make($request->all(), [
+                'category' => 'required',
+                'title' => 'required|string|max:255',
+                'duration' => 'required|numeric|min:1',
+                'description' => 'required|string',
+                'banner' => 'required',
+                'questions.*.text' => 'required',
+                'questions.*.choices' => 'required|array',
+                'questions.*.choices.*.text' => 'required',
+                'questions.*.correctChoices' => 'required|array',
+                'questions.*.correctChoices.*' => 'required',
+            ]);
+        
+            if ($validator->fails()) {
+                return response()->json(['errors' => $validator->errors()], 422);
+            }
+
+            
+            $image_binary = $request->get('banner');
+            $image_link = time().'.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
+            \Image::make($image_binary)->fit(600, 360)->save('uploads/quiz/'.$image_link)
+            ->destroy();
+            
+
             $question = Questions::create([
                 'type' => $request->get('category'),
                 'title' => $request->get('title'),
                 'duration' => $request->get('duration'),
                 'description' => $request->get('description'),
+                'banner' => $image_link,
               ]);
 
               $questions = $request->get('questions');
@@ -78,14 +91,10 @@ class QuestionsController extends BaseController
                   }
                   $question_item = QuestionItems::create($array_item);
               }
-    
+
+            DB::commit();
             return $this->sendResponse($question , 'Test');
 
-            // Commit the transaction
-            DB::commit();
-
-            // Success message or further actions
-            echo "Database transaction committed successfully!";
         } catch (\Exception $e) {
             echo $e->getMessage();
             DB::rollback();
@@ -96,9 +105,11 @@ class QuestionsController extends BaseController
     /**
      * Display the specified resource.
      */
-    public function show(Questions $questions)
+    public function show(Questions $questions, $id)
     {
-        //
+        $questions = Questions::with('questionItem')->where('id', $id)->first();
+
+        return $this->sendResponse($questions , 'Questions');
     }
 
     /**
@@ -114,7 +125,53 @@ class QuestionsController extends BaseController
      */
     public function update(Request $request, Questions $questions)
     {
-        //
+        try{
+        $question = Questions::findOrFail($request->get('id'))->update([
+            'type' => $request->get('category'),
+            'title' => $request->get('title'),
+            'duration' => $request->get('duration'),
+            'description' => $request->get('description'),
+        ]);
+
+          $questions = $request->get('questions');
+          foreach ($questions as $item) {
+              $array_item = [
+                  'question_id' => $request->get('id'),
+                  'question' => $item['text'],
+                  'correct_ans' => $item['correctChoices'],
+              ];
+              foreach ($item['choices'] as $index => $choice) {
+                  if (isset($index) && $index === 0) {
+                      $array_item['choice_a'] = $choice['text'];
+                  }
+                  if (isset($index) && $index === 1) {
+                      $array_item['choice_b'] = $choice['text'];
+                  }
+                  if (isset($index) && $index === 2) {
+                      $array_item['choice_c'] = $choice['text'];
+                  }
+                  if (isset($index) && $index === 3) {
+                      $array_item['choice_d'] = $choice['text'];
+                  }
+              }
+              if($item['id'] != ""){
+                $question_item = QuestionItems::findOrFail($item['id'])->update($array_item);
+              }else{
+                $question_item = QuestionItems::create($array_item);
+              }
+          }
+
+        DB::commit();
+        return $this->sendResponse($question , 'Test');
+
+    } catch (\Exception $e) {
+        echo $e->getMessage();
+        DB::rollback();
+    }
+
+
+
+        return $this->sendResponse($question , 'Questions');
     }
 
     /**

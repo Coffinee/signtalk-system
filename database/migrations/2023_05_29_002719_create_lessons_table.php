@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title');
             $table->longText('content');
             $table->string('image_file')->nullable();
-            $table->string('refLink')->nullable();
+            $table->longText('refLink')->nullable();
             $table->timestamps();
         });
     }

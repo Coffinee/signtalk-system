@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "@aacassandra/vue3-progressbar": "^1.0.3",
+        "@chenfengyuan/vue-countdown": "^2.1.1",
         "@ckeditor/ckeditor5-build-classic": "^38.0.1",
         "@ckeditor/ckeditor5-vue": "github:ckeditor/ckeditor5-vue",
         "@headlessui/vue": "^1.7.13",
