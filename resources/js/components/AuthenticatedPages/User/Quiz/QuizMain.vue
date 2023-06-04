@@ -9,6 +9,7 @@ XMarkIcon
 import { CheckCircleIcon, XCircleIcon, ChartBarSquareIcon, ClockIcon } from '@heroicons/vue/20/solid'
 import { RadioGroup, RadioGroupDescription, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 import Modal from '../../../misc/Modal.vue';
+import Accordion from '../../../misc/Accordion.vue';
 export default{
     components:{
     QueueListIcon,
@@ -23,11 +24,12 @@ export default{
     RadioGroupOption,
     Modal,
     XCircleIcon,
-    ClockIcon
+    ClockIcon,
+    Accordion
 },
     data(){
         return{
-            quizCategories:[
+            quizCategory:[
                 { id: 1, title: 'Choice 1', value: 'A'},
                 { id: 2, title: 'Choice 2', value: 'B'},
                 { id: 3, title: 'Choice 3', value: 'C'},
@@ -129,7 +131,7 @@ export default{
             </div>
         </div>
     </div>
-    <Modal :show="modalOpen" @close="modalToggle" :title="'Quiz Summary'" :widthModal="'w-[600px]'" :heightModal="'h-auto'">
+    <Modal :show="modalOpen" @close="modalToggle" :title="'Quiz Summary'" :widthModal="'w-[600px]'" :heightModal="'h-[600px]'">
         <!-- description, no of items, duration, difficulty -->
         <div class="flex flex-col items-center gap-3 h-full mb-3">
             <div class="w-full">
@@ -137,7 +139,7 @@ export default{
                     <h1 class="text-black dark:text-white text-[25px] text-center mb-[20px] font-semibold">ASL Numbers</h1>
                 </div>
                 <div class="flex flex-col gap-[10px] w-full">
-                    <h1 class="text-black dark:text-white text-[18px] font-bold text-center mt-[5px]">Performance Stats</h1>
+                    <h1 class="text-black dark:text-white text-[18px] text-center mt-[5px]">Performance Stats</h1>
                     <div class="flex flex-col md:flex-row gap-[10px] w-full">
                         <div class="flex items-center justify-center md:justify-between w-full md:w-[50%] border dark:border-gray-500 p-3 rounded-md hover:bg-gray-100 hover:dark:bg-gray-500">
                             <CheckCircleIcon class="w-[120px] h-[120px] fill-green-400 stroke-2"/>
@@ -170,6 +172,28 @@ export default{
                             </p>
                         </div>
                     </div>                 
+                </div>
+            </div>
+            <div class="w-full">
+                <h1 class="text-black dark:text-white text-[18px] font-bold mt-[5px]">Review Questions</h1>
+                <div class="w-full p-2 rounded-md border border-gray-400 bg-gray-100 dark:bg-gray-700">
+                    <div>
+                        <h1 class="text-black dark:text-white text-[18px]  mb-[20px] font-semibold border-b border-gray-600 pb-2">
+                            1. What is the sign language for this?
+                        </h1>
+                        <div v-for="choice in quizCategory" :key="choice.id">
+                            <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
+                                <input id="bordered-radio-1" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300  focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" disabled>
+                                <label for="bordered-radio-1" class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ choice.title }}</label>
+                            </div>
+                        </div>
+                    </div>
+                    <Accordion :sectiontitle="'Show my Answer'" :accordionColor="'bg-gray-600'" :setOpen="false">
+                        <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
+                            <input id="bordered-radio-1" type="radio" value="" name="bordered-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" disabled>
+                            <label for="bordered-radio-1" class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Choice 2</label>
+                        </div>
+                    </Accordion>
                 </div>
             </div>
             <div class="flex justify-center w-full">

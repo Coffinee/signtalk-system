@@ -30,7 +30,7 @@
         </h2>
         <Transition>
             <div v-if="open">
-                <div class="py-5 font-light ">
+                <div class="pt-5 font-light ">
                     <!-- <div
                     class="p-5 font-light border border-gray-200 dark:border-gray-700 dark:bg-gray-900"
                 > -->
