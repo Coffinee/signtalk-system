@@ -12,7 +12,7 @@ class Dictionary extends Model
     protected $fillable = [
         'word',
         'description',
-        'video_file',
+        'video_link',
         'image_file',
     ];
 }

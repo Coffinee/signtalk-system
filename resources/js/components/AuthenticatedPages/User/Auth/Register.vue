@@ -9,27 +9,34 @@
                             class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white  text-center capitalize">
                             Register
                         </h1>
-                        <form class="space-y-4 md:space-y-6" @submit.prevent="submitForm()">
+                        <form class="space-y-4" @submit.prevent="submitForm()">
                             <div class="flex flex-col text-white">
-                                <p class="text-sm font-medium text-gray-900 dark:text-white text-center mb-2">Select a Role:</p>
+                                <p class="text-sm font-medium text-gray-900 dark:text-white text-left mb-2">Select a Role:</p>
                                 <div class="flex items-center justify-center space-x-5">
-                                    <input  @click.prevent="isTeacher = false" :class="isTeacher == false ? 'bg-indigo-500 text-white' : ''"
-                                        class="border border-indigo-500 text-gray-900 hover:bg-indigo-500 hover:text-white w-full h-10 rounded-md dark:hover:bg-indigo-500 dark:text-white" type="button" value="Student">
-                                    <input  @click.prevent="isTeacher = true"
+                                    <!-- <input v-model="form.role" @click.prevent="isTeacher = false" :class="isTeacher == false ? 'bg-indigo-500 text-white' : ''"
+                                        class="border border-indigo-500 text-gray-900 hover:bg-indigo-500 hover:text-white w-full h-10 rounded-md dark:hover:bg-indigo-500 dark:text-white" type="button" >
+                                    <input v-model="form.role" @click.prevent="isTeacher = true"
                                     :class="isTeacher ? 'bg-indigo-500 text-white' : ''"
-                                    class="border border-indigo-500 text-gray-900 hover:bg-indigo-500 hover:text-white w-full h-10 rounded-md dark:hover:bg-indigo-500 dark:text-white" type="button" value="Teacher">
+                                    class="border border-indigo-500 text-gray-900 hover:bg-indigo-500 hover:text-white w-full h-10 rounded-md dark:hover:bg-indigo-500 dark:text-white" type="button" > -->
+                                    
+                                    <select v-model="form.role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                                        <option value="" disabled>- Select a Role -</option>
+                                        <option @click.prevent="isTeacher = false" value="student">Student</option>
+                                        <option @click.prevent="isTeacher = true" value="teacher">Teacher</option>
+                                    </select>
+                                    
                                 </div>
                             </div>
                             <div>
-                                <div class="flex gap-4 w-full mb-2 ">
-                                    <div class="w-[50%]">
+                                <div class="flex gap-2 w-full mb-2 ">
+                                    <div class="w-full">
                                         <label for="first_name"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name:</label>
                                         <input type="text" name="first_name" id="name" v-model="form.first_name"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="Ex: Juan" required="true">
                                     </div>
-                                    <div class="w-[50%]">
+                                    <div class="w-full">
                                         <label for="last_name"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name:</label>
                                         <input type="text" name="last_name" id="name" v-model="form.last_name"
@@ -65,7 +72,7 @@
                                 <div v-show="isTeacher == false" class="mb-2">
                                     <label for="code"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Class Code:</label>
-                                    <input type="text" name="code" id="code"
+                                    <input v-model="form.classCode" type="text" name="code" id="code"
                                         placeholder="ABC123"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required="true">

@@ -4,13 +4,13 @@
         <div class="dark:bg-[#141526]">
             <router-view :key="$route.fullPath"></router-view>
         </div>
-        <Footer/>
+        <Footer></Footer>
     </div>
 </template>
 
 <script>
-import TopBar from "../misc/TopBar.vue";
-import Footer from "../misc/Footer.vue";
+import TopBar from "@/components/misc/TopBar.vue";
+import Footer from "@/components/misc/Footer.vue";
 export default{
     components:{
         TopBar, Footer

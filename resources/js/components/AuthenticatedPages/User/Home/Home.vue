@@ -109,6 +109,9 @@ export default {
         modalToggle() {
             this.modalOpen = false;
         },
+        getImagePath(imageName) {
+            return import.meta.env.VITE_BASE_URL  + imageName;
+        },
         submitForm() {
             this.$Progress.start();
             this.form.post('/api/register')

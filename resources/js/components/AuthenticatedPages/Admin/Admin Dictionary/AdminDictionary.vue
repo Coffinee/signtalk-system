@@ -42,7 +42,7 @@
                             {{ item.description }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ item.video_file }}
+                            {{ item.video_link }}
                         </td>
                         <td class="px-6 py-4">
                             {{ item.image_file }}
@@ -76,7 +76,7 @@
                     <div class="space-y-1">
                         <label for="video-link" class="text-sm relative">Upload Video Link <span class="absolute text-[9px] text-indigo-500 ml-1">*optional</span>
                         </label>
-                        <input ref="video_file"  v-model="form.video_file" type="text"
+                        <input ref="video_link"  v-model="form.video_link" type="text"
                             class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white">
                     </div>
 
@@ -136,7 +136,7 @@ export default {
                 id: '',
                 word: '',
                 description: '',
-                video_file: '',
+                video_link: '',
                 image_file: ''
             }),
             image_url: '',
@@ -159,7 +159,7 @@ export default {
                 id: '',
                 word: '',
                 description: '',
-                video_file: '',
+                video_link: '',
                 image_file: ''
             })
         },

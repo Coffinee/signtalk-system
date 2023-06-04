@@ -22,8 +22,9 @@
           class="font-medium flex flex-col items-center p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-[#141526] dark:border-gray-700">
           <li class="flex items-center flex-col md:flex-row">
             <router-link v-for="item in topbarNavigation" :key="item.name" :to="item.href" class="w-full"
-              :class="[this.$router.path == item.href ? ' text-indigo-500' : 'text-black dark:text-slate-400 hover:text-blue-800', 'group rounded-xl px-6 py-2 text-sm leading-6 tracking-wide font-medium', open ? 'flex flex-col text-center' : '']"
+              :class="[this.$router.path == item.href ? ' text-indigo-500' : 'text-black dark:text-slate-400 hover:text-blue-800', 'group flex rounded-xl px-6 py-2 text-sm leading-6 tracking-wide font-medium', open ? 'flex flex-col text-center' : '']"
               :aria-current="item.current ? 'page' : undefined">
+              <component :is="item.icon" class="mr-4 h-6 w-6 text-indigo-500" aria-hidden="true" />
               {{ item.name }}
             </router-link>
           </li>
@@ -32,7 +33,7 @@
             <Menu as="div" class="relative" :class="isAuthenticated === true ? 'block' : 'hidden'">
               <MenuButton class="-m-1.5 flex items-center p-1.5 ">
                 <span class="sr-only">Open user menu</span>
-                <img class="h-8 w-8 rounded-full bg-gray-50 "
+                <img class="h-8 w-8 rounded-full bg-gray-50"
                   src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                   alt="" />
                 <span class="hidden lg:flex lg:items-center">
@@ -60,14 +61,14 @@
   </nav>
 </template>
 
-<script setup>
+<!-- <script setup>
 import { useDark, useToggle } from '@vueuse/core';
 
 const isDark = useDark();
 const toggleDark = useToggle(isDark);
   
 
-</script>
+</script> -->
 <script>
 import { userAuthStore } from '@/store/auth';
 import {
@@ -78,18 +79,22 @@ import {
   TransitionChild,
   TransitionRoot,
 } from '@headlessui/vue'
+import {
+  UserIcon,
+  UserPlusIcon
+} from "@heroicons/vue/24/outline";
 import { MoonIcon, SunIcon } from '@heroicons/vue/24/outline';
 // const isAuthenticated = ref(userAuthStore().authenticated);
 export default {
   components:{
-    MoonIcon, SunIcon
+    MoonIcon, SunIcon, UserIcon, UserPlusIcon
   },
   data() {
     return {
 
       topbarNavigation: [
-        { name: 'Login', href: '/login' },
-        { name: 'Register', href: '/register'},
+        { name: 'Login', href: '/login', icon: UserIcon},
+        { name: 'Register', href: '/register', icon: UserPlusIcon},
 
       ],
       open: false,

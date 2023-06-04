@@ -75,7 +75,7 @@
                     </div>
                     <div class="space-y-1">
                         <label for="description" class="text-[15px]">Description</label>
-                        <input v-model="form.description" type="text"
+                        <input v-model="form.content" type="text"
                             class="pl-2 text-xs w-full h-8 rounded-md border border-indigo-900 bg-white">
                     </div>
                     
@@ -134,7 +134,7 @@ export default {
                 id: '',
                 title: '',
                 video_link: '',
-                description: '',
+                content: '',
                 image_file: ''
             }),
             image_url: '',
@@ -157,7 +157,7 @@ export default {
                 id: '',
                 title: '',
                 video_link: '',
-                description: '',
+                content: '',
                 image_file: ''
             })
             console.log(this.form)

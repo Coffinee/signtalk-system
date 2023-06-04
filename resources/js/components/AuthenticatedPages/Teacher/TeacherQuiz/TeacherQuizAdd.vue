@@ -50,6 +50,9 @@ export default {
                 correctChoices: []
             });
         },
+        removeQuestion(idx) {
+            this.quiz.questions.splice(idx, 1);
+        },
         addChoice(questionIndex) {
             this.quiz.questions[questionIndex].choices.push({ text: '' });
         },
@@ -165,37 +168,67 @@ export default {
         <!-- continuation -->
 
         <div v-if="isDetailComplete" class="flex flex-col p-2 px-[30px]">
+
             <h3 class="text-lg font-bold text-black">Questions</h3>
-            <p class="text-xs text-gray-400 italic mb-2">Press ( + ) to add another choice to the question and/or ( - ) to remove a choice</p>
+            <p class="text-xs text-gray-400 italic mb-3">Press ( + ) to add another choice to the question and/or ( - ) to
+                remove a choice</p>
             <div v-for="(question, index) in quiz.questions" :key="index" class="mb-4">
-                <label class="block mb-2 text-black">Question {{ index + 1 }}:</label>
+                <div class="flex justify-between items-center mb-2">
+                    <div class="flex gap-2">
+                        <a href="#" @click="removeQuestion(index)">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-5 h-5 text-red-500">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </a>
+                        <label class="block text-sm text-black">Question {{ index + 1 }}: </label>
+                    </div>
+                    <label class="custom-file-upload relative flex gap-2 text-xs items-center overflow-hidden">
+                        <input type="file" class="absolute opacity-0 border border-red-500" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6 text-indigo-500">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <p class="text-black cursor-pointer">Add Image</p>
+                    </label>
+                </div>
                 <div class="flex space-x-1">
-                    <input type="text" v-model="question.text" class="px-4 py-1 border border-gray-300 rounded w-[1004px] mr-2 bg-white text-black">
+                    <input type="text" v-model="question.text"
+                        class="px-4 py-1 border border-gray-300 rounded w-[1004px] mr-2 bg-white text-black">
                     <button :disabled="question.choices.length == 4"
-                        :class="question.choices.length == 4 ? 'bg-gray-600' : ''" @click="addChoice(index)" data-tip="Add Choice"
-                        class="tooltip bg-blue-500 text-white rounded-full w-9 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        :class="question.choices.length == 4 ? 'bg-gray-600' : ''" @click="addChoice(index)"
+                        data-tip="Add Choice"
+                        class="tooltip bg-blue-500 text-white rounded-full w-9 flex items-center justify-center"><svg
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
                         </svg>
                     </button>
-                    <button v-if="choiceIndex !== 0" @click="removeChoice(index, choiceIndex)" data-tip="Remove Choice"
-                        class="tooltip bg-red-500 text-white rounded-full w-9 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                    <button :disabled="question.choices.length == 1"
+                        :class="question.choices.length == 1 ? 'bg-gray-600' : 'bg-red-500'" v-if="choiceIndex !== 0"
+                        @click="removeChoice(index, choiceIndex)" data-tip="Remove Choice"
+                        class="tooltip  text-white rounded-full w-9 flex items-center justify-center"><svg
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
                         </svg>
                     </button>
                 </div>
-                <label class="mb-2 text-black">Choices:</label>
+                <label class="mb-2 text-sm text-black">Choices:</label>
                 <div v-for="(choice, choiceIndex) in question.choices" :key="choiceIndex" class="flex items-center mb-2">
-                    <input type="text" v-model="choice.text" class="w-full px-4 py-1 border border-gray-300 rounded bg-white text-black">
+                    <input type="text" v-model="choice.text"
+                        class="w-full px-4 py-1 border border-gray-300 rounded bg-white text-black">
                     <input type="radio" v-model="question.correctChoices" :value="choiceIndex" class="ml-2">
                     <label class="ml-1 text-sm whitespace-nowrap bg-white text-black">Correct Answer</label>
                 </div>
             </div>
             <div class="space-x-2 pb-6">
+
                 <button @click="addQuestion" class="px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600">+
                     Add
                     Question</button>
+
                 <button @click="submitQuiz"
                     class="px-4 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600">Submit
                     Quiz</button>

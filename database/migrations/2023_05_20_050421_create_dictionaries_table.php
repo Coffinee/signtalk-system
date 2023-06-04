@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('word');
             $table->longText('description');
-            $table->string('video_file');
+            $table->longText('video_link');
             $table->string('image_file')->nullable();
             $table->timestamps();
         });

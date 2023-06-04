@@ -15,17 +15,19 @@ use Illuminate\Support\Facades\Route;
 */
 Route::namespace('App\Http\Controllers\API')->group(function() {
     Route::post('login', 'AuthController@login');
+    Route::post('register', 'UserController@register');
 
     Route::get('getword', 'DictionaryController@getWord');
     Route::get('getlesson', 'LessonController@getLesson');
     
     Route::apiResources([
         'user' => 'UserController',
-        'register' => 'RegisterController',
+        // 'register' => 'RegisterController',
         'dictionary' => 'DictionaryController',
         'translate' => 'TranslateController',
         'lesson' => 'LessonController',
         'quiz' => '',
+        'questions' => 'QuestionsController',
         
     ]);
 });
