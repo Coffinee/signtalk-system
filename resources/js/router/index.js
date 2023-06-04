@@ -38,6 +38,7 @@ const AdminDictionary = () => import("@/components/AuthenticatedPages/Admin/Admi
 const AdminLesson = () => import("@/components/AuthenticatedPages/Admin/Admin Lesson/AdminLesson.vue");
 const AdminQuiz = () => import("@/components/AuthenticatedPages/Admin/Admin Quiz/AdminQuiz.vue");
 const AdminQuizAdd = () => import("@/components/AuthenticatedPages/Admin/Admin Quiz/AdminQuizAdd.vue");
+const AdminQuizEdit = () => import("@/components/AuthenticatedPages/Admin/Admin Quiz/AdminQuizEdit.vue");
 const AdminExamination = () => import("@/components/AuthenticatedPages/Admin/Admin Examination/AdminExamination.vue");
 const AdminTranslate = () => import("@/components/AuthenticatedPages/Admin/Admin Translate/AdminTranslate.vue");
 
@@ -362,6 +363,14 @@ const routes = [
                 name: 'admin-quiz-add',
                 path: "/admin/quiz/add",
                 component: AdminQuizAdd,
+                meta: {
+                    title: "SignTalk | Admin - Quiz",
+                },
+            },
+            {
+                name: 'admin-quiz-edit',
+                path: "/admin/quiz/edit/:id",
+                component: AdminQuizEdit,
                 meta: {
                     title: "SignTalk | Admin - Quiz",
                 },

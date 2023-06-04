@@ -15,7 +15,9 @@ class QuestionsController extends BaseController
      */
     public function index()
     {
-        //
+        $questions = Questions::with('questionItem')->get();
+
+        return $this->sendResponse($questions , 'Test');
     }
 
     /**
@@ -31,23 +33,25 @@ class QuestionsController extends BaseController
      */
     public function store(Request $request)
     {
-        $validator = Validator::make($request->all(), [
-            'category' => 'required',
-            'title' => 'required|string|max:255',
-            'duration' => 'required|numeric|min:1',
-            'description' => 'required|string',
-            'questions.*.text' => 'required',
-            'questions.*.choices' => 'required|array',
-            'questions.*.choices.*.text' => 'required',
-            'questions.*.correctChoices' => 'array',
-            'questions.*.correctChoices.*' => 'required',
-        ]);
-    
-        if ($validator->fails()) {
-            return response()->json(['errors' => $validator->errors()], 422);
-        }
+        
 
         try {
+            $validator = Validator::make($request->all(), [
+                'category' => 'required',
+                'title' => 'required|string|max:255',
+                'duration' => 'required|numeric|min:1',
+                'description' => 'required|string',
+                'questions.*.text' => 'required',
+                'questions.*.choices' => 'required|array',
+                'questions.*.choices.*.text' => 'required',
+                'questions.*.correctChoices' => 'required|array',
+                'questions.*.correctChoices.*' => 'required',
+            ]);
+        
+            if ($validator->fails()) {
+                return response()->json(['errors' => $validator->errors()], 422);
+            }
+
             $question = Questions::create([
                 'type' => $request->get('category'),
                 'title' => $request->get('title'),
@@ -78,14 +82,10 @@ class QuestionsController extends BaseController
                   }
                   $question_item = QuestionItems::create($array_item);
               }
-    
+
+            DB::commit();
             return $this->sendResponse($question , 'Test');
 
-            // Commit the transaction
-            DB::commit();
-
-            // Success message or further actions
-            echo "Database transaction committed successfully!";
         } catch (\Exception $e) {
             echo $e->getMessage();
             DB::rollback();
@@ -96,9 +96,11 @@ class QuestionsController extends BaseController
     /**
      * Display the specified resource.
      */
-    public function show(Questions $questions)
+    public function show(Questions $questions, $id)
     {
-        //
+        $questions = Questions::with('questionItem')->where('id', $id)->first();
+
+        return $this->sendResponse($questions , 'Questions');
     }
 
     /**

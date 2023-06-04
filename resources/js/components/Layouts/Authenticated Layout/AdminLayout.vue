@@ -194,7 +194,7 @@ const navigation = [
   { name: 'Dictionary', href: '/admin/dictionary', icon: BookOpenIcon, current: false },
   { name: 'Lesson', href: '/admin/lesson', icon: DocumentTextIcon, current: false },
   { name: 'Quiz', href: '/admin/quiz', icon: ClipboardDocumentIcon, current: false },
-  { name: 'Translate', href: '/admin/translate', icon: LanguageIcon, current: false },
+  // { name: 'Translate', href: '/admin/translate', icon: LanguageIcon, current: false },
 ]
 // const userNavigation = [
 //   { name: 'Your profile', href: '#' },

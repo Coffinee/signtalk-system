@@ -15,4 +15,9 @@ class Questions extends Model
         'duration',
         'description',
     ];
+
+
+    public function questionItem(){
+        return $this->hasMany(QuestionItems::class, 'question_id');
+    }
 }

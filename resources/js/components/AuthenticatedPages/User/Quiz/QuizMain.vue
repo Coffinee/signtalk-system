@@ -2,19 +2,29 @@
 import 
 {   
     QueueListIcon, 
-    ClockIcon, 
-    ChartBarIcon,
     ChevronLeftIcon,
-    ChevronRightIcon
+    ChevronRightIcon,
+XMarkIcon
 } from '@heroicons/vue/24/outline';
-import { CheckCircleIcon } from '@heroicons/vue/20/solid'
+import { CheckCircleIcon, XCircleIcon, ChartBarSquareIcon, ClockIcon } from '@heroicons/vue/20/solid'
 import { RadioGroup, RadioGroupDescription, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
+import Modal from '../../../misc/Modal.vue';
 export default{
     components:{
-        QueueListIcon, ChartBarIcon, ClockIcon, CheckCircleIcon, ChevronLeftIcon,
-        ChevronRightIcon,  RadioGroup, RadioGroupDescription, RadioGroupLabel, 
-        RadioGroupOption,      
-    },
+    QueueListIcon,
+    ChartBarSquareIcon,
+    ClockIcon,
+    CheckCircleIcon,
+    ChevronLeftIcon,
+    ChevronRightIcon,
+    RadioGroup,
+    RadioGroupDescription,
+    RadioGroupLabel,
+    RadioGroupOption,
+    Modal,
+    XCircleIcon,
+    ClockIcon
+},
     data(){
         return{
             quizCategories:[
@@ -23,7 +33,13 @@ export default{
                 { id: 3, title: 'Choice 3', value: 'C'},
                 { id: 3, title: 'Choice 4', value: 'D'},
             ],
+            modalOpen: false,
         }
+    },
+    methods:{
+        modalToggle(){
+            this.modalOpen = false;
+        },
     }
 }
 </script>
@@ -37,7 +53,7 @@ export default{
                     <div class="flex justify-between items-center flex-wrap w-full">
                         <h5 class="text-2xl text-black text-center font-bold dark:text-white">ASL Alphabet</h5>
                         <div class="flex items-center gap-[5px]">
-                            <ClockIcon class="w-[25px] h-[25px] stroke-black dark:stroke-white"/>
+                            <ClockIcon class="w-[25px] h-[25px] fill-black dark:stroke-white"/>
                             <p class="text-[20px] text-black font-semibold  dark:text-white">
                                 Timer: 
                                 <span class="font-normal underline text-gray-700  dark:text-gray-400">19m 47s</span>
@@ -85,11 +101,11 @@ export default{
                             </div>
                         </div>
                         <div class="flex flex-col items-center justify-center w-full">
-                            <p class="text-lg text-black dark-text-white font-semibold">What is the Sign Language for this?</p>                   
+                            <p class="text-[25px] text-black dark-text-white font-semibold">What is the Sign Language for this?</p>                   
                             <img class="w-full sm:w-full md:w-[80%] rounded-lg" src="https://m.media-amazon.com/images/I/71MhODbYvJL.jpg" alt="image description">
                         </div>
                     </div>
-                    <div>
+                    <div class="mb-6">
                         <RadioGroup>
                             <div class="mt-4 grid grid-cols-1 gap-y-6 lg:grid-cols-4 sm:gap-x-4">
                                 <RadioGroupOption as="template" v-for="quizCategory in quizCategories" :key="quizCategory.id" :value="quizCategory" v-model=quizCategory.title v-slot="{ checked, active }">
@@ -106,8 +122,59 @@ export default{
                             </div>
                         </RadioGroup>
                     </div>
+                    <div class="flex justify-center w-full">
+                        <button @click="(modalOpen = !modalOpen)" type="button" class="w-full focus:outline-none text-white bg-indigo-500 hover:bg-indigo-500  focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ">Submit</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <Modal :show="modalOpen" @close="modalToggle" :title="'Quiz Summary'" :widthModal="'w-[600px]'" :heightModal="'h-auto'">
+        <!-- description, no of items, duration, difficulty -->
+        <div class="flex flex-col items-center gap-3 h-full mb-3">
+            <div class="w-full">
+                <div>
+                    <h1 class="text-black dark:text-white text-[25px] text-center mb-[20px] font-semibold">ASL Numbers</h1>
+                </div>
+                <div class="flex flex-col gap-[10px] w-full">
+                    <h1 class="text-black dark:text-white text-[18px] font-bold text-center mt-[5px]">Performance Stats</h1>
+                    <div class="flex flex-col md:flex-row gap-[10px] w-full">
+                        <div class="flex items-center justify-center md:justify-between w-full md:w-[50%] border dark:border-gray-500 p-3 rounded-md hover:bg-gray-100 hover:dark:bg-gray-500">
+                            <CheckCircleIcon class="w-[120px] h-[120px] fill-green-400 stroke-2"/>
+                            <p class="flex flex-col items-center justify-center text-[50px] text-gray-600 dark:text-white capitalize font-semibold">
+                                19 
+                                <span class="text-[18px] font-normal">Correct</span>
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-center md:justify-between  w-full md:w-[50%] border dark:border-gray-500 p-3 rounded-md hover:bg-gray-100 hover:dark:bg-gray-500">
+                            <XCircleIcon class="w-[120px] h-[120px] fill-red-400 stroke-2"/>
+                            <p class="flex flex-col items-center justify-center text-[50px] text-gray-600 dark:text-white capitalize font-semibold">
+                                1 
+                                <span class="text-[18px] font-normal">Incorrect</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col md:flex-row  gap-[10px] w-full">
+                        <div class="flex items-center justify-center md:justify-between  w-full md:w-[50%] border dark:border-gray-500 p-3 rounded-md hover:bg-gray-100 hover:dark:bg-gray-500">
+                            <ClockIcon class="w-[120px] h-[120px] fill-blue-400 stroke-2"/>
+                            <p class="flex flex-col items-center justify-center text-[30px] text-gray-600 dark:text-white capitalize font-semibold ">
+                                5min 3s 
+                                <span class="text-[18px] font-normal">Time</span>
+                            </p>
+                        </div>
+                        <div class="flex items-center justify-center md:justify-between w-full md:w-[50%] border dark:border-gray-500 p-3 rounded-md hover:bg-gray-100 hover:dark:bg-gray-500">
+                            <ChartBarSquareIcon class="w-[120px] h-[120px] fill-orange-400 stroke-2"/>
+                            <p class="flex flex-col items-center justify-center text-[50px] text-gray-600 dark:text-white capitalize font-semibold">
+                                82% 
+                                <span class="text-[18px] font-normal">Accuracy</span>
+                            </p>
+                        </div>
+                    </div>                 
+                </div>
+            </div>
+            <div class="flex justify-center w-full">
+                <button @click="(modalOpen = !modalOpen)" type="button" class="w-full focus:outline-none text-white bg-indigo-500 hover:bg-indigo-500  focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ">Confirm</button>
+            </div>
+        </div>
+    </Modal>
 </template>

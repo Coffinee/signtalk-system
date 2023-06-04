@@ -16,24 +16,36 @@ export default {
     },
     data(){
         return{
-            quizCategories:[
-                { id: 1, title: 'Choice 1', value: 'A'},
-                { id: 2, title: 'Choice 2', value: 'B'},
-                { id: 3, title: 'Choice 3', value: 'C'},
-                { id: 4, title: 'Choice 4', value: 'D'},
-            ],
-            quizDescription:[
-                { id: 1, imgSrc: 'https://static.vecteezy.com/system/resources/previews/012/320/704/original/doodle-sketch-asl-sign-language-alphabet-illustration-free-vector.jpg', title: 'ASL Alphabet', items: '26'},
-                { id: 2, imgSrc: 'https://cfvod.kaltura.com/p/2531481/sp/253148100/thumbnail/entry_id/0_nrs2tha2/version/100012/width/412/height/223', title: 'ASL Numbers', items: '15'},
-                { id: 3, imgSrc: 'https://i.ytimg.com/vi/ijdn9elmT7g/maxresdefault.jpg', title: 'ASL Animals', items: '10'},
-            ],
+            questions: {},
+            // quizCategories:[
+            //     { id: 1, title: 'Choice 1', value: 'A'},
+            //     { id: 2, title: 'Choice 2', value: 'B'},
+            //     { id: 3, title: 'Choice 3', value: 'C'},
+            //     { id: 4, title: 'Choice 4', value: 'D'},
+            // ],
+            // quizDescription:[
+            //     { id: 1, imgSrc: 'https://static.vecteezy.com/system/resources/previews/012/320/704/original/doodle-sketch-asl-sign-language-alphabet-illustration-free-vector.jpg', title: 'ASL Alphabet', items: '26'},
+            //     { id: 2, imgSrc: 'https://cfvod.kaltura.com/p/2531481/sp/253148100/thumbnail/entry_id/0_nrs2tha2/version/100012/width/412/height/223', title: 'ASL Numbers', items: '15'},
+            //     { id: 3, imgSrc: 'https://i.ytimg.com/vi/ijdn9elmT7g/maxresdefault.jpg', title: 'ASL Animals', items: '10'},
+            // ],
             modalOpen: false,
         }
     },
     methods:{
         modalToggle(){
             this.modalOpen = false;
+        },
+        getQuestions(){
+            axios.get('/api/questions').then((data) => {
+                this.questions = data.data.data;
+            }).catch((e) => {
+                errorMessage('Opps!', e.message, 'top-right')
+            });
         }
+    },
+
+    created(){
+        this.getQuestions();
     }
 }
 </script>
@@ -42,16 +54,16 @@ export default {
         <div class="flex flex-col items-center justify-center mb-[50px]  h-full">
             <h5 class="mb-[20px] text-2xl text-black text-center items-center font-bold dark:text-white">Quiz</h5>
             <div class="flex justify-center flex-wrap gap-[20px]">
-                <div v-for="quiz in quizDescription" :key="quiz.id" class="max-w-xs h-[300px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                <div  v-for="item in questions" :key="item.id" class="max-w-xs h-[300px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <div class="h-[65%]">
                         <router-link @click="(modalOpen = !modalOpen)" to="#">
-                            <img class="w-full h-full rounded-t-lg" :src="quiz.imgSrc" alt="">
+                            <img class="w-full h-full rounded-t-lg" src="https://static.vecteezy.com/system/resources/previews/012/320/704/original/doodle-sketch-asl-sign-language-alphabet-illustration-free-vector.jpg" alt="">
                         </router-link>
                     </div>
                     <div class="flex flex-col justify-center h-[35%] px-[10px]">
                         <div class="flex justify-between mb-2">
-                            <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">{{ quiz.title }}</h5>
-                            <span class="bg-gray-50 shadow-md text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">{{ quiz.items }} items</span>
+                            <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">{{ item.title }}</h5>
+                            <span class="bg-gray-50 shadow-md text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">{{ item.question_item.length }} items</span>
                         </div>
                         <div>
                             <router-link @click="(modalOpen = !modalOpen)" to="">    

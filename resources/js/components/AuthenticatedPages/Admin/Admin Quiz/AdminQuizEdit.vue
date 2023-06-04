@@ -2,9 +2,9 @@
 <template>
     <div class="relative overflow-auto shadow-md sm:rounded-lg">
         <div class="flex justify-between items-center p-2 px-[30px] pt-[30px]">
-            <h2 class="text-2xl font-extrabold font-poppins text-black">Create Quiz</h2>
-            <router-link to="/admin/quiz">
-                <button type="button" class="text-white font-medium rounded-lg text-sm px-5 py-2.5">
+            <h2 class="text-2xl font-extrabold font-poppins text-black">Edit Quiz</h2>
+            <router-link to="#" >
+                <button @click.prevent="handleStepper()" type="button" class="text-white font-medium rounded-lg text-sm px-5 py-2.5">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                         stroke="#6366f1" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -17,10 +17,10 @@
                 <RadioGroup>
                     <RadioGroupLabel class="text-base  leading-6 text-gray-900">Select Quiz Category:</RadioGroupLabel>
                     <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                        <RadioGroupOption as="template" v-for="quizCategory in quizCategories" :key="quizCategory.id"
+                        <RadioGroupOption as="template" v-for="quizCategory in quizCategories" :key="quizCategory.id" disabled="disabled"
                             :value="quizCategory.value" v-model=formQuiz.category v-slot="{ checked, active }">
-                            <div @click="categorySelected(quizCategory.value)"
-                                :class="[checked ? 'border-transparent' : 'border-gray-300', active ? 'border-indigo-600 ring-2 ring-indigo-600' : '', 'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none']">
+                            <div @click="categorySelected(quizCategory.value, $event)"
+                                :class="[checked  ? 'border-transparent' : 'border-gray-300', active  ? 'border-indigo-600 ring-2 ring-indigo-600' : '', 'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none']">
                                 <span class="flex flex-1">
                                     <span class="flex flex-col w-full">
                                         <RadioGroupLabel as="span" class="block text-[25px] font-medium text-indigo-500">{{
@@ -30,10 +30,10 @@
                                             }}</RadioGroupDescription>
                                     </span>
                                 </span>
-                                <CheckCircleIcon :class="[!checked ? 'invisible' : '', 'h-5 w-5 text-indigo-600']"
+                                <CheckCircleIcon :class="[!checked && quizCategory.value !== category_selected  ? 'invisible' : '', 'h-5 w-5 text-indigo-600']"
                                     aria-hidden="true" />
                                 <span
-                                    :class="[active ? 'border' : 'border-2', checked ? 'border-indigo-600' : 'border-transparent', 'pointer-events-none absolute -inset-px rounded-lg']"
+                                    :class="[active  ? 'border' : 'border-2', checked ? 'border-indigo-600' : 'border-transparent', 'pointer-events-none absolute -inset-px rounded-lg']"
                                     aria-hidden="true" />
                             </div>
                         </RadioGroupOption>
@@ -53,7 +53,7 @@
                             Timer:</label>
                         <select v-model="formQuiz.duration" id="default"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-[8.5px] pl-10">
-                            <option disabled value="">Select Timer</option>
+                            <option selected disabled value="">Select Timer</option>
                             <option v-for="time in quizTimer" :key="time" :value="time.value">{{ time.name }}</option>
                         </select>
                         <ClockIcon class="absolute top-[37px] left-[8px] w-[20px] h-[20px] stroke-gray-500" />
@@ -64,12 +64,6 @@
                     <textarea v-model="formQuiz.description" id="message" rows="4"
                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                         placeholder="Enter Quiz Description"></textarea>
-                </div>
-                <div class="mb-6">
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="quiz_banner">Upload Quiz Banner:</label>
-                    <input type="file" id="title"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 "
-                            placeholder="Enter Quiz Title" required>
                 </div>
 
                 <button @click.prevent="showQuestion"
@@ -141,6 +135,7 @@ export default {
                 { id: 2, title: 'True or False', value: 'true-or-false', description: 'One Correct, One Incorrect' }
             ],
             is_true_or_false: false,
+            category_selected: '',
             question_index: 1,
             quizTimer: [
                 { name: '5 Minutes', value: '5' },
@@ -214,27 +209,28 @@ export default {
             })
 
         },
-        categorySelected(category){
+        categorySelected(category,event){
             if(category == 'true-or-false'){
-                this.formQuiz = new Form({
-                    title: '',
-                    description: '',
-                    category: '',
-                    duration:'',
-                    questions: [
-                        {
-                            text: '',
-                            choices: [],
-                            correctChoices: []
-                        }
-                    ]
-                });
+                // this.formQuiz = new Form({
+                //     title: '',
+                //     description: '',
+                //     category: '',
+                //     duration:'',
+                //     questions: [
+                //         {
+                //             text: '',
+                //             choices: [],
+                //             correctChoices: []
+                //         }
+                //     ]
+                // });
                 this.is_true_or_false = true;
                 this.formQuiz.questions[0].choices.push({ text: 'TRUE' });
                 this.formQuiz.questions[0].choices.push({ text: 'FALSE' });
             }else{
                 this.is_true_or_false = false
             }
+            this.category_selected = category
             this.formQuiz.category = category
         },
 
@@ -252,18 +248,60 @@ export default {
         showQuestion() {
             this.isDetailComplete = !this.isDetailComplete;
         },
-
+        handleStepper(){
+            if(!this.isDetailComplete){
+                this.$router.push('/admin/quiz')
+            }else{
+                this.isDetailComplete = !this.isDetailComplete;
+            }
+        },
         async getData() {
-            await axios.get('/api/quiz').then((data) => {
-                this.data = data.data.data;
+            const currentURL = window.location.href;
+            const match = currentURL.match(/\/(\d+)$/);
+            const id = match ? match[1] : null;
+    
+            await axios.get('/api/questions/'+id).then((data) => {
+                let quiz = data.data.data;
+                this.formQuiz.title = quiz.title
+                this.formQuiz.description = quiz.description
+                this.formQuiz.category = quiz.type
+                this.category_selected = quiz.type
+                this.formQuiz.duration = quiz.duration
+
+                let quizItem = quiz.question_item
+                this.formQuiz.questions.splice(0,1);
+                for (let index = 0; index < quizItem.length; index++) {
+                    if(this.category_selected == 'multiple-choice'){
+                        this.formQuiz.questions.push({
+                        text: quizItem[index]['question'],
+                        choices: [
+                                { text: quizItem[index]['choice_a'] }, {text: quizItem[index]['choice_b']}, {text: quizItem[index]['choice_c']}, {text: quizItem[index]['choice_d']}
+                            ],
+                            correctChoices: []
+                        });
+                    }else{
+                        this.formQuiz.questions.push({
+                            text: quizItem[index]['question'],
+                            choices: [
+                                { text: quizItem[index]['choice_a'] }, {text: quizItem[index]['choice_b']} 
+                            ],
+                            correctChoices: []
+                        });
+                    }
+                    
+                   // this.formQuiz.questions.text =  quizItem[index]['question'];
+
+                }
+                
             }).catch((e) => {
-                errorMessage('Opps!', e.message, 'top-right')
+                console.log(e.message)
+                // errorMessage('Opps!', e.message, 'top-right')
             });
         },
     },
 
     created() {
-        // this.getData();
+        this.getData()
     }
 }
 </script>
