@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers\API;
 
-use App\Models\Register;
+use App\Models\Section;
 use Illuminate\Http\Request;
-use App\Http\Requests\Settings\RegisterRequest;
 
-class RegisterController extends BaseController
+class SectionController extends BaseController
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = Register::paginate(10);
+        $data = Section::paginate(10);
         return $this->sendResponse($data, "All Entries in Array");
     }
 
@@ -28,16 +27,15 @@ class RegisterController extends BaseController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(RegisterRequest $request)
+    public function store(Request $request)
     {
-        $data = Register::create($request->all());
-        return $this->sendResponse($data, "Saved");
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Register $register)
+    public function show(Section $section)
     {
         //
     }
@@ -45,7 +43,7 @@ class RegisterController extends BaseController
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Register $register)
+    public function edit(Section $section)
     {
         //
     }
@@ -53,7 +51,7 @@ class RegisterController extends BaseController
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Register $register)
+    public function update(Request $request, Section $section)
     {
         //
     }
@@ -61,7 +59,7 @@ class RegisterController extends BaseController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Register $register)
+    public function destroy(Section $section)
     {
         //
     }

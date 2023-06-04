@@ -27,11 +27,11 @@ class RegisterRequest extends FormRequest
     public function createRules() :array {
         return [
             'role' => 'required|max:100',
-            'firstName' => 'required|max:100',
-            'lastName' => 'required|max:100',
+            'first_name' => 'required|max:100',
+            'last_name' => 'required|max:100',
             'email' => 'required',
             'password' => 'required',
-            'classCode' => 'required'
+            'cPassword' => 'required'
         ];
     }
 }

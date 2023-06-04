@@ -13,12 +13,6 @@
                             <div class="flex flex-col text-white">
                                 <p class="text-sm font-medium text-gray-900 dark:text-white text-left mb-2">Select a Role:</p>
                                 <div class="flex items-center justify-center space-x-5">
-                                    <!-- <input v-model="form.role" @click.prevent="isTeacher = false" :class="isTeacher == false ? 'bg-indigo-500 text-white' : ''"
-                                        class="border border-indigo-500 text-gray-900 hover:bg-indigo-500 hover:text-white w-full h-10 rounded-md dark:hover:bg-indigo-500 dark:text-white" type="button" >
-                                    <input v-model="form.role" @click.prevent="isTeacher = true"
-                                    :class="isTeacher ? 'bg-indigo-500 text-white' : ''"
-                                    class="border border-indigo-500 text-gray-900 hover:bg-indigo-500 hover:text-white w-full h-10 rounded-md dark:hover:bg-indigo-500 dark:text-white" type="button" > -->
-                                    
                                     <select v-model="form.role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
                                         <option value="" disabled>- Select a Role -</option>
                                         <option @click.prevent="isTeacher = false" value="student">Student</option>
@@ -75,7 +69,7 @@
                                     <input v-model="form.classCode" type="text" name="code" id="code"
                                         placeholder="ABC123"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        required="true">
+                                        >
                                 </div>
 
                             </div>
@@ -110,7 +104,7 @@ export default {
                 email: '',
                 password: '',
                 cPassword: '',
-                classCode: '',
+                classCode: ''
             }),
             isTeacher: false,
             isStudent: false
@@ -118,9 +112,10 @@ export default {
     },
     methods: {
         submitForm() {
+            console.log('clicked');
             this.$Progress.start();
             // prev: /register
-            this.form.post('/api/register')
+            this.form.post('/api/user')
                 .then((data) => {
                     this.$Progress.finish();
                     this.$router.push('/login');

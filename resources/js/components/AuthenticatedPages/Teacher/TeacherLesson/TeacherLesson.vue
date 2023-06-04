@@ -1,13 +1,13 @@
 <template>
     <div>
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <div class="flex justify-between p-2 px-[30px] pt-[30px]">
+        <div class="overflow-x-auto shadow-md sm:rounded-lg">
+            <div class="flex justify-between p-2 px-[30px] pt-[30px] mb-3">
                 <h2 class="text-2xl font-extrabold font-poppins text-black">Lesson</h2>
                 <button @click="(slideoverOpen = !slideoverOpen)" type="button"
                     class="text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5">Add
                     Lesson</button>
             </div>
-            <div class="pb-4 bg-white px-[30px]">
+            <!-- <div class="pb-4 bg-white px-[30px]">
                 <label for="table-search" class="sr-only">Search</label>
                 <div class="relative mt-1">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -22,7 +22,7 @@
                         class="block p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50"
                         placeholder="Search for items">
                 </div>
-            </div>
+            </div> -->
             <div class="pb-12">
                 <table class="w-full text-sm text-left text-gray-500 py-[10px]">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-200 ">

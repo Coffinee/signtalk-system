@@ -24,11 +24,15 @@ class UserRequest extends FormRequest
         return $this->isMethod('post') ? $this->createRules() : $this->updateRules();
     }
 
-    public function createRules() :array {
+    public function createRules(): array
+    {
         return [
-            'name' => 'required|max:100',
+            'role' => 'required|max:100',
+            'first_name' => 'required|max:100',
+            'last_name' => 'required|max:100',
             'email' => 'required',
-            'password' => 'required'
+            'password' => 'required',
+            'cPassword' => 'required',
         ];
     }
 }
