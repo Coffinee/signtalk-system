@@ -14,6 +14,7 @@ export default {
             user_fname: userAuthStore().user.first_name,
             user_lname: userAuthStore().user.last_name,
             email: userAuthStore().user.email,
+            cCode: userAuthStore().user.classCode,
             isInput_fname: false,
             isInput_lname: false,
             isInput_email: false,
@@ -128,7 +129,7 @@ export default {
                     <div class="px-4 py-6 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Class Code:</dt>
                         <dd class="mt-1 flex text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-                            <span class="flex-grow dark:text-gray-400">M4M4M0</span>
+                            <span class="flex-grow dark:text-gray-400">{{cCode}}</span>
                         </dd>
                     </div>
                 </dl>
