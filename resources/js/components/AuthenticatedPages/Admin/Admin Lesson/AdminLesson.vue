@@ -84,7 +84,7 @@
                             class="text-xs text-red-500" />
                     </div>
                     <input v-model="form.title" type="text"
-                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500">
+                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white">
                 </div>
                 <div class="p-2 space-y-2">
                     <div class="flex justify-between items-center">
@@ -116,7 +116,7 @@
                                         class="pt-1 text-sm tracking-wider text-gray-600 dark:text-white group-hover:text-gray-600">
                                         Attach a file</p>
                                 </div>
-                                <input ref="image_file" type="file" class="opacity-0" @input="uploadImage"
+                                <input ref="image_file" type="file" class="opacity-0 " @input="uploadImage"
                                     accept="image/png, image/jpeg, image/jpg, image/svg" />
                             </label>
                         </div>
@@ -128,7 +128,7 @@
                             class="absolute text-[9px] text-indigo-500 ml-1">*optional</span>
                     </label>
                     <input v-model="form.refLink" type="text"
-                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500">
+                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white">
                 </div>
 
                 <div class="flex gap-1 mt-10">

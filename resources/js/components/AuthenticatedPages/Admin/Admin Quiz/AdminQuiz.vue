@@ -13,7 +13,7 @@
                 <div class="max-w-xs h-[300px] bg-white border border-gray-200 rounded-lg shadow"  v-for="item in questions" :key="item.id">
                     <div class="h-[65%]">
                         <router-link to="#">
-                            <img class="w-full h-full rounded-t-lg" src="https://static.vecteezy.com/system/resources/previews/012/320/704/original/doodle-sketch-asl-sign-language-alphabet-illustration-free-vector.jpg" alt="">
+                            <img class="w-full h-full rounded-t-lg" :src="'/uploads/quiz/'+item.banner" alt="">
                         </router-link>
                     </div>
                     <div class="flex flex-col justify-center h-[35%] px-[10px]">
