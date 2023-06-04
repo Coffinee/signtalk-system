@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\Settings\UserRequest;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends BaseController
 {
@@ -13,7 +14,8 @@ class UserController extends BaseController
      */
     public function index()
     {
-        //
+        $data = User::paginate(10);
+        return $this->sendResponse($data, "All Entries in Array");
     }
 
     /**
@@ -29,8 +31,16 @@ class UserController extends BaseController
      */
     public function store(UserRequest $request)
     {
-        $data = User::create($request->all());
-        return $this->sendResponse($data, "Saved");
+        // $data = User::create($request->all());
+        // return $this->sendResponse($data, "Saved");
+        $validated = $request->validated();
+        $hashPass = Hash::make($request->password);
+        $validated['password'] = $hashPass;
+        $data = User::create($validated);
+
+        return $this->sendResponse($data, "Saved data to table.");
+
+
     }
 
     /**

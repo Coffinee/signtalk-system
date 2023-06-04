@@ -13,9 +13,13 @@ return new class extends Migration
     {
         Schema::create('registers', function (Blueprint $table) {
             $table->id();
+            $table->string('role');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('email');
-            $table->string('fullName');
             $table->string('password');
+            $table->string('cPassword');
+            $table->string('classCode')->nullable();
             $table->timestamps();
         });
     }

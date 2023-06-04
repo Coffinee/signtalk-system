@@ -15,6 +15,7 @@ class Register extends Model
         'last_name',
         'email',
         'password',
+        'cPassword',
         'classCode',
     ];
 }

@@ -5,8 +5,8 @@
         <div class="flex justify-center flex-wrap gap-x-[20px] gap-y-[80px]">
             <router-link :to="isAuthenticated ?  '/translate' : '/login'">
                 <div
-                    class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
-                    <img :src="getImagePath('/Images/translate.png')" class="w-[170px] absolute -top-[70px] left-[50px]">
+                    class="relative h-[300px] w-[250px] dark:bg-[#232f4e] rounded-md shadow-md dark:shadow-none shadow-indigo-100 hover:scale-105 ease-in-out duration-75">
+                    <img src="/Images/translate.png" class="w-[170px] absolute -top-[70px] left-[50px]">
                     <div class="flex flex-col items-center justify-center px-3 h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-8 h-8 dark:text-white text-black">
@@ -21,8 +21,8 @@
             </router-link>
             <router-link :to="isAuthenticated ? '/dictionary' : '/login'">
                 <div
-                    class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
-                    <img :src="getImagePath('/Images/dictionary.png')" class="w-40 absolute -top-[60px] left-[50px]">
+                    class="relative h-[300px] w-[250px] dark:bg-[#232f4e] rounded-md  shadow-md dark:shadow-none shadow-indigo-100 hover:scale-105 ease-in-out duration-75">
+                    <img src="/Images/dictionary.png" class="w-40 absolute -top-[60px] left-[50px]">
                     <div class="flex flex-col items-center justify-center px-3 h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-8 h-8 dark:text-white text-black mt-[20px]">
@@ -39,8 +39,8 @@
         <div class="flex justify-center  flex-wrap gap-x-[20px] gap-y-[80px]">
             <router-link :to="isAuthenticated ? '/lesson' : '/login'">
                 <div
-                    class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
-                    <img :src="getImagePath('/Images/lesson.png')" class="w-[180px] absolute -top-[70px] left-[35px]">
+                    class="relative h-[300px] w-[250px] dark:bg-[#232f4e] rounded-md shadow-md dark:shadow-none shadow-indigo-100 hover:scale-105 ease-in-out duration-75">
+                    <img src="/Images/lesson.png" class="w-[180px] absolute -top-[70px] left-[35px]">
                     <div class="flex flex-col items-center justify-center px-3 h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-8 h-8 dark:text-white text-black mt-[20px]">
@@ -49,14 +49,14 @@
                         </svg>
                         <span class="text-sm font-bold tracking-wider dark:text-white text-black">LESSONS</span>
                         <p class="text-[12px] font-medium text-center dark:text-white text-black mt-[15px]">A list of all
-                            lesson proper to be reviewd and/or discussed</p>
+                            lesson proper to be reviewed and/or discussed</p>
                     </div>
                 </div>
             </router-link>
             <router-link :to="isAuthenticated ? '/quiz' : '/login'">
                 <div
-                    class="relative h-[300px] w-[250px] bg-gray-200 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 shadow-md shadow-indigo-300 hover:scale-105 ease-in-out duration-75">
-                    <img :src="getImagePath('/Images/exams.png') " class="w-[160px] absolute -top-[50px] left-[55px]">
+                    class="relative h-[300px] w-[250px] dark:bg-[#232f4e] rounded-md  shadow-md dark:shadow-none shadow-indigo-100 hover:scale-105 ease-in-out duration-75">
+                    <img src="/Images/exams.png" class="w-[160px] absolute -top-[50px] left-[55px]">
                     <div class="flex flex-col items-center justify-center px-3 h-full">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-8 h-8 dark:text-white text-black mt-[20px]">

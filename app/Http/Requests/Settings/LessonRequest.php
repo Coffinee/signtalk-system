@@ -27,7 +27,7 @@ class LessonRequest extends FormRequest
         return [
             'title' => 'required|max:100',
             'content' => 'required',
-            'refLink' => 'required|max:100',
+            'refLink' => 'max:100',
         ];
     }
 
@@ -35,7 +35,7 @@ class LessonRequest extends FormRequest
         return [
             'params.data.title' => 'required|max:100|unique:lessons,id'.$this->get('id'),
             'params.data.content' => 'required',
-            'params.data.refLink' => 'required|max:100',
+            'params.data.refLink' => 'max:100',
         ];
     }
 }

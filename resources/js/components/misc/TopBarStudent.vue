@@ -1,7 +1,7 @@
 <template>
-  <nav class="bg-white border-gray-200 dark:bg-gray-900 sticky top-0 insex-x-0 w-full z-50">
+  <nav class="bg-white border-gray-200 dark:bg-[#141526] sticky top-0 insex-x-0 w-full z-50">
     <div
-      class="relative flex items-center justify-between mx-auto p-4 border-b border-gray-200 dark:border-gray-700">
+      class="relative flex items-center justify-between mx-auto p-4 px-16 border-b border-gray-200 dark:border-gray-700">
       <router-link to="/">
         <p class="self-center text-3xl font-bold whitespace-nowrap text-black dark:text-white">Sign<span
             class="text-indigo-500  font-bold">Talk</span></p>

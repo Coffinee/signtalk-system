@@ -1,7 +1,7 @@
 <template>
     <div class="h-auto sm:h-screen md:h-screen flex items-center justify-center my-[30px]">
         <div class="divide-y divide-gray-200 overflow-hidden rounded-lg shadow-md p-3 sm:grid sm:grid-cols-2 gap-[5px] sm:gap-[30px] sm:divide-y-0 w-full sm:w-full md:w-auto mx-[10px]">
-            <div v-for="(action, actionIdx) in actions" :key="action.title" :class="[actionIdx === 0 ? 'rounded-tl-lg rounded-tr-lg sm:rounded-tr-none' : '', actionIdx === 1 ? 'sm:rounded-tr-lg' : '', actionIdx === actions.length - 2 ? 'sm:rounded-bl-lg' : '', actionIdx === actions.length - 1 ? 'rounded-bl-lg rounded-br-lg sm:rounded-bl-none' : '', 'flex items-center gap-[20px] group relative bg-white dark:bg-gray-600 p-10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-md w-full md:w-[400px]']">
+            <div v-for="(action, actionIdx) in actions" :key="action.title" :class="[actionIdx === 0 ? 'rounded-tl-lg rounded-tr-lg sm:rounded-tr-none' : '', actionIdx === 1 ? 'sm:rounded-tr-lg' : '', actionIdx === actions.length - 2 ? 'sm:rounded-bl-lg' : '', actionIdx === actions.length - 1 ? 'rounded-bl-lg rounded-br-lg sm:rounded-bl-none' : '', 'flex items-center gap-[20px] group relative bg-white dark:bg-[#232f4e] p-10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-md w-full md:w-[400px]']">
                 <div>
                     <span :class="[action.iconBackground, action.iconForeground, 'inline-flex rounded-lg p-5']">
                         <component :is="action.icon" class="h-[40px] w-[40px]" aria-hidden="true" />

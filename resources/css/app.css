@@ -12,6 +12,10 @@
 .ck-editor__editable_inline h1{
     font-size: 50px
 }
+.darkmode-layer, .darkmode-toggle {
+    z-index: 500;
+  }
+
 /* :root {
     --my-color: #fff;
 }

@@ -13,7 +13,8 @@ class RegisterController extends BaseController
      */
     public function index()
     {
-        //
+        $data = Register::paginate(10);
+        return $this->sendResponse($data, "All Entries in Array");
     }
 
     /**
