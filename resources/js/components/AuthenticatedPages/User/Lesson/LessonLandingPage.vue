@@ -35,12 +35,6 @@ import SportsIcon from '../../../misc/Illustrations/SportsIcon.vue';
 import EmotionIcon from '../../../misc/Illustrations/EmotionIcon.vue';
 import AnimalsIcon from '../../../misc/Illustrations/AnimalsIcon.vue';
 import {
-// AcademicCapIcon,
-// BanknotesIcon,
-// CheckBadgeIcon,
-// ClockIcon,
-// ReceiptRefundIcon,
-// UsersIcon,
 BookOpenIcon,
 } from '@heroicons/vue/24/outline'
 import axios from 'axios';

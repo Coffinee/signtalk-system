@@ -47,8 +47,8 @@
                         <td class="px-6 py-4">
                             {{ item.image_file }}
                         </td>
-                        <td class="px-6 py-4 flex gap-[5px] text-center">
-                            <a @click.prevent="editForm(item)" class="font-medium text-blue-600  hover:underline ">Edit</a>
+                        <td class="px-6 py-4">
+                            <a @click.prevent="editForm(item)" class="font-medium text-blue-600 hover:underline ">Edit</a>
                         </td>
                     </tr>
 
