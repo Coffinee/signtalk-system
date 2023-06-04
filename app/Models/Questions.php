@@ -14,6 +14,7 @@ class Questions extends Model
         'title',
         'duration',
         'description',
+        'banner',
     ];
 
 

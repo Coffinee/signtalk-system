@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('duration');
             $table->longText('description');
+            $table->string('banner');
             $table->timestamps();
         });
     }

@@ -3,8 +3,8 @@
     <div class="relative overflow-auto shadow-md sm:rounded-lg">
         <div class="flex justify-between items-center p-2 px-[30px] pt-[30px]">
             <h2 class="text-2xl font-extrabold font-poppins text-black">Create Quiz</h2>
-            <router-link to="/admin/quiz">
-                <button type="button" class="text-white font-medium rounded-lg text-sm px-5 py-2.5">
+            <router-link to="#">
+                <button type="button" @click.prevent="handleStepper()" class="text-white font-medium rounded-lg text-sm px-5 py-2.5">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                         stroke="#6366f1" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -67,9 +67,9 @@
                 </div>
                 <div class="mb-6">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="quiz_banner">Upload Quiz Banner:</label>
-                    <input type="file" id="title"
+                    <input ref="questionBanner" type="file" id="title" @input="pickQuestionBanner"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 "
-                            placeholder="Enter Quiz Title" required>
+                            placeholder="Enter Quiz Title">
                 </div>
 
                 <button @click.prevent="showQuestion"
@@ -84,9 +84,20 @@
             <h3 class="text-lg font-bold text-black">Questions</h3>
             <p class="text-xs text-gray-400 italic mb-2">Press ( + ) to add another choice to the question and/or ( - ) to remove a choice</p>
             <div v-for="(question, index) in formQuiz.questions" :key="index" class="mb-4">
-                <div class="flex justify-between">
-                    <label class="block mb-2 text-black">Question {{ index + 1 }}: </label>
-                    <a href="#" @click="removeQuestion(index)" class="text-end">Remove Question</a>
+                <div class="flex justify-between items-center mb-2">
+                    <div class="flex gap-2">
+                        <label class="block mb-2 text-black">Question {{ index + 1 }}: </label>
+                        <a href="#" @click="removeQuestion(index)" class="text-end">Remove Question</a>
+                    </div>
+                    <label class="custom-file-upload relative flex gap-2 text-xs items-center overflow-hidden">
+                        <input type="file" class="absolute opacity-0 border border-red-500" />
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6 text-indigo-500">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                        </svg>
+                        <p class="text-black cursor-pointer">Add Image</p>
+                    </label>
                 </div>
                 <div class="flex space-x-1">
                     <input type="text" v-model="question.text" class="px-4 py-1 border border-gray-300 rounded w-[1004px] mr-2 bg-white text-black">
@@ -129,6 +140,7 @@
 import { RadioGroup, RadioGroupDescription, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 import { CheckCircleIcon } from '@heroicons/vue/20/solid'
 import { ClockIcon } from '@heroicons/vue/24/outline';
+import { createToast } from 'mosha-vue-toastify';
 import Form from 'vform';
 export default {
     components: {
@@ -154,6 +166,7 @@ export default {
                 description: '',
                 category: '',
                 duration:'',
+                banner:'',
                 questions: [
                     {
                         text: '',
@@ -210,9 +223,39 @@ export default {
             // You can perform additional validation or submit the quiz data to a server here
             console.log(this.formQuiz);
             this.formQuiz.post('/api/questions').then((res)=>{
-                console.log(res.data);
+                createToast({
+                    title: 'Hurray!',
+                    description: "Quiz Added"
+                },
+                    {
+                        showIcon: 'true',
+                        position: 'top-right',
+                        type: 'info',
+                        hideProgressBar: 'true',
+                        transition: 'bounce',
+                })
+                this.$router.push('/admin/quiz')
             })
 
+        },
+        handleStepper(){
+            if(!this.isDetailComplete){
+                this.$router.push('/admin/quiz')
+            }else{
+                this.isDetailComplete = !this.isDetailComplete;
+            }
+        },
+        pickQuestionBanner(){
+            let input = this.$refs.questionBanner;
+            let file = input.files;
+            if (file && file[0]) {
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    this.formQuiz.banner = e.target.result;
+                };
+                reader.readAsDataURL(file[0]);
+                this.$emit("input", file[0]);
+            }
         },
         categorySelected(category){
             if(category == 'true-or-false'){
@@ -248,6 +291,7 @@ export default {
                 }).catch((error) => {
                     this.$Progress.fail();
                 })
+
         },
         showQuestion() {
             this.isDetailComplete = !this.isDetailComplete;

@@ -102,7 +102,7 @@
                 <label class="mb-2 text-black">Choices:</label>
                 <div v-for="(choice, choiceIndex) in question.choices" :key="choiceIndex" class="flex items-center mb-2">
                     <input type="text" v-model="choice.text" :disabled="is_true_or_false" class="w-full px-4 py-1 border border-gray-300 rounded bg-white text-black">
-                    <input type="radio" v-model="question.correctChoices" :value="choice" class="ml-2">
+                    <input type="radio" v-model="question.correctChoices" :value="choice.text" class="ml-2">
                     <label class="ml-1 text-sm whitespace-nowrap bg-white text-black">Correct Answer</label>
                 </div>
             </div>
@@ -111,7 +111,7 @@
                     Add
                     Question</button>
                 <button @click="submitQuiz"
-                    class="px-4 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600">Submit
+                    class="px-4 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600">Update
                     Quiz</button>
             </div>
         </div>
@@ -145,15 +145,17 @@ export default {
             ],
             // Try Only
             formQuiz: new Form({
+                id:'',
                 title: '',
                 description: '',
                 category: '',
                 duration:'',
                 questions: [
                     {
+                        id:'',
                         text: '',
                         choices: [{ text: '' }],
-                        correctChoices: []
+                        correctChoices: ""
                     }
                 ]
             }),
@@ -170,22 +172,26 @@ export default {
     methods: {
         addQuestion() {
             
-            let counter = this.question_index++
-            if(this.is_true_or_false){
+            let counter = this.formQuiz.questions.length
+
+            if(this.formQuiz.category == 'true-or-false'){
                 this.formQuiz.questions.push({
+                    id:'',
                     text: '',
                     choices: [],
-                    correctChoices: []
+                    correctChoices: ""
                 });
                 this.formQuiz.questions[counter].choices.push({ text: 'TRUE' });
                 this.formQuiz.questions[counter].choices.push({ text: 'FALSE' });
             }else{
                 this.formQuiz.questions.push({
+                    id:'',
                     text: '',
                     choices: [{ text: '' }],
-                    correctChoices: []
+                    correctChoices: ""
                 });
             }
+            counter++;
             
         },
         removeQuestion(idx){
@@ -204,7 +210,7 @@ export default {
         submitQuiz() {
             // You can perform additional validation or submit the quiz data to a server here
             console.log(this.formQuiz);
-            this.formQuiz.post('/api/questions').then((res)=>{
+            this.formQuiz.put('/api/questions/'+this.formQuiz.id).then((res)=>{
                 console.log(res.data);
             })
 
@@ -262,6 +268,7 @@ export default {
     
             await axios.get('/api/questions/'+id).then((data) => {
                 let quiz = data.data.data;
+                this.formQuiz.id = quiz.id
                 this.formQuiz.title = quiz.title
                 this.formQuiz.description = quiz.description
                 this.formQuiz.category = quiz.type
@@ -273,19 +280,21 @@ export default {
                 for (let index = 0; index < quizItem.length; index++) {
                     if(this.category_selected == 'multiple-choice'){
                         this.formQuiz.questions.push({
+                        id:quizItem[index]['id'],
                         text: quizItem[index]['question'],
                         choices: [
                                 { text: quizItem[index]['choice_a'] }, {text: quizItem[index]['choice_b']}, {text: quizItem[index]['choice_c']}, {text: quizItem[index]['choice_d']}
                             ],
-                            correctChoices: []
+                            correctChoices:  quizItem[index]['correct_ans']
                         });
                     }else{
                         this.formQuiz.questions.push({
+                            id:quizItem[index]['id'],
                             text: quizItem[index]['question'],
                             choices: [
                                 { text: quizItem[index]['choice_a'] }, {text: quizItem[index]['choice_b']} 
                             ],
-                            correctChoices: []
+                            correctChoices:  quizItem[index]['correct_ans']
                         });
                     }
                     

@@ -196,7 +196,7 @@ const routes = [
             },
             {
                 name: 'quiz-main',
-                path: "/quiz/main",
+                path: "/quiz/main/:id",
                 component: QuizMain,
                 meta: {
                     title: "SignTalk | Quiz",
