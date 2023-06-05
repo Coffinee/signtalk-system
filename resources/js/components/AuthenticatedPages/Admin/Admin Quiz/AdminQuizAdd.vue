@@ -68,8 +68,7 @@
                 <div class="mb-6">
                     <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="quiz_banner">Upload Quiz Banner:</label>
                     <input ref="questionBanner" type="file" id="title" @input="pickQuestionBanner"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2 "
-                            placeholder="Enter Quiz Title">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2" placeholder="Enter Quiz Title">
                 </div>
 
                 <button @click.prevent="showQuestion"

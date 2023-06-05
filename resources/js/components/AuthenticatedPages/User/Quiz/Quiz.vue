@@ -2,11 +2,11 @@
     <div class="dark:bg-transparent h-screen md:h-screen">
         <div class="flex flex-col items-center justify-center mb-[50px]  h-full">
             <h5 class="mb-[20px] text-2xl text-black text-center items-center font-bold dark:text-white">Quiz</h5>
-            <div class="flex justify-center flex-wrap gap-[20px]">
+            <div v-if="questions !== ''" class="flex justify-center flex-wrap gap-[20px]">
                 <div  v-for="item in questions" :key="item.id" class="max-w-xs h-[300px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <div class="h-[65%]">
                         <router-link @click="(modalOpen = !modalOpen)" to="#">
-                            <img class="w-full h-full rounded-t-lg" :src="'/uploads/quiz/'+item.banner" alt="">
+                            <img class="w-full h-full rounded-t-lg"  :src="'/uploads/quiz/'+item.banner"  alt="">
                         </router-link>
                     </div>
                     <div class="flex flex-col justify-center h-[35%] px-[10px]">
@@ -22,6 +22,10 @@
                     </div>
                 </div>
             </div>
+            <div v-else class="w-full flex flex-col justify-center items-center mt-20">
+                <img src="/images/nothing.png" class="w-[400px]">
+                <p class="font-light tracking-widest">Nothing to show ...</p>
+            </div>
         </div>
     </div>
     <Modal :show="modalOpen" @close="modalToggle" :title="quizTitle" :widthModal="'w-[600px]'" :heightModal="'h-auto'">
@@ -30,6 +34,7 @@
             <div class="flex flex-col justify-between items-center gap-2 sm:flex-col md:flex-row h-full">
                 <div class="w-full h-full">
                     <img class="w-full rounded-md" :src="'/uploads/quiz/'+quizBanner" alt="">
+
                 </div>
                 <div class="w-full md:w-[45%] dark:text-white h-full flex flex-col gap-3 text-[13px]">
                     <div class="flex flex-row md:flex-col gap-3">
