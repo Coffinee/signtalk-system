@@ -76,23 +76,33 @@ class LessonController extends BaseController
     {
 
         $image_link = "";
-        $image_binary = $request->params['data']['image_file'];
         $data = Lesson::findOrFail($id);
 
-        if ($image_binary && $data->image_file == null) {
-            $image_link = time() . '.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
-            \Image::make($image_binary)->save('uploads/lessons/' . $image_link)->destroy();
-        } else if (('uploads/lessons/' . $data->image_file) != null && $data->image_file != $request->params['data']['image_file']) {
-            unlink('uploads/lessons/' . $data->image_file);
-            $image_link = time() . '.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
-            \Image::make($image_binary)->save('uploads/lessons/' . $image_link)->destroy();
+        if($request->params['data']['image_file']){
+            $image_binary = $request->params['data']['image_file'];
+
+            if($data->image_file != $request->params['data']['image_file']) {
+                $image_link = time().'.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
+            }
+            else {
+                $image_link = $request->params['data']['image_file'];
+            }
+
+            if(!File::exists('uploads/lessons/'.$image_link)) { //does not exists
+                \Image::make($image_binary)->save('uploads/lessons/'.$image_link)->destroy();
+                $data->update([
+                    'image_file' => $image_link,
+                ]);
+            }
+
+            else if($data->image_file != $image_link) { // is existing
+                unlink('uploads/lessons/'.$data->image_file);
+                \Image::make($image_binary)->save('uploads/lessons/'.$image_link)->destroy();
+                $data->update([
+                    'image_file' => $image_link,
+                ]);
+            }
         }
-        $data->update([
-            'title' => $request->params['data']['title'],
-            'content' => $request->params['data']['content'],
-            'image_file' => $image_link,
-            'refLink' => $request->params['data']['refLink'],
-        ]);
         return $this->sendResponse($request->validated(), "Updated Data");
     }
 

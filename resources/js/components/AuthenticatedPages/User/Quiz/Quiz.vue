@@ -5,7 +5,7 @@
             <div v-if="questions !== ''" class="flex justify-center flex-wrap gap-[20px]">
                 <div  v-for="item in questions" :key="item.id" class="max-w-xs h-[300px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <div class="h-[65%]">
-                        <router-link @click="(modalOpen = !modalOpen)" to="#">
+                        <router-link @click="(modalOpen = !modalOpen)" to="">
                             <img class="w-full h-full rounded-t-lg"  :src="'/uploads/quiz/'+item.banner"  alt="">
                         </router-link>
                     </div>
@@ -15,7 +15,7 @@
                             <span class="bg-gray-50 shadow-md text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">{{ item.question_item.length }} items</span>
                         </div>
                         <div>
-                            <router-link @click="previewQuiz(item)" to="">    
+                            <router-link @click="previewQuiz(item)" to=''>    
                                 <button type="button" class="focus:outline-none text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5">View Quiz</button>
                             </router-link>
                         </div>
@@ -87,17 +87,6 @@ export default {
     data(){
         return{
             questions: {},
-            // quizCategories:[
-            //     { id: 1, title: 'Choice 1', value: 'A'},
-            //     { id: 2, title: 'Choice 2', value: 'B'},
-            //     { id: 3, title: 'Choice 3', value: 'C'},
-            //     { id: 4, title: 'Choice 4', value: 'D'},
-            // ],
-            // quizDescription:[
-            //     { id: 1, imgSrc: 'https://static.vecteezy.com/system/resources/previews/012/320/704/original/doodle-sketch-asl-sign-language-alphabet-illustration-free-vector.jpg', title: 'ASL Alphabet', items: '26'},
-            //     { id: 2, imgSrc: 'https://cfvod.kaltura.com/p/2531481/sp/253148100/thumbnail/entry_id/0_nrs2tha2/version/100012/width/412/height/223', title: 'ASL Numbers', items: '15'},
-            //     { id: 3, imgSrc: 'https://i.ytimg.com/vi/ijdn9elmT7g/maxresdefault.jpg', title: 'ASL Animals', items: '10'},
-            // ],
             quizTitle:'',
             quizDuration:'',
             quizBanner:'',
