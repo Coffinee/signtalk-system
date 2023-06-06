@@ -48,6 +48,7 @@ const UserLayout = () =>import("@/components/Layouts/Authenticated Layout/UserLa
 const AdminLayout = () =>import("@/components/Layouts/Authenticated Layout/AdminLayout.vue");
 const TeacherLayout = () =>import("@/components/Layouts/Authenticated Layout/TeacherLayout.vue");
 const GuestLayout = () =>import("@/components/Layouts/GuestLayout.vue");
+const PageNotFound = () =>import("@/components/PageNotFound/pagenotfound.vue");
 
 const routes = [
     {
@@ -128,6 +129,10 @@ const routes = [
                 meta: {
                     title: "SignTalk | Quiz",
                 },
+            },
+            {
+                path: '/:pathMatch(.*)',
+                redirect: { name: "404" }
             },
         ],
     },
@@ -394,13 +399,18 @@ const routes = [
         ]
     },
     {
+        name: "404",
         path: "/404",
-        component: AdminLayout,
+        component: PageNotFound,
         meta: {
-            middleware: "admin",
-        },
+            title: `Page Not Found`,
+        }
+    },
+    {
+        path: '/:pathMatch(.*)',
+        redirect: { name: "404" }
+    },
 ];
-
 const router = createRouter({
     history: createWebHistory(),
     routes,
@@ -434,5 +444,6 @@ router.beforeEach((to, from, next) => {
       next();
     }
 });
+
 
 export default router;
