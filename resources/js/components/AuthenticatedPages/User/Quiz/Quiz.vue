@@ -5,7 +5,7 @@
             <div v-if="questions !== ''" class="flex justify-center flex-wrap gap-[20px]">
                 <div  v-for="item in questions" :key="item.id" class="max-w-xs h-[300px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <div class="h-[65%]">
-                        <router-link @click="(modalOpen = !modalOpen)" to="">
+                        <router-link @click="previewQuiz(item)" to="">
                             <img class="w-full h-full rounded-t-lg"  :src="'/uploads/quiz/'+item.banner"  alt="">
                         </router-link>
                     </div>
@@ -15,7 +15,7 @@
                             <span class="bg-gray-50 shadow-md text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">{{ item.question_item.length }} items</span>
                         </div>
                         <div>
-                            <router-link @click="previewQuiz(item)" to=''>    
+                            <router-link @click="previewQuiz(item)" to="">    
                                 <button type="button" class="focus:outline-none text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5">View Quiz</button>
                             </router-link>
                         </div>

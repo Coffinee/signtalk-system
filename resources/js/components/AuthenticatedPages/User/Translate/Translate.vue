@@ -4,15 +4,13 @@
             class="w-full md:w-[70%] h-[80%] md:h-[90%] bg-white dark:bg-[#141526] dark:border-gray-700 shadow shadow-indigo-300 rounded-lg">
             <div class="flex flex-col space-y-3 h-[95%] p-5">
                 <!-- result -->
-                <div
-                    class="w-full h-full flex items-center justify-center border border-gray-400 rounded-md overflow-y-auto p-[5px]">
-                    <div v-if="this.input === '' && this.input !== this.input" class="w-full-full">
+                <div class="w-full h-full border border-gray-400 rounded-md overflow-auto p-[5px]">
+                    <div v-if="this.input === '' && this.input !== this.input" class="w-full h-full">
                         <img src="/Images/nothing.png" class="sm:w-[150px] md:w-[300px]">
                         <p class="text-center">Nothing to show....</p>
                     </div>
-                    <div v-else class="w-full h-full flex flex-col justify-center items-center">
-                        <div v-for="(word, wordIndex) in inputWords" :key="wordIndex"
-                            class="flex justify-center items-center gap-[5px] mb-[5px]">
+                    <div v-else class="w-full h-auto flex flex-col items-center justify-center">
+                        <div v-for="(word, wordIndex) in inputWords" :key="wordIndex" class="flex justify-center items-center gap-[5px] mb-[5px]">
                             <div v-for="(letter, letterIndex) in word" :key="letterIndex" class=" letter-container">
                                 <img :src="getLetterImage(letter)" :alt="letter"
                                     class="h-[60px] w-[60px] sm:h-[80px] sm:w-[80px] md:h-[100px] md:w-[100px]" />
@@ -85,7 +83,7 @@ export default {
                 7: '/images/asl-numbers/asl-number-7.jpg',
                 8: '/images/asl-numbers/asl-number-8.jpg',
                 9: '/images/asl-numbers/asl-number-9.jpg',
-                ' ': 'images/asl-alphabet/asl-space.PNG',
+                // ' ': 'images/asl-alphabet/asl-space.PNG',
                 '!': '/images/special-characters/exclamation-sign.jpg',
                 '@': '/images/special-characters/at-sign.png',
                 '#': '/images/special-characters/hashtag-sign.jpg',
@@ -105,39 +103,31 @@ export default {
             return letterImagePaths[letter] || null;
         },
 
-        displayResult() {
+        async displayResult() {
             const inputWords = this.input.trim().toUpperCase().split(" ");
             this.inputWords = []; // Clear the existing words
 
-            let wordIndex = 0;
-            const interval = setInterval(() => {
+            for (let wordIndex = 0; wordIndex < inputWords.length; wordIndex++) {
                 const word = inputWords[wordIndex];
                 const letters = word.split("");
-                this.inputWords[wordIndex] = []; // Clear the existing letters for the current word
+                const wordLetters = [];
 
-                let letterIndex = 0;
-                const letterInterval = setInterval(() => {
+                for (let letterIndex = 0; letterIndex < letters.length; letterIndex++) {
                     const letter = letters[letterIndex];
-                    this.inputWords[wordIndex].push(letter); // Add the letter to the current word's letters
-                    letterIndex++;
+                    wordLetters.push(letter);
+                    this.inputWords[wordIndex] = [...wordLetters]; // Update the word's letters
+                    await this.delay(200); // Delay between displaying each letter
+                }
 
-                    if (letterIndex >= letters.length) {
-                        clearInterval(letterInterval); // Stop the interval when all letters of the word are displayed
+                await this.delay(1000); // Delay between displaying each word
+            }
 
-                        if (wordIndex >= inputWords.length - 1) {
-                            setTimeout(() => {
-                                this.inputWords = inputWords.map((word) => word.split("")); // Show the entire list of letters
-                            }, 1000); // Delay of 1 second before showing the entire list
-                        }
-                        wordIndex++;
+            this.showResult = true; // Set showResult to true to display the result
+        },
 
-                        if (wordIndex >= inputWords.length) {
-                            clearInterval(interval); // Stop the interval when all words are displayed
-                        }
-                    }
-                }, 200); // 200ms interval between displaying each letter
-            }, 1200); // 1.2s interval between displaying each word
-        }
+        delay(ms) {
+            return new Promise((resolve) => setTimeout(resolve, ms));
+        },
 
 
     },
