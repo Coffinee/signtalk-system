@@ -85,7 +85,7 @@
                         <div class="flex items-center justify-center w-full">
                             <label :style="{ 'background-image': `url(${image_url})` }"
                                 class="flex flex-col w-full h-32 rounded-md border-2 border-gray-500 border-dashed hover:bg-gray-200 cursor-pointer bg-center bg-cover bg-no-repeat">
-                                <div v-show="form.image_file == '' ? true : false" :class="{ 'hidden': hideLabel }" class="flex flex-col items-center justify-center pt-7">
+                                <div v-show="this.form.image_file == null ? true : false" class="flex flex-col items-center justify-center pt-7">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         class="w-8 h-8 text-black group-hover:text-gray-600" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
@@ -137,7 +137,7 @@ export default {
                 word: '',
                 description: '',
                 video_link: '',
-                image_file: ''
+                image_file: null
             }),
             image_url: '',
             tableLabels:[
@@ -160,8 +160,9 @@ export default {
                 word: '',
                 description: '',
                 video_link: '',
-                image_file: ''
+                image_file: null
             })
+            this.image_url = '';
         },
 
         submitForm() {
@@ -194,6 +195,7 @@ export default {
             this.edit = true;
             this.slideoverOpen = !this.slideoverOpen;
             this.form = item;
+            this.image_url = '/uploads/dictionary/' + this.form.image_file;
         },
 
         async getData() {
