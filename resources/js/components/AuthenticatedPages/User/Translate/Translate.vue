@@ -1,15 +1,15 @@
 <template>
     <div class="flex justify-center items-center h-screen">
         <div
-            class="w-full md:w-[70%] h-[80%] md:h-[90%] bg-white dark:bg-[#141526] dark:border-gray-700 shadow shadow-indigo-300 rounded-lg">
+            class="w-full md:w-[90%] h-[80%] md:h-[90%] bg-white dark:bg-[#141526] dark:border-gray-700 shadow shadow-indigo-300 rounded-lg">
             <div class="flex flex-col space-y-3 h-[95%] p-5">
                 <!-- result -->
                 <div class="w-full h-full border border-gray-400 rounded-md overflow-auto p-[5px]">
-                    <div v-if="this.input === '' && this.input !== this.input" class="w-full h-full">
+                    <div v-if="this.input == ''" class="w-full h-full flex flex-col items-center justify-center ">
                         <img src="/Images/nothing.png" class="sm:w-[150px] md:w-[300px]">
-                        <p class="text-center">Nothing to show....</p>
+                        <p class="font-light tracking-widest">TRANSLATE | Nothing to show ...</p> 
                     </div>
-                    <div v-else class="w-full h-auto flex flex-col items-center justify-center">
+                    <div v-else class="w-full h-full flex flex-col items-center justify-center">
                         <div v-for="(word, wordIndex) in inputWords" :key="wordIndex" class="flex justify-center items-center gap-[5px] mb-[5px]">
                             <div v-for="(letter, letterIndex) in word" :key="letterIndex" class=" letter-container">
                                 <img :src="getLetterImage(letter)" :alt="letter"

@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col justify-center w-auto h-auto bg-white dark:bg-transparent">
+    <div v-if="this.lessons != null" class="flex flex-col justify-center w-auto h-auto bg-white dark:bg-transparent">
         <div class="w-full sm:w-full md:w-[70%] self-center py-10 px-5">
             <div>
                 <h1
@@ -28,7 +28,8 @@
                         <!-- <iframe class="w-full aspect-video border-none" src="https://www.youtube.com/embed/cGavOVNDj1s" title="American Sign Language Alphabet | Learn American Sign Language Letters" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
                     </div>
                 </div>
-                <p class="md:w-[80%] text-light text-sm dark:text-white text-justify indent-10" v-html="this.lessons.content">
+                <p class="md:w-[80%] text-light text-sm dark:text-white text-justify indent-10"
+                    v-html="this.lessons.content">
                 </p>
                 <div class="flex justify-center w-full">
                     <img class="w-full sm:w-full md:w-[80%] rounded-lg"
@@ -36,6 +37,10 @@
                 </div>
             </div>
         </div>
+    </div>
+    <div v-else class="w-auto h-screen flex flex-col justify-center items-center">
+        <img src="/images/nothing.png" class="w-[400px]">
+        <p class="font-light tracking-widest">LESSONS | Nothing to show ...</p>
     </div>
 </template>
 <script >
@@ -55,18 +60,6 @@ export default {
     },
     data() {
         return {
-            alphabet: [
-                { name: 'Letters', href: '#', icon: ChevronRightIcon },
-                { name: 'Consonant', href: '#', icon: ChevronRightIcon },
-                { name: 'Vowels', href: '#', icon: ChevronRightIcon },
-                { name: 'Spelling', href: '#', icon: ChevronRightIcon },
-            ],
-            numbers: [
-                { name: 'Once', href: '#', icon: ChevronRightIcon },
-                { name: 'Tens', href: '#', icon: ChevronRightIcon },
-                { name: 'Hundreds', href: '#', icon: ChevronRightIcon },
-                { name: 'Thousands', href: '#', icon: ChevronRightIcon }
-            ],
             lessons: {},
             data: {}
         }
@@ -122,5 +115,6 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-}</style>
+}
+</style>
  
