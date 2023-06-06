@@ -137,7 +137,7 @@
                 <div class="w-full p-2 rounded-md border border-gray-400 bg-gray-100 dark:bg-gray-700">
                     <div>
                         <h1 class="text-black dark:text-white text-[18px]  mb-[20px] font-semibold border-b border-gray-600 pb-2">
-                            1. What is the sign language for this?
+                            {1. What is the sign language for this?}
                         </h1>
                         <div v-for="choice in quizCategory" :key="choice.id">
                             <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">

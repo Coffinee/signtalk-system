@@ -9,18 +9,16 @@
                         <img class="w-full h-full rounded-t-lg" :src="'/uploads/quiz/' + item.banner" alt="">
                     </div>
                     <div class="flex flex-col justify-center h-[35%] px-[10px]">
-                        <div class="flex justify-between mb-2">
+                        <div class="flex justify-between my-3">
                             <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">{{ item.title }}</h5>
                             <span
                                 class="bg-gray-50 shadow-md text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">{{
                                     item.question_item.length }} items</span>
                         </div>
                         <div>
-                            <router-link @click="previewQuiz(item)" to="">
-                                <button type="button"
-                                    class="focus:outline-none text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5 w-full">View
-                                    Quiz</button>
-                            </router-link>
+    `                       <button type="button"
+                            class="focus:outline-none text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5 w-full">View
+                            Quiz</button>`
                         </div>
                     </div>
                 </div>

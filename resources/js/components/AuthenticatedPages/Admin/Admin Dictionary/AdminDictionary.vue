@@ -114,6 +114,7 @@
 
 <script>
 import Slideover from '../../../misc/Slideover.vue';
+import { createToast } from 'mosha-vue-toastify';
 import Form from 'vform';
 import axios from 'axios';
 
@@ -171,6 +172,17 @@ export default {
                 .then((data) => {
                     this.$Progress.finish();
                     this.getData();
+                    createToast({
+                    title: 'Hurray!',
+                    description: "Word Added"
+                    },
+                        {
+                            showIcon: 'true',
+                            position: 'top-right',
+                            type: 'info',
+                            hideProgressBar: 'true',
+                            transition: 'bounce',
+                    })
                     this.slideoverToggle();
                 }).catch((error) => {
                     this.$Progress.fail();
