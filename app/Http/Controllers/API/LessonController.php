@@ -20,7 +20,7 @@ class LessonController extends BaseController
 
     public function getLesson(Request $request)
     {
-        $data = Lesson::get()->first();
+        $data = Lesson::latest()->first();
         return $this->sendResponse($data, "All Lesson in Array");
     }
 

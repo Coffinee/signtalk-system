@@ -392,7 +392,13 @@ const routes = [
                 },
             }
         ]
-    }
+    },
+    {
+        path: "/404",
+        component: AdminLayout,
+        meta: {
+            middleware: "admin",
+        },
 ];
 
 const router = createRouter({

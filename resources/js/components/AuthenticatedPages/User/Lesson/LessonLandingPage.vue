@@ -1,28 +1,24 @@
 <template>
     <div class="h-auto sm:h-screen md:h-screen flex items-center justify-center my-[30px]">
         <div class="divide-y divide-gray-200 overflow-hidden rounded-lg shadow-md p-3 sm:grid sm:grid-cols-2 gap-[5px] sm:gap-[30px] sm:divide-y-0 w-full sm:w-full md:w-auto mx-[10px]">
-            <div v-for="(action, actionIdx) in actions" :key="action.title" :class="[actionIdx === 0 ? 'rounded-tl-lg rounded-tr-lg sm:rounded-tr-none' : '', actionIdx === 1 ? 'sm:rounded-tr-lg' : '', actionIdx === actions.length - 2 ? 'sm:rounded-bl-lg' : '', actionIdx === actions.length - 1 ? 'rounded-bl-lg rounded-br-lg sm:rounded-bl-none' : '', 'flex items-center gap-[20px] group relative bg-white dark:bg-gray-600 p-10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-md w-full md:w-[400px]']">
+            <router-link :to="action.href" v-for="(action, actionIdx) in actions" :key="action.title" :class="[actionIdx === 0 ? 'rounded-tl-lg rounded-tr-lg sm:rounded-tr-none' : '', actionIdx === 1 ? 'sm:rounded-tr-lg' : '', actionIdx === actions.length - 2 ? 'sm:rounded-bl-lg' : '', actionIdx === actions.length - 1 ? 'rounded-bl-lg rounded-br-lg sm:rounded-bl-none' : '', 'flex items-center gap-[20px] group bg-white dark:bg-gray-600 p-10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-md w-full md:w-[400px]']">
                 <div>
                     <span :class="[action.iconBackground, action.iconForeground, 'inline-flex rounded-lg p-5']">
                         <component :is="action.icon" class="h-[40px] w-[40px]" aria-hidden="true" />
                     </span>
                 </div>
-                <div >
-                    <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
-                    <router-link :to="action.href" class="focus:outline-none text-[30px]">
-                        <!-- Extend touch target to entire panel -->
-                        <span class="absolute inset-0" aria-hidden="true" />
+                <div>
+                    <h3 class="font-semibold leading-6 text-gray-900 dark:text-white text-[30px]">
                         {{ action.title }}
-                    </router-link>
                     </h3>
-                    <p class="mt-2 text-[16px] text-gray-500 dark:text-gray-300">{{ action.description }}</p>
+                    <p class="mt-2 text-[14px] text-gray-500 dark:text-gray-300">{{ action.description }}</p>
                 </div>
                 <!-- <span class="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400" aria-hidden="true">
                     <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
                     </svg>
                 </span> -->
-            </div>
+            </router-link>
         </div>
     </div>
 </template>
