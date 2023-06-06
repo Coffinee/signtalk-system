@@ -1,12 +1,12 @@
 <template>
-    <div v-if="this.lessons != null" class="flex flex-col justify-center w-auto h-auto bg-white dark:bg-transparent">
-        <div class="w-full sm:w-full md:w-[70%] self-center py-10 px-5">
+    <div v-if="this.data != null"  class="flex flex-col justify-center w-auto h-auto bg-white dark:bg-transparent">
+        <div v-for="(lesson,index) in data.data" :key="index" class="w-full sm:w-full md:w-[70%] self-center py-10 px-5">
             <div>
                 <h1
                     class="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-                    LESSON 1</h1>
+                    LESSON {{ index+1 }}</h1>
                 <p class="mb-6 text-center text-lg font-normal text-gray-500 lg:text-xl sm:px-16 dark:text-gray-400">{{
-                    this.lessons.title }}</p>
+                    lesson.title }}</p>
             </div>
             <div class="flex justify-between mt-3">
                 <a href="#"
@@ -24,16 +24,16 @@
                 <!-- <h2 class="text-2xl font-extrabold text-black dark:text-white text-center">Learning ASL Alphabet</h2> -->
                 <div class="flex justify-center w-full">
                     <div class="w-full sm:w-full md:w-[80%] z-30">
-                        <div ref="videoContainer" class="video-container" v-html="this.lessons.refLink"></div>
+                        <div ref="videoContainer" class="video-container" v-html="lesson.refLink"></div>
                         <!-- <iframe class="w-full aspect-video border-none" src="https://www.youtube.com/embed/cGavOVNDj1s" title="American Sign Language Alphabet | Learn American Sign Language Letters" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
                     </div>
                 </div>
                 <p class="md:w-[80%] text-light text-sm dark:text-white text-justify indent-10"
-                    v-html="this.lessons.content">
+                    v-html="lesson.content">
                 </p>
                 <div class="flex justify-center w-full">
                     <img class="w-full sm:w-full md:w-[80%] rounded-lg"
-                        :src="'/uploads/lessons/' + this.lessons.image_file">
+                        :src="'/uploads/lessons/' + lesson.image_file">
                 </div>
             </div>
         </div>
@@ -65,10 +65,10 @@ export default {
         }
     },
     methods: {
-        async getLessons() {
-            await axios.get('/api/getlesson').then((data) => {
-                this.lessons = data.data.data;
-                console.log(this.lessons.title)
+        async getLessons(page = 1) {           
+            await axios.get('/api/lesson?page=' + page).then((data) => {
+                this.data = data.data.data;
+                console.log(this.data)
             }).catch((e) => {
                 errorMessage('Opps!', e.message, 'top-right')
             });

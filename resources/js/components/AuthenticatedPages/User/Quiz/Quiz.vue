@@ -16,15 +16,9 @@
                                     item.question_item.length }} items</span>
                         </div>
                         <div>
-<<<<<<< HEAD
     `                       <button type="button"
                             class="focus:outline-none text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5 w-full">View
                             Quiz</button>`
-=======
-                            <button type="button"
-                                class="focus:outline-none text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5 w-full">View
-                                Quiz</button>
->>>>>>> 81d27d563dbcd612fab2213204966218e55e1e69
                         </div>
                     </div>
                 </div>

@@ -428,22 +428,31 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title;
-    if (to.meta.middleware == "guest") {
-        if (userAuthStore().authenticated) {
-            if(userAuthStore().user.role == 'admin'){
-                next({ name: "admin-dashboard" });
-            }else if(userAuthStore().user.role == 'student'){
-                next({ name: "user-home" });
-            }else{
-                next({ name: "teacher-dashboard" });
-            }
+    if (to.meta.middleware === "guest") {
+      if (userAuthStore().authenticated) {
+        // User is already authenticated, redirect to the appropriate dashboard based on their role
+        if (userAuthStore().user.role === 'admin') {
+          next({ name: "admin-dashboard" });
+        } else if (userAuthStore().user.role === 'student') {
+          next({ name: "user-home" });
+        } else {
+          next({ name: "teacher-dashboard" });
         }
-        
+      } else {
+        // User is not authenticated, allow access to guest pages
         next();
+      }
     } else {
-      next();
+      // Check if the user is authenticated
+      if (!userAuthStore().authenticated) {
+        // User is not authenticated, redirect to the login page or any other desired route
+        next({ name: "login" }); // Replace "login" with your actual login route name
+      } else {
+        // User is authenticated, allow access to authenticated pages
+        next();
+      }
     }
 });
-
+  
 
 export default router;
