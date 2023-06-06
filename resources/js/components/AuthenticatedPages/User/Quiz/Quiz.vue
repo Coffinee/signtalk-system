@@ -1,7 +1,7 @@
 <template>
-    <div class="dark:bg-transparent h-screen md:h-screen">
+    <div v-if="this.questions != ''" class="dark:bg-transparent h-screen md:h-screen">
         <p class="mb-[20px] text-2xl text-black text-center font-bold dark:text-white">Quiz</p>
-        <div v-if="this.questions != ''" class="flex flex-col items-center justify-center mb-[50px]">
+        <div class="flex flex-col items-center justify-center mb-[50px]">
             <div class="flex justify-center flex-wrap gap-[20px]">
                 <div @click="previewQuiz(item)" v-for="item in questions" :key="item.id"
                     class="cursor-pointer max-w-xs h-[300px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -16,18 +16,24 @@
                                     item.question_item.length }} items</span>
                         </div>
                         <div>
+<<<<<<< HEAD
     `                       <button type="button"
                             class="focus:outline-none text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5 w-full">View
                             Quiz</button>`
+=======
+                            <button type="button"
+                                class="focus:outline-none text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5 w-full">View
+                                Quiz</button>
+>>>>>>> 81d27d563dbcd612fab2213204966218e55e1e69
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div v-else class="w-full h-screen flex flex-col justify-center items-center">
-            <img src="/images/nothing.png" class="w-[400px]">
-            <p class="font-light tracking-widest">QUIZ | Nothing to show ...</p>
-        </div>
+    </div>
+    <div v-else class="w-full h-screen flex flex-col justify-center items-center">
+        <img src="/images/nothing.png" class="w-[400px]">
+        <p class="font-light tracking-widest">QUIZ | Nothing to show ...</p>
     </div>
 
     <Modal :show="modalOpen" @close="modalToggle" :title="quizTitle" :widthModal="'w-[600px]'" :heightModal="'h-auto'">
