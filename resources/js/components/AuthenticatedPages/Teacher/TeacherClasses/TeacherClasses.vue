@@ -28,7 +28,7 @@
                     </TabList>
                     <TabPanels v-for="tab in SectionList" :key="tab">
                         <TabPanel class="h-full w-full border border-gray-300 rounded-md p-4 space-y-5 p">
-                            <Section :classCode="tab.classCode" :studentList="student"/>
+                            <Section :classCode="tab.classCode" :studentList="student" :sectionID="tab.id"/>
                         </TabPanel>
                     </TabPanels>
                 </TabGroup>
@@ -116,9 +116,9 @@ export default {
             });
         },
         async getStudentsWithSameCode() {
-            await axios.get('/api/getstudents').then((data) => {
+            await axios.post('/api/getstudents').then((data) => {
                 this.student = data.data.data;
-                console.log(this.student);
+                // console.log(this.student);
 
             }).catch((e) => {
                 errorMessage('Opps!', e.message, 'top-right')

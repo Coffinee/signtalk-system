@@ -73,6 +73,13 @@ class SectionController extends BaseController
      */
     public function destroy(Request $request)
     {
-        //
+        $section = Section::find($request->id);
+
+        if ($section) {
+            $section->delete();
+            return response()->json(['message' => 'User deleted successfully']);
+        } else {
+            return response()->json(['message' => 'User not found'], 404);
+        }
     }
 }

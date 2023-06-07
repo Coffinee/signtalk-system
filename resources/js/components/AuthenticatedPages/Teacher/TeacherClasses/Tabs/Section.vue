@@ -12,7 +12,7 @@
                 </svg>
             </button>
         </div>
-        <button
+        <button @click="deleteSection(sectionID)"
             class="hover:text-white hover:bg-indigo-500 rounded-md border border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-2">Remove
             Class
         </button>
@@ -28,7 +28,6 @@
             </svg>
         </span>
     </button>
-
     <div class="overflow-auto">
         <table class="w-full text-sm text-left text-gray-500 py-[10px]">
             <thead class="text-xs text-gray-700 uppercase bg-gray-200">
@@ -38,7 +37,7 @@
                     </th>
                 </tr>
             </thead>
-            <tbody v-for="item in studentList"  :key="item.id">
+            <tbody v-for="item in studentList" :key="item.id">
                 <tr v-if="item.classCode == this.classCode" class="bg-white border-b">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                         {{ item.classCode }}
@@ -60,6 +59,10 @@
 
 export default {
     props:{
+        sectionID:{
+            type: Number,
+            default: ''
+        },
         classCode:{
             type: String,
             default: ''
@@ -85,9 +88,9 @@ export default {
             document.execCommand('copy');
         },
 
-        async deleteSection() {
-            await axios.get('/api/deleteclass').then((data) => {
-                this.data = data.data.data;
+        async deleteSection(id) {
+            await axios.post('/api/section?id=' + id, {_method: 'delete'}).then((data) => {
+                this.data = data.data.data;           
             }).catch((e) => {
                 errorMessage('Opps!', e.message, 'top-right')
             });
