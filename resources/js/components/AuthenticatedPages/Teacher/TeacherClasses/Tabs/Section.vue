@@ -12,7 +12,7 @@
                 </svg>
             </button>
         </div>
-        <button
+        <button @click.prevent="deleteSection()"
             class="hover:text-white hover:bg-indigo-500 rounded-md border border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-2">Remove
             Class
         </button>
@@ -28,7 +28,6 @@
             </svg>
         </span>
     </button>
-
     <div class="overflow-auto">
         <table class="w-full text-sm text-left text-gray-500 py-[10px]">
             <thead class="text-xs text-gray-700 uppercase bg-gray-200">
@@ -38,55 +37,47 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
-                <!-- <tr v-for="item in data.data" :key="item.id" class="bg-white border-b ">
-                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            {{ item.id }}
-                                        </th>
-                                        <td class="px-6 py-4">
-                                            {{ item.word }}
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            {{ item.description }}
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            {{ item.file }}
-                                        </td>
-                                        <td class="px-6 py-4 flex gap-[5px] text-center">
-                                            <a @click.prevent="editForm(item)"
-                                                class="font-medium text-blue-600  hover:underline">Edit</a>
-                                        </td>
-                                    </tr> -->
-
-                <tr>
-                    <td>
+            <tbody v-for="item in studentList" :key="item.id">
+                <tr v-if="item.classCode == this.classCode" class="bg-white border-b">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{ item.classCode }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ item.last_name }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ item.first_name }}
                     </td>
                 </tr>
             </tbody>
         </table>
+
     </div>
 </template>
 
 <script>
 
 export default {
-    props:{
-        classCode:{
+    props: {
+        sectionID: {
+            type: Number,
+            default: ''
+        },
+        classCode: {
             type: String,
             default: ''
+        },
+        studentList: {
+            type: Object,
+            default: ''
         }
-    }, 
+    },
     data() {
         return {
             tableLabels: [
-                { label: 'LRN' },
+                { label: 'classCode' },
                 { label: 'First Name' },
                 { label: 'Last Name' },
-                { label: 'Quiz 1' },
-                { label: 'Quiz 2' },
-                { label: 'Quiz 3' },
-                { label: 'Quiz 4' },
-                { label: 'Action' },
             ],
         }
     },
@@ -97,15 +88,17 @@ export default {
             document.execCommand('copy');
         },
 
-        async deleteSection() {
-            await axios.get('/api/deleteclass').then((data) => {
+        deleteSection() {
+            axios.delete('/api/section?id=' + this.sectionID).then((data) => {
                 this.data = data.data.data;
-            }).catch((e) => {
-                errorMessage('Opps!', e.message, 'top-right')
-            });
+            })
+                .catch((e) => {
+                    errorMessage('Opps!', e.message, 'top-right')
+                });
         },
     },
 
 }
+
 </script>
 

@@ -110,7 +110,7 @@
                 <button @click="addQuestion" class="px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600">+
                     Add
                     Question</button>
-                <button @click="submitQuiz"
+                <button @click.prevent="submitQuiz"
                     class="px-4 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600">Update
                     Quiz</button>
             </div>
@@ -123,6 +123,7 @@
 import { RadioGroup, RadioGroupDescription, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 import { CheckCircleIcon } from '@heroicons/vue/20/solid'
 import { ClockIcon } from '@heroicons/vue/24/outline';
+import { createToast } from 'mosha-vue-toastify';
 import Form from 'vform';
 export default {
     components: {
@@ -211,6 +212,18 @@ export default {
             // You can perform additional validation or submit the quiz data to a server here
             console.log(this.formQuiz);
             this.formQuiz.put('/api/questions/'+this.formQuiz.id).then((res)=>{
+                createToast({
+                    title: 'Hurray!',
+                    description: "Quiz Updated"
+                },
+                    {
+                        showIcon: 'true',
+                        position: 'top-right',
+                        type: 'info',
+                        hideProgressBar: 'true',
+                        transition: 'bounce',
+                })
+                this.$router.push('/teacher/quiz')
                 console.log(res.data);
             })
 

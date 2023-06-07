@@ -71,8 +71,10 @@ class SectionController extends BaseController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request, $id)
     {
-        //
+        $section = Section::findOrFail($id);
+        $section->delete();
+        return $this->sendResponse($section, 'Section');
     }
 }

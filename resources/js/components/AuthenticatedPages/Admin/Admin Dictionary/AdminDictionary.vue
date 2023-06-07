@@ -198,6 +198,17 @@ export default {
                 this.$Progress.finish();
                 this.edit = false;
                 this.slideoverToggle()
+                createToast({
+                    title: 'Hurray!',
+                    description: "Entry Updated"
+                    },
+                        {
+                            showIcon: 'true',
+                            position: 'top-right',
+                            type: 'info',
+                            hideProgressBar: 'true',
+                            transition: 'bounce',
+                    })
             }).catch((error) => {
                 this.$Progress.fail();
             })
