@@ -108,7 +108,6 @@ class QuestionsController extends BaseController
     public function show(Questions $questions, $id)
     {
         $questions = Questions::with('questionItem')->where('id', $id)->first();
-
         return $this->sendResponse($questions , 'Questions');
     }
 

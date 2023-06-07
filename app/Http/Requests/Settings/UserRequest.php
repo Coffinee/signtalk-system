@@ -27,7 +27,7 @@ class UserRequest extends FormRequest
     public function createRules(): array
     {
         return [
-            'role' => 'required|max:100',
+            // 'role_id' => 'required',
             'first_name' => 'required|max:100',
             'last_name' => 'required|max:100',
             'email' => 'required',

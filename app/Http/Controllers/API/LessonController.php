@@ -6,6 +6,7 @@ use App\Models\Lesson;
 use Illuminate\Http\Request;
 use App\Http\Requests\Settings\LessonRequest;
 use Intervention\Image\Image;
+use Illuminate\Support\Facades\File;
 
 class LessonController extends BaseController
 {
@@ -18,7 +19,7 @@ class LessonController extends BaseController
         return $this->sendResponse($data, "All Entries in Array");
     }
 
-    public function getLesson(Request $request)
+    public function getLesson(Request $request) //get all lessons in the table
     {
         $data = Lesson::all();
         return $this->sendResponse($data, "All Lesson in Array");
@@ -38,16 +39,18 @@ class LessonController extends BaseController
     public function store(LessonRequest $request)
     {
         $image_link = "";
-
-        if ($request->image_file) {
-            $image_binary = $request->image_file;
-            $image_link = time() . '.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
-            \Image::make($image_binary)->save('uploads/lessons/' . $image_link)->destroy();
-
-        }
         $validated = $request->validated();
-        $validated['image_file'] = $image_link;
 
+        if($request->image_file){
+            $image_binary = $request->image_file;
+            $image_link = time().'.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
+            
+            if(!File::exists('uploads/lessons/'.$image_link)) {
+                \Image::make($image_binary)->save('uploads/lessons/'.$image_link)->destroy();
+            }
+            
+            $validated['image_file'] = $image_link;
+        }
 
         $data = Lesson::create($validated);
         return $this->sendResponse($image_link, "Saved Data");
@@ -56,9 +59,10 @@ class LessonController extends BaseController
     /**
      * Display the specified resource.
      */
-    public function show(Lesson $lesson)
+    public function show($id)
     {
-        //
+        $lesson = Lesson::where('id', $id)->first();
+        return $this->sendResponse($lesson , 'Lesson');
     }
 
     /**

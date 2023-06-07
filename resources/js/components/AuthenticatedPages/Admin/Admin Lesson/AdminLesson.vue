@@ -256,7 +256,7 @@ export default {
             this.edit = true;
             this.slideoverOpen = !this.slideoverOpen;
             this.form = item;
-            this.image_url = '/uploads/lessons//' + this.form.image_file;
+            this.image_url = '/uploads/lessons/' + this.form.image_file;
         },
 
         async getData() {

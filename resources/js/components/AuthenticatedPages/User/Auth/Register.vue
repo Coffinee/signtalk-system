@@ -11,31 +11,36 @@
                         </h1>
                         <form class="space-y-4" @submit.prevent="submitForm()">
                             <div class="flex flex-col text-white">
-                                <p class="text-sm font-medium text-gray-900 dark:text-white text-left mb-2">Select a Role:</p>
+                                <p class="text-sm font-medium text-gray-900 dark:text-white text-left mb-2">Select a Role:
+                                </p>
                                 <div class="flex items-center justify-center space-x-5">
-                                    <select v-model="form.role" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                                        <option value="" disabled>- Select a Role -</option>
-                                        <option @click.prevent="isTeacher = false" value="student">Student</option>
-                                        <option @click.prevent="isTeacher = true" value="teacher">Teacher</option>
+                                    <select v-model="form.role"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                                        <option value="" disabled selected>Select an item</option>
+                                        <option :value="role.id" v-for="role in this.roles" >{{ role.label }}</option>
+                                        <!-- <option @click.prevent="isTeacher = false" value="student">Student</option> -->
+                                        <!-- <option @click.prevent="isTeacher = true" value="teacher">Teacher</option> -->
                                     </select>
-                                    
+
                                 </div>
                             </div>
                             <div>
                                 <div class="flex gap-2 w-full mb-2 ">
                                     <div class="w-full">
                                         <label for="first_name"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name:</label>
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First
+                                            Name:</label>
                                         <input type="text" name="first_name" id="name" v-model="form.first_name"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Ex: Juan" required="true">
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="Ex: Juan" required="true">
                                     </div>
                                     <div class="w-full">
                                         <label for="last_name"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name:</label>
+                                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last
+                                            Name:</label>
                                         <input type="text" name="last_name" id="name" v-model="form.last_name"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        placeholder="Ex: Dela Cruz" required="true">
+                                            class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                            placeholder="Ex: Dela Cruz" required="true">
                                     </div>
                                 </div>
                                 <div class="mb-2">
@@ -63,13 +68,12 @@
                                         required="true">
                                 </div>
 
-                                <div v-show="isTeacher == false" class="mb-2">
+                                <div v-if="form.role.title == 'Student'" class="mb-2">
                                     <label for="code"
-                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Class Code:</label>
-                                    <input v-model="form.classCode" type="text" name="code" id="code"
-                                        placeholder="ABC123"
-                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                        >
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Class
+                                        Code:</label>
+                                    <input v-model="form.classCode" type="text" name="code" id="code" placeholder="ABC123"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
 
                             </div>
@@ -92,6 +96,7 @@
 
 <script>
 import Form from 'vform';
+import axios from 'axios';
 
 export default {
     data() {
@@ -104,8 +109,18 @@ export default {
                 email: '',
                 password: '',
                 cPassword: '',
-                classCode: ''
+                classCode: null
             }),
+            roles: [
+                {
+                    id: 2,
+                    label: 'Teacher'
+                },
+                {
+                    id: 3,
+                    label: 'Student'
+                }
+            ],
             isTeacher: false,
             isStudent: false
         }
@@ -124,10 +139,20 @@ export default {
                 })
         },
 
-        // changeRole() {
-        //     this.isTeacher = !this.isTeacher;
-        // }
+        getRoles() {
+            axios.get("/api/get-roles")
+                .then((data) => {
+                    // this.roles = data.data.data;
+                })
+                .catch((e) => {
+                    errorMessage("Opps!", e.message, "top-right");
+                });
+        },
     },
+
+    // created(){
+    //     this.getRoles();
+    // }
 
 }
 </script>

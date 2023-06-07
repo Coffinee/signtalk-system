@@ -25,24 +25,36 @@
             </div>
         </div>
     </div>
+    <!-- <div v-else class="w-full h-screen">
+        <div class="mt-[20%] flex flex-col items-center">
+            <img src="/images/nothing.png" class="w-[400px]">
+            <p class="font-light tracking-widest">Lesson | Nothing to show ...</p>
+        </div>
+    </div> -->
 </template>
   
 <script>
-import {ChevronRightIcon, ArrowRightIcon} from '@heroicons/vue/24/outline'
+import { ChevronRightIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
 
-export default{
-    components:{
+export default {
+    components: {
         ChevronRightIcon, ArrowRightIcon
     },
-    data(){
-        return{
+    data() {
+        return {
             lessons: {},
+            lessonTitle: '',
+            lessonContent: '',
+            lessonImage: '',
+            lessonRef: '',
+            lessonId: ''
         }
     },
     methods: {
         getLessons() {
             axios.get('/api/getlesson').then((data) => {
                 this.lessons = data.data.data;
+                console.log(this.lessons)
             }).catch((e) => {
                 errorMessage('Opps!', e.message, 'top-right')
             });

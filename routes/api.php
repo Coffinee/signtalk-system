@@ -20,6 +20,7 @@ Route::namespace('App\Http\Controllers\API')->group(function() {
     Route::get('getword', 'DictionaryController@getWord');
     Route::get('getlesson', 'LessonController@getLesson');
     Route::get('getclass', 'SectionController@getClass');
+    Route::get('get-roles', 'RolesController@getRoles');
     
     Route::apiResources([
         'user' => 'UserController',
