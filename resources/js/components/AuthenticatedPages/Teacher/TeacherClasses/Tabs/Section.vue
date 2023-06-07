@@ -12,7 +12,7 @@
                 </svg>
             </button>
         </div>
-        <button @click="deleteSection(sectionID)"
+        <button @click.prevent="deleteSection(sectionID)"
             class="hover:text-white hover:bg-indigo-500 rounded-md border border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-2">Remove
             Class
         </button>
@@ -58,20 +58,20 @@
 <script>
 
 export default {
-    props:{
-        sectionID:{
+    props: {
+        sectionID: {
             type: Number,
             default: ''
         },
-        classCode:{
+        classCode: {
             type: String,
             default: ''
         },
-        studentList:{
+        studentList: {
             type: Object,
             default: ''
         }
-    }, 
+    },
     data() {
         return {
             tableLabels: [
@@ -109,13 +109,15 @@ export default {
                 // Handle the error response
                 console.log(error.response.data); // or perform any other actions
             }
-        },
+    
+
+         },
     },
     created(){
         this.getClass();
-        
     }
 
 }
+
 </script>
 
