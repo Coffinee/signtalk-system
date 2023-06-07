@@ -1,6 +1,6 @@
 <template>
     <!-- Main Content -->
-    <div class="flex flex-col justify-center items-center gap-[20px] w-full bg-white dark:bg-[#141526] p-5"
+    <div class="flex flex-col justify-center items-center gap-[20px] w-full bg-white dark:bg-[#141526] p-5 my-[50px]"
         :class="!hasWord ? 'h-screen' : 'h-auto'">
         <div class="flex flex-col gap-[25px] w-full md:w-[80%] lg:w-[60%]">
             <div :class="!hasWord ? '' : ''">
@@ -20,7 +20,7 @@
                                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
                     </div>
-                    <input v-model="this.word" type="search" id="default-search"
+                    <input  v-model="this.word" type="search" id="default-search"
                         class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                         placeholder="Search..." @keyup.enter="searchQuery" required>
                     <button @click.prevent="searchQuery"
@@ -29,7 +29,7 @@
             </div>
             <!-- Result -->
             <div class="h-auto rounded-lg dark:border-gray-700 p-5"
-                :class="this.word === '' ? 'shadow shadow-blue-400 border-none' : 'shadow shadow-blue-400 border-gray-200'">
+                :class="this.word === '' ? 'border-none' : 'border-gray-200'">
                 <!-- <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Result:</h5> -->
                 <div v-if="hasWord" class="flex flex-col gap-[10px]">
                     <div class="flex flex-col md:flex-row gap-[10px]">
@@ -52,9 +52,9 @@
                     </div>
                 </div>
 
-                <div v-else class="flex flex-col items-center justify-center mt-2">
-                    <img src="/Images/nothing.png" class="sm:w-[150px] md:w-[300px]">
-                    <p class="text-center">Nothing to show...</p>
+                <div v-else class="w-full h-full flex flex-col justify-center items-center">
+                    <img src="/images/nothing.png" class="w-[400px]">
+                    <p class="font-light tracking-widest">Dictionary | Nothing to show ...</p>
                 </div>
             </div>
         </div>
@@ -154,4 +154,5 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-}</style>
+}
+</style>

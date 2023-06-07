@@ -1,108 +1,70 @@
 <template>
-    <div class="h-auto sm:h-screen md:h-screen flex items-center justify-center my-[30px]">
-        <div class="divide-y divide-gray-200 overflow-hidden rounded-lg shadow-md p-3 sm:grid sm:grid-cols-2 gap-[5px] sm:gap-[30px] sm:divide-y-0 w-full sm:w-full md:w-auto mx-[10px]">
-            <div v-for="(action, actionIdx) in actions" :key="action.title" :class="[actionIdx === 0 ? 'rounded-tl-lg rounded-tr-lg sm:rounded-tr-none' : '', actionIdx === 1 ? 'sm:rounded-tr-lg' : '', actionIdx === actions.length - 2 ? 'sm:rounded-bl-lg' : '', actionIdx === actions.length - 1 ? 'rounded-bl-lg rounded-br-lg sm:rounded-bl-none' : '', 'flex items-center gap-[20px] group relative bg-white dark:bg-[#232f4e] p-10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 hover:bg-gray-50 dark:hover:bg-gray-700 shadow-md w-full md:w-[400px]']">
-                <div>
-                    <span :class="[action.iconBackground, action.iconForeground, 'inline-flex rounded-lg p-5']">
-                        <component :is="action.icon" class="h-[40px] w-[40px]" aria-hidden="true" />
-                    </span>
-                </div>
-                <div >
-                    <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
-                    <router-link :to="action.href" class="focus:outline-none text-[30px]">
-                        <!-- Extend touch target to entire panel -->
-                        <span class="absolute inset-0" aria-hidden="true" />
-                        {{ action.title }}
-                    </router-link>
-                    </h3>
-                    <p class="mt-2 text-[16px] text-gray-500 dark:text-gray-300">{{ action.description }}</p>
-                </div>
-                <!-- <span class="pointer-events-none absolute right-6 top-6 text-gray-300 group-hover:text-gray-400" aria-hidden="true">
-                    <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M20 4h1a1 1 0 00-1-1v1zm-1 12a1 1 0 102 0h-2zM8 3a1 1 0 000 2V3zM3.293 19.293a1 1 0 101.414 1.414l-1.414-1.414zM19 4v12h2V4h-2zm1-1H8v2h12V3zm-.707.293l-16 16 1.414 1.414 16-16-1.414-1.414z" />
-                    </svg>
-                </span> -->
+    <div class="h-auto sm:h-screen md:h-screen flex flex-col items-center my-[30px]">
+        <div>
+            <p class="mb-[20px] text-2xl text-black font-bold dark:text-white text-center">Lessons:</p>
+            <div class="flex justify-center flex-wrap gap-[15px]">
+                <router-link :to="'/lesson/main/'+ lesson.id" v-for="lesson in lessons" :key="lesson.id" class="flex flex-col items-center justify-center w-[400px]  bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 border-r-[5px] border-r-indigo-500">
+                    <img class="w-full rounded-t-lg h-96 md:h-full md:w-[40%] md:rounded-none md:rounded-l-lg" :src="'/uploads/lessons/'+lesson.image_file" alt="">
+                    <div class="flex flex-col justify-between p-4 leading-normal md:w-[60%]">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{{ lesson.title }}</h5>
+                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 text-md">Learn {{ lesson.title }}.</p>
+                    </div>
+                </router-link>
             </div>
         </div>
+        <!--
+        <div>
+            <p class="mb-[20px] text-2xl text-black font-bold dark:text-white text-center">Other Lessons:</p>
+            <div class="flex justify-center flex-wrap gap-[15px]">
+                <router-link :to="'/lesson/main/'+ lesson.id" v-for="lesson in lessons" :key="lesson.id" class="flex flex-col items-center justify-center w-[400px]  bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 border-r-[5px] border-r-indigo-500">
+                    <img class="w-full rounded-t-lg h-96 md:h-full md:w-[40%] md:rounded-none md:rounded-l-lg border border-red-500" :src="'/uploads/lessons/'+lesson.image_file" alt="">
+                    <div class="flex flex-col justify-between p-4 leading-normal md:w-[60%]">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{{ lesson.title }}</h5>
+                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 text-md">Learn {{ lesson.title }}.</p>
+                    </div>
+                </router-link>
+            </div>
+                 <div v-else class="w-full h-screen">
+                <div class="mt-[20%] flex flex-col items-center">
+                    <img src="/images/nothing.png" class="w-[400px]">
+                    <p class="font-light tracking-widest">Lesson | Nothing to show ...</p>
+                </div>
+            </div>
+        </div>
+         -->
     </div>
+
 </template>
   
 <script>
-import ColorIcon from '../../../misc/Illustrations/ColorIcon.vue';
-import AlphabetIcon from '../../../misc/Illustrations/AlphabetIcon.vue';
-import NumberIcon from '../../../misc/Illustrations/NumberIcon.vue';
-import SportsIcon from '../../../misc/Illustrations/SportsIcon.vue';
-import EmotionIcon from '../../../misc/Illustrations/EmotionIcon.vue';
-import AnimalsIcon from '../../../misc/Illustrations/AnimalsIcon.vue';
-import {
-// AcademicCapIcon,
-// BanknotesIcon,
-// CheckBadgeIcon,
-// ClockIcon,
-// ReceiptRefundIcon,
-// UsersIcon,
-BookOpenIcon,
-} from '@heroicons/vue/24/outline'
+import { ChevronRightIcon, ArrowRightIcon } from '@heroicons/vue/24/outline'
 
-export default{
-    components:{
-        BookOpenIcon, ColorIcon, AlphabetIcon,
-        NumberIcon, SportsIcon, EmotionIcon,
-        AnimalsIcon
+export default {
+    components: {
+        ChevronRightIcon, ArrowRightIcon
     },
-    data(){
-        return{
-            actions:[
-                {
-                    title: 'Alphabet',
-                    description: 'Learn ASL Alphabet',
-                    href: '/lesson/main',
-                    icon: AlphabetIcon,
-                    iconForeground: 'text-teal-700',
-                    iconBackground: 'bg-teal-50',
-                },
-                {
-                    title: 'Numbers',
-                    description: 'Learn ASL Numbers',
-                    href: '/lesson/main',
-                    icon: NumberIcon,
-                    iconForeground: 'text-purple-700',
-                    iconBackground: 'bg-purple-50',
-                },
-                {
-                    title: 'Colors',
-                    description: 'Learn ASL Colors',
-                    href: '/lesson/main',
-                    icon: ColorIcon,
-                    iconForeground: 'text-sky-700',
-                    iconBackground: 'bg-sky-50',
-                },
-                {
-                    title: 'Animals',
-                    description: 'Learn ASL Animals',
-                    href: '/lesson/main',
-                    icon: AnimalsIcon,
-                    iconForeground: 'text-yellow-700',
-                    iconBackground: 'bg-yellow-50',
-                },
-                {
-                    title: 'Emotions',
-                    description: 'Learn ASL Emotions',
-                    href: '/lesson/main',
-                    icon: EmotionIcon,
-                    iconForeground: 'text-rose-700',
-                    iconBackground: 'bg-rose-50',
-                },
-                {
-                    title: 'Sports',
-                    description: 'Learn ASL Sports',
-                    href: '/lesson/main',
-                    icon: SportsIcon,
-                    iconForeground: 'text-indigo-700',
-                    iconBackground: 'bg-indigo-50',
-                },          
-            ]
+    data() {
+        return {
+            lessons: {},
+            lessonTitle: '',
+            lessonContent: '',
+            lessonImage: '',
+            lessonRef: '',
+            lessonId: ''
         }
+    },
+    methods: {
+        getLessons() {
+            axios.get('/api/getlesson').then((data) => {
+                this.lessons = data.data.data;
+                console.log(this.lessons)
+            }).catch((e) => {
+                errorMessage('Opps!', e.message, 'top-right')
+            });
+        }
+    },
+    created() {
+        this.getLessons();
     }
 }
 </script>

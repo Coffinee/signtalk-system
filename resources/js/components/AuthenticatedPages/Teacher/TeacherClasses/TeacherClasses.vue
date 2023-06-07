@@ -6,7 +6,7 @@
             </div>
             <div class="flex space-x-1">
                 <button @click="modalOpen = true"
-                    class="hover:text-white hover:bg-indigo-500 rounded-md border border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-3">Add
+                class="bg-gray-900 hover:bg-gray-900/90 rounded-md text-white text-base px-8 py-2">Add
                     Class</button>
             </div>
         </div>
@@ -47,7 +47,7 @@
                 <div class="space-y-1">
                     <label for="word" class="text-xs">Enter Your Class Name/Section: </label>
                     <input v-model="form.className" type="text"
-                        class="focus:outline-none pl-2 text-xs w-full h-8 rounded-md border border-indigo-900">
+                        class="focus:outline-none pl-2 text-xs text-black w-full h-8 rounded-md border border-indigo-900 bg-white">
                 </div>
                 <div class="flex justify-center mt-5 gap-5">
                     <button @click.prevent="(modalOpen = !modalOpen)"

@@ -4,7 +4,7 @@
             <div class="flex justify-between p-2 px-[30px] pt-[30px] mb-3">
                 <h2 class="text-2xl font-extrabold font-poppins text-black">Lesson</h2>
                 <button @click="(slideoverOpen = !slideoverOpen)" type="button"
-                    class="text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5">Add
+                    class="bg-gray-900 hover:bg-gray-900/90 rounded-md text-white text-base px-8 py-2">Add
                     Lesson</button>
             </div>
             <!-- <div class="pb-4 bg-white px-[30px]">
@@ -23,7 +23,7 @@
                         placeholder="Search for items">
                 </div>
             </div> -->
-            <div class="pb-12">
+            <div class="pb-8">
                 <table class="w-full text-sm text-left text-gray-500 py-[10px]">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-200 ">
                         <tr>
@@ -80,17 +80,17 @@
                 <div class="mt-5 p-2 space-y-2">
                     <div class="flex justify-between items-center">
                         <label for="content">Lesson Title:</label>
-                        <div v-if="form.errors.has('title')" v-html="form.errors.get('title')"
-                            class="text-xs text-red-500" />
+                        <!-- <div v-if="form.errors.has('title')" v-html="form.errors.get('title')"
+                            class="text-xs text-red-500" /> -->
                     </div>
                     <input v-model="form.title" type="text"
-                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500">
+                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white">
                 </div>
                 <div class="p-2 space-y-2">
                     <div class="flex justify-between items-center">
                         <label for="content">Lesson Content:</label>
-                        <div v-if="form.errors.has('content')" v-html="form.errors.get('content')"
-                            class="text-xs text-red-500" />
+                        <!-- <div v-if="form.errors.has('content')" v-html="form.errors.get('content')"
+                            class="text-xs text-red-500" /> -->
                     </div>
                     <ckeditor v-model="form.content" :editor="editor" :config="editorConfig"></ckeditor>
                 </div>
@@ -98,8 +98,8 @@
                     <div class="space-y-1">
                         <div class="flex justify-between items-center">
                             <label for="image_file" class="text-sm">Upload Image Reference:</label>
-                            <div v-if="form.errors.has('content')" v-html="form.errors.get('content')"
-                                class="text-xs text-red-500" />
+                            <!-- <div v-if="form.errors.has('content')" v-html="form.errors.get('content')"
+                                class="text-xs text-red-500" /> -->
                         </div>
                         <div class="flex items-center justify-center w-full">
                             <label :style="{ 'background-image': `url(${image_url})` }"
@@ -128,7 +128,7 @@
                             class="absolute text-[9px] text-indigo-500 ml-1">*optional</span>
                     </label>
                     <input v-model="form.refLink" type="text"
-                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500">
+                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white">
                 </div>
 
                 <div class="flex gap-1 mt-10">
@@ -152,6 +152,7 @@
 <script>
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Slideover from '../../../misc/Slideover.vue';
+import { createToast } from 'mosha-vue-toastify';
 import Form from 'vform';
 import Modal from '../../../misc/Modal.vue'
 export default {
@@ -221,6 +222,17 @@ export default {
                     this.$Progress.finish();
                     this.getData();
                     this.slideoverToggle();
+                    createToast({
+                    title: 'Hurray!',
+                    description: "Lesson Added"
+                    },
+                        {
+                            showIcon: 'true',
+                            position: 'top-right',
+                            type: 'info',
+                            hideProgressBar: 'true',
+                            transition: 'bounce',
+                    })
                 }).catch((error) => {
                     this.$Progress.fail();
                 })
@@ -235,6 +247,17 @@ export default {
                 this.$Progress.finish();
                 this.edit = false;
                 this.slideoverToggle()
+                createToast({
+                    title: 'Hurray!',
+                    description: "Lesson Updated"
+                    },
+                        {
+                            showIcon: 'true',
+                            position: 'top-right',
+                            type: 'info',
+                            hideProgressBar: 'true',
+                            transition: 'bounce',
+                 })
             }).catch((error) => {
                 this.$Progress.fail();
             })

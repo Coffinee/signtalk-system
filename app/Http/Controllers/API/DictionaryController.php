@@ -6,6 +6,7 @@ use App\Models\Dictionary;
 use Illuminate\Http\Request;
 use App\Http\Requests\Settings\DictionaryRequest;
 use Intervention\Image\Image;
+use Illuminate\Support\Facades\File;
 
 class DictionaryController extends BaseController
 {
@@ -40,17 +41,16 @@ class DictionaryController extends BaseController
         // return $this->sendResponse($data, "Saved");
         $image_link = "";
 
-        if($request->image_file){
+        if ($request->image_file) {
             $image_binary = $request->image_file;
-            $image_link = time().'.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
-            \Image::make($image_binary)->fit(600, 360)->save('uploads/dictionary/'.$image_link)
-            ->destroy();
-            
+            $image_link = time() . '.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
+            \Image::make($image_binary)->save('uploads/dictionary/' . $image_link)
+                ->destroy();
+
 
         }
         $validated = $request->validated();
         $validated['image_file'] = $image_link;
-
 
         $data = Dictionary::create($validated);
         return $this->sendResponse($image_link, "Saved Data");
@@ -77,12 +77,41 @@ class DictionaryController extends BaseController
      */
     public function update(DictionaryRequest $request, $id)
     {
-        $data = Dictionary::findOrFail($id)->update([
-            'word' => $request->params['data']['word'],
-            'description' => $request->params['data']['description'],
-            'video_link' => $request->params['data']['video_link'],
-          ]);
-          return $this->sendResponse($request->validated(), "Updated Data");
+        // $data = Dictionary::findOrFail($id)->update([
+        //     'word' => $request->params['data']['word'],
+        //     'description' => $request->params['data']['description'],
+        //     'video_link' => $request->params['data']['video_link'],
+        //   ]);
+        //   return $this->sendResponse($request->validated(), "Updated Data");
+        $image_link = "";
+        $data = Dictionary::findOrFail($id);
+
+        if($request->params['data']['image_file']){
+            $image_binary = $request->params['data']['image_file'];
+
+            if($data->image_file != $request->params['data']['image_file']) {
+                $image_link = time().'.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
+            }
+            else {
+                $image_link = $request->params['data']['image_file'];
+            }
+
+            if(!File::exists('uploads/dictionary/'.$image_link)) { //does not exists
+                \Image::make($image_binary)->save('uploads/dictionary/'.$image_link)->destroy();
+                $data->update([
+                    'image_file' => $image_link,
+                ]);
+            }
+
+            else if($data->image_file != $image_link) { // is existing
+                unlink('uploads/dictionary/'.$data->image_file);
+                \Image::make($image_binary)->save('uploads/dictionary/'.$image_link)->destroy();
+                $data->update([
+                    'image_file' => $image_link,
+                ]);
+            }
+        }
+        return $this->sendResponse($request->validated(), "Updated Data");
     }
 
     /**

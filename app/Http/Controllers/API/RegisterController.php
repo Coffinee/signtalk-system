@@ -30,7 +30,7 @@ class RegisterController extends BaseController
      */
     public function store(RegisterRequest $request)
     {
-        $data = Register::create($request->all());
+        $data = Register::create($request->validated());
         return $this->sendResponse($data, "Saved");
     }
 

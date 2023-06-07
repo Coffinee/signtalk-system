@@ -16,8 +16,13 @@ class QuestionsController extends BaseController
     public function index()
     {
         $questions = Questions::with('questionItem')->get();
-
         return $this->sendResponse($questions , 'Test');
+    }
+
+    public function getQuiz()
+    {
+        $data = Questions::paginate(10);
+        return $this->sendResponse($data, "All Entries in Array");
     }
 
     /**
@@ -108,7 +113,6 @@ class QuestionsController extends BaseController
     public function show(Questions $questions, $id)
     {
         $questions = Questions::with('questionItem')->where('id', $id)->first();
-
         return $this->sendResponse($questions , 'Questions');
     }
 

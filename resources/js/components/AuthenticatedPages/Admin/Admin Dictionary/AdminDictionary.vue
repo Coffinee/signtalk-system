@@ -3,7 +3,7 @@
         <div class="flex justify-between px-[30px] pt-[30px]">
             <h2 class="text-2xl font-extrabold font-poppins text-black">Dictionary</h2>
             <button type="button" @click="(slideoverOpen = !slideoverOpen)"
-                class="text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5">Add
+                class="text-white hover:bg-gray-900/90 bg-gray-900 font-medium rounded-lg text-sm px-5 py-2.5">Add
                 Word</button>
         </div>
         <div class="pb-4 bg-white px-[30px]">
@@ -47,8 +47,8 @@
                         <td class="px-6 py-4">
                             {{ item.image_file }}
                         </td>
-                        <td class="px-6 py-4 flex gap-[5px] text-center">
-                            <a @click.prevent="editForm(item)" class="font-medium text-blue-600  hover:underline ">Edit</a>
+                        <td class="px-6 py-4">
+                            <a @click.prevent="editForm(item)" class="font-medium text-blue-600 hover:underline ">Edit</a>
                         </td>
                     </tr>
 
@@ -85,7 +85,7 @@
                         <div class="flex items-center justify-center w-full">
                             <label :style="{ 'background-image': `url(${image_url})` }"
                                 class="flex flex-col w-full h-32 rounded-md border-2 border-gray-500 border-dashed hover:bg-gray-200 cursor-pointer bg-center bg-cover bg-no-repeat">
-                                <div v-show="form.image_file == '' ? true : false" :class="{ 'hidden': hideLabel }" class="flex flex-col items-center justify-center pt-7">
+                                <div v-show="this.form.image_file == null ? true : false" class="flex flex-col items-center justify-center pt-7">
                                     <svg xmlns="http://www.w3.org/2000/svg"
                                         class="w-8 h-8 text-black group-hover:text-gray-600" fill="none" viewBox="0 0 24 24"
                                         stroke="currentColor">
@@ -114,6 +114,7 @@
 
 <script>
 import Slideover from '../../../misc/Slideover.vue';
+import { createToast } from 'mosha-vue-toastify';
 import Form from 'vform';
 import axios from 'axios';
 
@@ -137,7 +138,7 @@ export default {
                 word: '',
                 description: '',
                 video_link: '',
-                image_file: ''
+                image_file: null
             }),
             image_url: '',
             tableLabels:[
@@ -160,8 +161,9 @@ export default {
                 word: '',
                 description: '',
                 video_link: '',
-                image_file: ''
+                image_file: null
             })
+            this.image_url = '';
         },
 
         submitForm() {
@@ -170,6 +172,17 @@ export default {
                 .then((data) => {
                     this.$Progress.finish();
                     this.getData();
+                    createToast({
+                    title: 'Hurray!',
+                    description: "Word Added"
+                    },
+                        {
+                            showIcon: 'true',
+                            position: 'top-right',
+                            type: 'info',
+                            hideProgressBar: 'true',
+                            transition: 'bounce',
+                    })
                     this.slideoverToggle();
                 }).catch((error) => {
                     this.$Progress.fail();
@@ -185,6 +198,17 @@ export default {
                 this.$Progress.finish();
                 this.edit = false;
                 this.slideoverToggle()
+                createToast({
+                    title: 'Hurray!',
+                    description: "Entry Updated"
+                    },
+                        {
+                            showIcon: 'true',
+                            position: 'top-right',
+                            type: 'info',
+                            hideProgressBar: 'true',
+                            transition: 'bounce',
+                    })
             }).catch((error) => {
                 this.$Progress.fail();
             })
@@ -194,6 +218,7 @@ export default {
             this.edit = true;
             this.slideoverOpen = !this.slideoverOpen;
             this.form = item;
+            this.image_url = '/uploads/dictionary/' + this.form.image_file;
         },
 
         async getData() {

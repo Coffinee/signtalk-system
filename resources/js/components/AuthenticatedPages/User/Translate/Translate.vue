@@ -1,17 +1,21 @@
 <template>
     <div class="flex justify-center items-center h-screen">
         <div
-            class="w-full md:w-[70%] h-[80%] md:h-[90%] bg-white dark:bg-[#141526] dark:border-gray-700 shadow shadow-indigo-300 rounded-lg">
+            class="w-full md:w-[90%] h-[80%] md:h-[90%] bg-white dark:bg-[#141526] dark:border-gray-700 shadow shadow-indigo-300 rounded-lg">
             <div class="flex flex-col space-y-3 h-[95%] p-5">
                 <!-- result -->
-                <div class="w-full h-full flex items-center justify-center flex-wrap gap-[5px] border border-gray-400 rounded-md overflow-auto p-[10px]">
-                    <div v-if="this.input == ''">
-                        <img  src="/Images/nothing.png" class="sm:w-[150px] md:w-[300px]">
-                        <p class="text-center">Nothing to show....</p>
+                <div class="w-full h-full border border-gray-400 rounded-md overflow-auto p-[5px]">
+                    <div v-if="this.message == ''" class="w-full h-full flex flex-col items-center justify-center ">
+                        <img src="/Images/nothing.png" class="sm:w-[150px] md:w-[300px]">
+                        <p class="font-light tracking-widest">TRANSLATE | Nothing to show ...</p> 
                     </div>
-                    <div v-else v-for="(letter, index) in letters" :key="index" class="letter-container">
-                        <img :src="getLetterImage(letter)" :alt="letters[index]"
-                            class="h-[60px] w-[60px] sm:h-[80px] sm:w-[80px] md:h-[150px] md:w-[150px]" />
+                    <div v-else class="w-full h-full flex flex-col items-center">
+                        <div v-for="(word, wordIndex) in inputWords" :key="wordIndex" class="flex justify-center items-center gap-[5px] mb-[5px]">
+                            <div v-for="(letter, letterIndex) in word" :key="letterIndex" class=" letter-container">
+                                <img :src="getLetterImage(letter)" :alt="letter"
+                                    class="h-[60px] w-[60px] sm:h-[80px] sm:w-[80px] md:h-[100px] md:w-[100px]" />
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- end result -->
@@ -29,12 +33,14 @@
         </div>
     </div>
 </template>
-  
+
 <script>
 export default {
     data() {
         return {
             input: '',
+            message: '',
+            inputWords: [],
             letters: [],
             showResult: false,
         };
@@ -42,32 +48,32 @@ export default {
     methods: {
         getLetterImage(letter) {
             const letterImagePaths = {
-                A: '/images/asl-alphabet-v2/asl-letter-a.jpg',
-                B: '/images/asl-alphabet-v2/asl-letter-b.jpg',
-                C: '/images/asl-alphabet-v2/asl-letter-c.jpg',
-                D: '/images/asl-alphabet-v2/asl-letter-d.jpg',
-                E: '/images/asl-alphabet-v2/asl-letter-e.jpg',
-                F: '/images/asl-alphabet-v2/asl-letter-f.jpg',
-                G: '/images/asl-alphabet-v2/asl-letter-g.jpg',
-                H: '/images/asl-alphabet-v2/asl-letter-h.jpg',
-                I: '/images/asl-alphabet-v2/asl-letter-i.jpg',
-                J: '/images/asl-alphabet-v2/asl-letter-j.jpg',
-                K: '/images/asl-alphabet-v2/asl-letter-k.jpg',
-                L: '/images/asl-alphabet-v2/asl-letter-l.jpg',
-                M: '/images/asl-alphabet-v2/asl-letter-m.jpg',
-                N: '/images/asl-alphabet-v2/asl-letter-n.jpg',
-                O: '/images/asl-alphabet-v2/asl-letter-o.jpg',
-                P: '/images/asl-alphabet-v2/asl-letter-p.jpg',
-                Q: '/images/asl-alphabet-v2/asl-letter-q.jpg',
-                R: '/images/asl-alphabet-v2/asl-letter-r.jpg',
-                S: '/images/asl-alphabet-v2/asl-letter-s.jpg',
-                T: '/images/asl-alphabet-v2/asl-letter-t.jpg',
-                U: '/images/asl-alphabet-v2/asl-letter-u.jpg',
-                V: '/images/asl-alphabet-v2/asl-letter-v.jpg',
-                W: '/images/asl-alphabet-v2/asl-letter-w.jpg',
-                X: '/images/asl-alphabet-v2/asl-letter-x.jpg',
-                Y: '/images/asl-alphabet-v2/asl-letter-y.jpg',
-                Z: '/images/asl-alphabet-v2/asl-letter-z.jpg',
+                A: '/images/asl-alphabet/asl-letter-a.PNG',
+                B: '/images/asl-alphabet/asl-letter-b.PNG',
+                C: '/images/asl-alphabet/asl-letter-c.PNG',
+                D: '/images/asl-alphabet/asl-letter-d.PNG',
+                E: '/images/asl-alphabet/asl-letter-e.PNG',
+                F: '/images/asl-alphabet/asl-letter-f.PNG',
+                G: '/images/asl-alphabet/asl-letter-g.PNG',
+                H: '/images/asl-alphabet/asl-letter-h.PNG',
+                I: '/images/asl-alphabet/asl-letter-i.PNG',
+                J: '/images/asl-alphabet/asl-letter-j.PNG',
+                K: '/images/asl-alphabet/asl-letter-k.PNG',
+                L: '/images/asl-alphabet/asl-letter-l.PNG',
+                M: '/images/asl-alphabet/asl-letter-m.PNG',
+                N: '/images/asl-alphabet/asl-letter-n.PNG',
+                O: '/images/asl-alphabet/asl-letter-o.PNG',
+                P: '/images/asl-alphabet/asl-letter-p.PNG',
+                Q: '/images/asl-alphabet/asl-letter-q.PNG',
+                R: '/images/asl-alphabet/asl-letter-r.PNG',
+                S: '/images/asl-alphabet/asl-letter-s.PNG',
+                T: '/images/asl-alphabet/asl-letter-t.PNG',
+                U: '/images/asl-alphabet/asl-letter-u.PNG',
+                V: '/images/asl-alphabet/asl-letter-v.PNG',
+                W: '/images/asl-alphabet/asl-letter-w.PNG',
+                X: '/images/asl-alphabet/asl-letter-x.PNG',
+                Y: '/images/asl-alphabet/asl-letter-y.PNG',
+                Z: '/images/asl-alphabet/asl-letter-z.PNG',
                 0: '/images/asl-numbers/asl-number-0.jpg',
                 1: '/images/asl-numbers/asl-number-1.jpg',
                 2: '/images/asl-numbers/asl-number-2.jpg',
@@ -78,7 +84,7 @@ export default {
                 7: '/images/asl-numbers/asl-number-7.jpg',
                 8: '/images/asl-numbers/asl-number-8.jpg',
                 9: '/images/asl-numbers/asl-number-9.jpg',
-                ' ': 'images/asl-alphabet/asl-space.PNG',
+                // ' ': 'images/asl-alphabet/asl-space.PNG',
                 '!': '/images/special-characters/exclamation-sign.jpg',
                 '@': '/images/special-characters/at-sign.png',
                 '#': '/images/special-characters/hashtag-sign.jpg',
@@ -98,25 +104,35 @@ export default {
             return letterImagePaths[letter] || null;
         },
 
-        displayResult() {
- 
-                const inputLetters = this.input.toUpperCase().split('');
-                this.letters = []; // Clear the existing letters
-                let index = 0;
-                const interval = setInterval(() => {
-                    this.letters = [inputLetters[index]]; // Replace the existing letter with the current one
-                    index++;
-                    if (index >= inputLetters.length) {
-                        clearInterval(interval); // Stop the interval when all letters are displayed
+        async displayResult() {
+            this.message =  this.input;
+            this.inputWords = []
+            const inputWords = this.message.trim().toUpperCase().split(" ");
+            this.inputWords = []; // Clear the existing words
 
-                        // Show the entire list
-                        setTimeout(() => {
-                            this.letters = inputLetters; // Show the entire list of images
-                        }, 1000); // Delay of 1 second before showing the entire list
-                    }
-                }, 1200); // 1-second interval between displaying each letter
-            
-        }
+            for (let wordIndex = 0; wordIndex < inputWords.length; wordIndex++) {
+                const word = inputWords[wordIndex];
+                const letters = word.split("");
+                const wordLetters = [];
+
+                for (let letterIndex = 0; letterIndex < letters.length; letterIndex++) {
+                    const letter = letters[letterIndex];
+                    wordLetters.push(letter);
+                    this.inputWords[wordIndex] = [...wordLetters]; // Update the word's letters
+                    await this.delay(200); // Delay between displaying each letter
+                }
+
+                await this.delay(1000); // Delay between displaying each word
+            }
+
+            this.showResult = true; // Set showResult to true to display the result
+        },
+
+        delay(ms) {
+            return new Promise((resolve) => setTimeout(resolve, ms));
+        },
+
+
     },
 };
 </script>

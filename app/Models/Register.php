@@ -16,6 +16,6 @@ class Register extends Model
         'email',
         'password',
         'cPassword',
-        'classCode',
     ];
+
 }

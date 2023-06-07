@@ -6,6 +6,7 @@ use App\Models\Lesson;
 use Illuminate\Http\Request;
 use App\Http\Requests\Settings\LessonRequest;
 use Intervention\Image\Image;
+use Illuminate\Support\Facades\File;
 
 class LessonController extends BaseController
 {
@@ -18,9 +19,10 @@ class LessonController extends BaseController
         return $this->sendResponse($data, "All Entries in Array");
     }
 
-    public function getLesson(Request $request)
+    public function getLesson(Request $request) //get all lessons in the table
     {
-        return $this->sendResponse(Lesson::all(), 'lessons');
+        $data = Lesson::all();
+        return $this->sendResponse($data, "All Lesson in Array");
     }
 
     /**
@@ -37,16 +39,18 @@ class LessonController extends BaseController
     public function store(LessonRequest $request)
     {
         $image_link = "";
-
-        if ($request->image_file) {
-            $image_binary = $request->image_file;
-            $image_link = time() . '.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
-            \Image::make($image_binary)->save('uploads/lessons/' . $image_link)->destroy();
-
-        }
         $validated = $request->validated();
-        $validated['image_file'] = $image_link;
 
+        if($request->image_file){
+            $image_binary = $request->image_file;
+            $image_link = time().'.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
+            
+            if(!File::exists('uploads/lessons/'.$image_link)) {
+                \Image::make($image_binary)->save('uploads/lessons/'.$image_link)->destroy();
+            }
+            
+            $validated['image_file'] = $image_link;
+        }
 
         $data = Lesson::create($validated);
         return $this->sendResponse($image_link, "Saved Data");
@@ -55,9 +59,10 @@ class LessonController extends BaseController
     /**
      * Display the specified resource.
      */
-    public function show(Lesson $lesson)
+    public function show($id)
     {
-        //
+        $lesson = Lesson::where('id', $id)->first();
+        return $this->sendResponse($lesson , 'Lesson');
     }
 
     /**
@@ -75,23 +80,33 @@ class LessonController extends BaseController
     {
 
         $image_link = "";
-        $image_binary = $request->params['data']['image_file'];
         $data = Lesson::findOrFail($id);
 
-        if ($image_binary && $data->image_file == null) {
-            $image_link = time() . '.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
-            \Image::make($image_binary)->save('uploads/lessons/' . $image_link)->destroy();
-        } else if (('uploads/lessons/' . $data->image_file) != null && $data->image_file != $request->params['data']['image_file']) {
-            unlink('uploads/lessons/' . $data->image_file);
-            $image_link = time() . '.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
-            \Image::make($image_binary)->save('uploads/lessons/' . $image_link)->destroy();
+        if($request->params['data']['image_file']){
+            $image_binary = $request->params['data']['image_file'];
+
+            if($data->image_file != $request->params['data']['image_file']) {
+                $image_link = time().'.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
+            }
+            else {
+                $image_link = $request->params['data']['image_file'];
+            }
+
+            if(!File::exists('uploads/lessons/'.$image_link)) { //does not exists
+                \Image::make($image_binary)->save('uploads/lessons/'.$image_link)->destroy();
+                $data->update([
+                    'image_file' => $image_link,
+                ]);
+            }
+
+            else if($data->image_file != $image_link) { // is existing
+                unlink('uploads/lessons/'.$data->image_file);
+                \Image::make($image_binary)->save('uploads/lessons/'.$image_link)->destroy();
+                $data->update([
+                    'image_file' => $image_link,
+                ]);
+            }
         }
-        $data->update([
-            'title' => $request->params['data']['title'],
-            'content' => $request->params['data']['content'],
-            'image_file' => $image_link,
-            'refLink' => $request->params['data']['refLink'],
-        ]);
         return $this->sendResponse($request->validated(), "Updated Data");
     }
 

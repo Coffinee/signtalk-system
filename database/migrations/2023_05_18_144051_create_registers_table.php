@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('password');
             $table->string('cPassword');
-            $table->string('classCode')->nullable();
+            // $table->string('classCode')->nullable();
             $table->timestamps();
         });
     }

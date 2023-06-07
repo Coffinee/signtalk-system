@@ -30,6 +30,7 @@ const TeacherSettings = () => import("@/components/AuthenticatedPages/Teacher/Te
 const TeacherSettingsViewProfile = () => import("@/components/AuthenticatedPages/Teacher/TeacherSettings/Tabs/ViewProfile.vue");
 const TeacherQuiz = () => import("@/components/AuthenticatedPages/Teacher/TeacherQuiz/TeacherQuiz.vue");
 const TeacherQuizAdd = () => import("@/components/AuthenticatedPages/Teacher/TeacherQuiz/TeacherQuizAdd.vue");
+const TeacherQuizEdit = () => import("@/components/AuthenticatedPages/Teacher/TeacherQuiz/TeacherQuizEdit.vue");
 
 
 // ADMIN SIDE
@@ -48,6 +49,7 @@ const UserLayout = () =>import("@/components/Layouts/Authenticated Layout/UserLa
 const AdminLayout = () =>import("@/components/Layouts/Authenticated Layout/AdminLayout.vue");
 const TeacherLayout = () =>import("@/components/Layouts/Authenticated Layout/TeacherLayout.vue");
 const GuestLayout = () =>import("@/components/Layouts/GuestLayout.vue");
+const PageNotFound = () =>import("@/components/PageNotFound/pagenotfound.vue");
 
 const routes = [
     {
@@ -129,6 +131,10 @@ const routes = [
                     title: "SignTalk | Quiz",
                 },
             },
+            {
+                path: '/:pathMatch(.*)',
+                redirect: { name: "404" }
+            },
         ],
     },
     {
@@ -172,7 +178,7 @@ const routes = [
             },
             {
                 name: "lesson-main",
-                path: "/lesson/main",
+                path: "/lesson/main/:id",
                 component: LessonMain,
                 meta: {
                     title: "SignTalk | Lesson",
@@ -318,6 +324,14 @@ const routes = [
                     title: `Teacher Quiz Add`,
                 },
             },
+            {
+                name: 'teacher-quiz-edit',
+                path: "/teacher/quiz/edit/:id",
+                component: TeacherQuizEdit,
+                meta: {
+                    title: "Teacher Quiz Edit",
+                },
+            },
         ],
     },
     {
@@ -392,9 +406,20 @@ const routes = [
                 },
             }
         ]
-    }
+    },
+    {
+        name: "404",
+        path: "/404",
+        component: PageNotFound,
+        meta: {
+            title: `Page Not Found`,
+        }
+    },
+    {
+        path: '/:pathMatch(.*)',
+        redirect: { name: "404" }
+    },
 ];
-
 const router = createRouter({
     history: createWebHistory(),
     routes,
@@ -412,21 +437,31 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title;
-    if (to.meta.middleware == "guest") {
-        if (userAuthStore().authenticated) {
-            if(userAuthStore().user.role == 'admin'){
-                next({ name: "admin-dashboard" });
-            }else if(userAuthStore().user.role == 'student'){
-                next({ name: "user-home" });
-            }else{
-                next({ name: "teacher-dashboard" });
-            }
+    if (to.meta.middleware === "guest") {
+      if (userAuthStore().authenticated) {
+        // User is already authenticated, redirect to the appropriate dashboard based on their role
+        if (userAuthStore().user.role_id === 1) {
+          next({ name: "admin-dashboard" });
+        } else if (userAuthStore().user.role_id === 2) {
+          next({ name: "teacher-dashboard"  });
+        } else {
+          next({ name: "user-home" });
         }
-        
+      } else {
+        // User is not authenticated, allow access to guest pages
         next();
+      }
     } else {
-      next();
+      // Check if the user is authenticated
+      if (!userAuthStore().authenticated) {
+        // User is not authenticated, redirect to the login page or any other desired route
+        next({ name: "login" }); // Replace "login" with your actual login route name
+      } else {
+        // User is authenticated, allow access to authenticated pages
+        next();
+      }
     }
 });
+  
 
 export default router;
