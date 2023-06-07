@@ -63,7 +63,7 @@
                                         required="true">
                                 </div>
 
-                                <div v-show="isTeacher == false" class="mb-2">
+                                <div v-if="isTeacher == false" class="mb-2">
                                     <label for="code"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Class Code:</label>
                                     <input v-model="form.classCode" type="text" name="code" id="code"
@@ -104,7 +104,7 @@ export default {
                 email: '',
                 password: '',
                 cPassword: '',
-                classCode: ''
+                classCode: null
             }),
             isTeacher: false,
             isStudent: false
