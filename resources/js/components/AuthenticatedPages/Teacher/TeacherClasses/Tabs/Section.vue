@@ -79,6 +79,7 @@ export default {
                 { label: 'First Name' },
                 { label: 'Last Name' },
             ],
+            SectionList:{}
         }
     },
 
@@ -87,16 +88,33 @@ export default {
             this.$refs.clone.focus();
             document.execCommand('copy');
         },
-
+        async getClass() {
+            await axios.get('/api/getclass').then((data) => {
+                this.SectionList = data.data.data;
+            }).catch((e) => {
+                errorMessage('Opps!', e.message, 'top-right')
+            });
+        },
         async deleteSection(id) {
-            await axios.get('/api/section?id=' + id).then((data) => {
-                this.data = data.data.data;           
-            })
-        //     .catch((e) => {
-        //         errorMessage('Opps!', e.message, 'top-right')
-        //     });
-        // },
+            try {
+                const response = await axios.delete(`/api/section/${id}`);
+                // Handle the success response
+                console.log(response.data); // or perform any other actions
+
+                // Refresh the section list or perform any other necessary updates
+                window.location.reload();
+                // Example:          
+                this.$emit('sectionDeleted', id);
+            } catch (error) {
+                // Handle the error response
+                console.log(error.response.data); // or perform any other actions
+            }
+        },
     },
+    created(){
+        this.getClass();
+        
+    }
 
 }
 </script>

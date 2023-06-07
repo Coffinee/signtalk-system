@@ -77,11 +77,5 @@ class SectionController extends BaseController
         $section->delete();
         return $this->sendResponse($section, 'Section');
 
-        // if ($section) {
-        //     $section->delete();
-        //     return response()->json(['message' => 'User deleted successfully']);
-        // } else {
-        //     return response()->json(['message' => 'User not found'], 404);
-        // }
     }
 }

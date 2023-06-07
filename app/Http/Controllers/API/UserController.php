@@ -24,12 +24,6 @@ class UserController extends BaseController
         return $this->sendResponse($data, "All Entries in Array");
     }
 
-    public function getStudentsWithSameCode()
-    {
-        $data = User::where('classCode', )->get();
-        return $this->sendResponse($data, "All Entries in Array");
-    }
-
     /**
      * Show the form for creating a new resource.
      */
