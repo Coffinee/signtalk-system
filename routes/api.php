@@ -21,6 +21,8 @@ Route::namespace('App\Http\Controllers\API')->group(function() {
     Route::get('getlesson', 'LessonController@getLesson');
     Route::get('getclass', 'SectionController@getClass');
     Route::get('get-roles', 'RolesController@getRoles');
+    Route::get('getquiz', 'QuestionsController@getQuiz');
+    Route::get('getstudents', 'UserController@getStudents');
     
     Route::apiResources([
         'user' => 'UserController',
