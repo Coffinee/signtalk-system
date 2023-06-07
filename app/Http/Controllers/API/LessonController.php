@@ -14,13 +14,13 @@ class LessonController extends BaseController
      */
     public function index()
     {
-        $data = Lesson::paginate(10);
+        $data = Lesson::paginate(1);
         return $this->sendResponse($data, "All Entries in Array");
     }
 
     public function getLesson(Request $request)
     {
-        $data = Lesson::latest()->first();
+        $data = Lesson::all();
         return $this->sendResponse($data, "All Lesson in Array");
     }
 

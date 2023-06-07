@@ -29,7 +29,7 @@
             </div>
             <!-- Result -->
             <div class="h-auto rounded-lg dark:border-gray-700 p-5"
-                :class="this.word === '' ? 'shadow shadow-blue-400 border-none' : 'shadow shadow-blue-400 border-gray-200'">
+                :class="this.word === '' ? 'border-none' : 'border-gray-200'">
                 <!-- <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Result:</h5> -->
                 <div v-if="hasWord" class="flex flex-col gap-[10px]">
                     <div class="flex flex-col md:flex-row gap-[10px]">
@@ -52,9 +52,9 @@
                     </div>
                 </div>
 
-                <div v-else class="flex flex-col items-center justify-center mt-2">
-                    <img src="/Images/nothing.png" class="sm:w-[150px] md:w-[300px]">
-                    <p class="text-center">Nothing to show...</p>
+                <div v-else class="w-full h-full flex flex-col justify-center items-center">
+                    <img src="/images/nothing.png" class="w-[400px]">
+                    <p class="font-light tracking-widest">Dictionary | Nothing to show ...</p>
                 </div>
             </div>
         </div>
@@ -154,4 +154,5 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-}</style>
+}
+</style>

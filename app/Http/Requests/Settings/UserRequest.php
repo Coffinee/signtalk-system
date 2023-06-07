@@ -33,7 +33,6 @@ class UserRequest extends FormRequest
             'email' => 'required',
             'password' => 'required',
             'cPassword' => 'required',
-            'classCode' => 'required',
         ];
     }
 }

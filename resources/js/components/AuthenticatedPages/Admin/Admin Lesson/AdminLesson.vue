@@ -4,7 +4,7 @@
             <div class="flex justify-between p-2 px-[30px] pt-[30px] mb-3">
                 <h2 class="text-2xl font-extrabold font-poppins text-black">Lesson</h2>
                 <button @click="(slideoverOpen = !slideoverOpen)" type="button"
-                    class="text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5">Add
+                class="text-white hover:bg-gray-900/90 bg-gray-900 font-medium rounded-lg text-sm px-5 py-2.5">Add
                     Lesson</button>
             </div>
             <!-- <div class="pb-4 bg-white px-[30px]">
