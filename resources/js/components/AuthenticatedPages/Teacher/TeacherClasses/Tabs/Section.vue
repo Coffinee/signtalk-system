@@ -89,12 +89,13 @@ export default {
         },
 
         async deleteSection(id) {
-            await axios.post('/api/section?id=' + id, {_method: 'delete'}).then((data) => {
+            await axios.get('/api/section?id=' + id).then((data) => {
                 this.data = data.data.data;           
-            }).catch((e) => {
-                errorMessage('Opps!', e.message, 'top-right')
-            });
-        },
+            })
+        //     .catch((e) => {
+        //         errorMessage('Opps!', e.message, 'top-right')
+        //     });
+        // },
     },
 
 }

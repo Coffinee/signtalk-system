@@ -71,15 +71,17 @@ class SectionController extends BaseController
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Request $request)
+    public function destroy(Request $request, $id)
     {
-        $section = Section::find($request->id);
+        $section = Section::findOrFail($id);
+        $section->delete();
+        return $this->sendResponse($section, 'Section');
 
-        if ($section) {
-            $section->delete();
-            return response()->json(['message' => 'User deleted successfully']);
-        } else {
-            return response()->json(['message' => 'User not found'], 404);
-        }
+        // if ($section) {
+        //     $section->delete();
+        //     return response()->json(['message' => 'User deleted successfully']);
+        // } else {
+        //     return response()->json(['message' => 'User not found'], 404);
+        // }
     }
 }
