@@ -21,7 +21,6 @@
                                         <!-- <option @click.prevent="isTeacher = false" value="student">Student</option> -->
                                         <!-- <option @click.prevent="isTeacher = true" value="teacher">Teacher</option> -->
                                     </select>
-
                                 </div>
                             </div>
                             <div>
@@ -66,9 +65,8 @@
                                         placeholder="••••••••" v-model="form.cPassword"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         required="true">
-                                </div>
-
-                                <div v-if="form.role.title == 'Student'" class="mb-2">
+                                </div>                         
+                                <div v-show="form.role === 3" class="mb-2">
                                     <label for="code"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Class
                                         Code:</label>

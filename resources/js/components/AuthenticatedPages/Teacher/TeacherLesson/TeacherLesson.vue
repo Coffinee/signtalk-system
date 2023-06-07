@@ -84,7 +84,7 @@
                             class="text-xs text-red-500" /> -->
                     </div>
                     <input v-model="form.title" type="text"
-                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500">
+                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white">
                 </div>
                 <div class="p-2 space-y-2">
                     <div class="flex justify-between items-center">
@@ -128,7 +128,7 @@
                             class="absolute text-[9px] text-indigo-500 ml-1">*optional</span>
                     </label>
                     <input v-model="form.refLink" type="text"
-                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500">
+                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white">
                 </div>
 
                 <div class="flex gap-1 mt-10">
@@ -152,6 +152,7 @@
 <script>
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Slideover from '../../../misc/Slideover.vue';
+import { createToast } from 'mosha-vue-toastify';
 import Form from 'vform';
 import Modal from '../../../misc/Modal.vue'
 export default {
@@ -221,6 +222,17 @@ export default {
                     this.$Progress.finish();
                     this.getData();
                     this.slideoverToggle();
+                    createToast({
+                    title: 'Hurray!',
+                    description: "Lesson Added"
+                    },
+                        {
+                            showIcon: 'true',
+                            position: 'top-right',
+                            type: 'info',
+                            hideProgressBar: 'true',
+                            transition: 'bounce',
+                    })
                 }).catch((error) => {
                     this.$Progress.fail();
                 })
@@ -235,6 +247,17 @@ export default {
                 this.$Progress.finish();
                 this.edit = false;
                 this.slideoverToggle()
+                createToast({
+                    title: 'Hurray!',
+                    description: "Lesson Updated"
+                    },
+                        {
+                            showIcon: 'true',
+                            position: 'top-right',
+                            type: 'info',
+                            hideProgressBar: 'true',
+                            transition: 'bounce',
+                 })
             }).catch((error) => {
                 this.$Progress.fail();
             })

@@ -123,6 +123,7 @@
 import { RadioGroup, RadioGroupDescription, RadioGroupLabel, RadioGroupOption } from '@headlessui/vue'
 import { CheckCircleIcon } from '@heroicons/vue/20/solid'
 import { ClockIcon } from '@heroicons/vue/24/outline';
+import { createToast } from 'mosha-vue-toastify';
 import Form from 'vform';
 export default {
     components: {
@@ -211,6 +212,18 @@ export default {
             // You can perform additional validation or submit the quiz data to a server here
             console.log(this.formQuiz);
             this.formQuiz.put('/api/questions/'+this.formQuiz.id).then((res)=>{
+                createToast({
+                    title: 'Hurray!',
+                    description: "Quiz Updated"
+                },
+                    {
+                        showIcon: 'true',
+                        position: 'top-right',
+                        type: 'info',
+                        hideProgressBar: 'true',
+                        transition: 'bounce',
+                })
+                this.$router.push('/teacher/quiz')
                 console.log(res.data);
             })
 
