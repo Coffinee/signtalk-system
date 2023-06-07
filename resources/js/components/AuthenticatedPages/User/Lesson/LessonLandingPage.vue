@@ -1,7 +1,7 @@
 <template>
-    <div class="h-auto sm:h-screen md:h-screen flex flex-col justify-evenly  items-center my-[30px]">
+    <div class="h-auto sm:h-screen md:h-screen flex flex-col items-center my-[30px]">
         <div>
-            <p class="mb-[20px] text-2xl text-black font-bold dark:text-white text-center">Assigned Lessons:</p>
+            <p class="mb-[20px] text-2xl text-black font-bold dark:text-white text-center">Lessons:</p>
             <div class="flex justify-center flex-wrap gap-[15px]">
                 <router-link :to="'/lesson/main/'+ lesson.id" v-for="lesson in lessons" :key="lesson.id" class="flex flex-col items-center justify-center w-[400px]  bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 border-r-[5px] border-r-indigo-500">
                     <img class="w-full rounded-t-lg h-96 md:h-full md:w-[40%] md:rounded-none md:rounded-l-lg border border-red-500" :src="'/uploads/lessons/'+lesson.image_file" alt="">
@@ -12,6 +12,7 @@
                 </router-link>
             </div>
         </div>
+        <!--
         <div>
             <p class="mb-[20px] text-2xl text-black font-bold dark:text-white text-center">Other Lessons:</p>
             <div class="flex justify-center flex-wrap gap-[15px]">
@@ -23,13 +24,14 @@
                     </div>
                 </router-link>
             </div>
-                <!-- <div v-else class="w-full h-screen">
+                 <div v-else class="w-full h-screen">
                 <div class="mt-[20%] flex flex-col items-center">
                     <img src="/images/nothing.png" class="w-[400px]">
                     <p class="font-light tracking-widest">Lesson | Nothing to show ...</p>
                 </div>
-            </div> -->
+            </div>
         </div>
+         -->
     </div>
 
 </template>
