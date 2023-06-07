@@ -12,7 +12,7 @@
                 </svg>
             </button>
         </div>
-        <button @click.prevent="deleteSection()"
+        <button @click.prevent="deleteSection(sectionID)"
             class="hover:text-white hover:bg-indigo-500 rounded-md border border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-2">Remove
             Class
         </button>
@@ -79,7 +79,7 @@ export default {
                 { label: 'First Name' },
                 { label: 'Last Name' },
             ],
-            SectionList:{}
+            SectionList: {}
         }
     },
 
@@ -87,13 +87,6 @@ export default {
         copy() {
             this.$refs.clone.focus();
             document.execCommand('copy');
-        },
-        async getClass() {
-            await axios.get('/api/getclass').then((data) => {
-                this.SectionList = data.data.data;
-            }).catch((e) => {
-                errorMessage('Opps!', e.message, 'top-right')
-            });
         },
         async deleteSection(id) {
             try {
@@ -109,18 +102,8 @@ export default {
                 // Handle the error response
                 console.log(error.response.data); // or perform any other actions
             }
-        },
-
-        deleteSection() {
-            axios.delete('/api/section?id=' + this.sectionID).then((data) => {
-                this.data = data.data.data;
-            })
-                .catch((e) => {
-                    errorMessage('Opps!', e.message, 'top-right')
-                });
-        },
+        }
     },
-
 }
 </script>
 
