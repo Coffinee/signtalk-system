@@ -2,6 +2,10 @@
     <div class="dark:bg-transparent h-screen md:h-screen">
         <div class="flex flex-col items-center justify-center mb-[50px]  h-full">
             <h5 class="mb-[20px] text-2xl text-black text-center items-center font-bold dark:text-white">Quiz</h5>
+            <div class=" flex flex-col justify-center items-center shadow px-20 py-5">
+                <img src="/images/nothing.png" class="w-[400px]">
+                <p class="font-light tracking-widest">Nothing to show ...</p>
+            </div>
             <div class="flex justify-center flex-wrap gap-[20px]">
                 <div  v-for="item in questions" :key="item.id" class="max-w-xs h-[300px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
                     <div class="h-[65%]">
