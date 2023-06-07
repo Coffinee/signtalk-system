@@ -1,6 +1,6 @@
 <template>
     <!-- Main Content -->
-    <div class="flex flex-col justify-center items-center gap-[20px] w-full bg-white dark:bg-[#141526] p-5"
+    <div class="flex flex-col justify-center items-center gap-[20px] w-full bg-white dark:bg-[#141526] p-5 my-[50px]"
         :class="!hasWord ? 'h-screen' : 'h-auto'">
         <div class="flex flex-col gap-[25px] w-full md:w-[80%] lg:w-[60%]">
             <div :class="!hasWord ? '' : ''">

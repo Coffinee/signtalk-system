@@ -18,7 +18,7 @@
                             </p>
                         </div>
                     </div>
-                    <div class="flex justify-between flex-wrap-reverse gap-[20px] text-sm mt-3">
+                    <div class="flex justify-between flex-wrap-reverse gap-0 sm:gap-[20px] text-sm mt-3">
                         <div>
                             <p class="text-gray-700 dark:text-gray-400">
                                 <span class="font-semibold text-black dark:text-white">Quiz Type: </span>
@@ -29,13 +29,13 @@
                                 Read each question carefully and select the correct answer.
                             </p>
                         </div>
-                        <div class="flex flex-col flex-wrap">
-                            <p class="text-gray-700  dark:text-gray-400 capitalize">
+                        <div class="flex items-end">
+                            <!-- <p class="text-gray-700  dark:text-gray-400 capitalize">
                                 <span class="font-semibold text-black dark:text-white">Difficulty: </span>
                                 Hard
-                            </p>
+                            </p> -->
                             <p class="text-gray-700  dark:text-gray-400">
-                                <span class="font-semibold dark:text-white">No. of Items: </span>
+                                <span class="font-semibold text-black dark:text-white">No. of Items: </span>
                                 {{ quizLength }}
                             </p>
                         </div>

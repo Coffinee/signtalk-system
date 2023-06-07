@@ -1,5 +1,5 @@
 <template>
-    <div class="h-auto sm:h-screen md:h-screen flex flex-col gap-[100px] items-center my-[30px]">
+    <div class="h-auto sm:h-screen md:h-screen flex flex-col justify-evenly  items-center my-[30px]">
         <div>
             <p class="mb-[20px] text-2xl text-black font-bold dark:text-white text-center">Assigned Lessons:</p>
             <div class="flex justify-center flex-wrap gap-[15px]">
@@ -23,14 +23,15 @@
                     </div>
                 </router-link>
             </div>
+                <!-- <div v-else class="w-full h-screen">
+                <div class="mt-[20%] flex flex-col items-center">
+                    <img src="/images/nothing.png" class="w-[400px]">
+                    <p class="font-light tracking-widest">Lesson | Nothing to show ...</p>
+                </div>
+            </div> -->
         </div>
     </div>
-    <!-- <div v-else class="w-full h-screen">
-        <div class="mt-[20%] flex flex-col items-center">
-            <img src="/images/nothing.png" class="w-[400px]">
-            <p class="font-light tracking-widest">Lesson | Nothing to show ...</p>
-        </div>
-    </div> -->
+
 </template>
   
 <script>

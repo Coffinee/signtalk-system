@@ -30,6 +30,7 @@ const TeacherSettings = () => import("@/components/AuthenticatedPages/Teacher/Te
 const TeacherSettingsViewProfile = () => import("@/components/AuthenticatedPages/Teacher/TeacherSettings/Tabs/ViewProfile.vue");
 const TeacherQuiz = () => import("@/components/AuthenticatedPages/Teacher/TeacherQuiz/TeacherQuiz.vue");
 const TeacherQuizAdd = () => import("@/components/AuthenticatedPages/Teacher/TeacherQuiz/TeacherQuizAdd.vue");
+const TeacherQuizEdit = () => import("@/components/AuthenticatedPages/Teacher/TeacherQuiz/TeacherQuizEdit.vue");
 
 
 // ADMIN SIDE
@@ -321,6 +322,14 @@ const routes = [
                 component: TeacherQuizAdd,
                 meta: {
                     title: `Teacher Quiz Add`,
+                },
+            },
+            {
+                name: 'teacher-quiz-edit',
+                path: "/teacher/quiz/edit/:id",
+                component: TeacherQuizEdit,
+                meta: {
+                    title: "Teacher Quiz Edit",
                 },
             },
         ],

@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div v-else class="w-full flex flex-col justify-center items-center mt-20">
-                <img src="/images/nothing.png" class="w-[400px]">
+                <img src="/Images/nothing.png" class="w-[400px]">
                 <p class="font-light tracking-widest">Nothing to show ...</p>
             </div>
         </div>
