@@ -1,17 +1,28 @@
 <template>
-    <div class="h-screen sm:h-screen md:h-screen flex items-center justify-center my-[30px]">
-        <div class="divide-y divide-gray-200 overflow-hidden rounded-lg  p-3 sm:grid sm:grid-cols-2 gap-[5px] sm:gap-[30px] sm:divide-y-0 w-full sm:w-full md:w-auto mx-[10px]">
-            <router-link :to="'/lesson/main/'+ lesson.id" v-for="lesson in lessons" :key="lesson.id" class="flex items-center justify-between  bg-white dark:bg-gray-600 p-10 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-500 hover:bg-gray-50 dark:hover:bg-gray-700  w-full md:w-[400px] border-l-[10px] border-l-indigo-500 rounded-md shadow-md border-y border-r   border-y-gray-200 border-r-gray-200">
-                <div>
-                    <h3 class="font-semibold leading-6 text-gray-900 dark:text-white text-[30px]">{{ lesson.title }}
-                    </h3>
-                    <p class="mt-2 text-[14px] text-gray-500 dark:text-gray-300">Learn {{ lesson.title }}</p>
-                </div>
-                <div>
-                    <ArrowRightIcon class="w-[30px] h-[30px] stroke-2 stroke-indigo-500"/>
-                </div>
-
-            </router-link>
+    <div class="h-auto sm:h-screen md:h-screen flex flex-col gap-[100px] items-center my-[30px]">
+        <div>
+            <p class="mb-[20px] text-2xl text-black font-bold dark:text-white text-center">Assigned Lessons:</p>
+            <div class="flex justify-center flex-wrap gap-[15px]">
+                <router-link :to="'/lesson/main/'+ lesson.id" v-for="lesson in lessons" :key="lesson.id" class="flex flex-col items-center justify-center w-[400px]  bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 border-r-[5px] border-r-indigo-500">
+                    <img class="w-full rounded-t-lg h-96 md:h-full md:w-[40%] md:rounded-none md:rounded-l-lg border border-red-500" :src="'/uploads/lessons/'+lesson.image_file" alt="">
+                    <div class="flex flex-col justify-between p-4 leading-normal md:w-[60%]">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{{ lesson.title }}</h5>
+                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 text-md">Learn {{ lesson.title }}.</p>
+                    </div>
+                </router-link>
+            </div>
+        </div>
+        <div>
+            <p class="mb-[20px] text-2xl text-black font-bold dark:text-white text-center">Other Lessons:</p>
+            <div class="flex justify-center flex-wrap gap-[15px]">
+                <router-link :to="'/lesson/main/'+ lesson.id" v-for="lesson in lessons" :key="lesson.id" class="flex flex-col items-center justify-center w-[400px]  bg-white border border-gray-200 rounded-lg shadow md:flex-row hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700 border-r-[5px] border-r-indigo-500">
+                    <img class="w-full rounded-t-lg h-96 md:h-full md:w-[40%] md:rounded-none md:rounded-l-lg border border-red-500" :src="'/uploads/lessons/'+lesson.image_file" alt="">
+                    <div class="flex flex-col justify-between p-4 leading-normal md:w-[60%]">
+                        <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{{ lesson.title }}</h5>
+                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 text-md">Learn {{ lesson.title }}.</p>
+                    </div>
+                </router-link>
+            </div>
         </div>
     </div>
 </template>
