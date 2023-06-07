@@ -68,7 +68,7 @@
                                         required="true">
                                 </div>
 
-                                <div v-if="form.role.title == 'Student'" class="mb-2">
+                                <div v-if="form.role == 3" class="mb-2">
                                     <label for="code"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Class
                                         Code:</label>

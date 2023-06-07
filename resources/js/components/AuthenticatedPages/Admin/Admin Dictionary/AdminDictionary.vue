@@ -1,12 +1,12 @@
 <template>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <div class="flex justify-between px-[30px] pt-[30px]">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-white">
+        <div class="flex justify-between px-[30px] pt-[30px] mb-3">
             <h2 class="text-2xl font-extrabold font-poppins text-black">Dictionary</h2>
             <button type="button" @click="(slideoverOpen = !slideoverOpen)"
                 class="text-white hover:bg-gray-900/90 bg-gray-900 font-medium rounded-lg text-sm px-5 py-2.5">Add
                 Word</button>
         </div>
-        <div class="pb-4 bg-white px-[30px]">
+        <!-- <div class="pb-4 bg-white px-[30px]">
             <div class="relative mt-1">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor"
@@ -20,7 +20,7 @@
                     class="block p-2 pl-10 text-sm text-gray-900 border border-gray-500 rounded-lg w-80 bg-gray-50"
                     placeholder="Search for items">
             </div>
-        </div>
+        </div> -->
         <div class="px-[30px] pb-12">
             <table class="w-full text-sm text-left text-gray-500 py-[10px]">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-200">
