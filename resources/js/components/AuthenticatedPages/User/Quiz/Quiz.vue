@@ -1,34 +1,39 @@
 <template>
-    <div v-if="this.questions != ''" class="dark:bg-transparent h-screen md:h-screen flex flex-col items-center justify-center">
-        <p class="mb-[20px] text-2xl text-black text-center font-bold dark:text-white">Quiz</p>
-        <div class="flex flex-col items-center justify-center mb-[50px]">
-            <div class="flex justify-center flex-wrap gap-[20px]">
-                <div @click="previewQuiz(item)" v-for="item in questions" :key="item.id"
-                    class="cursor-pointer max-w-xs h-[300px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-                    <div class="h-[65%]">
-                        <img class="w-full h-full rounded-t-lg" :src="'/uploads/quiz/' + item.banner" alt="">
-                    </div>
-                    <div class="flex flex-col justify-center h-[35%] px-[10px]">
-                        <div class="flex justify-between mb-2">
-                            <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">{{ item.title }}</h5>
-                            <span
-                                class="bg-gray-50 shadow-md text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">{{
-                                    item.question_item.length }} items</span>
+    <div>
+        <div class="h-screen md:h-screen flex flex-col items-center justify-center">
+            <div class="flex flex-col items-center justify-center mb-[50px]">
+                <p class="mb-[20px] text-2xl text-black text-center font-bold dark:text-white">Quiz</p>
+                <div class="flex justify-center flex-wrap gap-[20px]">
+                    <div @click="previewQuiz(item)" v-for="item in questions" :key="item.id"
+                        class="cursor-pointer max-w-xs h-[300px] bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                        <div class="h-[65%]">
+                            <img class="w-full h-full rounded-t-lg" :src="'/uploads/quiz/' + item.banner" alt="">
                         </div>
-                        <div>
-                            <button type="button"
-                                class="focus:outline-none text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5 w-full">View
-                                Quiz</button>
+                        <div class="flex flex-col justify-center h-[35%] px-[10px]">
+                            <div class="flex justify-between my-3">
+                                <h5 class="text-xl font-bold tracking-tight text-gray-900 dark:text-white">{{ item.title }}
+                                </h5>
+                                <span
+                                    class="bg-gray-50 shadow-md text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">{{
+                                        item.question_item.length }} items</span>
+                            </div>
+                            <div>
+                                ` <button type="button"
+                                    class="focus:outline-none text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5 w-full">View
+                                    Quiz</button>`
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div v-else class="w-full h-screen flex flex-col justify-center items-center">
-        <img src="/images/nothing.png" class="w-[400px]">
-        <p class="font-light tracking-widest">QUIZ | Nothing to show ...</p>
-    </div>
+    <!-- <div v-else class="w-full h-screen">
+        <div class="mt-[8%] flex flex-col items-center">
+            <img src="/images/nothing.png" class="w-[400px]">
+            <p class="font-light tracking-widest">Quiz | Nothing to show ...</p>
+        </div>
+    </div> -->
 
     <Modal :show="modalOpen" @close="modalToggle" :title="quizTitle" :widthModal="'w-[600px]'" :heightModal="'h-auto'">
         <!-- description, no of items, duration, difficulty -->

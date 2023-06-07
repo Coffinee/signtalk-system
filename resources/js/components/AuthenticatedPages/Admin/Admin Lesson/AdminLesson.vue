@@ -152,6 +152,7 @@
 <script>
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import Slideover from '../../../misc/Slideover.vue';
+import { createToast } from 'mosha-vue-toastify';
 import Form from 'vform';
 import Modal from '../../../misc/Modal.vue'
 export default {
@@ -220,6 +221,17 @@ export default {
                 .then((data) => {
                     this.$Progress.finish();
                     this.getData();
+                    createToast({
+                    title: 'Hurray!',
+                    description: "Lesson Added"
+                    },
+                        {
+                            showIcon: 'true',
+                            position: 'top-right',
+                            type: 'info',
+                            hideProgressBar: 'true',
+                            transition: 'bounce',
+                    })
                     this.slideoverToggle();
                 }).catch((error) => {
                     this.$Progress.fail();
@@ -244,7 +256,7 @@ export default {
             this.edit = true;
             this.slideoverOpen = !this.slideoverOpen;
             this.form = item;
-            this.image_url = '/uploads/lessons//' + this.form.image_file;
+            this.image_url = '/uploads/lessons/' + this.form.image_file;
         },
 
         async getData() {

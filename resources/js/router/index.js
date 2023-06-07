@@ -177,7 +177,7 @@ const routes = [
             },
             {
                 name: "lesson-main",
-                path: "/lesson/main",
+                path: "/lesson/main/:id",
                 component: LessonMain,
                 meta: {
                     title: "SignTalk | Lesson",
@@ -431,12 +431,12 @@ router.beforeEach((to, from, next) => {
     if (to.meta.middleware === "guest") {
       if (userAuthStore().authenticated) {
         // User is already authenticated, redirect to the appropriate dashboard based on their role
-        if (userAuthStore().user.role === 'admin') {
+        if (userAuthStore().user.role_id === 1) {
           next({ name: "admin-dashboard" });
-        } else if (userAuthStore().user.role === 'student') {
-          next({ name: "user-home" });
+        } else if (userAuthStore().user.role_id === 2) {
+          next({ name: "teacher-dashboard"  });
         } else {
-          next({ name: "teacher-dashboard" });
+          next({ name: "user-home" });
         }
       } else {
         // User is not authenticated, allow access to guest pages
@@ -452,7 +452,7 @@ router.beforeEach((to, from, next) => {
         next();
       }
     }
-  });
-
+});
+  
 
 export default router;

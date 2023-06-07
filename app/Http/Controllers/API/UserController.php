@@ -14,7 +14,7 @@ class UserController extends BaseController
      */
     public function index()
     {
-        $data = User::paginate(10);
+        $data = User::with('role')->paginate(10);
         return $this->sendResponse($data, "All Entries in Array");
     }
 
@@ -36,6 +36,7 @@ class UserController extends BaseController
         $validated = $request->validated();
         $hashPass = Hash::make($request->password);
         $validated['password'] = $hashPass;
+        $validated['role_id'] = $request->role;
         $data = User::create($validated);
 
         return $this->sendResponse($data, "Saved data to table.");
@@ -64,7 +65,15 @@ class UserController extends BaseController
      */
     public function update(Request $request, User $user)
     {
-        //
+        $user->update($request->params['data']);
+
+        if ($request->params['data']['role']) {
+            $user->update([
+                'role_id' => $request->params['data']['role']['id']
+            ]);
+        }
+
+        return $this->sendResponse($request->params['data']['building'], "Updated Data");
     }
 
     /**
