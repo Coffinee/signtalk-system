@@ -115,7 +115,7 @@ export default {
                 errorMessage('Opps!', e.message, 'top-right')
             });
         },
-        async getStudentsWithSameCode() {
+        async getStudents() {
             await axios.get('/api/getstudents').then((data) => {
                 this.student = data.data.data;
                 // console.log(this.student);
@@ -128,7 +128,7 @@ export default {
     },
     created(){
         this.getClass();
-        this.getStudentsWithSameCode();
+        this.getStudents();
     }
 
 }

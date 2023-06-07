@@ -76,5 +76,6 @@ class SectionController extends BaseController
         $section = Section::findOrFail($id);
         $section->delete();
         return $this->sendResponse($section, 'Section');
+
     }
 }
