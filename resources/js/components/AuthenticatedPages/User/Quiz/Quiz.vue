@@ -1,5 +1,5 @@
 <template>
-    <div v-if="this.questions != ''" class="dark:bg-transparent h-screen md:h-screen">
+    <div v-if="this.questions != ''" class="dark:bg-transparent h-screen md:h-screen flex flex-col items-center justify-center">
         <p class="mb-[20px] text-2xl text-black text-center font-bold dark:text-white">Quiz</p>
         <div class="flex flex-col items-center justify-center mb-[50px]">
             <div class="flex justify-center flex-wrap gap-[20px]">

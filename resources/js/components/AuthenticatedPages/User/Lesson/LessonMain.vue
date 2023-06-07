@@ -1,6 +1,6 @@
 <template>
-    <div v-if="this.data != null"  class="flex flex-col justify-center w-auto h-auto bg-white dark:bg-transparent">
-        <div v-for="(lesson,index) in data.data" :key="index" class="w-full sm:w-full md:w-[70%] self-center py-10 px-5">
+    <div class="flex flex-col justify-center w-auto h-auto bg-white dark:bg-transparent">
+        <div class="w-full sm:w-full md:w-[70%] self-center py-10 px-5">
             <div>
                 <h1
                     class="mb-4 text-center text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
@@ -37,10 +37,6 @@
                 </div>
             </div>
         </div>
-    </div>
-    <div v-else class="w-auto h-screen flex flex-col justify-center items-center">
-        <img src="/images/nothing.png" class="w-[400px]">
-        <p class="font-light tracking-widest">LESSONS | Nothing to show ...</p>
     </div>
 </template>
 <script >

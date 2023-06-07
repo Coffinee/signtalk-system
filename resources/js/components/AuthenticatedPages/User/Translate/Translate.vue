@@ -5,7 +5,7 @@
             <div class="flex flex-col space-y-3 h-[95%] p-5">
                 <!-- result -->
                 <div class="w-full h-full border border-gray-400 rounded-md overflow-auto p-[5px]">
-                    <div v-if="this.input == ''" class="w-full h-full flex flex-col items-center justify-center ">
+                    <div v-if="this.message == ''" class="w-full h-full flex flex-col items-center justify-center ">
                         <img src="/Images/nothing.png" class="sm:w-[150px] md:w-[300px]">
                         <p class="font-light tracking-widest">TRANSLATE | Nothing to show ...</p> 
                     </div>
@@ -39,6 +39,7 @@ export default {
     data() {
         return {
             input: '',
+            message: '',
             inputWords: [],
             letters: [],
             showResult: false,
@@ -104,7 +105,9 @@ export default {
         },
 
         async displayResult() {
-            const inputWords = this.input.trim().toUpperCase().split(" ");
+            this.message =  this.input;
+            this.inputWords = []
+            const inputWords = this.message.trim().toUpperCase().split(" ");
             this.inputWords = []; // Clear the existing words
 
             for (let wordIndex = 0; wordIndex < inputWords.length; wordIndex++) {

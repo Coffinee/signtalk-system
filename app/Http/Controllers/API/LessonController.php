@@ -14,7 +14,7 @@ class LessonController extends BaseController
      */
     public function index()
     {
-        $data = Lesson::paginate(10);
+        $data = Lesson::paginate(1);
         return $this->sendResponse($data, "All Entries in Array");
     }
 
