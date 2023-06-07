@@ -18,9 +18,9 @@
                                         item.question_item.length }} items</span>
                             </div>
                             <div>
-                                ` <button type="button"
+                                 <button type="button"
                                     class="focus:outline-none text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5 w-full">View
-                                    Quiz</button>`
+                                    Quiz</button>
                             </div>
                         </div>
                     </div>
@@ -41,31 +41,23 @@
             <div class="flex flex-col justify-between items-center gap-2 sm:flex-col md:flex-row h-full">
                 <div class="w-full h-full">
                     <img class="w-full rounded-md" :src="'/uploads/quiz/' + quizBanner" alt="">
-
                 </div>
                 <div class="w-full md:w-[45%] dark:text-white h-full flex flex-col gap-3 text-[13px]">
-                    <div class="flex flex-row md:flex-col gap-3">
+                    <div class="flex flex-wrap gap-3">
                         <div
-                            class="flex items-center w-[50%] sm:w-full gap-3 px-3 py-[9px] rounded-md bg-gray-50 dark:bg-gray-500 shadow-md">
+                            class="flex items-center w-full gap-3 px-3 py-[9px] rounded-md bg-gray-50 dark:bg-gray-500 shadow-md">
                             <InformationCircleIcon class="w-[25px] h-[25px] stroke-black dark:stroke-white stroke-2" />
                             <p class="text-gray-600 dark:text-white capitalize">{{ quizType }}</p>
                         </div>
                         <div
-                            class="flex items-center w-[50%] sm:w-full gap-3 px-3 py-[9px] rounded-md bg-gray-50 dark:bg-gray-500 shadow-md">
+                            class="flex items-center w-full gap-3 px-3 py-[9px] rounded-md bg-gray-50 dark:bg-gray-500 shadow-md">
                             <QueueListIcon class="w-[25px] h-[25px] stroke-black dark:stroke-white stroke-2" />
                             <p class="text-gray-600 dark:text-white capitalize">{{ quizLength }} items</p>
                         </div>
-                    </div>
-                    <div class="flex flex-row md:flex-col gap-3">
                         <div
-                            class="flex items-cente w-[50%] sm:w-full gap-3 px-3 py-[9px] rounded-md bg-gray-50 dark:bg-gray-500 shadow-md">
+                            class="flex items-cente w-full gap-3 px-3 py-[9px] rounded-md bg-gray-50 dark:bg-gray-500 shadow-md">
                             <ClockIcon class="w-[25px] h-[25px] stroke-black dark:stroke-white stroke-2" />
                             <p class="text-gray-600 dark:text-white capitalize">{{ quizDuration }} minutes</p>
-                        </div>
-                        <div
-                            class="flex items-center w-[50%] sm:w-full gap-3 px-3 py-[9px] rounded-md bg-gray-50 dark:bg-gray-500 shadow-md">
-                            <ChartBarIcon class="w-[25px] h-[25px] stroke-black dark:stroke-white stroke-2" />
-                            <p class="text-gray-600 dark:text-white capitalize">Hard</p>
                         </div>
                     </div>
                 </div>

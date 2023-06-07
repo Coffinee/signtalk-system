@@ -47,7 +47,7 @@
                 <div class="space-y-1">
                     <label for="word" class="text-xs">Enter Your Class Name/Section: </label>
                     <input v-model="form.className" type="text"
-                        class="focus:outline-none pl-2 text-xs w-full h-8 rounded-md border border-indigo-900">
+                        class="focus:outline-none pl-2 text-xs text-black w-full h-8 rounded-md border border-indigo-900 bg-white">
                 </div>
                 <div class="flex justify-center mt-5 gap-5">
                     <button @click.prevent="(modalOpen = !modalOpen)"

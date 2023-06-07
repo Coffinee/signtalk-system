@@ -23,7 +23,7 @@
                         placeholder="Search for items">
                 </div>
             </div> -->
-            <div class="pb-12">
+            <div class="px-[30px] pb-12">
                 <table class="w-full text-sm text-left text-gray-500 py-[10px]">
                     <thead class="text-xs text-gray-700 uppercase bg-gray-200 ">
                         <tr>

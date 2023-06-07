@@ -3,7 +3,7 @@
         <div>
             <div class="flex justify-between mb-[20px]">
                 <h5 class="text-2xl text-left font-bold text-black mb-3">Quiz</h5>
-                <router-link to="/admin/quiz/add">    
+                <router-link to="/teacher/quiz/add">    
                     <button type="button"
                     class="bg-gray-900 hover:bg-gray-900/90 rounded-md text-white text-base px-8 py-2">Add
                     New</button>
@@ -22,7 +22,7 @@
                             <span class="bg-gray-50 shadow-md text-gray-800 text-sm font-medium mr-2 px-2.5 py-0.5 rounded">{{ item.question_item.length }} items</span>
                         </div>
                         <div>
-                            <router-link  :to="'/admin/quiz/edit/'+ item.id">    
+                            <router-link :to="'/teacher/quiz/edit/'+ item.id">    
                                 <button type="button" class="flex items-center gap-3 focus:outline-none text-white bg-indigo-500 hover:bg-indigo-600 font-medium rounded-lg text-sm px-5 py-2.5">
                                     Edit Quiz
                                     <svg class="h-4 w-4" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -35,7 +35,7 @@
                 </div>
             </div>
             <div v-else class="w-full flex flex-col justify-center items-center mt-20">
-                <img src="/images/nothing.png" class="w-[400px]">
+                <img src="/Images/nothing.png" class="w-[400px]">
                 <p class="font-light tracking-widest">Nothing to show ...</p>
             </div>
         </div>
