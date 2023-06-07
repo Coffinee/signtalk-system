@@ -74,6 +74,10 @@ export default {
         classCode:{
             type: String,
             default: ''
+        },
+        studentList:{
+            type: Array,
+            default: ''
         }
     }, 
     data() {

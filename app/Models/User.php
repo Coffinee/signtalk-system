@@ -23,7 +23,6 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
-        'cPassword',
         'classCode',
     ];
 
@@ -34,7 +33,6 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'cPassword',
         'remember_token',
     ];
 
@@ -49,7 +47,7 @@ class User extends Authenticatable
 
     protected $attributes = [
         'password' => 'password',
-        'cPassword' => 'cPassword',
+
     ];
 
     public function role()

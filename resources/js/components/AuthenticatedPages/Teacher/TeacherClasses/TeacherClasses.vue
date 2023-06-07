@@ -28,7 +28,7 @@
                     </TabList>
                     <TabPanels v-for="tab in SectionList" :key="tab">
                         <TabPanel class="h-full w-full border border-gray-300 rounded-md p-4 space-y-5 p">
-                            <Student1 :classCode="tab.classCode"/>
+                            <Section :classCode="tab.classCode"/>
                         </TabPanel>
                     </TabPanels>
                 </TabGroup>
@@ -38,7 +38,6 @@
                 <p class="font-light tracking-widest">Nothing to show ...</p>
             </div>
         </div>
-
     </div>
 
     <Modal :show="modalOpen" @close="modalToggle" :title="'Create A New Class'" :heightModal="'h-[150px]'">
@@ -61,20 +60,21 @@
 </template>
 <script>
 
-import Student1 from './Tabs/Student1.vue';
+import Section from './Tabs/Section.vue';
 import Modal from '../../../misc/Modal.vue';
 import Form from 'vform';
 import axios from 'axios';
 
 export default {
     components: {
-        Student1,
+        Section,
         Modal
     },
     data() {
         return {
             data:{},
             SectionList: [],
+            studentList:[],
             textToCopy: '',
             modalOpen: false,
             form: new Form({
@@ -115,10 +115,19 @@ export default {
                 errorMessage('Opps!', e.message, 'top-right')
             });
         },
+        async getStudentsWithSameCode() {
+            await axios.get('/api/getclasscode').then((data) => {
+                this.studentList = data.data.data;
+                console.log(this.studentList)
+            }).catch((e) => {
+                errorMessage('Opps!', e.message, 'top-right')
+            });
+        },
 
     },
     created(){
         this.getClass();
+        this.getStudentsWithSameCode();
     }
 
 }
