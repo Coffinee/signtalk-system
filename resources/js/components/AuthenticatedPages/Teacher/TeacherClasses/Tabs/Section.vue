@@ -38,32 +38,21 @@
                     </th>
                 </tr>
             </thead>
-            <tbody>
-                <!-- <tr v-for="item in data.data" :key="item.id" class="bg-white border-b ">
-                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            {{ item.id }}
-                                        </th>
-                                        <td class="px-6 py-4">
-                                            {{ item.word }}
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            {{ item.description }}
-                                        </td>
-                                        <td class="px-6 py-4">
-                                            {{ item.file }}
-                                        </td>
-                                        <td class="px-6 py-4 flex gap-[5px] text-center">
-                                            <a @click.prevent="editForm(item)"
-                                                class="font-medium text-blue-600  hover:underline">Edit</a>
-                                        </td>
-                                    </tr> -->
-
-                <tr>
-                    <td>
+            <tbody v-for="item in studentList"  :key="item.id">
+                <tr v-if="item.classCode == this.classCode" class="bg-white border-b">
+                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                        {{ item.classCode }}
+                    </th>
+                    <td class="px-6 py-4">
+                        {{ item.last_name }}
+                    </td>
+                    <td class="px-6 py-4">
+                        {{ item.first_name }}
                     </td>
                 </tr>
             </tbody>
         </table>
+
     </div>
 </template>
 
@@ -76,21 +65,16 @@ export default {
             default: ''
         },
         studentList:{
-            type: Array,
+            type: Object,
             default: ''
         }
     }, 
     data() {
         return {
             tableLabels: [
-                { label: 'LRN' },
+                { label: 'classCode' },
                 { label: 'First Name' },
                 { label: 'Last Name' },
-                { label: 'Quiz 1' },
-                { label: 'Quiz 2' },
-                { label: 'Quiz 3' },
-                { label: 'Quiz 4' },
-                { label: 'Action' },
             ],
         }
     },
