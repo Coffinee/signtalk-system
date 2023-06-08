@@ -32,17 +32,16 @@
                 :class="this.word === '' ? 'border-none' : 'border-gray-200'">
                 <!-- <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Result:</h5> -->
                 <div v-if="hasWord" class="flex flex-col gap-[10px]">
-                    <div class="flex justify-around">
-                        <div class="flex flex-col justify-center w-[50%]">
-                            <h5
-                                class="mb-2 text-xl md:text-4xl font-bold tracking-tight uppercase text-gray-900 dark:text-white">
+                    <div class="flex flex-col md:flex-row gap-y-[20px] justify-around">
+                        <div class="flex flex-col justify-center w-full md:w-[50%]">
+                            <h5 class="mb-2 text-xl md:text-4xl font-bold tracking-tight uppercase text-gray-900 dark:text-white">
                                 {{ this.dictionary.word }}
                             </h5>
-                            <p class="text text-[15px] text-gray-500 dark:text-gray-400">{{
+                            <p class="text text-[15px] text-gray-500 dark:text-gray-400 text-justify">{{
                                 this.dictionary.description }}</p>
                         </div>
-                        <div class="flex justify-end w-[30%] ">
-                            <img class="w-full rounded-lg"
+                        <div class="flex justify-end w-full md:w-[30%] ">
+                            <img class="md:w-full rounded-lg"
                                 :src="'/uploads/dictionary/' + this.dictionary.image_file" alt="">
                         </div>
                     </div>
