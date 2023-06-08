@@ -1,36 +1,36 @@
 <template>
     <div class="flex justify-center items-center h-screen">
-        <div class="w-full md:w-[90%] h-[80%] md:h-[90%] bg-white dark:bg-[#141526] dark:border-gray-700 shadow shadow-indigo-300 rounded-lg">
+        <div
+            class="w-full md:w-[90%] h-[80%] md:h-[90%] bg-white dark:bg-[#141526] dark:border-gray-700 shadow shadow-indigo-300 rounded-lg">
             <div class="flex flex-col space-y-3 h-full p-5">
                 <!-- result -->
                 <div class="w-full h-full border border-gray-400 rounded-md overflow-auto p-[5px]">
                     <div v-if="message === ''" class="w-full h-full flex flex-col items-center justify-center ">
                         <img src="/Images/nothing.png" class="sm:w-[150px] md:w-[300px]">
-                        <p class="font-light tracking-widest">TRANSLATE | Nothing to show ...</p> 
+                        <p class="font-light tracking-widest">TRANSLATE | Nothing to show ...</p>
                     </div>
                     <div v-else class="w-full h-full flex flex-col items-center justify-center">
-                        <div v-for="(word, wordIndex) in inputWords" :key="wordIndex" class="flex justify-center items-center gap-[5px] mb-[5px]">
+                        <div v-for="(word, wordIndex) in inputWords" :key="wordIndex"
+                            class="flex justify-center items-center gap-[5px] mb-[5px]">
                             <div v-for="(letter, letterIndex) in word" :key="letterIndex" class="letter-container">
-                                <img :src="getLetterImage(letter)" :alt="letter" class="h-[60px] w-[60px] sm:h-[80px] sm:w-[80px] md:h-[100px] md:w-[100px]" />
+                                <img :src="getLetterImage(letter)" :alt="letter"
+                                    class="h-[60px] w-[60px] sm:h-[80px] sm:w-[80px] md:h-[100px] md:w-[100px]" />
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- end result -->
-                <div class="flex space-x-3 ">
-                    <input
-                        @keyup.enter="displayResult"
-                        v-model="input"
-                        :disabled="isDisplayingImages"
-                        type="text"
-                        placeholder="Type your message ..."
-                        class="w-full h-10 rounded-full border border-gray-400 pl-5 bg-gray-50 text-black dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400"
-                    />
+                <div class="flex space-x-3">
+                    <div class="relative w-full">
+                        <input @keyup.enter="displayResult" @input="showCharCount" :maxlength="maxChar" v-model="input"
+                            :disabled="isDisplayingImages" type="text" placeholder="Type your message ..."
+                            class="w-full h-10 rounded-full border border-gray-400 pl-5 bg-gray-50 text-black dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" />
+                        <span class="absolute top-2.5 right-6 text-sm text-gray-400">{{ this.charCount }} / {{ maxChar }}</span>
+                    </div>
                     <button @click="displayResult" class="text-indigo-500">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
                             <path
-                                d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z"
-                            />
+                                d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
                         </svg>
                     </button>
                 </div>
@@ -48,6 +48,8 @@ export default {
             inputWords: [],
             letters: [],
             showResult: false,
+            charCount: 20,
+            maxChar: 20,
             isDisplayingImages: false, // Added property to track if images are being displayed
         };
     },
@@ -144,6 +146,9 @@ export default {
         delay(ms) {
             return new Promise((resolve) => setTimeout(resolve, ms));
         },
+        showCharCount() {
+            this.charCount = this.maxChar - this.input.length;
+        }
     },
 };
 </script>

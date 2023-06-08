@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="this.questions != ''">
         <div class="h-screen md:h-screen flex flex-col items-center justify-center">
             <div class="flex flex-col items-center justify-center mb-[50px]">
                 <p class="mb-[20px] text-2xl text-black text-center font-bold dark:text-white">Quiz</p>
@@ -28,12 +28,12 @@
             </div>
         </div>
     </div>
-    <!-- <div v-else class="w-full h-screen">
+    <div v-else class="w-full h-screen">
         <div class="mt-[8%] flex flex-col items-center">
             <img src="/images/nothing.png" class="w-[400px]">
             <p class="font-light tracking-widest">Quiz | Nothing to show ...</p>
         </div>
-    </div> -->
+    </div>
 
     <Modal :show="modalOpen" @close="modalToggle" :title="quizTitle" :widthModal="'w-[600px]'" :heightModal="'h-auto'">
         <!-- description, no of items, duration, difficulty -->
