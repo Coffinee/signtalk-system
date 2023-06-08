@@ -17,13 +17,15 @@ Route::namespace('App\Http\Controllers\API')->group(function() {
     Route::post('login', 'AuthController@login');
     Route::post('register', 'UserController@register');
 
+    Route::post('save-answers', 'ResultsController@saveAnswers');
+
     Route::get('getword', 'DictionaryController@getWord');
     Route::get('getlesson', 'LessonController@getLesson');
     Route::get('getclass', 'SectionController@getClass');
     Route::get('get-roles', 'RolesController@getRoles');
     Route::get('getquiz', 'QuestionsController@getQuiz');
     Route::get('getstudents', 'UserController@getStudents');
-    Route::get('get-students-with-same-code', 'UserController@getStudentsWithSameCode');
+
     
     Route::apiResources([
         'user' => 'UserController',

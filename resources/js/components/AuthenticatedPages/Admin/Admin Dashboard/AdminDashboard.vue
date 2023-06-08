@@ -1,5 +1,5 @@
 <template>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-white">
         <div class="flex justify-between px-[30px] pt-[30px]">
             <h2 class="text-2xl font-extrabold font-poppins text-black">Dashboard</h2>
         </div>

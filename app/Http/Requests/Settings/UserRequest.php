@@ -32,7 +32,6 @@ class UserRequest extends FormRequest
             'last_name' => 'required|max:100',
             'email' => 'required',
             'password' => 'required',
-            'cPassword' => 'required',
             'classCode' => 'required',
         ];
     }

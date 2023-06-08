@@ -1,5 +1,5 @@
 <template>
-  <nav class="bg-white border-gray-200 dark:bg-[#141526] sticky top-0 insex-x-0 w-full">
+  <nav class="bg-white border-gray-200 dark:bg-[#141526] sticky top-0 inset-x-0 w-full">
     <div
       class="flex items-center justify-between mx-auto p-4 px-16 border-b border-gray-200 dark:border-gray-700">
       <router-link to="/">

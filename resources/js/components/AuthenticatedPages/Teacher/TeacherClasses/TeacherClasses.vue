@@ -28,7 +28,7 @@
                     </TabList>
                     <TabPanels v-for="tab in SectionList" :key="tab">
                         <TabPanel class="h-full w-full border border-gray-300 rounded-md p-4 space-y-5 p">
-                            <Student1 :classCode="tab.classCode"/>
+                            <Section :classCode="tab.classCode" :studentList="student" :sectionID="tab.id"/>
                         </TabPanel>
                     </TabPanels>
                 </TabGroup>
@@ -38,7 +38,6 @@
                 <p class="font-light tracking-widest">Nothing to show ...</p>
             </div>
         </div>
-
     </div>
 
     <Modal :show="modalOpen" @close="modalToggle" :title="'Create A New Class'" :heightModal="'h-[150px]'">
@@ -46,35 +45,36 @@
             <form @submit.prevent="addSection()">
                 <div class="space-y-1">
                     <label for="word" class="text-xs">Enter Your Class Name/Section: </label>
-                    <input v-model="form.className" type="text"
+                    <input @keyup.enter="addSection()" v-model="form.className" type="text"
                         class="focus:outline-none pl-2 text-xs text-black w-full h-8 rounded-md border border-indigo-900 bg-white">
                 </div>
                 <div class="flex justify-center mt-5 gap-5">
                     <button @click.prevent="(modalOpen = !modalOpen)"
                         class="hover:text-white hover:bg-[#3E3E3E] rounded-md border border-[#3E3E3E] text-[#3E3E3E] text-base w-[150px] h-auto py-1 px-3">Cancel</button>
                     <button type="submit"
-                        class="hover:text-white hover:bg-indigo-500 rounded-md border border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-3">Add</button>
+                        class="hover:text-white hover:bg-indigo-500 rounded-md border border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-3 disabled:cursor-default" :disabled="!form.className ? true : false">Add</button>
                 </div>
             </form>
         </div>
     </Modal>
 </template>
 <script>
-
-import Student1 from './Tabs/Student1.vue';
+import { createToast } from 'mosha-vue-toastify';
+import Section from './Tabs/Section.vue';
 import Modal from '../../../misc/Modal.vue';
 import Form from 'vform';
 import axios from 'axios';
 
 export default {
     components: {
-        Student1,
+        Section,
         Modal
     },
     data() {
         return {
             data:{},
             SectionList: [],
+            student:{},
             textToCopy: '',
             modalOpen: false,
             form: new Form({
@@ -104,6 +104,17 @@ export default {
                     this.$Progress.finish();
                     this.getClass();
                     this.modalToggle();
+                    createToast({
+                    title: 'Hurray!',
+                    description: "Class Added"
+                    },
+                        {
+                            showIcon: 'true',
+                            position: 'top-right',
+                            type: 'info',
+                            hideProgressBar: 'true',
+                            transition: 'bounce',
+                    })
                 }).catch((error) => {
                     this.$Progress.fail();
                 })
@@ -115,10 +126,20 @@ export default {
                 errorMessage('Opps!', e.message, 'top-right')
             });
         },
+        async getStudents() {
+            await axios.get('/api/getstudents').then((data) => {
+                this.student = data.data.data;
+                // console.log(this.student);
+
+            }).catch((e) => {
+                errorMessage('Opps!', e.message, 'top-right')
+            });
+        },
 
     },
     created(){
         this.getClass();
+        this.getStudents();
     }
 
 }

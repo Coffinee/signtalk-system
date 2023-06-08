@@ -1,26 +1,12 @@
 <template>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <div class="flex justify-between px-[30px] pt-[30px]">
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg bg-white">
+        <div class="flex justify-between px-[30px] pt-[30px] mb-3">
             <h2 class="text-2xl font-extrabold font-poppins text-black">Dictionary</h2>
             <button type="button" @click="(slideoverOpen = !slideoverOpen)"
                 class="text-white hover:bg-gray-900/90 bg-gray-900 font-medium rounded-lg text-sm px-5 py-2.5">Add
                 Word</button>
         </div>
-        <div class="pb-4 bg-white px-[30px]">
-            <div class="relative mt-1">
-                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                    <svg class="w-5 h-5 text-gray-500 dark:text-gray-400" aria-hidden="true" fill="currentColor"
-                        viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                </div>
-                <input type="text" id="table-search"
-                    class="block p-2 pl-10 text-sm text-gray-900 border border-gray-500 rounded-lg w-80 bg-gray-50"
-                    placeholder="Search for items">
-            </div>
-        </div>
+
         <div class="px-[30px] pb-12">
             <table class="w-full text-sm text-left text-gray-500 py-[10px]">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-200">
@@ -38,13 +24,13 @@
                         <td class="px-6 py-4">
                             {{ item.word }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 whitespace-normal">
                             {{ item.description }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 whitespace-normal">
                             {{ item.video_link }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 whitespace-normal">
                             {{ item.image_file }}
                         </td>
                         <td class="px-6 py-4">
@@ -63,21 +49,20 @@
                 <div class="my-3 space-y-6">
                     <div class="space-y-1">
                         <label for="word" class="text-sm">Word</label>
-                        <input v-model="form.word" type="text"
-                            class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white">
+                        <input v-model="form.word" type="text" 
+                            class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white" required>
                     </div>
 
                     <div class="space-y-1">
                         <label for="desc" class="text-sm">Description</label>
                         <textarea v-model="form.description"
-                            class="pl-2 pt-2 text-xs w-full h-40 resize-none rounded-md border border-gray-500 bg-white"></textarea>
+                            class="pl-2 pt-2 text-xs w-full h-40 resize-none rounded-md border border-gray-500 bg-white" required></textarea>
                     </div>
 
                     <div class="space-y-1">
-                        <label for="video-link" class="text-sm relative">Upload Video Link <span class="absolute text-[9px] text-indigo-500 ml-1">*optional</span>
-                        </label>
+                        <label for="video-link" class="text-sm relative">Upload Video Link</label>
                         <input ref="video_link"  v-model="form.video_link" type="text"
-                            class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white">
+                            class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white" required>
                     </div>
 
                     <div class="space-y-1">
@@ -95,7 +80,7 @@
                                     <p class="pt-1 text-sm tracking-wider text-gray-600 group-hover:text-gray-600">
                                         Attach a file</p>
                                 </div>
-                                <input ref="image_file" type="file" class="opacity-0" @input="uploadImage" accept="image/png, image/jpeg, image/jpg, image/svg"/>
+                                <input ref="image_file" type="file" class="opacity-0" @input="uploadImage" accept="image/png, image/jpeg, image/jpg, image/svg" required/>
                             </label>
                         </div>
                     </div>
@@ -228,6 +213,7 @@ export default {
                 errorMessage('Opps!', e.message, 'top-right')
             });
         },
+
         uploadImage() {
             let input = this.$refs.image_file;
             let file = input.files;

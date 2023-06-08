@@ -12,7 +12,7 @@ class QuestionItems extends Model
     protected $fillable = [
         'question_id',
         'question',
-        'question_attachment',
+        'question_attachment', //try
         'choice_a',
         'choice_b',
         'choice_c',
