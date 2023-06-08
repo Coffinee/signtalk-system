@@ -73,7 +73,7 @@
                         <RadioGroup>
                             <div class="mt-4 grid grid-cols-1 gap-y-6  sm:gap-x-2" :class="[quizType == 'true-of-false' ? 'lg:grid-cols-2' : 'lg:grid-cols-1']">
                                 <RadioGroupOption as="template" v-for="quizItem in quizChoices" :key="quizItem.id" :value="quizItem.value" v-slot="{ checked, active }" >
-                                    <div @click.prevent="addAnswer(quizItem.value, quizItem.id)" :class="[checked ? 'border-transparent' : 'border-gray-300', active ? 'border-indigo-500 ring-2 ring-indigo-500 ' : '', 'relative flex cursor-pointer rounded-lg border bg-white dark:bg-gray-600 p-1 md:p-3 shadow-sm focus:outline-none']">
+                                    <div  @click.prevent="addAnswer(quizItem.value, quizItem.id)" :class="[checked ? 'border-transparent' : 'border-gray-300', active ? 'border-indigo-500 ring-2 ring-indigo-500 ' : '', 'relative flex cursor-pointer rounded-lg border bg-white dark:bg-gray-600 p-1 md:p-3 shadow-sm focus:outline-none']">
                                         <span class="flex flex-1">
                                             <span class="flex flex-col w-full">
                                                 <RadioGroupLabel as="span"
@@ -148,7 +148,7 @@
                     <div class="w-full p-2 rounded-md border border-gray-400 bg-gray-100 dark:bg-gray-700 mb-[10px]">
                         <div>
                             <h1 class="text-black dark:text-white text-[18px]  mb-[20px] font-semibold border-b border-gray-600 pb-2">
-                                {{ index + 1 }}. {{ item.question }}
+                                {{ index + 1 }}. {{ item.question }}?
                             </h1>
                             <div v-for="choice in quizCategory" :key="choice.id">
                                 <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
@@ -175,8 +175,8 @@
                 </div>
             </div>
             <div class="flex justify-center w-full">
-                <button @click="(modalOpen = !modalOpen)" type="button"
-                    class="w-full focus:outline-none text-white bg-indigo-500 hover:bg-indigo-500  focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ">Confirm</button>
+                <router-link to="/quiz" @click="(modalOpen = !modalOpen)" type="button"
+                    class="w-full focus:outline-none text-center text-white bg-indigo-500 hover:bg-indigo-500 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ">Confirm</router-link>
             </div>
         </div>
     </Modal>
@@ -293,9 +293,12 @@ export default{
         },
         getRemainingTime(data){
             this.remainingTime = data.minutes+' mins, ' +data.seconds+' s';
+            if (data.minutes === 0 && data.seconds === 0) {
+                // Timer has finished, call submitAnswers function
+                this.submitAnswers();
+            }
         },
         submitAnswers(){
-
             console.log(this.remainingTime)
             axios.post('/api/save-answers',{
                 student_id : this.user.id,
