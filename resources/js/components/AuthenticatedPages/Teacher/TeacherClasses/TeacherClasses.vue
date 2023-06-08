@@ -45,7 +45,7 @@
             <form @submit.prevent="addSection()">
                 <div class="space-y-1">
                     <label for="word" class="text-xs">Enter Your Class Name/Section: </label>
-                    <input v-model="form.className" type="text"
+                    <input @keyup.enter="addSection()" v-model="form.className" type="text"
                         class="focus:outline-none pl-2 text-xs text-black w-full h-8 rounded-md border border-indigo-900 bg-white">
                 </div>
                 <div class="flex justify-center mt-5 gap-5">
@@ -59,7 +59,7 @@
     </Modal>
 </template>
 <script>
-
+import { createToast } from 'mosha-vue-toastify';
 import Section from './Tabs/Section.vue';
 import Modal from '../../../misc/Modal.vue';
 import Form from 'vform';
@@ -104,6 +104,17 @@ export default {
                     this.$Progress.finish();
                     this.getClass();
                     this.modalToggle();
+                    createToast({
+                    title: 'Hurray!',
+                    description: "Class Added"
+                    },
+                        {
+                            showIcon: 'true',
+                            position: 'top-right',
+                            type: 'info',
+                            hideProgressBar: 'true',
+                            transition: 'bounce',
+                    })
                 }).catch((error) => {
                     this.$Progress.fail();
                 })

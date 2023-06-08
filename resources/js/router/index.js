@@ -437,7 +437,10 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
     document.title = to.meta.title;
-    if (to.meta.middleware === "guest") {
+    if (to.name === "about" || to.name === "contact") {
+        // Allow access to "about" and "contact" pages
+        next();
+    }else if (to.meta.middleware === "guest") {
       if (userAuthStore().authenticated) {
         // User is already authenticated, redirect to the appropriate dashboard based on their role
         if (userAuthStore().user.role_id === 1) {

@@ -12,17 +12,17 @@
                 </svg>
             </button>
         </div>
-        <button @click.prevent="deleteSection(sectionID)"
+        <button @click="(modalOpen = !modalOpen)"
             class="hover:text-white hover:bg-indigo-500 rounded-md border border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-2">Remove
             Class
         </button>
     </div>
 
     <button
-        class="hover:text-white hover:bg-indigo-500 rounded-md border border-indigo-500 text-indigo-500 text-base w-[150px] h-full py-1 px-3">
+        class="flex items-center justify-around hover:text-white hover:bg-indigo-500 rounded-md border border-indigo-500 text-indigo-500 text-base w-auto md:w-[150px] h-full py-1 px-3">
         <span class="hidden sm:inline">Add Student</span>
         <span class="inline sm:hidden">
-            <svg class="w-5 h-7" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
+            <svg class="w-7 h-7" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg">
                 <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
@@ -51,13 +51,29 @@
                 </tr>
             </tbody>
         </table>
-
     </div>
+    
+    <Modal :show="modalOpen" @close="modalToggle" :title="'Create A New Class'" :heightModal="'h-[150px]'">
+        <div class="flex flex-col items-center justify-center w-full h-full">
+            <div class="space-y-1">
+                <p class="text-xl text-center text-black">Are you sure you want to delete this class?</p>
+            </div>
+            <div class="flex justify-center mt-5 gap-5">
+                <button @click.prevent="deleteSection(sectionID)"
+                    class="hover:text-white hover:bg-indigo-500 rounded-md border border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-3">Yes</button>
+                <button @click.prevent="(modalOpen = !modalOpen)"
+                    class="hover:text-white hover:bg-[#3E3E3E] rounded-md border border-[#3E3E3E] text-[#3E3E3E] text-base w-[150px] h-auto py-1 px-3">No</button>
+            </div>
+        </div>
+    </Modal>
 </template>
 
 <script>
-
+import Modal from '../../../../misc/Modal.vue';
 export default {
+    components:{
+        Modal, 
+    },
     props: {
         sectionID: {
             type: Number,
@@ -79,11 +95,15 @@ export default {
                 { label: 'First Name' },
                 { label: 'Last Name' },
             ],
-            SectionList:{}
+            SectionList:{},
+            modalOpen: false,
         }
     },
 
     methods: {
+        modalToggle() {
+            this.modalOpen = false;
+        },
         copy() {
             this.$refs.clone.focus();
             document.execCommand('copy');
@@ -105,6 +125,7 @@ export default {
                 window.location.reload();
                 // Example:          
                 this.$emit('sectionDeleted', id);
+
             } catch (error) {
                 // Handle the error response
                 console.log(error.response.data); // or perform any other actions
