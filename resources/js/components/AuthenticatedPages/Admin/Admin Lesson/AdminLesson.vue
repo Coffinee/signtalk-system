@@ -64,7 +64,7 @@
                             </td>
                             <td class="px-6 py-4 flex gap-[5px] text-center text-xs">
                                 <a @click.prevent="editForm(item)"
-                                    class="font-medium text-blue-600  hover:underline ">Edit</a>
+                                    class="font-medium text-blue-600  hover:underline cursor-pointer">Edit</a>
                             </td>
                         </tr>
                     </tbody>
@@ -80,11 +80,10 @@
                 <div class="mt-5 p-2 space-y-2">
                     <div class="flex justify-between items-center">
                         <label for="content">Lesson Title:</label>
-                        <!-- <div v-if="form.errors.has('title')" v-html="form.errors.get('title')"
-                            class="text-xs text-red-500" /> -->
+                        <!-- <p v-if="form.title === ''" class="text-red-500 text-[10px]">This field is required</p> -->
                     </div>
                     <input v-model="form.title" type="text"
-                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white">
+                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white" required>
                 </div>
                 <div class="p-2 space-y-2">
                     <div class="flex justify-between items-center">
@@ -92,7 +91,7 @@
                         <!-- <div v-if="form.errors.has('content')" v-html="form.errors.get('content')"
                             class="text-xs text-red-500" /> -->
                     </div>
-                    <ckeditor v-model="form.content" :editor="editor" :config="editorConfig"></ckeditor>
+                    <ckeditor v-model="form.content" :editor="editor" :config="editorConfig" required></ckeditor>
                 </div>
                 <div class="p-2 space-y-2">
                     <div class="space-y-1">
@@ -117,18 +116,16 @@
                                         Attach a file</p>
                                 </div>
                                 <input ref="image_file" type="file" class="opacity-0 " @input="uploadImage"
-                                    accept="image/png, image/jpeg, image/jpg, image/svg" />
+                                    accept="image/png, image/jpeg, image/jpg, image/svg" required/>
                             </label>
                         </div>
                     </div>
                 </div>
 
                 <div class="mt-5 p-2 space-y-2">
-                    <label for="video-link" class="text-sm relative">Reference Link: <span
-                            class="absolute text-[9px] text-indigo-500 ml-1">*optional</span>
-                    </label>
+                    <label for="video-link" class="text-sm relative">Reference Link:</label>
                     <input v-model="form.refLink" type="text"
-                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white">
+                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white" required>
                 </div>
 
                 <div class="flex gap-1 mt-10">

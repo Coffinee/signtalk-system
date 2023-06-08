@@ -54,8 +54,7 @@
                                         <ChevronLeftIcon class="w-[25px] h-[25px] stroke-white" />
                                     </button>
                                 </div>
-                                <h2 class="text-xl text-black font-extrabold dark:text-white text-center">Question #{{
-                                    index + 1 }}</h2>
+                                <h2 class="text-xl text-black font-extrabold dark:text-white text-center">Question # {{index + 1 }}</h2>
                                 <div class="flex items-center justify-center p-2 dark:bg-gray-600 dark:hover:bg-gray-700 rounded-full"
                                     :class="[index + 1 == questions.length ? 'bg-gray-500 hover:bg-gray-600' : 'bg-indigo-500 hover:bg-indigo-600']">
                                     <button @click.prevent="nextQuestion(index + 1)" :disabled="index + 1 == questions.length">
@@ -157,33 +156,34 @@
             </div>
             <div class="w-full">
                 <h1 class="text-black dark:text-white text-[18px] font-bold mt-[5px]">Review Questions</h1>
-                <div class="w-full p-2 rounded-md border border-gray-400 bg-gray-100 dark:bg-gray-700">
-                    <div>
-                        <h1
-                            class="text-black dark:text-white text-[18px]  mb-[20px] font-semibold border-b border-gray-600 pb-2">
-                            {1. What is the sign language for this?}
-                        </h1>
-                        <div v-for="choice in quizCategory" :key="choice.id">
-                            <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
-                                <input id="bordered-radio-1" type="radio" value="" name="bordered-radio"
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300  focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                    disabled>
-                                <label for="bordered-radio-1"
-                                    class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{
-                                        choice.title }}</label>
+                <div v-for="(item, index) in questions" :key="id">
+                    <div class="w-full p-2 rounded-md border border-gray-400 bg-gray-100 dark:bg-gray-700 mb-[10px]">
+                        <div>
+                            <h1 class="text-black dark:text-white text-[18px]  mb-[20px] font-semibold border-b border-gray-600 pb-2">
+                                {{ index + 1 }}. {{ item.question }}
+                            </h1>
+                            <div v-for="choice in quizCategory" :key="choice.id">
+                                <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
+                                    <input id="bordered-radio-1" type="radio" value="" name="bordered-radio"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300  focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                        disabled>
+                                    <label for="bordered-radio-1"
+                                        class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{
+                                            choice.title }}</label>
+                                </div>
                             </div>
                         </div>
+                        <Accordion :sectiontitle="'Show my Answer'" :accordionColor="'bg-gray-600'" :setOpen="false">
+                            <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
+                                <input id="bordered-radio-1" type="radio" value="" name="bordered-radio"
+                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+                                    disabled>
+                                <label for="bordered-radio-1"
+                                    class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Choice
+                                    2</label>
+                            </div>
+                        </Accordion>
                     </div>
-                    <Accordion :sectiontitle="'Show my Answer'" :accordionColor="'bg-gray-600'" :setOpen="false">
-                        <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
-                            <input id="bordered-radio-1" type="radio" value="" name="bordered-radio"
-                                class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                disabled>
-                            <label for="bordered-radio-1"
-                                class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Choice
-                                2</label>
-                        </div>
-                    </Accordion>
                 </div>
             </div>
             <div class="flex justify-center w-full">

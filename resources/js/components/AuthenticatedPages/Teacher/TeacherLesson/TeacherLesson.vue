@@ -84,7 +84,7 @@
                             class="text-xs text-red-500" /> -->
                     </div>
                     <input v-model="form.title" type="text"
-                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white">
+                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white" required>
                 </div>
                 <div class="p-2 space-y-2">
                     <div class="flex justify-between items-center">
@@ -92,7 +92,7 @@
                         <!-- <div v-if="form.errors.has('content')" v-html="form.errors.get('content')"
                             class="text-xs text-red-500" /> -->
                     </div>
-                    <ckeditor v-model="form.content" :editor="editor" :config="editorConfig"></ckeditor>
+                    <ckeditor v-model="form.content" :editor="editor" :config="editorConfig" required></ckeditor>
                 </div>
                 <div class="p-2 space-y-2">
                     <div class="space-y-1">
@@ -102,7 +102,7 @@
                                 class="text-xs text-red-500" /> -->
                         </div>
                         <div class="flex items-center justify-center w-full">
-                            <label :style="{ 'background-image': `url(${image_url})` }"
+                            <label :style="{ 'background-image': `url(${image_url})`}"
                                 class="flex flex-col w-full h-32 rounded-md border-2 border-gray-500 border-dashed hover:bg-gray-200 cursor-pointer bg-center bg-cover bg-no-repeat">
                                 <div v-show="form.image_file == '' ? true : false" :class="{ 'hidden': hideLabel }"
                                     class="flex flex-col items-center justify-center pt-7">
@@ -117,7 +117,7 @@
                                         Attach a file</p>
                                 </div>
                                 <input ref="image_file" type="file" class="opacity-0" @input="uploadImage"
-                                    accept="image/png, image/jpeg, image/jpg, image/svg" />
+                                    accept="image/png, image/jpeg, image/jpg, image/svg" required/>
                             </label>
                         </div>
                     </div>
@@ -128,7 +128,7 @@
                             class="absolute text-[9px] text-indigo-500 ml-1">*optional</span>
                     </label>
                     <input v-model="form.refLink" type="text"
-                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white">
+                        class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white" required>
                 </div>
 
                 <div class="flex gap-1 mt-10">

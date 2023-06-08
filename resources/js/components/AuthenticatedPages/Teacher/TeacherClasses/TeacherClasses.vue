@@ -52,7 +52,7 @@
                     <button @click.prevent="(modalOpen = !modalOpen)"
                         class="hover:text-white hover:bg-[#3E3E3E] rounded-md border border-[#3E3E3E] text-[#3E3E3E] text-base w-[150px] h-auto py-1 px-3">Cancel</button>
                     <button type="submit"
-                        class="hover:text-white hover:bg-indigo-500 rounded-md border border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-3">Add</button>
+                        class="hover:text-white hover:bg-indigo-500 rounded-md border border-indigo-500 text-indigo-500 text-base w-[150px] h-auto py-1 px-3 disabled:cursor-default" :disabled="!form.className ? true : false">Add</button>
                 </div>
             </form>
         </div>

@@ -72,9 +72,7 @@
         </form>
 
         <!-- continuation -->
-
-        <div v-if="isDetailComplete" class="flex flex-col p-2 px-[30px]">
-            
+        <div v-if="isDetailComplete" class="flex flex-col p-2 px-[30px]">         
             <h3 class="text-lg font-bold text-black">Questions</h3>
             <p class="text-xs text-gray-400 italic mb-2">Press ( + ) to add another choice to the question and/or ( - ) to remove a choice</p>
             <div v-for="(question, index) in formQuiz.questions" :key="index" class="mb-4">
@@ -172,9 +170,7 @@ export default {
     // Try Only
     methods: {
         addQuestion() {
-            
             let counter = this.formQuiz.questions.length
-
             if(this.formQuiz.category == 'true-or-false'){
                 this.formQuiz.questions.push({
                     id:'',

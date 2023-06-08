@@ -28,6 +28,7 @@ class LessonRequest extends FormRequest
             'title' => 'required|max:100',
             'content' => 'required',
             'refLink' => 'required',
+            // 'image_file' => 'required',
         ];
     }
 
@@ -36,6 +37,7 @@ class LessonRequest extends FormRequest
             'params.data.title' => 'required|max:100|unique:lessons,id'.$this->get('id'),
             'params.data.content' => 'required',
             'params.data.refLink' => 'required',
+            // 'params.data.image_file' => 'required',
         ];
     }
 }
