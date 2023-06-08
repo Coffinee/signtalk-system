@@ -38,13 +38,13 @@
                         <td class="px-6 py-4">
                             {{ item.word }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 whitespace-normal">
                             {{ item.description }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 whitespace-normal">
                             {{ item.video_link }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 whitespace-normal">
                             {{ item.image_file }}
                         </td>
                         <td class="px-6 py-4">
@@ -63,21 +63,20 @@
                 <div class="my-3 space-y-6">
                     <div class="space-y-1">
                         <label for="word" class="text-sm">Word</label>
-                        <input v-model="form.word" type="text"
-                            class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white">
+                        <input v-model="form.word" type="text" 
+                            class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white" required>
                     </div>
 
                     <div class="space-y-1">
                         <label for="desc" class="text-sm">Description</label>
                         <textarea v-model="form.description"
-                            class="pl-2 pt-2 text-xs w-full h-40 resize-none rounded-md border border-gray-500 bg-white"></textarea>
+                            class="pl-2 pt-2 text-xs w-full h-40 resize-none rounded-md border border-gray-500 bg-white" required></textarea>
                     </div>
 
                     <div class="space-y-1">
-                        <label for="video-link" class="text-sm relative">Upload Video Link <span class="absolute text-[9px] text-indigo-500 ml-1">*optional</span>
-                        </label>
+                        <label for="video-link" class="text-sm relative">Upload Video Link</label>
                         <input ref="video_link"  v-model="form.video_link" type="text"
-                            class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white">
+                            class="pl-2 text-xs w-full h-8 rounded-md border border-gray-500 bg-white" required>
                     </div>
 
                     <div class="space-y-1">
@@ -95,7 +94,7 @@
                                     <p class="pt-1 text-sm tracking-wider text-gray-600 group-hover:text-gray-600">
                                         Attach a file</p>
                                 </div>
-                                <input ref="image_file" type="file" class="opacity-0" @input="uploadImage" accept="image/png, image/jpeg, image/jpg, image/svg"/>
+                                <input ref="image_file" type="file" class="opacity-0" @input="uploadImage" accept="image/png, image/jpeg, image/jpg, image/svg" required/>
                             </label>
                         </div>
                     </div>
@@ -228,6 +227,7 @@ export default {
                 errorMessage('Opps!', e.message, 'top-right')
             });
         },
+
         uploadImage() {
             let input = this.$refs.image_file;
             let file = input.files;

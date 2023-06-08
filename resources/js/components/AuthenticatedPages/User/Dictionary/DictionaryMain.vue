@@ -28,25 +28,25 @@
                 </div>
             </div>
             <!-- Result -->
-            <div class="h-auto rounded-lg dark:border-gray-700 p-5"
+            <div class="h-auto rounded-lg border dark:border-gray-700 p-5"
                 :class="this.word === '' ? 'border-none' : 'border-gray-200'">
                 <!-- <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Result:</h5> -->
                 <div v-if="hasWord" class="flex flex-col gap-[10px]">
-                    <div class="flex flex-col md:flex-row gap-[10px]">
-                        <div class="flex flex-col items-center justify-center w-full md:w-[50%]">
+                    <div class="flex justify-around">
+                        <div class="flex flex-col justify-center w-[50%]">
                             <h5
                                 class="mb-2 text-xl md:text-4xl font-bold tracking-tight uppercase text-gray-900 dark:text-white">
                                 {{ this.dictionary.word }}
                             </h5>
-                            <p class="text text-[15px] capitalize text-gray-500 dark:text-gray-400">{{
+                            <p class="text text-[15px] text-gray-500 dark:text-gray-400">{{
                                 this.dictionary.description }}</p>
                         </div>
-                        <div class="w-full md:w-[50%]">
-                            <img class="w-full sm:w-full rounded-lg"
+                        <div class="flex justify-end w-[30%] ">
+                            <img class="w-full rounded-lg"
                                 :src="'/uploads/dictionary/' + this.dictionary.image_file" alt="">
                         </div>
                     </div>
-                    <div class="self-center relative w-full overflow-hidden aspect-video">
+                    <div class="self-center relative w-full overflow-hidden aspect-video ">
                         <div ref="videoContainer" class="video-container" v-html="this.dictionary.video_link"></div>
                         <!-- <iframe class="absolute inset-0 w-[100%] h-[100%] border-none" :src="this.dictionary.video_link "  frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>                        -->
                     </div>

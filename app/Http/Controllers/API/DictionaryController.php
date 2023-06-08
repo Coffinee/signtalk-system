@@ -15,7 +15,7 @@ class DictionaryController extends BaseController
      */
     public function index()
     {
-        $data = Dictionary::paginate(10);
+        $data = Dictionary::paginate(5);
         return $this->sendResponse($data, "All Entries in Array");
     }
 

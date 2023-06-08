@@ -18,7 +18,7 @@
         </button>
     </div>
 
-    <button
+    <!-- <button
         class="flex items-center justify-around hover:text-white hover:bg-indigo-500 rounded-md border border-indigo-500 text-indigo-500 text-base w-auto md:w-[150px] h-full py-1 px-3">
         <span class="hidden sm:inline">Add Student</span>
         <span class="inline sm:hidden">
@@ -27,7 +27,7 @@
                 <path d="M12 6v12m6-6H6" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
         </span>
-    </button>
+    </button> -->
     <div class="overflow-auto">
         <table class="w-full text-sm text-left text-gray-500 py-[10px]">
             <thead class="text-xs text-gray-700 uppercase bg-gray-200">

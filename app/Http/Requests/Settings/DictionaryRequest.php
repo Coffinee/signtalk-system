@@ -29,6 +29,7 @@ class DictionaryRequest extends FormRequest
             'word' => 'required|max:100',
             'description' => 'required|max:500',
             'video_link' => 'required',
+            'image_file' => 'required',
         ];
     }
 
@@ -36,7 +37,8 @@ class DictionaryRequest extends FormRequest
         return [
             'params.data.word' => 'required|max:100|unique:dictionaries,id'.$this->get('id'),
             'params.data.description' => 'required|max:500',
-            'params.data.video_link' => 'required'
+            'params.data.video_link' => 'required',
+            'params.data.image_file' => 'required',
         ];
     }
 }

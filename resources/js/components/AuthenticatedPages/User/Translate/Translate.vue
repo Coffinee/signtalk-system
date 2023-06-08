@@ -2,9 +2,9 @@
     <div class="flex justify-center items-center h-screen">
         <div
             class="w-full md:w-[90%] h-[80%] md:h-[90%] bg-white dark:bg-[#141526] dark:border-gray-700 shadow shadow-indigo-300 rounded-lg">
-            <div class="flex flex-col space-y-3 h-[95%] p-5">
+            <div class="flex flex-col space-y-3 h-full p-5">
                 <!-- result -->
-                <div class="w-full h-full border border-gray-400 rounded-md overflow-auto p-[5px] ">
+                <div class="w-full h-full border border-gray-400 rounded-md overflow-auto p-[5px]">
                     <div v-if="message === ''" class="w-full h-full flex flex-col items-center justify-center ">
                         <img src="/Images/nothing.png" class="sm:w-[150px] md:w-[300px]">
                         <p class="font-light tracking-widest">TRANSLATE | Nothing to show ...</p>
@@ -25,7 +25,7 @@
                         <input @keyup.enter="displayResult" @input="showCharCount" :maxlength="maxChar" v-model="input"
                             :disabled="isDisplayingImages" type="text" placeholder="Type your message ..."
                             class="w-full h-10 rounded-full border border-gray-400 pl-5 bg-gray-50 text-black dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-gray-400" />
-                        <span class="absolute top-2.5 right-6 text-sm text-gray-400">{{ this.charCount }} / 20</span>
+                        <span class="absolute top-2.5 right-6 text-sm text-gray-400">{{ this.charCount }} / {{ maxChar }}</span>
                     </div>
                     <button @click="displayResult" class="text-indigo-500">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
@@ -48,7 +48,7 @@ export default {
             inputWords: [],
             letters: [],
             showResult: false,
-            charCount: 25,
+            charCount: 20,
             maxChar: 20,
             isDisplayingImages: false, // Added property to track if images are being displayed
         };
