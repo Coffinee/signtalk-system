@@ -75,7 +75,7 @@
                                 :class="[quizType == 'true-of-false' ? 'lg:grid-cols-2' : 'lg:grid-cols-1']">
                                 <RadioGroupOption as="template" v-for="quizItem in quizChoices" :key="quizItem.id"
                                     :value="quizItem.value" v-slot="{ checked, active }">
-                                    <div
+                                    <div v-if="quizItem.value !== null"
                                         :class="[checked ? 'border-transparent' : 'border-gray-300', active ? 'border-indigo-500 ring-2 ring-indigo-500 ' : '', 'relative flex cursor-pointer rounded-lg border bg-white dark:bg-gray-600 p-1 md:p-3 shadow-sm focus:outline-none']">
                                         <span class="flex flex-1">
                                             <span class="flex flex-col w-full">
