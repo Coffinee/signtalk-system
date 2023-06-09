@@ -78,7 +78,8 @@
                                             <span class="flex flex-col w-full">
                                                 <RadioGroupLabel as="span"
                                                     class="block text-[17px] font-medium text-indigo-500 dark:text-white whitespace-nowrap">
-                                                    {{ quizItem.choice }} {{ quizItem.value }}</RadioGroupLabel>
+                                                    <!-- {{ quizItem.choice }}  -->
+                                                    {{ quizItem.value }}</RadioGroupLabel>
                                             </span>
                                         </span>
                                         <CheckCircleIcon :class="[!checked ? 'invisible' : '', 'h-5 w-5 text-indigo-500']"
@@ -152,7 +153,7 @@
                             </h1>
                             <div v-for="quizItem in quizChoices" :key="quizItem.id">
                                 <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
-                                    <input id="bordered-radio-1" type="radio" value="" name="bordered-radio"
+                                    <input id="bordered-radio-1" type="radio" :value="quizItem.value" name="bordered-radio"
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300  focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                         disabled>
                                     <label for="bordered-radio-1"
@@ -163,7 +164,7 @@
                             </div>
                         </div>
                         <Accordion :sectiontitle="'Show My Answer'" :accordionColor="'bg-gray-600'" :setOpen="false">
-                            <div  class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
+                            <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
                                 <input id="bordered-radio-1" type="radio" value="" name="bordered-radio"
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                     disabled>
