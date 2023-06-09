@@ -144,6 +144,7 @@ export default {
             category_selected: '',
             question_index: 1,
             quizTimer: [
+                { name: '1 Minute', value: '1' },
                 { name: '5 Minutes', value: '5' },
                 { name: '10 Minutes', value: '10' },
                 { name: '15 Minutes', value: '15' },
@@ -177,8 +178,7 @@ export default {
     },
     // Try Only
     methods: {
-        addQuestion() {
-            
+        addQuestion() {         
             let counter = this.formQuiz.questions.length
 
             if(this.formQuiz.category == 'true-or-false'){

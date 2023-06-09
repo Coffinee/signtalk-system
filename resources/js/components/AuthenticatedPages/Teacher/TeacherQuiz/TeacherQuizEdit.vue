@@ -68,13 +68,10 @@
                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                         placeholder="Enter Quiz Description"></textarea>
                 </div>
-                
                 <div class="mb-6">
-                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="quiz_banner">Upload
-                        Quiz Banner:</label>
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="quiz_banner">Upload Quiz Banner:</label>
                     <input ref="questionBanner" type="file" id="title" @change="pickQuestionBanner"
-                        class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2"
-                        placeholder="Enter Quiz Title">
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2" placeholder="Enter Quiz Title">
                 </div>
 
                 <button @click.prevent="showQuestion"
@@ -83,7 +80,9 @@
         </form>
 
         <!-- continuation -->
+
         <div v-if="isDetailComplete" class="flex flex-col p-2 px-[30px]">
+            
             <h3 class="text-lg font-bold text-black">Questions</h3>
             <p class="text-xs text-gray-400 italic mb-2">Press ( + ) to add another choice to the question and/or ( - ) to
                 remove a choice</p>
@@ -126,7 +125,7 @@
                 <button @click="addQuestion" class="px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600">+
                     Add
                     Question</button>
-                <button @click.prevent="submitQuiz"
+                <button @click="submitQuiz"
                     class="px-4 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600">Update
                     Quiz</button>
             </div>
@@ -155,6 +154,7 @@ export default {
             category_selected: '',
             question_index: 1,
             quizTimer: [
+                { name: '1 Minute', value: '1' },
                 { name: '5 Minutes', value: '5' },
                 { name: '10 Minutes', value: '10' },
                 { name: '15 Minutes', value: '15' },
@@ -166,7 +166,8 @@ export default {
                 title: '',
                 description: '',
                 category: '',
-                duration: '',
+                duration:'',
+                banner:'',
                 questions: [
                     {
                         id: '',
@@ -187,9 +188,10 @@ export default {
     },
     // Try Only
     methods: {
-        addQuestion() {
+        addQuestion() {         
             let counter = this.formQuiz.questions.length
-            if (this.formQuiz.category == 'true-or-false') {
+
+            if(this.formQuiz.category == 'true-or-false'){
                 this.formQuiz.questions.push({
                     id: '',
                     text: '',
@@ -236,8 +238,8 @@ export default {
                         type: 'info',
                         hideProgressBar: 'true',
                         transition: 'bounce',
-                    })
-                this.$router.push('/teacher/quiz')
+                })
+                this.$router.push('/admin/quiz')
                 console.log(res.data);
             })
 
@@ -281,11 +283,23 @@ export default {
         showQuestion() {
             this.isDetailComplete = !this.isDetailComplete;
         },
-        handleStepper() {
-            if (!this.isDetailComplete) {
-                this.$router.push('/teacher/quiz')
-            } else {
+        handleStepper(){
+            if(!this.isDetailComplete){
+                this.$router.push('/admin/quiz')
+            }else{
                 this.isDetailComplete = !this.isDetailComplete;
+            }
+        },
+        pickQuestionBanner(){
+            let input = this.$refs.questionBanner;
+            let file = input.files;
+            if (file && file[0]) {
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    this.formQuiz.banner = e.target.result;
+                };
+                reader.readAsDataURL(file[0]);
+                this.$emit("input", file[0]);
             }
         },
         async getData() {

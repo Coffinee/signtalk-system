@@ -89,7 +89,7 @@
                         <a href="#" @click="removeQuestion(index)" class="text-end">Remove Question</a>
                     </div>
                     <label class="custom-file-upload relative flex gap-2 text-xs items-center overflow-hidden">
-                        <input type="file" class="absolute opacity-0 border border-red-500" />
+                        <input ref="question_attachment" type="file" class="absolute opacity-0 border border-red-500" @input="uploadImage"/>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6 text-indigo-500">
                             <path stroke-linecap="round" stroke-linejoin="round"
@@ -154,6 +154,7 @@ export default {
             is_true_or_false: false,
             question_index: 1,
             quizTimer: [
+                { name: '1 Minute', value: '1' },
                 { name: '5 Minutes', value: '5' },
                 { name: '10 Minutes', value: '10' },
                 { name: '15 Minutes', value: '15' },
@@ -302,6 +303,20 @@ export default {
             }).catch((e) => {
                 errorMessage('Opps!', e.message, 'top-right')
             });
+        },
+        // try
+        uploadImage() {
+            let input = this.$refs.question_attachment;
+            let file = input.files;
+            if (file && file[0]) {
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    this.image_url = e.target.result;
+                    this.form.question_attachment = e.target.result;
+                };
+                reader.readAsDataURL(file[0]);
+                this.$emit("input", file[0]);
+            }
         },
     },
 

@@ -10,7 +10,7 @@
                         <div class="flex items-center gap-[5px]">
                             <ClockIcon class="w-[25px] h-[25px] fill-black dark:stroke-white" />
                             <p class="text-[20px] text-black font-semibold  dark:text-white">
-                                <vue-countdown :time="quizDuration * 60 * 1000" v-slot="{ days, hours, minutes, seconds }">
+                                <vue-countdown :time="quizDuration * 60 * 1000" v-slot="{ days, hours, minutes, seconds }" ref="countdown" @progress="getRemainingTime">
                                     Time Remaining： {{ minutes }}mins, {{ seconds }}secs.
                                 </vue-countdown>
 
@@ -71,12 +71,9 @@
                     </div>
                     <div class="mb-6">
                         <RadioGroup>
-                            <div class="mt-4 grid grid-cols-1 gap-y-6  sm:gap-x-2"
-                                :class="[quizType == 'true-of-false' ? 'lg:grid-cols-2' : 'lg:grid-cols-1']">
-                                <RadioGroupOption as="template" v-for="quizItem in quizChoices" :key="quizItem.id"
-                                    :value="quizItem.value" v-slot="{ checked, active }">
-                                    <div
-                                        :class="[checked ? 'border-transparent' : 'border-gray-300', active ? 'border-indigo-500 ring-2 ring-indigo-500 ' : '', 'relative flex cursor-pointer rounded-lg border bg-white dark:bg-gray-600 p-1 md:p-3 shadow-sm focus:outline-none']">
+                            <div class="mt-4 grid grid-cols-1 gap-y-6  sm:gap-x-2" :class="[quizType == 'true-of-false' ? 'lg:grid-cols-2' : 'lg:grid-cols-1']">
+                                <RadioGroupOption as="template" v-for="quizItem in quizChoices" :key="quizItem.id" :value="quizItem.value" v-slot="{ checked, active }" >
+                                    <div  @click.prevent="addAnswer(quizItem.value, quizItem.id)" :class="[checked ? 'border-transparent' : 'border-gray-300', active ? 'border-indigo-500 ring-2 ring-indigo-500 ' : '', 'relative flex cursor-pointer rounded-lg border bg-white dark:bg-gray-600 p-1 md:p-3 shadow-sm focus:outline-none']">
                                         <span class="flex flex-1">
                                             <span class="flex flex-col w-full">
                                                 <RadioGroupLabel as="span"
@@ -94,9 +91,8 @@
                             </div>
                         </RadioGroup>
                     </div>
-                    <div class="flex justify-center w-full">
-                        <button @click="(modalOpen = !modalOpen)" type="button"
-                            class="w-full focus:outline-none text-white bg-indigo-500 hover:bg-indigo-500  focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ">Submit</button>
+                    <div class="flex justify-center w-full" v-if="quizCounter == (questions.length - 1)">
+                        <button @click="submitAnswers()" type="button" class="w-full focus:outline-none text-white bg-indigo-500 hover:bg-indigo-500  focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ">Submit</button>
                     </div>
                 </div>
             </div>
@@ -113,41 +109,33 @@
                 <div class="flex flex-col gap-[10px] w-full">
                     <h1 class="text-black dark:text-white text-[18px] text-center mt-[5px]">Performance Stats</h1>
                     <div class="flex flex-col md:flex-row gap-[10px] w-full">
-                        <div
-                            class="flex items-center justify-center md:justify-between w-full md:w-[50%] border dark:border-gray-500 p-3 rounded-md hover:bg-gray-100 hover:dark:bg-gray-500">
-                            <CheckCircleIcon class="w-[120px] h-[120px] fill-green-400 stroke-2" />
-                            <p
-                                class="flex flex-col items-center justify-center text-[50px] text-gray-600 dark:text-white capitalize font-semibold">
-                                19
+                        <div class="flex items-center justify-center md:justify-between w-full md:w-[50%] border dark:border-gray-500 p-3 rounded-md hover:bg-gray-100 hover:dark:bg-gray-500">
+                            <CheckCircleIcon class="w-[120px] h-[120px] fill-green-400 stroke-2"/>
+                            <p class="flex flex-col items-center justify-center text-[50px] text-gray-600 dark:text-white capitalize font-semibold">
+                                {{ correct_answer }}
                                 <span class="text-[18px] font-normal">Correct</span>
                             </p>
                         </div>
-                        <div
-                            class="flex items-center justify-center md:justify-between  w-full md:w-[50%] border dark:border-gray-500 p-3 rounded-md hover:bg-gray-100 hover:dark:bg-gray-500">
-                            <XCircleIcon class="w-[120px] h-[120px] fill-red-400 stroke-2" />
-                            <p
-                                class="flex flex-col items-center justify-center text-[50px] text-gray-600 dark:text-white capitalize font-semibold">
-                                1
+                        <div class="flex items-center justify-center md:justify-between  w-full md:w-[50%] border dark:border-gray-500 p-3 rounded-md hover:bg-gray-100 hover:dark:bg-gray-500">
+                            <XCircleIcon class="w-[120px] h-[120px] fill-red-400 stroke-2"/>
+                            <p class="flex flex-col items-center justify-center text-[50px] text-gray-600 dark:text-white capitalize font-semibold">
+                                {{ mistakes }}
                                 <span class="text-[18px] font-normal">Incorrect</span>
                             </p>
                         </div>
                     </div>
                     <div class="flex flex-col md:flex-row  gap-[10px] w-full">
-                        <div
-                            class="flex items-center justify-center md:justify-between  w-full md:w-[50%] border dark:border-gray-500 p-3 rounded-md hover:bg-gray-100 hover:dark:bg-gray-500">
-                            <ClockIcon class="w-[120px] h-[120px] fill-blue-400 stroke-2" />
-                            <p
-                                class="flex flex-col items-center justify-center text-[30px] text-gray-600 dark:text-white capitalize font-semibold ">
-                                5min 3s
+                        <div class="flex items-center justify-center md:justify-between  w-full md:w-[50%] border dark:border-gray-500 p-3 rounded-md hover:bg-gray-100 hover:dark:bg-gray-500">
+                            <ClockIcon class="w-[120px] h-[120px] fill-blue-400 stroke-2"/>
+                            <p class="flex flex-col items-center justify-center text-[30px] text-gray-600 dark:text-white capitalize font-semibold ">
+                                {{ viewTime }}
                                 <span class="text-[18px] font-normal">Time</span>
                             </p>
                         </div>
-                        <div
-                            class="flex items-center justify-center md:justify-between w-full md:w-[50%] border dark:border-gray-500 p-3 rounded-md hover:bg-gray-100 hover:dark:bg-gray-500">
-                            <ChartBarSquareIcon class="w-[120px] h-[120px] fill-orange-400 stroke-2" />
-                            <p
-                                class="flex flex-col items-center justify-center text-[50px] text-gray-600 dark:text-white capitalize font-semibold">
-                                82%
+                        <div class="flex items-center justify-center md:justify-between w-full md:w-[50%] border dark:border-gray-500 p-3 rounded-md hover:bg-gray-100 hover:dark:bg-gray-500">
+                            <ChartBarSquareIcon class="w-[120px] h-[120px] fill-orange-400 stroke-2"/>
+                            <p class="flex flex-col items-center justify-center text-[50px] text-gray-600 dark:text-white capitalize font-semibold">
+                                {{accuracy}}% 
                                 <span class="text-[18px] font-normal">Accuracy</span>
                             </p>
                         </div>
@@ -156,39 +144,41 @@
             </div>
             <div class="w-full">
                 <h1 class="text-black dark:text-white text-[18px] font-bold mt-[5px]">Review Questions</h1>
-                <div v-for="(item, index) in questions" :key="id">
+                <div v-for="(item, index) in questions" :key="item.id">
                     <div class="w-full p-2 rounded-md border border-gray-400 bg-gray-100 dark:bg-gray-700 mb-[10px]">
                         <div>
                             <h1 class="text-black dark:text-white text-[18px]  mb-[20px] font-semibold border-b border-gray-600 pb-2">
                                 {{ index + 1 }}. {{ item.question }}
                             </h1>
-                            <div v-for="choice in quizCategory" :key="choice.id">
+                            <div v-for="quizItem in quizChoices" :key="quizItem.id">
                                 <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
                                     <input id="bordered-radio-1" type="radio" value="" name="bordered-radio"
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300  focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                         disabled>
                                     <label for="bordered-radio-1"
-                                        class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{
-                                            choice.title }}</label>
+                                        class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                        {{ quizItem.value }}
+                                    </label>
                                 </div>
                             </div>
                         </div>
-                        <Accordion :sectiontitle="'Show my Answer'" :accordionColor="'bg-gray-600'" :setOpen="false">
-                            <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
+                        <Accordion :sectiontitle="'Show My Answer'" :accordionColor="'bg-gray-600'" :setOpen="false">
+                            <div  class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
                                 <input id="bordered-radio-1" type="radio" value="" name="bordered-radio"
                                     class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
                                     disabled>
-                                <label for="bordered-radio-1"
-                                    class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Choice
-                                    2</label>
+                                <div v-for="answer in answers" :key="answer.id">
+                                    <label for="bordered-radio-1"
+                                    class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ answer.answer }}</label>
+                                </div>
                             </div>
                         </Accordion>
                     </div>
                 </div>
             </div>
             <div class="flex justify-center w-full">
-                <button @click="(modalOpen = !modalOpen)" type="button"
-                    class="w-full focus:outline-none text-white bg-indigo-500 hover:bg-indigo-500  focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ">Confirm</button>
+                <router-link to="/quiz" @click="(modalOpen = !modalOpen)" type="button"
+                    class="w-full focus:outline-none text-center text-white bg-indigo-500 hover:bg-indigo-500 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ">Confirm</router-link>
             </div>
         </div>
     </Modal>
@@ -206,27 +196,29 @@ import { RadioGroup, RadioGroupDescription, RadioGroupLabel, RadioGroupOption } 
 import Modal from '../../../misc/Modal.vue';
 import Accordion from '../../../misc/Accordion.vue';
 import VueCountdown from '@chenfengyuan/vue-countdown';
-export default {
-    components: {
-        QueueListIcon,
-        ChartBarSquareIcon,
-        ClockIcon,
-        CheckCircleIcon,
-        ChevronLeftIcon,
-        ChevronRightIcon,
-        RadioGroup,
-        RadioGroupDescription,
-        RadioGroupLabel,
-        RadioGroupOption,
-        Modal,
-        XCircleIcon,
-        ClockIcon,
-        Accordion,
-        VueCountdown
-    },
-    data() {
-        return {
-            quizChoices: [],
+import {userAuthStore} from '@/store/auth';
+export default{
+    components:{
+    QueueListIcon,
+    ChartBarSquareIcon,
+    ClockIcon,
+    CheckCircleIcon,
+    ChevronLeftIcon,
+    ChevronRightIcon,
+    RadioGroup,
+    RadioGroupDescription,
+    RadioGroupLabel,
+    RadioGroupOption,
+    Modal,
+    XCircleIcon,
+    ClockIcon,
+    Accordion,
+    VueCountdown
+},
+    data(){
+        return{
+            user:userAuthStore().user,
+            quizChoices:[],
             quizCounter: 0,
             modalOpen: false,
             quizTitle: '',
@@ -236,6 +228,13 @@ export default {
             quizLength: '',
             quizType: '',
             questions: [],
+            answers: [],
+            remainingTime: '',
+
+            correct_answer: 0,
+            mistakes: 0,
+            accuracy: 0,
+            viewTime: '',
         }
     },
     methods: {
@@ -244,6 +243,7 @@ export default {
         },
         nextQuestion(index) {
             this.quizCounter = index
+            console.log(this.quizCounter)
             const quizChoice = {
                 question_item: {
                     choice_a: { id: this.questions[index].id, value: this.questions[index].choice_a, choice: 'A.' },
@@ -288,6 +288,32 @@ export default {
             }).catch((e) => {
                 console.log(e.message)
             });
+        },
+
+        addAnswer(val,id){
+            this.answers.push({ id: id, answer: val });
+        },
+        getRemainingTime(data){
+            this.remainingTime = data.minutes+' mins, ' +data.seconds+' s';
+            if (data.minutes === 0 && data.seconds === 0) {
+                // Timer has finished, call submitAnswers function
+                this.submitAnswers();
+            }
+        },
+        submitAnswers(){
+            console.log(this.remainingTime)
+            axios.post('/api/save-answers',{
+                student_id : this.user.id,
+                question_id: this.quizID,
+                remaining_time: this.remainingTime,
+                answers: this.answers
+            }).then((data) => {
+                this.correct_answer = data.data.data.score
+                this.mistakes = data.data.data.mistakes
+                this.accuracy = ((this.correct_answer / (this.correct_answer + this.mistakes)) * 100).toFixed(1) ;
+                this.viewTime = data.data.data.remaining_time
+                this.modalOpen = !this.modalOpen
+            })
         }
     },
     created() {
