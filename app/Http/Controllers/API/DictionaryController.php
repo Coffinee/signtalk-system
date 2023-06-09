@@ -37,20 +37,19 @@ class DictionaryController extends BaseController
      */
     public function store(DictionaryRequest $request)
     {
-        // $data = Dictionary::create($request->all());
-        // return $this->sendResponse($data, "Saved");
         $image_link = "";
+        $validated = $request->validated();
 
         if ($request->image_file) {
             $image_binary = $request->image_file;
             $image_link = time() . '.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
-            \Image::make($image_binary)->save('uploads/dictionary/' . $image_link)
-                ->destroy();
 
+            if (!File::exists('uploads/dictionary/' . $image_link)) {
+                \Image::make($image_binary)->save('uploads/dictionary/' . $image_link)->destroy();
+            }
 
+            $validated['image_file'] = $image_link;
         }
-        $validated = $request->validated();
-        $validated['image_file'] = $image_link;
 
         $data = Dictionary::create($validated);
         return $this->sendResponse($image_link, "Saved Data");
@@ -86,26 +85,23 @@ class DictionaryController extends BaseController
         $image_link = "";
         $data = Dictionary::findOrFail($id);
 
-        if($request->params['data']['image_file']){
+        if ($request->params['data']['image_file']) {
             $image_binary = $request->params['data']['image_file'];
 
-            if($data->image_file != $request->params['data']['image_file']) {
-                $image_link = time().'.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
-            }
-            else {
+            if ($data->image_file != $request->params['data']['image_file']) {
+                $image_link = time() . '.' . explode('/', explode(':', substr($image_binary, 0, strpos($image_binary, ';')))[1])[1];
+            } else {
                 $image_link = $request->params['data']['image_file'];
             }
 
-            if(!File::exists('uploads/dictionary/'.$image_link)) { //does not exists
-                \Image::make($image_binary)->save('uploads/dictionary/'.$image_link)->destroy();
+            if (!File::exists('uploads/dictionary/' . $image_link)) { //does not exists
+                \Image::make($image_binary)->save('uploads/dictionary/' . $image_link)->destroy();
                 $data->update([
                     'image_file' => $image_link,
                 ]);
-            }
-
-            else if($data->image_file != $image_link) { // is existing
-                unlink('uploads/dictionary/'.$data->image_file);
-                \Image::make($image_binary)->save('uploads/dictionary/'.$image_link)->destroy();
+            } else if ($data->image_file != $image_link) { // is existing
+                unlink('uploads/dictionary/' . $data->image_file);
+                \Image::make($image_binary)->save('uploads/dictionary/' . $image_link)->destroy();
                 $data->update([
                     'image_file' => $image_link,
                 ]);
