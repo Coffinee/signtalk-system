@@ -1,5 +1,8 @@
 <template>
     <div class="flex flex-col justify-center w-auto h-auto bg-white dark:bg-transparent">
+        <router-link to="/lesson" class="m-[20px]">
+            <ChevronLeftIcon class="w-[50px] h-[50px] fill-indigo-500"/>
+        </router-link>
         <div class="w-full sm:w-full md:w-[70%] self-center py-10 px-5">
             <div>
                 <h1
@@ -34,8 +37,7 @@
 </template>
 <script >
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
-import { ChevronDownIcon } from '@heroicons/vue/20/solid'
-import { ChevronRightIcon } from '@heroicons/vue/20/solid'
+import { ChevronDownIcon, ChevronRightIcon, ChevronLeftIcon } from '@heroicons/vue/20/solid'
 import axios from 'axios'
 import Form from 'vform'
 export default {
@@ -46,7 +48,7 @@ export default {
         }
     },
     components: {
-        Popover, PopoverButton, PopoverPanel, ChevronDownIcon, ChevronRightIcon
+        Popover, PopoverButton, PopoverPanel, ChevronDownIcon, ChevronRightIcon, ChevronLeftIcon
     },
     data() {
         return {

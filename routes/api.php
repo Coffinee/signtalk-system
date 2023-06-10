@@ -26,7 +26,6 @@ Route::namespace('App\Http\Controllers\API')->group(function() {
     Route::get('getquiz', 'QuestionsController@getQuiz');
     Route::get('getstudents', 'UserController@getStudents');
 
-    
     Route::apiResources([
         'user' => 'UserController',
         'dictionary' => 'DictionaryController',
@@ -34,7 +33,6 @@ Route::namespace('App\Http\Controllers\API')->group(function() {
         'lesson' => 'LessonController',
         'questions' => 'QuestionsController',
         'section' => "SectionController"
-        
     ]);
 });
 
