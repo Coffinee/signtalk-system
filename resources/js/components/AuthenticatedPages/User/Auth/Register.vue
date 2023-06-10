@@ -97,7 +97,7 @@
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm
                                         Password:</label>
                                     <input type="password" name="confirm-password" id="confirm-password"
-                                        placeholder="••••••••" v-model="this.cPassword"
+                                        placeholder="••••••••" v-model="form.cPassword"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 </div>
                                 <div v-show="form.role === 3" class="mb-2">
@@ -129,7 +129,7 @@
 <script>
 import Form from 'vform';
 import axios from 'axios';
-
+import { createToast } from 'mosha-vue-toastify';
 export default {
     data() {
         return {
@@ -141,6 +141,7 @@ export default {
                 last_name: '',
                 email: '',
                 password: '',
+                cPassword: '',
                 classCode: null
             }),
             cPassword: '',
@@ -163,15 +164,31 @@ export default {
         submitForm() {
             console.log('clicked');
             this.$Progress.start();
-            // prev: /register
+            
+            if (this.form.password !== this.form.cPassword) {
+                createToast({
+                    title: 'Try Again!',
+                    description: "Password and confirm password do not match!"
+                },
+                    {
+                        showIcon: 'true',
+                        position: 'top-right',
+                        type: 'danger',
+                        hideProgressBar: 'true',
+                        transition: 'bounce',
+                })
+                return; 
+            }
+            
             this.form.post('/api/user')
                 .then((data) => {
                     this.$Progress.finish();
                     this.$router.push('/login');
                 }).catch((error) => {
                     this.$Progress.fail();
-                })
+                });
         },
+
 
         getRoles() {
             axios.get("/api/get-roles")

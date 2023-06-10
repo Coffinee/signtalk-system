@@ -163,10 +163,10 @@
           </div>
         </div>
       </div>
-      <main class="h-screen py-10 bg-[whitesmoke]">
+      <main class="h-auto py-10 bg-[whitesmoke] ">
         <div class="px-4 sm:px-6 lg:px-8">
           <!-- YOUR CONTENT HERE -->
-          <router-view :key="$route.fullPath"></router-view>
+          <router-view  :key="$route.fullPath"></router-view>
         </div>
       </main>
     </div>
