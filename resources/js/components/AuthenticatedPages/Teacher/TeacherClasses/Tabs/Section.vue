@@ -40,20 +40,23 @@
                             {{ item.lrn }}
                         </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            {{ item.classCode }}
+                            {{ item.email }}
                         </th>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             {{ item.last_name }}
                         </td>
-                        <td class="px-6 py-4">
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             {{ item.first_name }}
+                        </td>
+                        <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            <a href="" class="text-blue-400 underline">View Report</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <Modal :show="modalOpen" @close="modalToggle" :title="'Create A New Class'" :heightModal="'h-[150px]'">
+    <Modal :show="modalOpen" @close="modalToggle" :title="'Removing Class Confirmation'" :heightModal="'h-[150px]'">
         <div class="flex flex-col items-center justify-center w-full h-full">
             <div class="space-y-1">
                 <p class="text-xl text-center text-black">Are you sure you want to delete this class?</p>
@@ -104,9 +107,10 @@ export default {
         return {
             tableLabels: [
                 { label: 'LRN' },
-                { label: 'classCode' },
+                { label: 'Email' },
                 { label: 'First Name' },
                 { label: 'Last Name' },
+                { label: 'Action' },
             ],
             SectionList:{},
             modalOpen: false,

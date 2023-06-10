@@ -63,7 +63,7 @@
                                 </div>
                             </div>
                             <div class="flex flex-col items-center justify-center w-full">
-                                <p class="text-[25px] text-black dark-text-white font-semibold">{{ item.question }}</p>
+                                <p class="text-[25px] text-black dark:text-white font-semibold">{{ item.question }}</p>
                                 <img class="w-full sm:w-full md:w-[80%] rounded-lg"
                                     src="https://m.media-amazon.com/images/I/71MhODbYvJL.jpg" alt="image description">
                             </div>
@@ -100,16 +100,16 @@
         </div>
     </div>
     <Modal :show="modalOpen" @close="modalToggle" :title="'Quiz Summary'" :widthModal="'w-[600px]'"
-        :heightModal="'h-[600px]'">
+        :heightModal="'h-[500px]'">
         <!-- description, no of items, duration, difficulty -->
-        <div class="flex flex-col items-center gap-3 h-full mb-3">
+        <div class="flex flex-col items-center gap-3 h-full">
             <div class="w-full">
                 <div>
                     <h1 class="text-black dark:text-white text-[25px] text-center mb-[20px] font-semibold">ASL Numbers</h1>
                 </div>
-                <div class="flex flex-col gap-[10px] w-full">
+                <div class="flex flex-col gap-[5px] w-full ">
                     <h1 class="text-black dark:text-white text-[18px] text-center mt-[5px]">Performance Stats</h1>
-                    <div class="flex flex-col md:flex-row gap-[10px] w-full">
+                    <div class="flex flex-col md:flex-row gap-[5px] w-full">
                         <div class="flex items-center justify-center md:justify-between w-full md:w-[50%] border dark:border-gray-500 p-3 rounded-md hover:bg-gray-100 hover:dark:bg-gray-500">
                             <CheckCircleIcon class="w-[120px] h-[120px] fill-green-400 stroke-2"/>
                             <p class="flex flex-col items-center justify-center text-[50px] text-gray-600 dark:text-white capitalize font-semibold">
@@ -125,12 +125,12 @@
                             </p>
                         </div>
                     </div>
-                    <div class="flex flex-col md:flex-row  gap-[10px] w-full">
-                        <div class="flex items-center justify-center md:justify-between  w-full md:w-[50%] border dark:border-gray-500 p-3 rounded-md hover:bg-gray-100 hover:dark:bg-gray-500">
+                    <div class="flex flex-col md:flex-row gap-[5px] w-full">
+                        <div class="flex items-center justify-center md:justify-between w-full md:w-[50%] border dark:border-gray-500 p-3 rounded-md hover:bg-gray-100 hover:dark:bg-gray-500">
                             <ClockIcon class="w-[120px] h-[120px] fill-blue-400 stroke-2"/>
-                            <p class="flex flex-col items-center justify-center text-[30px] text-gray-600 dark:text-white capitalize font-semibold ">
+                            <p class="flex flex-col items-center justify-center text-[30px] text-gray-600 dark:text-white whitespace-normal font-semibold ">
                                 {{ viewTime }}
-                                <span class="text-[18px] font-normal">Time</span>
+                                <span class="text-[18px] font-normal">Remaining Time</span>
                             </p>
                         </div>
                         <div class="flex items-center justify-center md:justify-between w-full md:w-[50%] border dark:border-gray-500 p-3 rounded-md hover:bg-gray-100 hover:dark:bg-gray-500">
@@ -143,42 +143,10 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full">
-                <h1 class="text-black dark:text-white text-[18px] font-bold mt-[5px]">Review Questions</h1>
-                <div v-for="(item, index) in questions" :key="item.id">
-                    <div class="w-full p-2 rounded-md border border-gray-400 bg-gray-100 dark:bg-gray-700 mb-[10px]">
-                        <div>
-                            <h1 class="text-black dark:text-white text-[18px]  mb-[20px] font-semibold border-b border-gray-600 pb-2">
-                                {{ index + 1 }}. {{ item.question }}
-                            </h1>
-                            <!-- <div v-for="quizItem in quizChoices" :key="quizItem.id">
-                                <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
-                                    <input id="bordered-radio-1" type="radio" :value="quizItem.value" name="bordered-radio"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300  focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" disabled>
-                                    <label for="bordered-radio-1"
-                                        class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
-                                        {{ quizItem.value }}
-                                    </label>
-                                </div>
-                            </div> -->
-                        </div>
-                        <Accordion :sectiontitle="'Show My Answer'" :accordionColor="'bg-gray-600'" :setOpen="false">
-                            <div class="flex items-center pl-4 border border-gray-200 rounded dark:border-gray-600">
-                                <input id="bordered-radio-1" type="radio" value="" name="bordered-radio"
-                                    class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
-                                    disabled>
-                                <div v-for="answer in answers" :key="answer.id">
-                                    <label for="bordered-radio-1"
-                                    class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ answer.answer }}</label>
-                                </div>
-                            </div>
-                        </Accordion>
-                    </div>
-                </div>
-            </div>
+            <!-- Review Question slot -->
             <div class="flex justify-center w-full">
                 <router-link to="/quiz" @click="(modalOpen = !modalOpen)" type="button"
-                    class="w-full focus:outline-none text-center text-white bg-indigo-500 hover:bg-indigo-500 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-2 ">Confirm</router-link>
+                    class="w-full focus:outline-none text-center text-white bg-indigo-500 hover:bg-indigo-500 focus:ring-4 focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 mb-3">Confirm</router-link>
             </div>
         </div>
     </Modal>
@@ -294,9 +262,10 @@ export default{
             this.answers.push({ id: id, answer: val });
         },
         getRemainingTime(data){
-            this.remainingTime = data.minutes+' mins, ' +data.seconds+' s';
+            this.remainingTime = data.minutes+' mins,' +data.seconds+' s';
+
+            // Timer has finished, call submitAnswers function
             if (data.minutes === 0 && data.seconds === 0) {
-                // Timer has finished, call submitAnswers function
                 this.submitAnswers();
             }
         },
