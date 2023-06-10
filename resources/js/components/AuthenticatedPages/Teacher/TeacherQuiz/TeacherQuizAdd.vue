@@ -234,13 +234,13 @@ export default {
                         hideProgressBar: 'true',
                         transition: 'bounce',
                 })
-                this.$router.push('/admin/quiz')
+                this.$router.push('/teacher/quiz')
             })
 
         },
         handleStepper(){
             if(!this.isDetailComplete){
-                this.$router.push('/admin/quiz')
+                this.$router.push('/teacher/quiz')
             }else{
                 this.isDetailComplete = !this.isDetailComplete;
             }

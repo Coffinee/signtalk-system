@@ -3,34 +3,34 @@
         <div class="flex justify-between px-[30px] pt-[30px]">
             <h2 class="text-2xl font-extrabold font-poppins text-black">Dashboard</h2>
         </div>
-        <div class="m-5 bg-gray-900">
+        <div class="m-5 ">
             <div class="mx-auto max-w-7xl">
-                <div class="grid grid-cols-1 gap-px bg-white/5 sm:grid-cols-2 lg:grid-cols-4 ">
-                    <div class="bg-gray-900 px-4 py-6 sm:px-6 lg:px-8">
-                        <p class="text-sm font-medium leading-6 text-gray-400">Total Lessons Posted</p>
+                <div class="grid grid-cols-1 gap-[10px] bg-white/5 sm:grid-cols-2 lg:grid-cols-4 ">
+                    <div class="bg-white shadow-md px-4 py-6 sm:px-6 lg:px-8">
+                        <p class="text-sm font-medium leading-6 text-gray-900">Total Lessons Posted</p>
                         <p class="mt-2 flex items-baseline gap-x-2">
-                            <span class="text-4xl font-semibold tracking-tight text-white">{{ this.totalLesson }}</span>
+                            <span class="text-4xl font-semibold tracking-tight text-black">{{ this.totalLesson }}</span>
                             <!-- <span v-if="stat.unit" class="text-sm text-gray-400">{{ stat.unit }}</span>     -->
                         </p>
                     </div>
-                    <div class="bg-gray-900 px-4 py-6 sm:px-6 lg:px-8">
-                        <p class="text-sm font-medium leading-6 text-gray-400">Total Words Published</p>
+                    <div class="bg-white shadow-md px-4 py-6 sm:px-6 lg:px-8">
+                        <p class="text-sm font-medium leading-6 text-gray-900">Total Words Published</p>
                         <p class="mt-2 flex items-baseline gap-x-2">
-                            <span class="text-4xl font-semibold tracking-tight text-white">{{ this.totalDictionary }}</span>
+                            <span class="text-4xl font-semibold tracking-tight text-black">{{ this.totalDictionary }}</span>
                             <!-- <span v-if="stat.unit" class="text-sm text-gray-400">{{ stat.unit }}</span>     -->
                         </p>
                     </div>
-                    <div class="bg-gray-900 px-4 py-6 sm:px-6 lg:px-8">
-                        <p class="text-sm font-medium leading-6 text-gray-400">Total Quizzes Deployed</p>
+                    <div class="bg-white shadow-md px-4 py-6 sm:px-6 lg:px-8">
+                        <p class="text-sm font-medium leading-6 text-gray-900">Total Quizzes Deployed</p>
                         <p class="mt-2 flex items-baseline gap-x-2">
-                            <span class="text-4xl font-semibold tracking-tight text-white">{{ this.totalQuiz }}</span>
+                            <span class="text-4xl font-semibold tracking-tight text-black">{{ this.totalQuiz }}</span>
                             <!-- <span v-if="stat.unit" class="text-sm text-gray-400">{{ stat.unit }}</span>     -->
                         </p>
                     </div>
-                    <div class="bg-gray-900 px-4 py-6 sm:px-6 lg:px-8">
-                        <p class="text-sm font-medium leading-6 text-gray-400">Total Students</p>
+                    <div class="bg-white shadow-md px-4 py-6 sm:px-6 lg:px-8">
+                        <p class="text-sm font-medium leading-6 text-gray-900">Total Students</p>
                         <p class="mt-2 flex items-baseline gap-x-2">
-                            <span class="text-4xl font-semibold tracking-tight text-white">{{ this.totalStudents }}</span>
+                            <span class="text-4xl font-semibold tracking-tight text-black">{{ this.totalStudents }}</span>
                             <!-- <span v-if="stat.unit" class="text-sm text-gray-400">{{ stat.unit }}</span> -->
                         </p>
                     </div>

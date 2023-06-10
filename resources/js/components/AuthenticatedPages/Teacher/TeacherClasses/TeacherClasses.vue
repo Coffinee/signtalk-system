@@ -14,7 +14,7 @@
             <div v-if="SectionList != ''" class="">
                 <TabGroup :selectedIndex="selectedTab" @change="changeTab">
                     <TabList
-                        class="justify-start flex text-sm font-medium text-center dark:text-gray-400 dark:border-gray-700 w-full mt-[20px] mb-[20px] border-b space-x-1">
+                        class="justify-start flex text-sm font-medium text-center dark:text-gray-400 dark:border-gray-700 w-full mt-[20px] space-x-1">
                         <Tab v-for="tab in SectionList" as="template" :key="tab" v-slot="{ selected }">
                             <button :class="[
                                 'w-[150px] rounded-t-lg p-2 text-sm font-medium focus:outline-none text-black hover:bg-indigo-500 hover:text-white',
@@ -27,7 +27,7 @@
                         </Tab>
                     </TabList>
                     <TabPanels v-for="tab in SectionList" :key="tab">
-                        <TabPanel class="h-full w-full border border-gray-300 rounded-md p-4 space-y-5 p">
+                        <TabPanel class="h-full w-full bg-white shadow-md rounded-md p-4 space-y-5 p">
                             <Section :className="tab.className" :classCode="tab.classCode" :classYear="tab.schoolYear" :classSem="tab.schoolSemester" :studentList="student" :sectionID="tab.id"/>
                         </TabPanel>
                     </TabPanels>
@@ -46,12 +46,12 @@
                 <div class="space-y-1">
                     <label for="className" class="text-xs text-black">Enter Your Class Name/Section: </label>
                     <input v-model="form.className" type="text"
-                        class="focus:outline-none pl-2 text-xs text-black w-full h-8 rounded-md border border-indigo-900 bg-white">
+                        class="focus:outline-none pl-2 text-xs text-black w-full h-8 rounded-md border border-indigo-900 bg-white" placeholder="Ex: Section 1">
                 </div>
                 <div class="space-y-1">
                     <label for="schoolYear" class="text-xs text-black">School Year: </label>
                     <input v-model="form.schoolYear" type="text"
-                        class="focus:outline-none pl-2 text-xs text-black w-full h-8 rounded-md border border-indigo-900 bg-white">
+                        class="focus:outline-none pl-2 text-xs text-black w-full h-8 rounded-md border border-indigo-900 bg-white" placeholder="Ex: 2022 - 2023">
                 </div>
                 <div class="space-y-1">
                     <label for="schoolSemester" class="text-xs text-black">Select Quarter Period: </label>
@@ -160,6 +160,7 @@ export default {
                 errorMessage('Opps!', e.message, 'top-right')
             });
         },
+
 
     },
     created(){
