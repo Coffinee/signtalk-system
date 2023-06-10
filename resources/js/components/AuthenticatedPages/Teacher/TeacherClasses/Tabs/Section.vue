@@ -121,13 +121,6 @@ export default {
             this.$refs.clone.focus();
             document.execCommand('copy');
         },
-        async getClass() {
-            await axios.get('/api/getclass').then((data) => {
-                this.SectionList = data.data.data;
-            }).catch((e) => {
-                errorMessage('Opps!', e.message, 'top-right')
-            });
-        },
         async deleteSection(id) {
             try {
                 const response = await axios.delete(`/api/section/${id}`);
@@ -143,15 +136,8 @@ export default {
                 // Handle the error response
                 console.log(error.response.data); // or perform any other actions
             }
-    
-
-         },
+        }
     },
-    created(){
-        this.getClass();
-    }
-
 }
-
 </script>
 

@@ -22,7 +22,13 @@
                 <div class="flex justify-center w-full">
                     <img class="w-full sm:w-full md:w-[80%] rounded-lg" :src="lessonImage">
                 </div>
+                <form class="w-full">
+                    <button class="py-2 w-full text-white rounded-md" :class="isFinish ? 'bg-gray-500' : 'bg-indigo-500'">
+                        Finish Lesson?
+                    </button>
+                </form>
             </div>
+
         </div>
     </div>
 </template>
@@ -31,6 +37,7 @@ import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
 import { ChevronDownIcon } from '@heroicons/vue/20/solid'
 import { ChevronRightIcon } from '@heroicons/vue/20/solid'
 import axios from 'axios'
+import Form from 'vform'
 export default {
     props: {
         data: {
@@ -48,7 +55,10 @@ export default {
             lessonContent: '',
             lessonImage: '',
             lessonRef: '',
-            lessonId: ''
+            lessonId: '',
+            form: new Form ({
+                isFinish: false
+            })
         }
     },
     methods: {
@@ -63,7 +73,7 @@ export default {
                 this.lessonContent = lesson.content;
                 this.lessonImage = '/uploads/lessons/' + lesson.image_file;
                 this.lessonRef = lesson.refLink;
-                
+
             }).catch((e) => {
                 errorMessage('Opps!', e.message, 'top-right')
             });

@@ -28,6 +28,7 @@ class UserRequest extends FormRequest
     {
         return [
             // 'role_id' => 'required',
+            'lrn' => 'required',
             'first_name' => 'required|max:100',
             'last_name' => 'required|max:100',
             'email' => 'required',
