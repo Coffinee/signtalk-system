@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col gap-[15px]">
+    <div class="flex flex-col gap-[15px] ">
         <div class="flex justify-between items-center">
             <div class="code relative border border-gray-300 w-52 h-8 rounded-md">
                 <input type="text" v-on:focus="$event.target.select()" ref="clone" readonly :value='classCode'
@@ -101,6 +101,10 @@ export default {
         studentList: {
             type: Object,
             default: ''
+        },
+        quizAverage: {
+            type: Object,
+            default: ''
         }
     },
     data() {
@@ -111,6 +115,14 @@ export default {
                 { label: 'First Name' },
                 { label: 'Last Name' },
                 { label: 'Action' },
+            ],
+            quizStats: [
+                { label: 'Rankings' },
+                { label: 'Student Name' },
+                { label: 'Quiz Title '},
+                { label: 'No of times Taken' },
+                { label: 'Average Scores' },
+                { label: 'Average Mistakes' },
             ],
             SectionList:{},
             modalOpen: false,

@@ -23,6 +23,12 @@ class SectionController extends BaseController
         return $this->sendResponse(Section::get(), 'sections');
     }
 
+    public function getSections()
+    {
+        $data = Section::all();
+        return $this->sendResponse($data, "All Lesson in Array");
+    }
+
     /**
      * Show the form for creating a new resource.
      */
