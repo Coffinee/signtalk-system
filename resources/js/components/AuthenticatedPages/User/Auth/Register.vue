@@ -1,29 +1,64 @@
 <template>
     <div class="flex justify-center items-center">
-        <section class="bg-gray-50 dark:bg-[#141526] h-auto w-full py-[50px] transition-all">
+        <section class="bg-gray-50 dark:bg-[#141526] w-full transition-all">
             <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen w-screen lg:py-0">
                 <div
                     class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                     <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
                         <h1
-                            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white  text-center capitalize">
-                            Register
+                            class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-left capitalize">
+                            {{ !createAccount ? 'Choose an option' : 'Register' }}
                         </h1>
-                        <form class="space-y-4" @submit.prevent="submitForm()">
+                        <div v-show="!createAccount" class="">
+                            <a href="#" type="button"
+                                class="text-red-500 bg-white hover:bg-white/90 focus:outline-none border border-red-500 font-medium rounded-lg text-xs py-2.5 mt-16 text-center flex items-center justify-center w-full">
+                                <svg class="w-4 h-4 mr-2 -ml-1" aria-hidden="true" focusable="false" data-prefix="fab"
+                                    data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
+                                    <path fill="currentColor"
+                                        d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z">
+                                    </path>
+                                </svg>
+                                Sign up with Google
+                            </a>
+                            <!-- 
+                            <div class="my-8 relative">
+                                <hr class="w-full h-px bg-gray-300">
+                                <p class="absolute -top-2 px-3 font-medium text-gray-400 text-sm bg-white left-[43%]">or</p>
+                            </div> -->
+
+                            <a href="#" type="button" @click.prevent="createAcc"
+                                class="text-indigo-500 bg-white hover:bg-white/90 focus:outline-none border border-indigo-500 font-medium rounded-lg text-xs py-2.5 mb-16 mt-2 text-center flex items-center justify-center w-full">
+                                Create an Account
+                            </a>
+
+                            <p class="text-[10px] flex-col items-center justify-center text-gray-400 text-center">By registering your account, you agree to
+                                our <br><span class="underline text-blue-800 font-bold">Privacy Policy</span> and <span
+                                    class="underline text-blue-800 font-bold">Terms of Use</span>
+                            </p>
+                        </div>
+                        <form v-show="createAccount == true" class="space-y-4" @submit.prevent="submitForm()">
                             <div class="flex flex-col text-white">
                                 <p class="text-sm font-medium text-gray-900 dark:text-white text-left mb-2">Select a Role:
                                 </p>
                                 <div class="flex items-center justify-center space-x-5">
                                     <select v-model="form.role"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
-                                        <option value="" disabled selected>Select an item</option>
-                                        <option :value="role.id" v-for="role in this.roles" >{{ role.label }}</option>
+                                        <option value="" disabled selected>Select a Role</option>
+                                        <option :value="role.id" v-for="role in this.roles">{{ role.label }}</option>
                                         <!-- <option @click.prevent="isTeacher = false" value="student">Student</option> -->
                                         <!-- <option @click.prevent="isTeacher = true" value="teacher">Teacher</option> -->
                                     </select>
                                 </div>
                             </div>
                             <div>
+                                <div v-show="form.role === 3" class="mb-2">
+                                    <label for="lrn"
+                                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Learners'
+                                        Reference Number:</label>
+                                    <input type="text" name="lrn" id="lrn" v-model="form.lrn"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="136419******" required="true">
+                                </div>
                                 <div class="flex gap-2 w-full mb-2 ">
                                     <div class="w-full">
                                         <label for="first_name"
@@ -64,7 +99,7 @@
                                     <input type="password" name="confirm-password" id="confirm-password"
                                         placeholder="••••••••" v-model="this.cPassword"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                </div>                         
+                                </div>
                                 <div v-show="form.role === 3" class="mb-2">
                                     <label for="code"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Enter Class
@@ -101,6 +136,7 @@ export default {
             data: {},
             form: new Form({
                 role: '',
+                lrn: '',
                 first_name: '',
                 last_name: '',
                 email: '',
@@ -119,7 +155,8 @@ export default {
                 }
             ],
             isTeacher: false,
-            isStudent: false
+            isStudent: false,
+            createAccount: false
         }
     },
     methods: {
@@ -145,6 +182,10 @@ export default {
                     errorMessage("Opps!", e.message, "top-right");
                 });
         },
+
+        createAcc() {
+            this.createAccount = !this.createAccount
+        }
     },
 
     // created(){
