@@ -6,11 +6,32 @@
         <div class="m-5 bg-gray-900">
             <div class="mx-auto max-w-7xl">
                 <div class="grid grid-cols-1 gap-px bg-white/5 sm:grid-cols-2 lg:grid-cols-4 ">
-                    <div v-for="stat in dashboardStats" :key="stat.name" class="bg-gray-900 px-4 py-6 sm:px-6 lg:px-8">
-                        <p class="text-sm font-medium leading-6 text-gray-400">{{ stat.category }}</p>
+                    <div class="bg-gray-900 px-4 py-6 sm:px-6 lg:px-8">
+                        <p class="text-sm font-medium leading-6 text-gray-400">Total Lessons Posted</p>
                         <p class="mt-2 flex items-baseline gap-x-2">
-                            <span class="text-4xl font-semibold tracking-tight text-white">{{ stat.quantity }}</span>
-                            <span v-if="stat.unit" class="text-sm text-gray-400">{{ stat.unit }}</span>
+                            <span class="text-4xl font-semibold tracking-tight text-white">{{ this.totalLesson }}</span>
+                            <!-- <span v-if="stat.unit" class="text-sm text-gray-400">{{ stat.unit }}</span>     -->
+                        </p>
+                    </div>
+                    <div class="bg-gray-900 px-4 py-6 sm:px-6 lg:px-8">
+                        <p class="text-sm font-medium leading-6 text-gray-400">Total Words Published</p>
+                        <p class="mt-2 flex items-baseline gap-x-2">
+                            <span class="text-4xl font-semibold tracking-tight text-white">{{ this.totalDictionary }}</span>
+                            <!-- <span v-if="stat.unit" class="text-sm text-gray-400">{{ stat.unit }}</span>     -->
+                        </p>
+                    </div>
+                    <div class="bg-gray-900 px-4 py-6 sm:px-6 lg:px-8">
+                        <p class="text-sm font-medium leading-6 text-gray-400">Total Quizzes Deployed</p>
+                        <p class="mt-2 flex items-baseline gap-x-2">
+                            <span class="text-4xl font-semibold tracking-tight text-white">{{ this.totalQuiz }}</span>
+                            <!-- <span v-if="stat.unit" class="text-sm text-gray-400">{{ stat.unit }}</span>     -->
+                        </p>
+                    </div>
+                    <div class="bg-gray-900 px-4 py-6 sm:px-6 lg:px-8">
+                        <p class="text-sm font-medium leading-6 text-gray-400">Total Students</p>
+                        <p class="mt-2 flex items-baseline gap-x-2">
+                            <span class="text-4xl font-semibold tracking-tight text-white">{{ this.totalStudents }}</span>
+                            <!-- <span v-if="stat.unit" class="text-sm text-gray-400">{{ stat.unit }}</span> -->
                         </p>
                     </div>
                 </div>
@@ -23,13 +44,65 @@ export default {
 
     data() {
         return {
-            dashboardStats: [
-                { id: 1, category: 'Total Users', quantity: '37' },
-                { id: 2, category: 'Total Lesson Deployed', quantity: '3' },
-                { id: 3, category: 'Total Quiz Deployed', quantity: '5' },
-                { id: 4, category: 'Total Words in Dictionary', quantity: '20' },
-            ]
+            lessons: {},
+            quiz: {},
+            dictionary: {},
+            students: {},
+            totalLesson: '',
+            totalQuiz: '',
+            totalStudents: '',
+            totalDictionary: ''
         }
+    },
+
+    methods: {
+        getLesson() {
+            axios.get('/api/lesson/')
+                .then((data) => {
+                    this.lessons = data.data.data;
+                    this.totalLesson = this.lessons.total;
+                    console.log(this.totalLesson)
+                }).catch((e) => {
+                    errorMessage('Opps!', e.message, 'top-right')
+                });
+        },
+        getDictionary() {
+            axios.get('/api/dictionary/')
+                .then((data) => {
+                    this.dictionary = data.data.data;
+                    this.totalDictionary = this.dictionary.total;
+                    console.log(this.totalDictionary)
+                }).catch((e) => {
+                    errorMessage('Opps!', e.message, 'top-right')
+                });
+        },
+        getQuiz() {
+            axios.get('/api/getquiz/')
+                .then((data) => {
+                    this.quiz = data.data.data;
+                    this.totalQuiz = this.quiz.total;
+                    console.log(this.totalQuiz)
+                }).catch((e) => {
+                    errorMessage('Opps!', e.message, 'top-right')
+                });
+        },
+        getStudent() {
+            axios.get('/api/getstudents/')
+                .then((data) => {
+                    this.students = data.data.data;
+                    this.totalStudents = this.students.length - 1;
+                }).catch((e) => {
+                    errorMessage('Opps!', e.message, 'top-right')
+                });
+        },
+
+    },
+
+    created() {
+        this.getLesson();
+        this.getDictionary();
+        this.getQuiz();
+        this.getStudent();
     }
 }
 </script>
