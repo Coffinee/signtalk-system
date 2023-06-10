@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('className');
             $table->string('classCode');
+            $table->string('schoolYear');
+            $table->string('schoolSemester');
             $table->timestamps();
         });
     }

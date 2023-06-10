@@ -12,5 +12,7 @@ class Section extends Model
     protected $fillable = [
         'className',
         'classCode',
+        'schoolYear',
+        'schoolSemester',
     ];
 }

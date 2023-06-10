@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="h-auto sm:h-screen">
         <div class="flex justify-between">
             <div>
                 <h2 class="text-2xl font-extrabold font-poppins text-black">My Classes</h2>
@@ -28,7 +28,7 @@
                     </TabList>
                     <TabPanels v-for="tab in SectionList" :key="tab">
                         <TabPanel class="h-full w-full border border-gray-300 rounded-md p-4 space-y-5 p">
-                            <Section :classCode="tab.classCode" :studentList="student" :sectionID="tab.id"/>
+                            <Section :className="tab.className" :classCode="tab.classCode" :classYear="tab.schoolYear" :classSem="tab.schoolSemester" :studentList="student" :sectionID="tab.id"/>
                         </TabPanel>
                     </TabPanels>
                 </TabGroup>
@@ -40,13 +40,28 @@
         </div>
     </div>
 
-    <Modal :show="modalOpen" @close="modalToggle" :title="'Create A New Class'" :heightModal="'h-[150px]'">
+    <Modal :show="modalOpen" @close="modalToggle" :title="'Create A New Class'" :heightModal="'h-[270px]'">
         <div class="w-full h-full">
             <form @submit.prevent="addSection()">
                 <div class="space-y-1">
-                    <label for="word" class="text-xs">Enter Your Class Name/Section: </label>
-                    <input @keyup.enter="addSection()" v-model="form.className" type="text"
+                    <label for="className" class="text-xs text-black">Enter Your Class Name/Section: </label>
+                    <input v-model="form.className" type="text"
                         class="focus:outline-none pl-2 text-xs text-black w-full h-8 rounded-md border border-indigo-900 bg-white">
+                </div>
+                <div class="space-y-1">
+                    <label for="schoolYear" class="text-xs text-black">School Year: </label>
+                    <input v-model="form.schoolYear" type="text"
+                        class="focus:outline-none pl-2 text-xs text-black w-full h-8 rounded-md border border-indigo-900 bg-white">
+                </div>
+                <div class="space-y-1">
+                    <label for="schoolSemester" class="text-xs text-black">Select Quarter Period: </label>
+                    <div class="flex items-center justify-center space-x-5">
+                        <select v-model="form.schoolSemester"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-md block w-full p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white">
+                            <option value="" hidden>Select an item</option>
+                            <option :value="semester.value" v-for="semester in semesters" :key="semester.id">{{ semester.period }}</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="flex justify-center mt-5 gap-5">
                     <button @click.prevent="(modalOpen = !modalOpen)"
@@ -79,9 +94,16 @@ export default {
             modalOpen: false,
             form: new Form({
                 className: '',
-                classCode: ''
-            })
-
+                classCode: '',
+                schoolYear: '',
+                schoolSemester: ''
+            }),
+            semesters:[
+                {id: 1, period: 'First', value: 'First'},
+                {id: 1, period: 'Second', value: 'Second'},
+                {id: 1, period: 'Third', value: 'Third'},
+                {id: 1, period: 'Fourth', value: 'Fourth'},
+            ]
         }
     },
 
@@ -95,25 +117,28 @@ export default {
             this.form = new Form({
                 className: '',
                 classCode: '',
+                schoolYear: '',
+                schoolSemester: ''
             })
         },
         addSection() {
             this.$Progress.start();
             this.form.post('/api/section')
                 .then((data) => {
+                    console.log(this.form.schoolYear +'  '+this.form.schoolSemester);
                     this.$Progress.finish();
                     this.getClass();
                     this.modalToggle();
                     createToast({
-                    title: 'Hurray!',
-                    description: "Class Added"
+                        title: 'Hurray!',
+                        description: "Class Added"
                     },
-                        {
-                            showIcon: 'true',
-                            position: 'top-right',
-                            type: 'info',
-                            hideProgressBar: 'true',
-                            transition: 'bounce',
+                    {
+                        showIcon: 'true',
+                        position: 'top-right',
+                        type: 'info',
+                        hideProgressBar: 'true',
+                        transition: 'bounce',
                     })
                 }).catch((error) => {
                     this.$Progress.fail();
