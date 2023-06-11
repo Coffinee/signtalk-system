@@ -157,7 +157,8 @@ export default {
             ],
             isTeacher: false,
             isStudent: false,
-            createAccount: false
+            createAccount: false,
+            account: {}
         }
     },
     methods: {

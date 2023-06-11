@@ -10,41 +10,30 @@ use Laravel\Socialite\Facades\Socialite;
 
 class GoogleAuthController extends Controller
 {
-    public function redirect(){
+    public function redirect()
+    {
         return Socialite::driver('google')->redirect();
     }
 
-    public function callBackGoogle(Request $request){
-        try{
-            // $validated = $request->validated();
-            // $validated['role_id'] = $request->role['id'];
+    public function callBackGoogle(Request $request)
+    {
+        try {
             $google_user = Socialite::driver('google')->user();
-            
-            $user = User::where('googleID', $google_user->getId())->first();
 
-            if (!$user) {
+            $user = User::where('google_id', $google_user->getId())->first();
 
+            if ($user) {
+                return redirect()->intended('/admin/dashboard/');
+            } else {
                 $new_user = User::create([
-                    // 'role_id' => $validated,
-                    // 'role_id' => 3,
-                    'first_name' => $google_user->getName(),
-                    'last_name' => 'apelyido',
                     'email' => $google_user->getEmail(),
-                    'googleID' => $google_user->getId(),
-                    'classCode' => Str::random(6),
-                    'role_id' => $request->role_id,
+                    'google_id' => $google_user->getId(),
                 ]);
-                
-                Auth::login($new_user);
-                return redirect()->intended('admin/dashboard');
+
+                $new_user->save();
+                return redirect()->intended('/register');
             }
-            else{
-                Auth::login($user);
-                return redirect()->intended('admin/dashboard');
-            }
-                
-        }
-        catch(\Throwable $th){
+        } catch (\Throwable $th) {
             dd('Something went wrong!', $th->getMessage());
         }
     }
