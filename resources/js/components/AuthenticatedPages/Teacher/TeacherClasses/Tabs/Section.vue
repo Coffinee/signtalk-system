@@ -35,7 +35,10 @@
                     </tr>
                 </thead>
                 <tbody v-for="item in studentList" :key="item.id">
-                    <tr v-if="item.classCode == this.classCode" class="bg-white border-b">
+                    <tr v-if="studentList && item.classCode == this.classCode" class="bg-white border-b">
+                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                            {{ item.status }}
+                        </th>
                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             {{ item.lrn }}
                         </th>
@@ -99,8 +102,8 @@ export default {
             default: '',
         },
         studentList: {
-            type: Object,
-            default: ''
+            type: Array,
+            default: () => []
         },
         quizAverage: {
             type: Object,
@@ -110,19 +113,12 @@ export default {
     data() {
         return {
             tableLabels: [
+                { label: 'Status' },
                 { label: 'LRN' },
                 { label: 'Email' },
                 { label: 'First Name' },
                 { label: 'Last Name' },
                 { label: 'Action' },
-            ],
-            quizStats: [
-                { label: 'Rankings' },
-                { label: 'Student Name' },
-                { label: 'Quiz Title '},
-                { label: 'No of times Taken' },
-                { label: 'Average Scores' },
-                { label: 'Average Mistakes' },
             ],
             SectionList:{},
             modalOpen: false,
