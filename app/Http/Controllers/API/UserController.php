@@ -24,6 +24,12 @@ class UserController extends BaseController
         return $this->sendResponse($data, "All Entries in Array");
     }
 
+    public function allUser()
+    {
+        $data = User::all()->last();
+        return $this->sendResponse($data, "All Entries in Array");
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -73,13 +79,13 @@ class UserController extends BaseController
     {
         $user->update($request->params['data']);
 
-        if ($request->params['data']['role']) {
-            $user->update([
-                'role_id' => $request->params['data']['role']['id']
-            ]);
-        }
+        // if ($request->params['data']['role']) {
+        //     $user->update([
+        //         'role_id' => $request->params['data']['role']['id']
+        //     ]);
+        // }
 
-        return $this->sendResponse($request->params['data']['building'], "Updated Data");
+        return $this->sendResponse($user, "Updated Data");
     }
 
     /**

@@ -80,7 +80,7 @@
                                 <div class="mb-2">
                                     <label for="email"
                                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email:</label>
-                                    <input type="email" name="email" id="email" v-model="form.email"
+                                    <input type="email" name="email" id="email" v-model="form.email" :disabled="isGoogleExist"
                                         class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-indigo-600 focus:border-indigo-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="name@gmail.com" required="true">
                                 </div>
@@ -158,36 +158,50 @@ export default {
             isTeacher: false,
             isStudent: false,
             createAccount: false,
-            account: {}
+            account: {},
+            isGoogleExist: false
         }
     },
     methods: {
         submitForm() {
             console.log('clicked');
             this.$Progress.start();
-            
-            if (this.form.password !== this.form.cPassword) {
-                createToast({
-                    title: 'Try Again!',
-                    description: "Password and confirm password do not match!"
-                },
-                    {
-                        showIcon: 'true',
-                        position: 'top-right',
-                        type: 'danger',
-                        hideProgressBar: 'true',
-                        transition: 'bounce',
+            if (this.isGoogleExist) {
+                axios.put('/api/user/' + this.account.id, {
+                    params: {
+                        data: this.form
+                    }
+                }).then((data) => {
+                    this.$Progress.finish();
+                    this.$router.push('/login/' + this.id);
+                }).catch((error) => {
+
                 })
-                return; 
+            }
+            else {
+                this.form.post('/api/user')
+                    .then((data) => {
+                        this.$Progress.finish();
+                        this.$router.push('/login/' + this.id);
+                    }).catch((error) => {
+
+                    })
             }
             
-            this.form.post('/api/user')
-                .then((data) => {
-                    this.$Progress.finish();
-                    this.$router.push('/login');
-                }).catch((error) => {
-                    this.$Progress.fail();
-                });
+            // if (this.form.password !== this.form.cPassword) {
+            //     createToast({
+            //         title: 'Try Again!',
+            //         description: "Password and confirm password do not match!"
+            //     },
+            //         {
+            //             showIcon: 'true',
+            //             position: 'top-right',
+            //             type: 'danger',
+            //             hideProgressBar: 'true',
+            //             transition: 'bounce',
+            //     })
+            //     return; 
+            // }
         },
 
 
@@ -201,14 +215,30 @@ export default {
                 });
         },
 
+        async getAllUsers(){
+           await axios.get("/api/getusers")
+                .then((data) => {
+                    this.account = data.data.data;
+                    console.log(this.account);
+
+                    if (this.account.google_id != null) {
+                        this.isGoogleExist = !this.isGoogleExist;
+                        this.form.email = this.account.email;
+                    }
+                })
+                .catch((e) => {
+                    errorMessage("Opps!", e.message, "top-right");
+                });
+        },
+
         createAcc() {
             this.createAccount = !this.createAccount
         }
     },
 
-    // created(){
-    //     this.getRoles();
-    // }
+    created(){
+        this.getAllUsers();
+    }
 
 }
 </script>

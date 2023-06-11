@@ -23,14 +23,13 @@ class GoogleAuthController extends Controller
             $user = User::where('google_id', $google_user->getId())->first();
 
             if ($user) {
-                return redirect()->intended('/admin/dashboard/');
+                return redirect()->intended('/');
             } else {
                 $new_user = User::create([
                     'email' => $google_user->getEmail(),
                     'google_id' => $google_user->getId(),
                 ]);
 
-                $new_user->save();
                 return redirect()->intended('/register');
             }
         } catch (\Throwable $th) {
