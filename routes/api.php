@@ -24,9 +24,17 @@ Route::namespace('App\Http\Controllers\API')->group(function() {
     Route::get('getclass', 'SectionController@getClass');
     Route::get('get-roles', 'RolesController@getRoles');
     Route::get('getquiz', 'QuestionsController@getQuiz');
-    Route::get('getstudents', 'UserController@getStudents');
 
-    
+    Route::get('getstudents', 'UserController@getStudents');
+    Route::get('getpending', 'UserController@getPendingStudents');
+    Route::get('getapprove', 'UserController@getOfficialStudents');
+
+    Route::get('getstudents', 'UserController@getStudents');
+    Route::get('getaverages', 'ResultsController@getAverages');
+    Route::get('getsections', 'SectionController@getSections');
+
+    Route::put('getpending/{student}', 'UserController@update');
+
     Route::apiResources([
         'user' => 'UserController',
         'dictionary' => 'DictionaryController',
@@ -34,7 +42,6 @@ Route::namespace('App\Http\Controllers\API')->group(function() {
         'lesson' => 'LessonController',
         'questions' => 'QuestionsController',
         'section' => "SectionController"
-        
     ]);
 });
 

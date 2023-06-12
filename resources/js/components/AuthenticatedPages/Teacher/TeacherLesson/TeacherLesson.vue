@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="h-auto sm:h-screen">
         <div class="overflow-x-auto shadow-md sm:rounded-lg">
             <div class="flex justify-between p-2 px-[30px] pt-[30px] mb-3">
                 <h2 class="text-2xl font-extrabold font-poppins text-black">Lesson</h2>

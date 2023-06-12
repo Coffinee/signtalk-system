@@ -3,8 +3,9 @@
     <div class="relative overflow-auto shadow-md sm:rounded-lg">
         <div class="flex justify-between items-center p-2 px-[30px] pt-[30px]">
             <h2 class="text-2xl font-extrabold font-poppins text-black">Edit Quiz</h2>
-            <router-link to="#" >
-                <button @click.prevent="handleStepper()" type="button" class="text-white font-medium rounded-lg text-sm px-5 py-2.5">
+            <router-link to="#">
+                <button @click.prevent="handleStepper()" type="button"
+                    class="text-white font-medium rounded-lg text-sm px-5 py-2.5">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
                         stroke="#6366f1" class="w-6 h-6">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
@@ -17,10 +18,11 @@
                 <RadioGroup>
                     <RadioGroupLabel class="text-base  leading-6 text-gray-900">Select Quiz Category:</RadioGroupLabel>
                     <div class="mt-4 grid grid-cols-1 gap-y-6 sm:grid-cols-2 sm:gap-x-4">
-                        <RadioGroupOption as="template" v-for="quizCategory in quizCategories" :key="quizCategory.id" disabled="disabled"
-                            :value="quizCategory.value" v-model=formQuiz.category v-slot="{ checked, active }">
+                        <RadioGroupOption as="template" v-for="quizCategory in quizCategories" :key="quizCategory.id"
+                            disabled="disabled" :value="quizCategory.value" v-model=formQuiz.category
+                            v-slot="{ checked, active }">
                             <div @click="categorySelected(quizCategory.value, $event)"
-                                :class="[checked  ? 'border-transparent' : 'border-gray-300', active  ? 'border-indigo-600 ring-2 ring-indigo-600' : '', 'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none']">
+                                :class="[checked ? 'border-transparent' : 'border-gray-300', active ? 'border-indigo-600 ring-2 ring-indigo-600' : '', 'relative flex cursor-pointer rounded-lg border bg-white p-4 shadow-sm focus:outline-none']">
                                 <span class="flex flex-1">
                                     <span class="flex flex-col w-full">
                                         <RadioGroupLabel as="span" class="block text-[25px] font-medium text-indigo-500">{{
@@ -30,10 +32,11 @@
                                             }}</RadioGroupDescription>
                                     </span>
                                 </span>
-                                <CheckCircleIcon :class="[!checked && quizCategory.value !== category_selected  ? 'invisible' : '', 'h-5 w-5 text-indigo-600']"
+                                <CheckCircleIcon
+                                    :class="[!checked && quizCategory.value !== category_selected ? 'invisible' : '', 'h-5 w-5 text-indigo-600']"
                                     aria-hidden="true" />
                                 <span
-                                    :class="[active  ? 'border' : 'border-2', checked ? 'border-indigo-600' : 'border-transparent', 'pointer-events-none absolute -inset-px rounded-lg']"
+                                    :class="[active ? 'border' : 'border-2', checked ? 'border-indigo-600' : 'border-transparent', 'pointer-events-none absolute -inset-px rounded-lg']"
                                     aria-hidden="true" />
                             </div>
                         </RadioGroupOption>
@@ -65,6 +68,11 @@
                         class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                         placeholder="Enter Quiz Description"></textarea>
                 </div>
+                <div class="mb-6">
+                    <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="quiz_banner">Upload Quiz Banner:</label>
+                    <input ref="questionBanner" type="file" id="title" @change="pickQuestionBanner"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-md rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2" placeholder="Enter Quiz Title">
+                </div>
 
                 <button @click.prevent="showQuestion"
                     class="self-end px-6 py-2 bg-indigo-500 text-sm text-white rounded">Next</button>
@@ -72,34 +80,43 @@
         </form>
 
         <!-- continuation -->
-        <div v-if="isDetailComplete" class="flex flex-col p-2 px-[30px]">         
+
+        <div v-if="isDetailComplete" class="flex flex-col p-2 px-[30px]">
+            
             <h3 class="text-lg font-bold text-black">Questions</h3>
-            <p class="text-xs text-gray-400 italic mb-2">Press ( + ) to add another choice to the question and/or ( - ) to remove a choice</p>
+            <p class="text-xs text-gray-400 italic mb-2">Press ( + ) to add another choice to the question and/or ( - ) to
+                remove a choice</p>
             <div v-for="(question, index) in formQuiz.questions" :key="index" class="mb-4">
                 <div class="flex justify-between">
                     <label class="block mb-2 text-black">Question {{ index + 1 }}: </label>
                     <a href="#" @click="removeQuestion(index)" class="text-end">Remove Question</a>
                 </div>
                 <div class="flex space-x-1">
-                    <input type="text" v-model="question.text" class="px-4 py-1 border border-gray-300 rounded w-[1004px] mr-2 bg-white text-black">
+                    <input type="text" v-model="question.text"
+                        class="px-4 py-1 border border-gray-300 rounded w-[1004px] mr-2 bg-white text-black">
                     <button :disabled="question.choices.length == 4"
-                        :class="question.choices.length == 4 ? 'bg-gray-600' : ''" @click="addChoice(index)" data-tip="Add Choice"
-                        class="tooltip bg-blue-500 text-white rounded-full w-9 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        :class="question.choices.length == 4 ? 'bg-gray-600' : ''" @click="addChoice(index)"
+                        data-tip="Add Choice"
+                        class="tooltip bg-blue-500 text-white rounded-full w-9 flex items-center justify-center"><svg
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m6-6H6" />
                         </svg>
                     </button>
                     <button :disabled="question.choices.length == 1"
-                        :class="question.choices.length == 1 ? 'bg-gray-600' : 'bg-red-500'" v-if="choiceIndex !== 0" @click="removeChoice(index, choiceIndex)" data-tip="Remove Choice"
-                        class="tooltip  text-white rounded-full w-9 flex items-center justify-center"><svg xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        :class="question.choices.length == 1 ? 'bg-gray-600' : 'bg-red-500'" v-if="choiceIndex !== 0"
+                        @click="removeChoice(index, choiceIndex)" data-tip="Remove Choice"
+                        class="tooltip  text-white rounded-full w-9 flex items-center justify-center"><svg
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                            stroke="currentColor" class="w-6 h-6">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M18 12H6" />
                         </svg>
                     </button>
                 </div>
                 <label class="mb-2 text-black">Choices:</label>
                 <div v-for="(choice, choiceIndex) in question.choices" :key="choiceIndex" class="flex items-center mb-2">
-                    <input type="text" v-model="choice.text" :disabled="is_true_or_false" class="w-full px-4 py-1 border border-gray-300 rounded bg-white text-black">
+                    <input type="text" v-model="choice.text" :disabled="is_true_or_false"
+                        class="w-full px-4 py-1 border border-gray-300 rounded bg-white text-black">
                     <input type="radio" v-model="question.correctChoices" :value="choice.text" class="ml-2">
                     <label class="ml-1 text-sm whitespace-nowrap bg-white text-black">Correct Answer</label>
                 </div>
@@ -108,7 +125,7 @@
                 <button @click="addQuestion" class="px-4 py-2 bg-blue-500 text-white text-sm rounded hover:bg-blue-600">+
                     Add
                     Question</button>
-                <button @click.prevent="submitQuiz"
+                <button @click="submitQuiz"
                     class="px-4 py-2 bg-green-500 text-white text-sm rounded hover:bg-green-600">Update
                     Quiz</button>
             </div>
@@ -137,6 +154,7 @@ export default {
             category_selected: '',
             question_index: 1,
             quizTimer: [
+                { name: '1 Minute', value: '1' },
                 { name: '5 Minutes', value: '5' },
                 { name: '10 Minutes', value: '10' },
                 { name: '15 Minutes', value: '15' },
@@ -144,14 +162,15 @@ export default {
             ],
             // Try Only
             formQuiz: new Form({
-                id:'',
+                id: '',
                 title: '',
                 description: '',
                 category: '',
                 duration:'',
+                banner:'',
                 questions: [
                     {
-                        id:'',
+                        id: '',
                         text: '',
                         choices: [{ text: '' }],
                         correctChoices: ""
@@ -169,36 +188,37 @@ export default {
     },
     // Try Only
     methods: {
-        addQuestion() {
+        addQuestion() {         
             let counter = this.formQuiz.questions.length
+
             if(this.formQuiz.category == 'true-or-false'){
                 this.formQuiz.questions.push({
-                    id:'',
+                    id: '',
                     text: '',
                     choices: [],
                     correctChoices: ""
                 });
                 this.formQuiz.questions[counter].choices.push({ text: 'TRUE' });
                 this.formQuiz.questions[counter].choices.push({ text: 'FALSE' });
-            }else{
+            } else {
                 this.formQuiz.questions.push({
-                    id:'',
+                    id: '',
                     text: '',
                     choices: [{ text: '' }],
                     correctChoices: ""
                 });
             }
             counter++;
-            
+
         },
-        removeQuestion(idx){
-            this.formQuiz.questions.splice(idx,1);
+        removeQuestion(idx) {
+            this.formQuiz.questions.splice(idx, 1);
         },
         addChoice(questionIndex) {
-            if(!this.is_true_or_false){
+            if (!this.is_true_or_false) {
                 this.formQuiz.questions[questionIndex].choices.push({ text: '' });
-            }else{
-                
+            } else {
+
             }
         },
         removeChoice(questionIndex, choiceIndex) {
@@ -207,7 +227,7 @@ export default {
         submitQuiz() {
             // You can perform additional validation or submit the quiz data to a server here
             console.log(this.formQuiz);
-            this.formQuiz.put('/api/questions/'+this.formQuiz.id).then((res)=>{
+            this.formQuiz.put('/api/questions/' + this.formQuiz.id).then((res) => {
                 createToast({
                     title: 'Hurray!',
                     description: "Quiz Updated"
@@ -224,8 +244,8 @@ export default {
             })
 
         },
-        categorySelected(category,event){
-            if(category == 'true-or-false'){
+        categorySelected(category, event) {
+            if (category == 'true-or-false') {
                 // this.formQuiz = new Form({
                 //     title: '',
                 //     description: '',
@@ -242,7 +262,7 @@ export default {
                 this.is_true_or_false = true;
                 this.formQuiz.questions[0].choices.push({ text: 'TRUE' });
                 this.formQuiz.questions[0].choices.push({ text: 'FALSE' });
-            }else{
+            } else {
                 this.is_true_or_false = false
             }
             this.category_selected = category
@@ -270,12 +290,24 @@ export default {
                 this.isDetailComplete = !this.isDetailComplete;
             }
         },
+        pickQuestionBanner(){
+            let input = this.$refs.questionBanner;
+            let file = input.files;
+            if (file && file[0]) {
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    this.formQuiz.banner = e.target.result;
+                };
+                reader.readAsDataURL(file[0]);
+                this.$emit("input", file[0]);
+            }
+        },
         async getData() {
             const currentURL = window.location.href;
             const match = currentURL.match(/\/(\d+)$/);
             const id = match ? match[1] : null;
-    
-            await axios.get('/api/questions/'+id).then((data) => {
+
+            await axios.get('/api/questions/' + id).then((data) => {
                 let quiz = data.data.data;
                 this.formQuiz.id = quiz.id
                 this.formQuiz.title = quiz.title
@@ -285,32 +317,32 @@ export default {
                 this.formQuiz.duration = quiz.duration
 
                 let quizItem = quiz.question_item
-                this.formQuiz.questions.splice(0,1);
+                this.formQuiz.questions.splice(0, 1);
                 for (let index = 0; index < quizItem.length; index++) {
-                    if(this.category_selected == 'multiple-choice'){
+                    if (this.category_selected == 'multiple-choice') {
                         this.formQuiz.questions.push({
-                        id:quizItem[index]['id'],
-                        text: quizItem[index]['question'],
-                        choices: [
-                                { text: quizItem[index]['choice_a'] }, {text: quizItem[index]['choice_b']}, {text: quizItem[index]['choice_c']}, {text: quizItem[index]['choice_d']}
-                            ],
-                            correctChoices:  quizItem[index]['correct_ans']
-                        });
-                    }else{
-                        this.formQuiz.questions.push({
-                            id:quizItem[index]['id'],
+                            id: quizItem[index]['id'],
                             text: quizItem[index]['question'],
                             choices: [
-                                { text: quizItem[index]['choice_a'] }, {text: quizItem[index]['choice_b']} 
+                                { text: quizItem[index]['choice_a'] }, { text: quizItem[index]['choice_b'] }, { text: quizItem[index]['choice_c'] }, { text: quizItem[index]['choice_d'] }
                             ],
-                            correctChoices:  quizItem[index]['correct_ans']
+                            correctChoices: quizItem[index]['correct_ans']
+                        });
+                    } else {
+                        this.formQuiz.questions.push({
+                            id: quizItem[index]['id'],
+                            text: quizItem[index]['question'],
+                            choices: [
+                                { text: quizItem[index]['choice_a'] }, { text: quizItem[index]['choice_b'] }
+                            ],
+                            correctChoices: quizItem[index]['correct_ans']
                         });
                     }
-                    
-                   // this.formQuiz.questions.text =  quizItem[index]['question'];
+
+                    // this.formQuiz.questions.text =  quizItem[index]['question'];
 
                 }
-                
+
             }).catch((e) => {
                 console.log(e.message)
                 // errorMessage('Opps!', e.message, 'top-right')

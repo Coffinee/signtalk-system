@@ -144,7 +144,7 @@ export default {
             category_selected: '',
             question_index: 1,
             quizTimer: [
-                { name: '1 Minutes', value: '1' },
+                { name: '1 Minute', value: '1' },
                 { name: '5 Minutes', value: '5' },
                 { name: '10 Minutes', value: '10' },
                 { name: '15 Minutes', value: '15' },

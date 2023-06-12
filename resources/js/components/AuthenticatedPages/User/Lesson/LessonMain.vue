@@ -1,5 +1,8 @@
 <template>
     <div class="flex flex-col justify-center w-auto h-auto bg-white dark:bg-transparent">
+        <router-link to="/lesson" class="m-[20px]">
+            <ChevronLeftIcon class="w-[50px] h-[50px] fill-indigo-500"/>
+        </router-link>
         <div class="w-full sm:w-full md:w-[70%] self-center py-10 px-5">
             <div>
                 <h1
@@ -22,15 +25,21 @@
                 <div class="flex justify-center w-full">
                     <img class="w-full sm:w-full md:w-[80%] rounded-lg" :src="lessonImage">
                 </div>
+                <form class="w-full">
+                    <button class="py-2 w-full text-white rounded-md" :class="isFinish ? 'bg-gray-500' : 'bg-indigo-500'">
+                        Finish Lesson?
+                    </button>
+                </form>
             </div>
+
         </div>
     </div>
 </template>
 <script >
 import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
-import { ChevronDownIcon } from '@heroicons/vue/20/solid'
-import { ChevronRightIcon } from '@heroicons/vue/20/solid'
+import { ChevronDownIcon, ChevronRightIcon, ChevronLeftIcon } from '@heroicons/vue/20/solid'
 import axios from 'axios'
+import Form from 'vform'
 export default {
     props: {
         data: {
@@ -39,7 +48,7 @@ export default {
         }
     },
     components: {
-        Popover, PopoverButton, PopoverPanel, ChevronDownIcon, ChevronRightIcon
+        Popover, PopoverButton, PopoverPanel, ChevronDownIcon, ChevronRightIcon, ChevronLeftIcon
     },
     data() {
         return {
@@ -48,7 +57,10 @@ export default {
             lessonContent: '',
             lessonImage: '',
             lessonRef: '',
-            lessonId: ''
+            lessonId: '',
+            form: new Form ({
+                isFinish: false
+            })
         }
     },
     methods: {
@@ -63,7 +75,7 @@ export default {
                 this.lessonContent = lesson.content;
                 this.lessonImage = '/uploads/lessons/' + lesson.image_file;
                 this.lessonRef = lesson.refLink;
-                
+
             }).catch((e) => {
                 errorMessage('Opps!', e.message, 'top-right')
             });

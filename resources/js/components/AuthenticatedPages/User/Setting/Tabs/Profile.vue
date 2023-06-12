@@ -1,54 +1,3 @@
-<script>
-import { userAuthStore } from '@/store/auth';
-import Accordion from '../../../../misc/Accordion.vue'
-import Form from 'vform';
-
-export default {
-    name: 'Profile',
-
-    components: {
-        Accordion,
-    },
-    data() {
-        return {
-            user_fname: userAuthStore().user.first_name,
-            user_lname: userAuthStore().user.last_name,
-            email: userAuthStore().user.email,
-            cCode: userAuthStore().user.classCode,
-            isInput_fname: false,
-            isInput_lname: false,
-            isInput_email: false,
-            form: new Form({
-                fname: '',
-                lname: '',
-                email: ''
-            })
-        }
-    },
-
-    methods: {
-        fnameInput() {
-            this.isInput_fname = !this.isInput_fname;
-        },
-        lnameInput() {
-            this.isInput_lname = !this.isInput_lname;
-        },
-        emailInput() {
-            this.isInput_email = !this.isInput_email;
-        },
-
-        savefnameInput() {
-            this.isInput_fname = !this.isInput_fname;
-        },
-        savelnameInput() {
-            this.isInput_lname = !this.isInput_lname;
-        },
-        saveEmailInput() {
-            this.isInput_email = !this.isInput_email;
-        }
-    }
-}
-</script>
 <template>
     <div class="p-3 h-screen w-full ">
         <Accordion :sectiontitle="'View Profile'" :accordionColor="'bg-indigo-500'" :setOpen="false">
@@ -101,16 +50,15 @@ export default {
                             </button>
                         </dd>
                     </div>
-
                     <div class="px-4 py-4 sm:grid sm:grid-cols-2 sm:gap-4 sm:px-0">
                         <dt class="text-sm font-semibold leading-6 text-gray-900 dark:text-white">Email Address:</dt>
                         <dd class="mt-1 flex text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
                             <div class="w-full flex space-x-2">
                                 <span v-if="!isInput_email" class="flex-grow dark:text-gray-400">{{ email }}</span>
                                 <input v-if="isInput_email" type="text"
-                                    class="w-full  border-b border-indigo-500 dark:border-none focus:outline-none px-[10px] py-[5px] rounded-lg dark:bg-gray-700 dark:text-gray-200">
+                                    class="w-full  border-b border-indigo-500 dark:border-none focus:outline-none px-[10px] py-[5px] rounded-lg bg-white dark:bg-gray-700 dark:text-gray-200">
                                 <button v-if="isInput_email" @click.prevent="saveEmailInput()" class="ml-3">
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                     stroke="green" class="w-5 h-5">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                                 </svg>
@@ -175,3 +123,54 @@ export default {
         </Accordion>
     </div>
 </template>
+<script>
+import { userAuthStore } from '@/store/auth';
+import Accordion from '../../../../misc/Accordion.vue'
+import Form from 'vform';
+
+export default {
+    name: 'Profile',
+
+    components: {
+        Accordion,
+    },
+    data() {
+        return {
+            user_fname: userAuthStore().user.first_name,
+            user_lname: userAuthStore().user.last_name,
+            email: userAuthStore().user.email,
+            cCode: userAuthStore().user.classCode,
+            isInput_fname: false,
+            isInput_lname: false,
+            isInput_email: false,
+            form: new Form({
+                fname: '',
+                lname: '',
+                email: ''
+            })
+        }
+    },
+
+    methods: {
+        fnameInput() {
+            this.isInput_fname = !this.isInput_fname;
+        },
+        lnameInput() {
+            this.isInput_lname = !this.isInput_lname;
+        },
+        emailInput() {
+            this.isInput_email = !this.isInput_email;
+        },
+
+        savefnameInput() {
+            this.isInput_fname = !this.isInput_fname;
+        },
+        savelnameInput() {
+            this.isInput_lname = !this.isInput_lname;
+        },
+        saveEmailInput() {
+            this.isInput_email = !this.isInput_email;
+        }
+    }
+}
+</script>

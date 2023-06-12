@@ -27,6 +27,8 @@ class SectionRequest extends FormRequest
     public function createRules() :array {
         return [
             'className' => 'required|max:50',
+            'schoolYear' => 'required|max:100',
+            'schoolSemester' => 'required|max:100',
         ];
     }
 }

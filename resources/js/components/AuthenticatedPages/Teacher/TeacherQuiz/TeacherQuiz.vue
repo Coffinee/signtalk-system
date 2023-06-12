@@ -1,5 +1,5 @@
 <template>
-    <div class="dark:bg-transparent h-auto">
+    <div class="dark:bg-transparent h-auto md:h-screen">
         <div>
             <div class="flex justify-between mb-[20px]">
                 <h5 class="text-2xl text-left font-bold text-black mb-3">Quiz</h5>
