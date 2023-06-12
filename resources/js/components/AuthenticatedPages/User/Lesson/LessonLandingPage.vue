@@ -43,7 +43,7 @@ export default {
             lessonImage: '',
             lessonRef: '',
             lessonId: '',
-            lessonProgress: 'isFinished'
+            lessonProgress: ''
         }
     },
     methods: {

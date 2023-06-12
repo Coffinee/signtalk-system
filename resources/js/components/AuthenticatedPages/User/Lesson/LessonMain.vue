@@ -26,7 +26,7 @@
                     <img class="w-full sm:w-full md:w-[80%] rounded-lg" :src="lessonImage">
                 </div>
                 <form class="w-full">
-                    <button class="py-2 w-full text-white rounded-md" :class="isFinish ? 'bg-gray-500' : 'bg-indigo-500'">
+                    <button type=submit class="py-2 w-full text-white rounded-md bg-indigo-500" >
                         Finish Lesson?
                     </button>
                 </form>
@@ -58,8 +58,11 @@ export default {
             lessonImage: '',
             lessonRef: '',
             lessonId: '',
+            
             form: new Form ({
-                isFinish: false
+                lesson_id:'',
+                student_id:'',
+                isFinished:'',
             })
         }
     },
