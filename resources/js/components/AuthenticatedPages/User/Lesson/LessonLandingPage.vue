@@ -11,6 +11,12 @@
                         <h5 class="mb-2 text-xl font-bold tracking-tight text-gray-900 dark:text-white">{{ lesson.title }}
                         </h5>
                         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 text-md">Learn {{ lesson.title }}.</p>
+                        <div v-if="lessonProgress == 'isFinished'" class="w-fit  bg-indigo-500 rounded-lg px-2">
+                            <p class="font-bold text-md text-white capitalize">Completed</p>
+                        </div>
+                        <div v-else class="w-fit  bg-gray-500 rounded-lg px-2">
+                            <p class="font-bold text-md text-white capitalize">Not Taken</p>
+                        </div>
                     </div>
                 </router-link>
             </div>
@@ -36,7 +42,8 @@ export default {
             lessonContent: '',
             lessonImage: '',
             lessonRef: '',
-            lessonId: ''
+            lessonId: '',
+            lessonProgress: 'isFinished'
         }
     },
     methods: {
