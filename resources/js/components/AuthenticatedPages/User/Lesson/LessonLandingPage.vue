@@ -18,7 +18,7 @@
     </div>
     <div v-else class="w-full h-screen flex flex-col justify-center items-center">
         <img src="/images/nothing.png" class="w-[400px]">
-        <p class="font-light tracking-widest">Dictionary | Nothing to show ...</p>
+        <p class="font-light tracking-widest">Lessons | Nothing to show ...</p>
     </div>
 </template>
   
