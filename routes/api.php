@@ -23,17 +23,19 @@ Route::namespace('App\Http\Controllers\API')->group(function() {
     Route::get('getlesson', 'LessonController@getLesson');
     Route::get('getclass', 'SectionController@getClass');
     Route::get('get-roles', 'RolesController@getRoles');
+
     Route::get('getquiz', 'QuestionsController@getQuiz');
+    Route::get('getaverages', 'ResultsController@getAverages');
+    Route::get('getstudentquiz/{studentId}', 'ResultsController@getQuizResultsByStudent');
 
     Route::get('getstudents', 'UserController@getStudents');
     Route::get('getpending', 'UserController@getPendingStudents');
     Route::get('getapprove', 'UserController@getOfficialStudents');
 
     Route::get('getstudents', 'UserController@getStudents');
-    Route::get('getaverages', 'ResultsController@getAverages');
     Route::get('getsections', 'SectionController@getSections');
 
-    Route::put('getpending/{student}', 'UserController@update');
+    // Route::put('user/{student}', 'UserController@update');
 
     Route::apiResources([
         'user' => 'UserController',

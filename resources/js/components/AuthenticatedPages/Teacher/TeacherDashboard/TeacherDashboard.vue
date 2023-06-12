@@ -82,7 +82,7 @@ export default {
                 { label: 'ID' },
                 { label: 'Student Name' },
                 { label: 'Quiz Title '},
-                { label: 'No of times Taken' },
+                { label: 'No of Attempts' },
                 { label: 'Average Scores' },
                 { label: 'Average Mistakes' },
             ],

@@ -8,7 +8,7 @@
                     New</button>
             </router-link>
         </div>
-        <div class="flex justify-center flex-wrap gap-[20px] my-10">
+        <div v-if="questions != ''" class="flex justify-center flex-wrap gap-[20px] my-10">
             <div class="max-w-xs h-[230px] bg-white border border-gray-200 rounded-lg shadow" v-for="item in questions"
                 :key="item.id">
                 <div class="h-[65%]">
@@ -37,6 +37,12 @@
                         </router-link>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div v-else class="w-full h-screen">
+            <div class="mt-[8%] flex flex-col items-center">
+                <img src="/images/nothing.png" class="w-[400px]">
+                <p class="font-light tracking-widest">Quiz | Nothing to show ...</p>
             </div>
         </div>
     </div>

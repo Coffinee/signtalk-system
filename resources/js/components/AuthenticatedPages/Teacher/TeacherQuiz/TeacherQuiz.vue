@@ -9,7 +9,7 @@
                     New</button>
                 </router-link>
             </div>
-            <div v-if="questions !== ''" class="flex justify-center flex-wrap gap-[20px]">
+            <div v-if="questions != ''" class="flex justify-center flex-wrap gap-[20px]">
                 <div class="max-w-xs h-[300px] bg-white border border-gray-200 rounded-lg shadow"  v-for="item in questions" :key="item.id">
                     <div class="h-[65%]">
                         <router-link to="#">
