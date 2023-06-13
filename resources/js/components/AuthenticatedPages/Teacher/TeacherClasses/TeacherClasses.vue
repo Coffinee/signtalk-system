@@ -5,8 +5,6 @@
                 <h2 class="text-2xl font-extrabold font-poppins text-black">My Classes</h2>
             </div>
             <div class="flex space-x-1">
-                <button v-if="SectionList != ''" @click="approvalListOpen = true"
-                    class="bg-gray-900 hover:bg-gray-900/90 rounded-md text-white text-base px-8 py-2">For Approval</button>
                 <button @click="modalOpen = true"
                     class="bg-gray-900 hover:bg-gray-900/90 rounded-md text-white text-base px-8 py-2">Add
                     Class</button>
@@ -30,8 +28,7 @@
                     </TabList>
                     <TabPanels v-for="tab in SectionList" :key="tab">
                         <TabPanel class="h-full w-full bg-white shadow-md rounded-md p-4 space-y-5 p">
-                            <Section :className="tab.className" :classCode="tab.classCode" :classYear="tab.schoolYear"
-                                :classSem="tab.schoolSemester" :studentList="officialStudents" :sectionID="tab.id" />
+                            <Section :className="tab.className" :classCode="tab.classCode" :classYear="tab.schoolYear" :classSem="tab.schoolSemester" :sectionID="tab.id"/>
                         </TabPanel>
                     </TabPanels>
                 </TabGroup>
@@ -79,52 +76,6 @@
             </form>
         </div>
     </Modal>
-    <Modal :show="approvalListOpen" @close="approvalListToggle" :title="'Pending Students'" :heightModal="'h-[500px]'"
-        :widthModal="'w-[1000px]'">
-        <div class="w-full h-full">
-            <div class="overflow-auto">
-                <table class="w-full text-sm text-left text-gray-500 py-[10px]">
-                    <thead class="text-xs text-gray-700 uppercase bg-gray-200 text-center">
-                        <tr>
-                            <th v-for="label in tableLabels" :key="label.label" scope="col"
-                                class="px-6 py-3 whitespace-nowrap">
-                                {{ label.label }}
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody v-for="item in pendingStudents" :key="item.id">
-                        <tr v-if="item.classCode && item.lrn" class="bg-white border-b text-center">
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap capitalize">
-                                {{ item.status }}
-                            </th>
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                {{ item.classCode }}
-                            </th>
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                {{ item.lrn }}
-                            </th>
-                            <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                {{ item.email }}
-                            </th>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                {{ item.first_name }}
-                            </td>
-                            <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                {{ item.last_name }}
-                            </td>
-                            <td
-                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap flex justify-center gap-[10px]">
-                                <a href="#" @click="acceptStudent(item)"
-                                    class="text-white p-2 bg-green-500 rounded-md">Accept</a>
-                                <a href="#" @click="declineStudent(item)"
-                                    class="text-white p-2 bg-red-500 rounded-md">Decline</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </Modal>
 </template>
 <script>
 import { createToast } from 'mosha-vue-toastify';
@@ -159,15 +110,7 @@ export default {
                 { id: 1, period: 'Third', value: 'Third' },
                 { id: 1, period: 'Fourth', value: 'Fourth' },
             ],
-            tableLabels: [
-                { label: 'Status' },
-                { label: 'Class Code' },
-                { label: 'LRN' },
-                { label: 'Email' },
-                { label: 'First Name' },
-                { label: 'Last Name' },
-                { label: 'Action' },
-            ],
+
         }
     },
 
@@ -184,9 +127,6 @@ export default {
                 schoolYear: '',
                 schoolSemester: ''
             })
-        },
-        approvalListToggle() {
-            this.approvalListOpen = false;
         },
         addSection() {
             this.$Progress.start();
@@ -218,63 +158,11 @@ export default {
                 errorMessage('Opps!', e.message, 'top-right')
             });
         },
-        async getPendingStudents() {
-            await axios.get('/api/getpending')
-                .then((data) => {
-                    this.pendingStudents = data.data.data;
-                    console.log('pendingStudents:', this.pendingStudents);
-                })
-                .catch(error => {
-                    console.error('Error fetching pending students:', error.data.data);
-                });
-        },
-        async getOfficialStudents() {
-            // Send a GET request to fetch official students
-            await axios.get('/api/getapprove')
-                .then((data) => {
-                    this.officialStudents = data.data.data;
-                    console.log('officialStudents:', this.officialStudents);
-                })
-                .catch(error => {
-                    console.error('Error fetching official students:', error.data.data);
-                });
-        },
-        acceptStudent(student) {
-            axios.put(`/api/getpending/${student.id}`, { status: 'official' })
-                .then(response => {
-                    // Update the student's status in the pendingStudents array
-                    const index = this.pendingStudents.findIndex(item => item.id === student.id);
-                    if (index !== -1) {
-                        this.pendingStudents[index].status = 'official';
-                    }
-                    // Move the student from the pendingStudents array to the officialStudents array
-                    this.officialStudents.push(this.pendingStudents.splice(index, 1)[0]);
-                })
-                .catch(error => {
-                    console.error('Error accepting student:', error.response.data);
-                });
-        },
 
-        declineStudent(student) {
-            // console.log('Declined student:', student);
-            // Send a PUT request to update the student's status to 'declined'
-            axios.put(`/api/getpending/${student.id}`, { status: 'declined' })
-                .then(response => {
-                    // console.log('Student declined:', response.data);
-                    // Remove the student from the pending list
-                    this.pendingStudents = this.pendingStudents.filter(item => item.id !== student.id);
-                    // console.log(this.pendingStudents);
-                })
-                .catch(error => {
-                    console.error('Error declining student:', error.response.data);
-                });
-        },
 
     },
     created() {
         this.getClass();
-        this.getPendingStudents();
-        this.getOfficialStudents();
     }
 
 }

@@ -66,4 +66,42 @@ class ResultsController extends BaseController
     
         return response()->json($averages);
     }
+
+    public function getQuizResultsByStudent(Request $request)
+    {
+        $quizResults = QuizResults::select(
+            'questions.title as quiz_title',
+            'score',
+            'mistakes',
+            'remaining_time',
+            'quiz_results.created_at'
+        )
+        ->join('questions', 'quiz_results.question_id', '=', 'questions.id')
+        ->where('quiz_results.student_id', $request->id)
+        ->get();
+        
+        return $this->sendResponse($quizResults, "data");
+    }
+    
+    // public function getQuizResultsByStudent($studentId)
+    // {
+    //     $quizResults = QuizResults::select(
+    //         'questions.title as quiz_title',
+    //         'score',
+    //         'mistakes',
+    //         'remaining_time',
+    //         'quiz_results.created_at',
+    //         'users.name as student_name',
+    //         // 'users.email as student_email'
+    //     )
+    //     ->join('questions', 'quiz_results.question_id', '=', 'questions.id')
+    //     ->join('users', 'quiz_results.student_id', '=', 'users.id')
+    //     ->where('quiz_results.student_id', $studentId)
+    //     ->get();
+
+    //     return response()->json($quizResults);
+    // }
+
+
+    
 }
