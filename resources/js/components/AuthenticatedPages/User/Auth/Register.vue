@@ -10,7 +10,7 @@
                             {{ !createAccount ? 'Choose an option' : 'Register' }}
                         </h1>
                         <div v-show="!createAccount" class="">
-                            <a href="#" type="button"
+                            <!-- <a href="#" type="button"
                                 class="text-red-500 bg-white hover:bg-white/90 focus:outline-none border border-red-500 font-medium rounded-lg text-xs py-2.5 mt-16 text-center flex items-center justify-center w-full">
                                 <svg class="w-4 h-4 mr-2 -ml-1" aria-hidden="true" focusable="false" data-prefix="fab"
                                     data-icon="google" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512">
@@ -19,7 +19,7 @@
                                     </path>
                                 </svg>
                                 Sign up with Google
-                            </a>
+                            </a> -->
                             <!-- 
                             <div class="my-8 relative">
                                 <hr class="w-full h-px bg-gray-300">
@@ -142,7 +142,8 @@ export default {
                 email: '',
                 password: '',
                 cPassword: '',
-                classCode: null
+                classCode: null,
+                // status: 'pending'
             }),
             cPassword: '',
             roles: [

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->string('classCode')->nullable();
             $table->string('google_id')->nullable();
+            $table->string('status')->default('pending');
             $table->rememberToken();
             $table->timestamps();
         });
