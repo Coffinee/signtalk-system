@@ -118,7 +118,8 @@ export default {
                 }).catch((error) => {
                     this.$Progress.fail();
                 })
-        }
+        }, 
+
     },
     created() {
         this.getData();

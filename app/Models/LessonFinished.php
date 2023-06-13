@@ -12,5 +12,11 @@ class LessonFinished extends Model
     protected $fillable = [
         'student_id',
         'lesson_id',
+        'status',
     ];
+
+    public function lesson()
+    {
+        return $this->belongsTo(Lesson::class, 'lesson_id', 'id');
+    }
 }

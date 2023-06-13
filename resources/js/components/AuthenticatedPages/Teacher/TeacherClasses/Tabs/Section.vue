@@ -63,7 +63,7 @@
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                             <button
-                                @click.prevent="(studentReportOpen = !studentReportOpen), getStudentQuizResults(item.id)"
+                                @click.prevent="(studentReportOpen = !studentReportOpen), getStudentQuizResults(item.id), getFinishedLessons(item.id)"
                                 class="text-blue-400 underline">View Report</button>
                         </td>
                     </tr>
@@ -135,17 +135,23 @@
                                             Lesson #
                                         </th>
                                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                            Lesson Name
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
                                             Status
                                         </th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody v-for="(lesson) in lessonRecordStudent" :key="lesson.id">
                                     <tr class="bg-white border-b text-center">
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            ???
+                                            {{ lesson.id }}
                                         </th>
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            ???
+                                            {{ lesson.name }}
+                                        </th>
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                            {{ lesson.status ? 'Completed' : 'On going' }}
                                         </th>
                                     </tr>
                                 </tbody>
@@ -290,6 +296,7 @@ export default {
             pendingStudents: [],
             officialStudents: [],
             quizRecordStudent: [],
+            lessonRecordStudent: [],
             modalOpen: false,
             approvalListOpen: false,
             studentReportOpen: false,
@@ -330,7 +337,7 @@ export default {
             await axios.get('/api/getpending')
                 .then((data) => {
                     this.pendingStudents = data.data.data;
-                    console.log('pendingStudents:', this.pendingStudents);
+                    // console.log('pendingStudents:', this.pendingStudents);
                 })
                 .catch(error => {
                     console.error('Error fetching pending students:', error.data.data);
@@ -340,7 +347,7 @@ export default {
             await axios.get('/api/getapprove')
                 .then((data) => {
                     this.officialStudents = data.data.data;
-                    console.log('officialStudents:', this.officialStudents);
+                    // console.log('officialStudents:', this.officialStudents);
                 })
                 .catch(error => {
                     console.error('Error fetching official students:', error.data.data);
@@ -373,19 +380,31 @@ export default {
                     console.error('Error declining student:', error.response.data);
                 });
         },
-        getStudentQuizResults(studentId) {
-            console.log(studentId)
-            axios.get('/api/getstudentquiz?id=' + studentId)
+         getStudentQuizResults(studentId) {
+             console.log(studentId)
+              axios.get('/api/getstudentquiz?id=' + studentId)
                 .then((data) => {
                     this.quizRecordStudent = data.data.data;
-                    console.log(this.quizRecordStudent);
+                    console.log('QUIZ RECORD: ' +this.quizRecordStudent);
                 })
                 .catch(error => {
                     console.error(error);
                 });
         },
+
+        async getFinishedLessons(studentId){
+            console.log(studentId);
+            await axios.get('/api/getstudentlesson?id=' + studentId)
+            .then((data) => {
+                this.lessonRecordStudent = data.data.data;
+                    console.log( 'LESSON RECORD: ' + this.lessonRecordStudent);
+            }).catch((errorMessage) => {
+                console.error(errorMessage)
+            });
+        }
     },
     created() {
+        this.getFinishedLessons();
         this.getPendingStudents();
         this.getOfficialStudents();
     }

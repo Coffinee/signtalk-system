@@ -28,6 +28,8 @@ Route::namespace('App\Http\Controllers\API')->group(function() {
     Route::get('getaverages', 'ResultsController@getAverages');
     Route::get('getstudentquiz', 'ResultsController@getQuizResultsByStudent');
 
+    Route::get('getstudentlesson', 'LessonFinishedController@getFinishedLessons');
+
     Route::get('getstudents', 'UserController@getStudents');
     Route::get('getpending', 'UserController@getPendingStudents');
     Route::get('getapprove', 'UserController@getOfficialStudents');
