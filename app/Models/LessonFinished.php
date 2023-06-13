@@ -12,5 +12,6 @@ class LessonFinished extends Model
     protected $fillable = [
         'student_id',
         'lesson_id',
+        'status',
     ];
 }
