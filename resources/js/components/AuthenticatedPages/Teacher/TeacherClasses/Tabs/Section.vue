@@ -62,7 +62,8 @@
                             {{ item.first_name }}
                         </td>
                         <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            <button @click.prevent="(studentReportOpen = !studentReportOpen), getStudentQuizResults(item.id)"
+                            <button
+                                @click.prevent="(studentReportOpen = !studentReportOpen), getStudentQuizResults(item.id)"
                                 class="text-blue-400 underline">View Report</button>
                         </td>
                     </tr>
@@ -125,7 +126,32 @@
                 </TabPanel>
 
                 <TabPanel>
-                    report
+                    <div class="w-full h-full">
+                        <div class="overflow-auto">
+                            <table class="w-full text-sm text-left text-gray-500 py-[10px]">
+                                <thead class="text-xs text-gray-700 uppercase bg-gray-200 text-center">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                            Lesson #
+                                        </th>
+                                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                            Status
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="bg-white border-b text-center">
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                            ???
+                                        </th>
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                            ???
+                                        </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </TabPanel>
             </TabPanels>
         </TabGroup>

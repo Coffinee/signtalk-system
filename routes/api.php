@@ -43,7 +43,8 @@ Route::namespace('App\Http\Controllers\API')->group(function() {
         'translate' => 'TranslateController',
         'lesson' => 'LessonController',
         'questions' => 'QuestionsController',
-        'section' => "SectionController"
+        'section' => "SectionController",
+        'finish' => "LessonFinishedController"
     ]);
 });
 

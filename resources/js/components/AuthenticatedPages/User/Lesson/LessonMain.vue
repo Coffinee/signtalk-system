@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col justify-center w-auto h-auto bg-white dark:bg-transparent">
         <router-link to="/lesson" class="m-[20px]">
-            <ChevronLeftIcon class="w-[50px] h-[50px] fill-indigo-500"/>
+            <ChevronLeftIcon class="w-[50px] h-[50px] fill-indigo-500" />
         </router-link>
         <div class="w-full sm:w-full md:w-[70%] self-center py-10 px-5">
             <div>
@@ -25,9 +25,9 @@
                 <div class="flex justify-center w-full">
                     <img class="w-full sm:w-full md:w-[80%] rounded-lg" :src="lessonImage">
                 </div>
-                <form class="w-full">
-                    <button class="py-2 w-full text-white rounded-md" :class="isFinish ? 'bg-gray-500' : 'bg-indigo-500'">
-                        Finish Lesson?
+                <form @submit.prevent="finished" class="w-full">
+                    <button type="submit" :disabled="this.form.status" class="py-2 w-full text-white text-sm rounded-md" :class="this.form.status ? 'bg-gray-500' : 'bg-indigo-500'">
+                        {{ !this.form.status ? 'Finish Lesson?' : 'Completed' }}
                     </button>
                 </form>
             </div>
@@ -40,6 +40,10 @@ import { Popover, PopoverButton, PopoverPanel } from '@headlessui/vue'
 import { ChevronDownIcon, ChevronRightIcon, ChevronLeftIcon } from '@heroicons/vue/20/solid'
 import axios from 'axios'
 import Form from 'vform'
+import { userAuthStore } from '@/store/auth';
+
+const store = userAuthStore();
+
 export default {
     props: {
         data: {
@@ -58,8 +62,10 @@ export default {
             lessonImage: '',
             lessonRef: '',
             lessonId: '',
-            form: new Form ({
-                isFinish: false
+            form: new Form({
+                student_id: '',
+                lesson_id: '',
+                status: false
             })
         }
     },
@@ -100,6 +106,19 @@ export default {
                 window.removeEventListener('resize', handleResize);
             });
         },
+
+        finished() {
+            this.form.student_id = store.user.id;
+            this.form.lesson_id = window.location.href.split('/').pop();
+            this.form.status = true;
+            
+            this.form.post('/api/finish')
+            .then((data) => {
+                this.$Progress.finish();
+                }).catch((error) => {
+                    this.$Progress.fail();
+                })
+        }
     },
     created() {
         this.getData();
