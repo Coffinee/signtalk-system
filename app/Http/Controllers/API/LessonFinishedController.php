@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\LessonFinished;
+use App\Models\Lesson;
 use Illuminate\Http\Request;
 
 class LessonFinishedController extends BaseController
@@ -12,8 +13,26 @@ class LessonFinishedController extends BaseController
      */
     public function index()
     {
-        //
+        $data = LessonFinished::paginate(10);
+        return $this->sendResponse($data, "All Entries in Array");
     }
+
+    public function getFinishedLessons(Request $request)
+    {
+        $data = LessonFinished::with('lesson')
+                    ->where('status', 1)
+                    ->where('student_id', $request->id)
+                    ->get();                  
+        return $this->sendResponse($data, "All Entries in Array");
+    }
+
+    // public function getFinishedLessons(Request $request)
+    // {
+    //     $data = LessonFinished::where('status', 1)
+    //                 ->where('student_id', $request->id)
+    //                 ->get();                  
+    //     return $this->sendResponse($data, "All Entries in Array");
+    // }
 
     /**
      * Show the form for creating a new resource.

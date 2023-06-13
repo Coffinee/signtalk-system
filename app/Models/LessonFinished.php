@@ -14,4 +14,9 @@ class LessonFinished extends Model
         'lesson_id',
         'status',
     ];
+
+    public function lesson()
+    {
+        return $this->belongsTo(Lesson::class, 'lesson_id', 'id');
+    }
 }
