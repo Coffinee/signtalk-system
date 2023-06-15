@@ -16,19 +16,11 @@ class LessonFinishedController extends BaseController
         return $this->sendResponse($data, "All Entries in Array");
     }
 
-    // public function getFinishedLessons(Request $request)
-    // {
-    //     $data = LessonFinished::with('lesson')
-    //                 ->where('status', 1)
-    //                 ->where('student_id', $request->id)
-    //                 ->get();                  
-    //     return $this->sendResponse($data, "All Entries in Array");
-    // }
     public function getFinishedLessons(Request $request)
     {
         $data = LessonFinished::where('status', 1)
-                    ->where('student_id', $request->id)
-                    ->get();                  
+            ->where('student_id', $request->id)
+            ->get();
         return $this->sendResponse($data, "All Entries in Array");
     }
 
@@ -52,9 +44,10 @@ class LessonFinishedController extends BaseController
     /**
      * Display the specified resource.
      */
-    public function show(LessonFinished $lessonFinished)
+    public function show($id)
     {
-        //
+        $data = LessonFinished::where('lesson_id', $id)->first();
+        return $this->sendResponse($data, "Fetched data in table.");
     }
 
     /**

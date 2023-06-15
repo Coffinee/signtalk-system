@@ -381,11 +381,9 @@ export default {
                 });
         },
          getStudentQuizResults(studentId) {
-             console.log(studentId)
               axios.get('/api/getstudentquiz?id=' + studentId)
                 .then((data) => {
                     this.quizRecordStudent = data.data.data;
-                    console.log('QUIZ RECORD: ' +this.quizRecordStudent);
                 })
                 .catch(error => {
                     console.error(error);
@@ -393,11 +391,10 @@ export default {
         },
 
         async getFinishedLessons(studentId){
-            console.log(studentId);
             await axios.get('/api/getstudentlesson?id=' + studentId)
             .then((data) => {
                 this.lessonRecordStudent = data.data.data;
-                    console.log( 'LESSON RECORD: ' + this.lessonRecordStudent);
+                console.log( 'LESSON RECORD: ' + this.lessonRecordStudent);
             }).catch((errorMessage) => {
                 console.error(errorMessage)
             });
