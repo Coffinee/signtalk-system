@@ -26,8 +26,8 @@
                     <img class="w-full sm:w-full md:w-[80%] rounded-lg" :src="lessonImage">
                 </div>
                 <form @submit.prevent="finished" class="w-full">
-                    <button type="submit" :disabled="this.form.status" class="py-2 w-full text-white text-sm rounded-md" :class="this.form.status ? 'bg-gray-500' : 'bg-indigo-500'">
-                        {{ !this.form.status ? 'Finish Lesson?' : 'Completed' }}
+                    <button type="submit" :disabled="this.lessonFinished.status ?? false" class="py-2 w-full text-white text-sm rounded-md" :class="this.lessonFinished.status != null ? 'bg-gray-500' : 'bg-indigo-500'">
+                        {{ this.lessonFinished.status != null ? 'Completed' : 'Finish Lesson?' }}
                     </button>
                 </form>
             </div>
@@ -47,7 +47,7 @@ const store = userAuthStore();
 export default {
     props: {
         data: {
-            type: Array,
+            type: Object,
             default: {},
         }
     },
@@ -62,6 +62,8 @@ export default {
             lessonImage: '',
             lessonRef: '',
             lessonId: '',
+            lessonFinished: {},
+            lessonStatus: {},
             form: new Form({
                 student_id: '',
                 lesson_id: '',
@@ -111,18 +113,28 @@ export default {
             this.form.student_id = store.user.id;
             this.form.lesson_id = window.location.href.split('/').pop();
             this.form.status = true;
-            
+
             this.form.post('/api/finish')
             .then((data) => {
                 this.$Progress.finish();
+                this.getLessonFinished();
                 }).catch((error) => {
                     this.$Progress.fail();
                 })
-        }, 
+        },
+        getLessonFinished() {
+            axios.get('/api/finish/' + window.location.href.split('/').pop()).then((data) => {
+                this.lessonFinished = data.data.data;
+            }).catch((e) => {
+            });
+        }
+
+
 
     },
     created() {
         this.getData();
+        this.getLessonFinished();
     }
 }
 
