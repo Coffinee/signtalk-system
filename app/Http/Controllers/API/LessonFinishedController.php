@@ -23,6 +23,7 @@ class LessonFinishedController extends BaseController
             ->get();
         return $this->sendResponse($data, "All Entries in Array");
     }
+    
 
     /**
      * Show the form for creating a new resource.

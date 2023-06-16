@@ -91,7 +91,7 @@ class UserController extends BaseController
     {
         $data =  User::findOrfail($id)->update([
             'status' => $request->params['data']['status'],
-            'role' => $request->params['data']['role_id'],
+            'role_id' => $request->params['data']['role_id'],
         ]);
 
         return $this->sendResponse($data, "Updated Data");

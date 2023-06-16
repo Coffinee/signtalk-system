@@ -135,23 +135,29 @@
                                             Lesson #
                                         </th>
                                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
-                                            Lesson Name
+                                            Lesson Title
                                         </th>
                                         <th scope="col" class="px-6 py-3 whitespace-nowrap">
                                             Status
                                         </th>
+                                        <th scope="col" class="px-6 py-3 whitespace-nowrap">
+                                            Date
+                                        </th>
                                     </tr>
                                 </thead>
-                                <tbody v-for="(lesson) in lessonRecordStudent" :key="lesson.id">
+                                <tbody v-for="(item) in lessonRecordStudent" :key="item.id">
                                     <tr class="bg-white border-b text-center">
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            {{ lesson.id }}
+                                            {{ item.lesson_id}}
                                         </th>
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            {{ lesson.name }}
+                                            {{ lessonTitles[item.lesson_id] }}
                                         </th>
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                                            {{ lesson.status ? 'Completed' : 'On going' }}
+                                            {{ item.status ? 'Completed' : 'On going' }}
+                                        </th>
+                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                            {{ moment(item.created_at).format('MMMM Do YYYY, h:mm:ss a') }}
                                         </th>
                                     </tr>
                                 </tbody>
@@ -297,6 +303,7 @@ export default {
             officialStudents: [],
             quizRecordStudent: [],
             lessonRecordStudent: [],
+            allLessons: [],
             modalOpen: false,
             approvalListOpen: false,
             studentReportOpen: false,
@@ -389,7 +396,6 @@ export default {
                     console.error(error);
                 });
         },
-
         async getFinishedLessons(studentId){
             await axios.get('/api/getstudentlesson?id=' + studentId)
             .then((data) => {
@@ -398,12 +404,37 @@ export default {
             }).catch((errorMessage) => {
                 console.error(errorMessage)
             });
-        }
+        },
+        getLesson() {
+            axios.get('/api/getlesson/')
+                .then((data) => {
+                    this.allLessons = data.data.data;
+                    console.log(this.allLessons);
+                })
+                .catch((e) => {
+                    console.error(e.message);
+                });
+        },
+        getLessonTitle(lessonId) {
+            const lesson = this.allLessons.find((lesson) => lesson.id === lessonId);
+            return lesson ? lesson.title : '';
+        },
+    },
+    
+    computed: {
+        lessonTitles() {
+            const titles = {};
+            for (const lesson of this.allLessons) {
+                titles[lesson.id] = lesson.title;
+            }
+            return titles;
+        },
     },
     created() {
         this.getFinishedLessons();
         this.getPendingStudents();
         this.getOfficialStudents();
+        this.getLesson()
     }
 }
 </script>

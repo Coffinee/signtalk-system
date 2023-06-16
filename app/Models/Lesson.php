@@ -15,4 +15,6 @@ class Lesson extends Model
         'image_file',
         'refLink',
     ];
+
+    
 }

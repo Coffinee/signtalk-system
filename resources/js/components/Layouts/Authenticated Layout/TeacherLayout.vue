@@ -23,7 +23,7 @@
     -->
   <div>
     <TransitionRoot as="template" :show="sidebarOpen">
-      <Dialog as="div" class="relative lg:hidden" @close="sidebarOpen = false">
+      <Dialog as="div" class="relative z-50 lg:hidden" @close="sidebarOpen = false">
         <TransitionChild as="template" enter="transition-opacity ease-linear duration-300" enter-from="opacity-0"
           enter-to="opacity-100" leave="transition-opacity ease-linear duration-300" leave-from="opacity-100"
           leave-to="opacity-0">
@@ -74,7 +74,7 @@
     </TransitionRoot>
 
     <!-- Static sidebar for desktop -->
-    <div class="hidden lg:fixed lg:inset-y-0 lg:flex lg:w-72 lg:flex-col">
+    <div class="hidden lg:fixed lg:inset-y-0 lg:flex lg:z-50 lg:w-72 lg:flex-col">
       <!-- Sidebar component, swap this element with another sidebar if you like -->
       <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-gray-900 px-6">
         <div class="flex h-16 shrink-0 items-center gap-1">
@@ -103,7 +103,7 @@
 
     <div class="lg:pl-72">
       <div
-        class="sticky top-0 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
+        class="sticky top-0 z-40  flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
         <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" @click="sidebarOpen = true">
           <span class="sr-only">Open sidebar</span>
           <Bars3Icon class="h-6 w-6" aria-hidden="true" />
@@ -112,7 +112,7 @@
         <!-- Separator -->
         <div class="h-6 w-px bg-gray-900/10 lg:hidden" aria-hidden="true" />
 
-        <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+        <div class="flex flex-1 gap-x-4 self-stretch lg:gap-x-6 z-[51]">
           <form class="relative flex flex-1" action="#" method="GET">
             <label for="search-field" class="sr-only">Search</label>
             <MagnifyingGlassIcon class="pointer-events-none absolute inset-y-0 left-0 h-full w-5 text-gray-400"
@@ -163,7 +163,7 @@
           </div>
         </div>
       </div>
-      <main class="h-auto py-10 bg-[whitesmoke] ">
+      <main class="h-auto py-10 bg-[whitesmoke]">
         <div class="px-4 sm:px-6 lg:px-8">
           <!-- YOUR CONTENT HERE -->
           <router-view  :key="$route.fullPath"></router-view>
