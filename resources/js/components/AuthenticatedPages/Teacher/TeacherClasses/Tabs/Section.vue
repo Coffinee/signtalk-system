@@ -146,14 +146,14 @@
                                     </tr>
                                 </thead>
                                 <tbody v-for="(item) in lessonRecordStudent" :key="item.id">
-                                    <tr class="bg-white border-b text-center">
+                                    <tr class=" border-b text-center">
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                             {{ item.lesson_id}}
                                         </th>
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                             {{ lessonTitles[item.lesson_id] }}
                                         </th>
-                                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                                        <th scope="row" class="px-6 py-4 font-bold text-gray-900 whitespace-nowrap" :class="item.status ? 'bg-green-300' : 'bg-orange-300'">
                                             {{ item.status ? 'Completed' : 'On going' }}
                                         </th>
                                         <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
