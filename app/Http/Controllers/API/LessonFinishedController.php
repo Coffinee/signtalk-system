@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\LessonFinished;
-use App\Models\Lesson;
 use Illuminate\Http\Request;
 
 class LessonFinishedController extends BaseController
@@ -24,6 +23,7 @@ class LessonFinishedController extends BaseController
             ->get();
         return $this->sendResponse($data, "All Entries in Array");
     }
+    
 
     /**
      * Show the form for creating a new resource.
