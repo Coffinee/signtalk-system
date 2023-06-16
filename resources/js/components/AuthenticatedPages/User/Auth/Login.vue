@@ -51,14 +51,14 @@
                                     class="absolute text-sm text-center font-bold px-[5px] text-gray-300 dark:text-white bg-white dark:bg-gray-800">
                                     OR</p>
                             </div>-->
-                            <div>
+                            <!-- <div>
                                 <a href="/auth/google"
                                     class=" w-full text-black dark:text-white bg-transparent border border-gray-300 dark:border-gray-600  dark:hover:bg-gray-600 hover:bg-gray-100 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-[15px] px-5 py-2.5 text-center flex items-center justify-center gap-[10px] dark:focus:ring-[#4285F4]/55 mr-2 mb-2">
                                     <img class="h-4 w-4" src="../../../../../assets/images/google-icon.png"
                                         alt="google-icon">
                                     <p>Sign in with Google</p>
                                </a>
-                            </div> 
+                            </div>  -->
                             <p class="text-center text-sm font-light text-gray-500 dark:text-gray-400">
                                 Don’t have an account yet? <router-link to="/register"
                                     class="font-medium text-indigo-600 hover:underline dark:text-indigo-500">Register
